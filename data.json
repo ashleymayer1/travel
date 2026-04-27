@@ -371,21 +371,21 @@
       "roomType": "Suite",
       "roomSubtype": "Crown Loft Suite",
       "total": 16041,
-      "fare": 8103,
+      "fare": 6784,
       "cpn": 4010,
       "pppn": 1003,
-      "fppn": 506,
-      "farePct": 50.5,
+      "fppn": 424,
+      "farePct": 42.3,
       "isPast": true,
       "isUpcoming": false,
       "isOutlier": false,
       "categories": {
-        "Cruise Fare": 8103,
+        "Cruise Fare": 6784,
         "Travel": 5079,
         "Dogs": 870,
         "Supplies": 0,
         "Onboard Pre-booked": 352,
-        "Cabana/Casita": 989,
+        "Cabana/Casita": 2308,
         "Excursion": 306,
         "Onboard Spending": 343
       }
@@ -724,7 +724,7 @@
   "kpi": {
     "totalSpent": 206032,
     "avgPppn": 566,
-    "avgFppn": 336,
+    "avgFppn": 333,
     "farePct": 59,
     "totalNights": 93,
     "totalPersonNights": 364,
@@ -775,12 +775,12 @@
     }
   ],
   "categoryTotals": {
-    "Cruise Fare": 122357,
+    "Cruise Fare": 121039,
     "Travel": 35992,
     "Dogs": 7344,
     "Supplies": 9415,
     "Onboard Pre-booked": 8677,
-    "Cabana/Casita": 3175,
+    "Cabana/Casita": 4494,
     "Excursion": 1330,
     "Onboard Spending": 17774
   },
@@ -826,8 +826,8 @@
       "total": 86694,
       "pppn": 722,
       "avgPerSailing": 17339,
-      "fare": 49288,
-      "farePct": 56.9
+      "fare": 47969,
+      "farePct": 55.3
     },
     {
       "year": "2026",
@@ -863,27 +863,27 @@
       "year": 2022,
       "income": 44795,
       "expense": 39373,
-      "vacation": 24672,
-      "nonVacation": 14701,
+      "vacation": 25791,
+      "nonVacation": 13582,
       "net": 5421,
       "running": 5421
     },
     {
       "year": 2023,
-      "income": 67102,
+      "income": 68102,
       "expense": 57827,
       "vacation": 26546,
       "nonVacation": 31281,
-      "net": 9276,
-      "running": 14697
+      "net": 10276,
+      "running": 15697
     },
     {
       "year": 2024,
-      "income": 74479,
+      "income": 73479,
       "expense": 72314,
       "vacation": 52539,
       "nonVacation": 19775,
-      "net": 2165,
+      "net": 1165,
       "running": 16862
     },
     {
