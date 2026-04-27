@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cruise Expense Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #121218;
+  --card: #1e1e2e;
+  --primary: #5b9bd5;
+  --primary-light: #7bb3e0;
+  --accent: #70ad47;
+  --warn: #ffc000;
+  --danger: #ef5350;
+  --text: #e0e0e0;
+  --text-muted: #a0a0a0;
+  --text-light: #707070;
+  --border: #2e2e3e;
+  --shadow: 0 2px 8px rgba(0,0,0,0.4);
+  --radius: 10px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* ── Navigation ── */
+.nav {
+  background: #16162a;
+  color: white;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+  border-bottom: 1px solid var(--border);
+}
+.nav h1 { font-size: 18px; padding: 14px 0; white-space: nowrap; }
+.nav-tabs { display: flex; gap: 4px; overflow-x: auto; }
+.nav-tab {
+  padding: 14px 18px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.nav-tab:hover { color: white; background: rgba(255,255,255,0.08); }
+.nav-tab.active { color: white; border-bottom-color: var(--accent); }
+
+/* ── Layout ── */
+.container { max-width: 1400px; margin: 0 auto; padding: 24px; }
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── Cards ── */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.kpi-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  border-top: 3px solid var(--primary);
+}
+.kpi-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 4px; }
+.kpi-value { font-size: 28px; font-weight: 700; color: var(--primary); }
+.kpi-context { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+}
+.card h2 {
+  font-size: 16px;
+  color: var(--primary);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+}
+.chart-container { position: relative; width: 100%; }
+.chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+@media (max-width: 900px) { .chart-row { grid-template-columns: 1fr; } }
+
+/* ── Tables ── */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13px;
+}
+th {
+  background: #1a2a3e;
+  color: #ccc;
+  padding: 10px 12px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 12px;
+  vertical-align: bottom;
+}
+th:first-child { text-align: left; border-radius: 6px 0 0 0; }
+th:last-child { border-radius: 0 6px 0 0; }
+td {
+  padding: 8px 12px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+td:first-child { text-align: left; font-weight: 600; }
+tr:hover td { background: #2a2a3e; }
+tr.upcoming td { background: #1a1a28; color: var(--text-muted); }
+tr.outlier td { background: #1a1a22; color: #666; font-style: italic; }
+tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid var(--primary); }
+
+/* ── Category Trend Table ── */
+.cat-trend-table th { white-space: nowrap; }
+.cat-trend-table td:last-child { font-weight: 700; }
+
+/* ── Diagonal Headers ── */
+.diagonal-headers th {
+  position: relative;
+  white-space: nowrap;
+  padding: 0;
+  height: 120px;
+  vertical-align: bottom;
+  text-align: left;
+}
+.diagonal-headers th > span {
+  display: block;
+  transform: rotate(-45deg);
+  transform-origin: left bottom;
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  font-size: 11px;
+}
+.diagonal-headers th:first-child { padding: 10px 12px; }
+.diagonal-headers th:first-child > span {
+  transform: none;
+  position: static;
+  font-size: 12px;
+}
+.diagonal-headers td:first-child { white-space: nowrap; }
+
+/* ── Rankings ── */
+.rankings-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+@media (max-width: 768px) { .rankings-row { grid-template-columns: 1fr; } }
+.rank-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.rank-card h3 { font-size: 14px; margin-bottom: 12px; }
+.rank-card.best h3 { color: #2e7d32; }
+.rank-card.worst h3 { color: var(--danger); }
+.rank-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+}
+.rank-item .medal { font-size: 20px; }
+.rank-item .info { flex: 1; }
+.rank-item .sailing-name { font-weight: 600; font-size: 13px; }
+.rank-item .sailing-detail { font-size: 11px; color: var(--text-muted); }
+.rank-item .pppn { font-weight: 700; font-size: 16px; white-space: nowrap; }
+.rank-item.r0 { background: #1a2e1a; }
+.rank-item.r1 { background: #1e2e1e; }
+.rank-item.r2 { background: #222e1e; }
+.rank-item.w0 { background: #2e1a1a; }
+.rank-item.w1 { background: #2e1e1e; }
+.rank-item.w2 { background: #2e2218; }
+
+/* ── Insights ── */
+.insight {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.insight:nth-child(odd) { background: #282840; }
+.insight:nth-child(even) { background: #282840; }
+.insight .bullet { color: var(--primary); font-weight: 700; font-size: 16px; flex-shrink: 0; }
+
+/* ── Filters ── */
+.filter-bar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.filter-bar label { font-size: 12px; font-weight: 600; color: var(--text-muted); }
+.filter-bar select, .filter-bar input {
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 12px;
+  background: var(--card);
+  color: var(--text);
+}
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.tag.suite { background: #1a2a3e; color: #5b9bd5; }
+.tag.balcony { background: #1a2e1e; color: #70ad47; }
+.tag.upcoming { background: #2e2818; color: #ffa040; }
+.tag.outlier { background: #252525; color: #777; }
+
+/* ── Toggle Switch ── */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+}
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #444;
+  border-radius: 20px;
+  transition: 0.2s;
+}
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background: #aaa;
+  border-radius: 50%;
+  transition: 0.2s;
+}
+.toggle-switch input:checked + .toggle-slider { background: var(--accent); }
+.toggle-switch input:checked + .toggle-slider::before { transform: translateX(16px); background: white; }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <h1>⚓ Cruise Expenses</h1>
+  <div class="nav-tabs">
+    <div class="nav-tab active" data-page="overview">Overview</div>
+    <div class="nav-tab" data-page="pppn">PPPN Trend</div>
+    <div class="nav-tab" data-page="categories">Categories</div>
+    <div class="nav-tab" data-page="yoy">Year over Year</div>
+    <div class="nav-tab" data-page="fare">Fare Analysis</div>
+    <div class="nav-tab" data-page="funding">Funding</div>
+    <div class="nav-tab" data-page="table">All Sailings</div>
+  </div>
+  <div style="margin-left:auto;display:flex;align-items:center;gap:8px;white-space:nowrap">
+    <span style="font-size:14px">🤑</span>
+    <label class="toggle-switch" for="privacy-toggle">
+      <input type="checkbox" id="privacy-toggle">
+      <span class="toggle-slider"></span>
+    </label>
+    <span style="font-size:14px">🙈</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ════════════════════════════════════════════════ OVERVIEW ════════════════════════════════════════════════ -->
+<div id="overview" class="page active">
+  <div class="filter-bar">
+    <label>Filter:</label>
+    <select class="global-filter" data-page="overview">
+      <option value="all">All</option>
+      <option value="past">Past Only</option>
+      <option value="upcoming">Upcoming Only</option>
+      <option value="suite">Suites Only</option>
+      <option value="balcony">Balconies Only</option>
+      <option value="era1">Era 1 — COVID Recovery</option>
+      <option value="era2">Era 2 — Normalized Pricing</option>
+    </select>
+  </div>
+  <div class="kpi-grid" id="kpi-grid"></div>
+  <div class="rankings-row">
+    <div class="rank-card best"><h3>🏆 Best Value Sailings (Lowest PPPN)</h3><div id="best-rank"></div></div>
+    <div class="rank-card worst"><h3>💸 Highest Cost Sailings (Highest PPPN)</h3><div id="worst-rank"></div></div>
+  </div>
+  <div class="chart-row" style="grid-template-columns:3fr 2fr;align-items:stretch">
+    <div class="card" style="margin-bottom:0;display:flex;flex-direction:column"><h2>PPPN by Sailing</h2><div class="chart-container" style="flex:1;min-height:0"><canvas id="overview-pppn"></canvas></div></div>
+    <div class="card" style="margin-bottom:0"><h2>Key Insights</h2><div id="insights"></div></div>
+  </div>
+  <div class="chart-row" style="align-items:stretch">
+    <div class="card"><h2>Year-by-Year Summary</h2>
+      <div class="chart-container" style="height:280px"><canvas id="overview-yoy"></canvas></div>
+      <table id="overview-yoy-table" style="margin-top:16px"></table>
+    </div>
+    <div class="card"><h2>Spending Breakdown</h2>
+      <div class="chart-container" style="height:280px;display:flex;justify-content:center;align-items:center"><canvas id="overview-pie"></canvas></div>
+      <table id="overview-cat-table" style="margin-top:16px"></table>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ PPPN TREND ════════════════════════════════════════════════ -->
+<div id="pppn" class="page">
+  <div class="filter-bar">
+    <label>Filter:</label>
+    <select class="global-filter" data-page="pppn">
+      <option value="all">All</option>
+      <option value="past">Past Only</option>
+      <option value="upcoming">Upcoming Only</option>
+      <option value="suite">Suites Only</option>
+      <option value="balcony">Balconies Only</option>
+      <option value="era1">Era 1 — COVID Recovery</option>
+      <option value="era2">Era 2 — Normalized Pricing</option>
+    </select>
+  </div>
+  <div class="card">
+    <h2>Cost per Person per Night — All Sailings</h2>
+    <div class="chart-container" style="height:400px"><canvas id="pppn-chart"></canvas></div>
+  </div>
+  <div class="card"><h2>PPPN Detail Table</h2><div style="overflow-x:auto"><table id="pppn-table"></table></div></div>
+</div>
+
+<!-- ════════════════════════════════════════════════ CATEGORIES ════════════════════════════════════════════════ -->
+<div id="categories" class="page">
+  <div class="filter-bar">
+    <label>Filter:</label>
+    <select class="global-filter" data-page="categories">
+      <option value="all">All</option>
+      <option value="past">Past Only</option>
+      <option value="upcoming">Upcoming Only</option>
+      <option value="suite">Suites Only</option>
+      <option value="balcony">Balconies Only</option>
+      <option value="era1">Era 1 — COVID Recovery</option>
+      <option value="era2">Era 2 — Normalized Pricing</option>
+    </select>
+  </div>
+  <div class="chart-row">
+    <div class="card"><h2>Category % of Total by Sailing</h2><div class="chart-container" style="height:400px"><canvas id="cat-stacked"></canvas></div></div>
+    <div class="card"><h2>Category Dollar Amounts</h2><div class="chart-container" style="height:400px"><canvas id="cat-dollars"></canvas></div></div>
+  </div>
+  <div class="card"><h2>Category Trend Table</h2><div style="overflow-x:auto"><table id="cat-table" class="cat-trend-table"></table></div></div>
+</div>
+
+<!-- ════════════════════════════════════════════════ YEAR OVER YEAR ════════════════════════════════════════════════ -->
+<div id="yoy" class="page">
+  <div class="filter-bar">
+    <label>Filter:</label>
+    <select class="global-filter" data-page="yoy">
+      <option value="all">All</option>
+      <option value="past">Past Only</option>
+      <option value="upcoming">Upcoming Only</option>
+      <option value="suite">Suites Only</option>
+      <option value="balcony">Balconies Only</option>
+      <option value="era1">Era 1 — COVID Recovery</option>
+      <option value="era2">Era 2 — Normalized Pricing</option>
+    </select>
+  </div>
+  <div class="chart-row">
+    <div class="card"><h2>Total Spend by Year</h2><div class="chart-container" style="height:350px"><canvas id="yoy-spend"></canvas></div></div>
+    <div class="card"><h2>Average PPPN by Year</h2><div class="chart-container" style="height:350px"><canvas id="yoy-pppn"></canvas></div></div>
+  </div>
+  <div class="card"><h2>Year Over Year Detail</h2><table id="yoy-table"></table></div>
+</div>
+
+<!-- ════════════════════════════════════════════════ FARE ANALYSIS ════════════════════════════════════════════════ -->
+<div id="fare" class="page">
+  <div class="filter-bar">
+    <label>Filter:</label>
+    <select class="global-filter" data-page="fare">
+      <option value="all">All</option>
+      <option value="past">Past Only</option>
+      <option value="upcoming">Upcoming Only</option>
+      <option value="suite">Suites Only</option>
+      <option value="balcony">Balconies Only</option>
+      <option value="era1">Era 1 — COVID Recovery</option>
+      <option value="era2">Era 2 — Normalized Pricing</option>
+    </select>
+  </div>
+  <div class="chart-row">
+    <div class="card"><h2>Fare per Person per Night</h2><div class="chart-container" style="height:400px"><canvas id="fare-chart"></canvas></div></div>
+    <div class="card"><h2>Suite vs Balcony Fare PPPN</h2><div class="chart-container" style="height:400px"><canvas id="suite-vs-balcony"></canvas></div></div>
+  </div>
+  <div class="card"><h2>Fare Detail Table</h2><div style="overflow-x:auto"><table id="fare-table"></table></div></div>
+</div>
+
+<!-- ════════════════════════════════════════════════ FUNDING ════════════════════════════════════════════════ -->
+<div id="funding" class="page">
+  <div class="chart-row" style="align-items:stretch">
+    <div class="card" style="display:flex;flex-direction:column"><h2>Cash Flow Over Time</h2><div class="chart-container" style="flex:1;min-height:0"><canvas id="funding-chart"></canvas></div></div>
+    <div class="card"><h2>Funding Detail</h2><table id="funding-table"></table></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ FULL TABLE ════════════════════════════════════════════════ -->
+<div id="table" class="page">
+  <div class="card">
+    <h2>All Sailings</h2>
+    <div class="filter-bar">
+      <label>Filter:</label>
+      <select class="global-filter" data-page="table">
+        <option value="all">All</option>
+        <option value="past">Past Only</option>
+        <option value="upcoming">Upcoming Only</option>
+        <option value="suite">Suites Only</option>
+        <option value="balcony">Balconies Only</option>
+        <option value="era1">Era 1 — COVID Recovery</option>
+        <option value="era2">Era 2 — Normalized Pricing</option>
+      </select>
+    </div>
+    <div style="overflow-x:auto"><table id="full-table"></table></div>
+  </div>
+</div>
+
+</div>
+
+<script>
+// ── Chart.js dark mode defaults ──
+Chart.defaults.color = '#b0b0b0';
+Chart.defaults.borderColor = '#2e2e3e';
+Chart.defaults.plugins.legend.labels.color = '#b0b0b0';
+
+let DATA = {};
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+let privacyMode = false;
+const fmt = n => privacyMode ? '$•••' : '$' + n.toLocaleString();
+const pct = n => n.toFixed(1) + '%';
+const tickFmt = v => privacyMode ? '$•••' : '$' + v.toLocaleString();
+const tickFmtShort = v => privacyMode ? '$•••' : '$' + v;
+const PIE_COLORS = ['#2e75b6','#70ad47','#ffc000','#c00000','#7030a0','#00b0f0','#ff6600','#808080'];
+const BAR_BLUE = '#2e75b6';
+const BAR_GREEN = '#70ad47';
+const BAR_ORANGE = '#ff9800';
+const BAR_RED = '#ef5350';
+
+function shortName(s) {
+  return s.replace('Cruise ','').replace('Vacation ','Vac ').replace('Vacay ','Vac ')
+    .replace('Christmas ','Xmas ').replace('Thanksgiving ','Thx ')
+    .replace('Spring Break ','SB ').replace('Summer ','Sum ')
+    .replace('Winter ','Win ').replace('on Icon ','Icon ')
+    .replace('Beach Club ','BC ').replace('Sabbatical ','Sab ');
+}
+
+// ── Shared filter ──
+let currentFilter = 'all';
+const ERA1 = new Set(['Spring Break 2022','Summer 2022','Work From Ship 2022',"Ashley's Birthday 2022",'Winter 2022','ShePack Cruise 2023','Spring Break 2023','Spring Break 2024']);
+const ERA2 = new Set(['Christmas Vacation 2023','Diamond Cruise 2024','Summer on Icon 2024','Winter Vacay 2024','Spring Break 2025','Summer Vacay 2025','Sabbatical 2025','Thanksgiving 2025','Winter Vacay 2025','Beach Club 2026','Spring Break 2026','Summer B2B 2026','Thanksgiving 2026','Winter NYE 2026','Spring Break 2027','Summer 2027']);
+
+function filterSailings(filter) {
+  let sailings = DATA.sailings;
+  if (filter === 'past') sailings = sailings.filter(s => s.isPast);
+  if (filter === 'upcoming') sailings = sailings.filter(s => s.isUpcoming);
+  if (filter === 'suite') sailings = sailings.filter(s => s.roomType === 'Suite');
+  if (filter === 'balcony') sailings = sailings.filter(s => s.roomType === 'Balcony');
+  if (filter === 'era1') sailings = sailings.filter(s => ERA1.has(s.name));
+  if (filter === 'era2') sailings = sailings.filter(s => ERA2.has(s.name));
+  return sailings;
+}
+
+function computeKPI(sailings) {
+  const past = sailings.filter(s => s.isPast && !s.isOutlier);
+  const upcoming = sailings.filter(s => s.isUpcoming);
+  // Use all non-outlier sailings for analytical metrics so upcoming-only filters aren't $0
+  const all = sailings.filter(s => !s.isOutlier);
+  const totalSpent = all.reduce((a,s) => a+s.total, 0);
+  const totalNights = all.reduce((a,s) => a+s.nights, 0);
+  const totalPN = all.reduce((a,s) => a+s.nights*s.people, 0);
+  const totalFare = all.reduce((a,s) => a+s.fare, 0);
+  return {
+    totalSpent, pastCount: all.length,
+    avgPppn: totalPN ? Math.round(totalSpent/totalPN) : 0,
+    avgFppn: totalPN ? Math.round(totalFare/totalPN) : 0,
+    farePct: totalSpent ? (totalFare/totalSpent*100).toFixed(0) : '0',
+    totalNights, totalPersonNights: totalPN,
+    avgPerSailing: all.length ? Math.round(totalSpent/all.length) : 0,
+    upcomingSpend: upcoming.reduce((a,s) => a+s.total, 0),
+    upcomingCount: upcoming.length,
+    upcomingAvgPppn: (() => { const pn = upcoming.reduce((a,s) => a+s.nights*s.people, 0); return pn ? Math.round(upcoming.reduce((a,s) => a+s.total,0)/pn) : 0; })(),
+    actualSpent: past.reduce((a,s) => a+s.total, 0),
+    actualCount: past.length,
+  };
+}
+
+function computeYears(sailings) {
+  const byYear = {};
+  sailings.forEach(s => {
+    const y = s.month.split(' ').pop();
+    if (!byYear[y]) byYear[y] = {year:y, sailings:0, nights:0, personNights:0, total:0, fare:0};
+    byYear[y].sailings++;
+    byYear[y].nights += s.nights;
+    byYear[y].personNights += s.nights * s.people;
+    byYear[y].total += s.total;
+    byYear[y].fare += s.fare;
+  });
+  return Object.values(byYear).sort((a,b) => a.year-b.year).map(y => ({
+    ...y,
+    pppn: y.personNights ? Math.round(y.total/y.personNights) : 0,
+    farePct: y.total ? (y.fare/y.total*100) : 0,
+    avgPerSailing: y.sailings ? Math.round(y.total/y.sailings) : 0,
+  }));
+}
+
+function computeCategoryTotals(sailings) {
+  const totals = {};
+  sailings.forEach(s => {
+    Object.entries(s.categories).forEach(([cat, amt]) => {
+      totals[cat] = (totals[cat] || 0) + amt;
+    });
+  });
+  return totals;
+}
+
+// ── Global filter sync ──
+$$('.global-filter').forEach(sel => {
+  sel.addEventListener('change', e => {
+    currentFilter = e.target.value;
+    $$('.global-filter').forEach(s => s.value = currentFilter);
+    renderOverview(currentFilter);
+    renderPPPN(currentFilter);
+    renderCategories(currentFilter);
+    renderYoY(currentFilter);
+    renderFare(currentFilter);
+    renderFullTable(currentFilter);
+  });
+});
+
+// ── Tab switching ──
+$$('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    $$('.nav-tab').forEach(t => t.classList.remove('active'));
+    $$('.page').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    $(`#${tab.dataset.page}`).classList.add('active');
+  });
+});
+
+// ── Load data ──
+function renderAll() {
+  renderOverview(currentFilter);
+  renderPPPN(currentFilter);
+  renderCategories(currentFilter);
+  renderYoY(currentFilter);
+  renderFare(currentFilter);
+  renderFunding();
+  renderFullTable(currentFilter);
+}
+
+$('#privacy-toggle').addEventListener('change', e => {
+  privacyMode = e.target.checked;
+  renderAll();
+});
+
+fetch('data.json').then(r => r.json()).then(data => {
+  DATA = data;
+  renderAll();
+});
+
+// ══════════════════════════════════════════════════════════════
+// OVERVIEW
+// ══════════════════════════════════════════════════════════════
+let overviewPppnChart, overviewPieChart, overviewYoyChart;
+function renderOverview(filter='all') {
+  const sailings = filterSailings(filter);
+  const k = computeKPI(sailings);
+  const kpis = [
+    {label:'Total Spent', value: fmt(k.totalSpent), ctx: `${k.pastCount} sailings`},
+    {label:'Avg PPPN', value: fmt(k.avgPppn), ctx: 'cost per person per night'},
+    {label:'Avg Fare PPPN', value: fmt(k.avgFppn), ctx: `${k.farePct}% of total spend`},
+    {label:'Total Nights', value: k.totalNights, ctx: `${k.totalPersonNights} person-nights`},
+    {label:'Avg per Sailing', value: fmt(k.avgPerSailing), ctx: 'all-in cost'},
+    {label:'Upcoming Est.', value: fmt(k.upcomingSpend), ctx: `${k.upcomingCount} sailings booked`},
+  ];
+  $('#kpi-grid').innerHTML = kpis.map(k => `
+    <div class="kpi-card">
+      <div class="kpi-label">${k.label}</div>
+      <div class="kpi-value">${k.value}</div>
+      <div class="kpi-context">${k.ctx}</div>
+    </div>`).join('');
+
+  // Rankings
+  const ranked = sailings.filter(s => !s.isOutlier).sort((a,b) => a.pppn - b.pppn);
+  const bestValue = ranked.slice(0,3);
+  const worstValue = ranked.slice(-3).reverse();
+  const medals = ['🥇','🥈','🥉'];
+  $('#best-rank').innerHTML = bestValue.map((s,i) => `
+    <div class="rank-item r${i}">
+      <span class="medal">${medals[i]}</span>
+      <div class="info"><div class="sailing-name">${s.name}</div><div class="sailing-detail">${s.ship} — ${s.roomSubtype}</div></div>
+      <div class="pppn" style="color:#66bb6a">${fmt(s.pppn)}</div>
+    </div>`).join('');
+  $('#worst-rank').innerHTML = worstValue.map((s,i) => `
+    <div class="rank-item w${i}">
+      <div class="info"><div class="sailing-name">${s.name}</div><div class="sailing-detail">${s.ship} — ${s.roomSubtype}</div></div>
+      <div class="pppn" style="color:var(--danger)">${fmt(s.pppn)}</div>
+    </div>`).join('');
+
+  // PPPN bar chart
+  if (overviewPppnChart) overviewPppnChart.destroy();
+  overviewPppnChart = new Chart($('#overview-pppn'), {
+    type: 'bar',
+    data: {
+      labels: sailings.map(s => shortName(s.name)),
+      datasets: [
+        {label:'Total PPPN', data: sailings.map(s => s.pppn), backgroundColor: sailings.map(s => s.isOutlier ? '#ccc' : s.isUpcoming ? BAR_ORANGE : BAR_BLUE)},
+        {label:'Fare PPPN', data: sailings.map(s => s.fppn), backgroundColor: sailings.map(s => s.isOutlier ? '#ddd' : s.isUpcoming ? '#ffcc80' : BAR_GREEN)},
+      ]
+    },
+    options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom'}}, scales:{x:{ticks:{maxRotation:45,font:{size:10}}},y:{ticks:{callback:tickFmtShort}}}}
+  });
+
+  // Category pie
+  const catTotals = computeCategoryTotals(sailings);
+  const cats = Object.entries(catTotals).sort((a,b) => b[1]-a[1]);
+  if (overviewPieChart) overviewPieChart.destroy();
+  overviewPieChart = new Chart($('#overview-pie'), {
+    type: 'doughnut',
+    data: {
+      labels: cats.map(c => c[0]),
+      datasets: [{data: cats.map(c => c[1]), backgroundColor: PIE_COLORS, borderWidth: 0}]
+    },
+    options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:14,borderRadius:0,useBorderRadius:false,usePointStyle:true,pointStyle:'rectRounded'}}}}
+  });
+
+  // Insights — patterns & trends only, no individual sailing callouts (rankings card handles those)
+  const nonOutlier = sailings.filter(s => !s.isOutlier);
+  const yrs = computeYears(sailings);
+  const TARGET_COUNT = 6;
+  const isUpcomingOnly = filter === 'upcoming';
+  const isSuiteOnly = filter === 'suite';
+  const isBalconyOnly = filter === 'balcony';
+  const pool = [];
+
+  // ── Suite vs Balcony pricing gap ──
+  if (!isSuiteOnly && !isBalconyOnly) {
+    const suites = nonOutlier.filter(s => s.roomType==='Suite');
+    const balcs = nonOutlier.filter(s => s.roomType==='Balcony');
+    if (suites.length && balcs.length) {
+      const sAvg = Math.round(suites.reduce((a,s)=>a+s.pppn,0)/suites.length);
+      const bAvg = Math.round(balcs.reduce((a,s)=>a+s.pppn,0)/balcs.length);
+      const prem = ((sAvg/bAvg)-1)*100;
+      pool.push(`Suite vs Balcony: Suites average ${fmt(sAvg)} PPPN vs ${fmt(bAvg)} for balconies — a ${Math.abs(prem).toFixed(0)}% ${prem>0?'premium':'discount'} across ${suites.length + balcs.length} sailings in this set.`);
+    }
+  }
+
+  // ── Spending mix: fare vs non-fare ──
+  if (nonOutlier.length >= 2) {
+    const fareTotal = cats.find(c=>c[0]==='Cruise Fare')?.[1] || 0;
+    const nonFareTotal = k.totalSpent - fareTotal;
+    const nonFarePct = k.totalSpent ? (nonFareTotal/k.totalSpent*100).toFixed(0) : 0;
+    pool.push(`Spending Mix: Non-fare costs account for ${nonFarePct}% of total — averaging ${fmt(Math.round(nonFareTotal / (k.totalPersonNights||1)))} PPPN on top of the fare.`);
+  }
+
+  // ── Year-over-year trend ──
+  if (yrs.length >= 2) {
+    const firstY = yrs[0], lastY = yrs[yrs.length-1];
+    const yoyChange = ((lastY.pppn / firstY.pppn) - 1) * 100;
+    pool.push(`Year Trend: PPPN ${yoyChange>0?'increased':'decreased'} ${Math.abs(yoyChange).toFixed(0)}% from ${firstY.year} (${fmt(firstY.pppn)}) to ${lastY.year} (${fmt(lastY.pppn)}).`);
+  }
+
+  // ── Ship comparison ──
+  if (nonOutlier.length >= 2) {
+    const ships = [...new Set(nonOutlier.map(s => s.ship))];
+    if (ships.length > 1) {
+      const shipAvgs = ships.map(ship => {
+        const ss = nonOutlier.filter(s => s.ship === ship);
+        return {ship, avg: Math.round(ss.reduce((a,s)=>a+s.pppn,0)/ss.length), count: ss.length};
+      }).sort((a,b) => a.avg - b.avg);
+      const best = shipAvgs[0], worst = shipAvgs[shipAvgs.length-1];
+      pool.push(`Ship Comparison: ${best.ship} averages ${fmt(best.avg)} PPPN (${best.count} sailings) vs ${worst.ship} at ${fmt(worst.avg)} — a ${(((worst.avg/best.avg)-1)*100).toFixed(0)}% spread.`);
+    }
+  }
+
+  // ── Night-length efficiency ──
+  if (nonOutlier.length >= 4) {
+    const sorted = [...nonOutlier].sort((a,b) => a.nights - b.nights);
+    const half = Math.ceil(sorted.length/2);
+    const short = sorted.slice(0, half);
+    const long = sorted.slice(half);
+    const shortAvg = Math.round(short.reduce((a,s)=>a+s.pppn,0)/short.length);
+    const longAvg = Math.round(long.reduce((a,s)=>a+s.pppn,0)/long.length);
+    if (shortAvg !== longAvg) {
+      pool.push(`Length Effect: Shorter sailings (≤${short[short.length-1].nights} nights) average ${fmt(shortAvg)} PPPN vs ${fmt(longAvg)} for longer ones — ${longAvg < shortAvg ? 'longer trips are more cost-efficient per night' : 'shorter trips cost less per night'}.`);
+    }
+  }
+
+  // ── Group size impact ──
+  if (nonOutlier.length >= 3) {
+    const peopleCounts = [...new Set(nonOutlier.map(s => s.people))];
+    if (peopleCounts.length > 1) {
+      const bySize = peopleCounts.map(p => {
+        const ss = nonOutlier.filter(s => s.people === p);
+        return {people: p, avg: Math.round(ss.reduce((a,s)=>a+s.pppn,0)/ss.length), count: ss.length};
+      }).sort((a,b) => a.avg - b.avg);
+      const cheapest = bySize[0], priciest = bySize[bySize.length-1];
+      pool.push(`Group Size: ${cheapest.people}-person sailings average ${fmt(cheapest.avg)} PPPN vs ${fmt(priciest.avg)} for ${priciest.people}-person trips.`);
+    }
+  }
+
+  // ── Fare % variability ──
+  if (nonOutlier.length >= 2) {
+    const fares = nonOutlier.map(s => s.farePct).sort((a,b) => a-b);
+    const lo = fares[0], hi = fares[fares.length-1];
+    if (hi - lo > 8) {
+      pool.push(`Add-on Variability: Fare share ranges from ${pct(lo)} to ${pct(hi)} — a ${(hi-lo).toFixed(0)}pp spread, showing some sailings have significantly more non-fare spending.`);
+    }
+  }
+
+  // ── Median vs Mean skew ──
+  if (nonOutlier.length >= 3) {
+    const pppns = nonOutlier.map(s => s.pppn).sort((a,b) => a-b);
+    const median = pppns[Math.floor(pppns.length/2)];
+    const diff = ((k.avgPppn / median) - 1) * 100;
+    if (Math.abs(diff) >= 5) {
+      pool.push(`Distribution Skew: Median PPPN is ${fmt(median)} vs ${fmt(k.avgPppn)} average — ${diff > 0 ? 'a few high-cost sailings pull the average up' : 'a few low-cost sailings pull the average down'} by ${Math.abs(diff).toFixed(0)}%.`);
+    }
+  }
+
+  // ── Upcoming vs Past comparison (only when viewing both) ──
+  if (!isUpcomingOnly && k.upcomingCount > 0) {
+    const pastSailings = nonOutlier.filter(s => s.isPast);
+    const pastAvg = pastSailings.length ? Math.round(pastSailings.reduce((a,s)=>a+s.pppn,0)/pastSailings.length) : 0;
+    if (pastAvg && k.upcomingAvgPppn) {
+      const delta = ((k.upcomingAvgPppn/pastAvg)-1)*100;
+      pool.push(`Upcoming vs Past: Booked sailings average ${fmt(k.upcomingAvgPppn)} PPPN — ${Math.abs(delta).toFixed(0)}% ${delta>0?'higher':'lower'} than the ${fmt(pastAvg)} historical average.`);
+    }
+  }
+
+  // ── Category concentration ──
+  if (cats.length >= 3 && k.totalSpent) {
+    const top2 = cats.slice(0,2);
+    const top2Pct = ((top2[0][1]+top2[1][1])/k.totalSpent*100).toFixed(0);
+    pool.push(`Spending Concentration: ${top2[0][0]} and ${top2[1][0]} together represent ${top2Pct}% of all spending — the remaining ${cats.length-2} categories split the other ${100-top2Pct}%.`);
+  }
+
+  // ── PPPN range / consistency ──
+  if (nonOutlier.length >= 2) {
+    const pppns = nonOutlier.map(s => s.pppn).sort((a,b) => a-b);
+    const range = pppns[pppns.length-1] - pppns[0];
+    const cv = k.avgPppn ? (range/k.avgPppn*100).toFixed(0) : 0;
+    pool.push(`PPPN Range: ${fmt(pppns[0])} to ${fmt(pppns[pppns.length-1])} — a ${fmt(range)} spread, ${cv > 50 ? 'showing wide cost variability' : 'relatively consistent pricing'} across this set.`);
+  }
+
+  // ── Typical profile ──
+  if (nonOutlier.length >= 2) {
+    const avgNights = (k.totalNights / nonOutlier.length).toFixed(1);
+    const avgPeople = (nonOutlier.reduce((a,s)=>a+s.people,0) / nonOutlier.length).toFixed(1);
+    pool.push(`Typical Profile: Average sailing is ${avgNights} nights with ${avgPeople} people across ${nonOutlier.length} sailings.`);
+  }
+
+  const insights = pool.slice(0, TARGET_COUNT);
+
+  $('#insights').innerHTML = insights.map(t => `<div class="insight"><span class="bullet">▸</span><span>${t}</span></div>`).join('');
+
+  // YoY mini chart
+  if (overviewYoyChart) overviewYoyChart.destroy();
+  overviewYoyChart = new Chart($('#overview-yoy'), {
+    type: 'bar',
+    data: {
+      labels: yrs.map(y => y.year),
+      datasets: [
+        {label:'Total Spend', data: yrs.map(y => y.total), backgroundColor: BAR_BLUE, yAxisID:'y', order:1},
+        {label:'Avg PPPN', data: yrs.map(y => y.pppn), type:'line', borderColor: BAR_ORANGE, backgroundColor:'transparent', pointRadius:4, yAxisID:'y1', order:0},
+      ]
+    },
+    options: {responsive:true, plugins:{legend:{position:'bottom'}}, scales:{
+      y:{position:'left',ticks:{callback:tickFmt}},
+      y1:{position:'right',grid:{drawOnChartArea:false},ticks:{callback:tickFmtShort}},
+    }}
+  });
+
+  // YoY table
+  renderTable('#overview-yoy-table',
+    ['Year','Sailings','Nights','Total','PPPN','Avg/Sailing'],
+    yrs.map(y => [y.year, y.sailings, y.nights, fmt(y.total), fmt(y.pppn), fmt(y.avgPerSailing)])
+  );
+
+  // Category table
+  renderTable('#overview-cat-table',
+    ['Category','Total','%','Avg/Sailing','Avg/Night','Avg PPPN'],
+    cats.map(([cat,amt]) => [
+      cat, fmt(amt), pct(k.totalSpent ? amt/k.totalSpent*100 : 0),
+      fmt(k.pastCount ? Math.round(amt/k.pastCount) : 0),
+      fmt(k.totalNights ? Math.round(amt/k.totalNights) : 0),
+      fmt(k.totalPersonNights ? Math.round(amt/k.totalPersonNights) : 0),
+    ])
+  );
+}
+
+// ══════════════════════════════════════════════════════════════
+// PPPN TREND
+// ══════════════════════════════════════════════════════════════
+let pppnChart;
+function renderPPPN(filter='all') {
+  const sailings = filterSailings(filter);
+
+  if (pppnChart) pppnChart.destroy();
+  pppnChart = new Chart($('#pppn-chart'), {
+    type: 'bar',
+    data: {
+      labels: sailings.map(s => shortName(s.name)),
+      datasets: [
+        {label:'Total PPPN', data: sailings.map(s=>s.pppn), backgroundColor: sailings.map(s => s.isOutlier?'#ccc':s.isUpcoming?BAR_ORANGE:BAR_BLUE)},
+        {label:'Fare PPPN', data: sailings.map(s=>s.fppn), backgroundColor: sailings.map(s => s.isOutlier?'#ddd':s.isUpcoming?'#ffcc80':BAR_GREEN)},
+      ]
+    },
+    options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom'}},
+      scales:{x:{ticks:{maxRotation:45,font:{size:10}}},y:{ticks:{callback:tickFmtShort}}}}
+  });
+
+  renderTable('#pppn-table',
+    ['Sailing','Nights','Ppl','Ship','Room','Total','CPN','PPPN','FPPN'],
+    sailings.map(s => [
+      s.name + (s.isUpcoming ? ' <span class="tag upcoming">Upcoming</span>' : s.isOutlier ? ' <span class="tag outlier">Outlier</span>' : ''),
+      s.nights, s.people, s.ship,
+      s.roomSubtype + ' <span class="tag ' + s.roomType.toLowerCase() + '">' + s.roomType + '</span>',
+      fmt(s.total), fmt(s.cpn), fmt(s.pppn), fmt(s.fppn),
+    ]),
+    sailings.map(s => s.isOutlier ? 'outlier' : s.isUpcoming ? 'upcoming' : '')
+  );
+}
+
+// ══════════════════════════════════════════════════════════════
+// CATEGORIES
+// ══════════════════════════════════════════════════════════════
+let catStackedChart, catDollarsChart;
+function renderCategories(filter='all') {
+  const sailings = filterSailings(filter);
+  const cats = DATA.categories;
+
+  // Stacked bar (% of total)
+  if (catStackedChart) catStackedChart.destroy();
+  catStackedChart = new Chart($('#cat-stacked'), {
+    type: 'bar',
+    data: {
+      labels: sailings.map(s => shortName(s.name)),
+      datasets: cats.map((cat,i) => ({
+        label: cat,
+        data: sailings.map(s => s.total ? (s.categories[cat]/s.total*100).toFixed(1) : 0),
+        backgroundColor: PIE_COLORS[i],
+      }))
+    },
+    options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},
+      scales:{x:{stacked:true,ticks:{maxRotation:45,font:{size:9}}},y:{stacked:true,max:100,ticks:{callback:v=>v+'%'}}}}
+  });
+
+  // Dollar amounts
+  if (catDollarsChart) catDollarsChart.destroy();
+  catDollarsChart = new Chart($('#cat-dollars'), {
+    type: 'bar',
+    data: {
+      labels: sailings.map(s => shortName(s.name)),
+      datasets: cats.map((cat,i) => ({
+        label: cat,
+        data: sailings.map(s => s.categories[cat] || 0),
+        backgroundColor: PIE_COLORS[i],
+      }))
+    },
+    options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},
+      scales:{x:{stacked:true,ticks:{maxRotation:45,font:{size:9}}},y:{stacked:true,ticks:{callback:tickFmt}}}}
+  });
+
+  // Table (transposed: sailings as rows, categories as columns)
+  const catOrder = ['Cruise Fare', 'Travel', 'Onboard Pre-booked', 'Onboard Spending', 'Excursion', 'Cabana/Casita', 'Supplies', 'Dogs'];
+  const headers = ['Sailing', 'Room', ...catOrder, 'Total'];
+  const rows = sailings.map(s => [
+    s.name + (s.isUpcoming ? ' <span class="tag upcoming">Upcoming</span>' : s.isOutlier ? ' <span class="tag outlier">Outlier</span>' : ''),
+    s.roomSubtype + ' <span class="tag ' + s.roomType.toLowerCase() + '">' + s.roomType + '</span>',
+    ...catOrder.map(cat => s.categories[cat] ? fmt(s.categories[cat]) : '—'),
+    fmt(s.total)
+  ]);
+  const catRowClasses = sailings.map(s => s.isOutlier ? 'outlier' : s.isUpcoming ? 'upcoming' : '');
+  renderTable('#cat-table', headers, rows, catRowClasses);
+}
+
+// ══════════════════════════════════════════════════════════════
+// YEAR OVER YEAR
+// ══════════════════════════════════════════════════════════════
+let yoySpendChart, yoyPppnChart;
+function renderYoY(filter='all') {
+  const sailings = filterSailings(filter);
+  const yrs = computeYears(sailings);
+
+  if (yoySpendChart) yoySpendChart.destroy();
+  yoySpendChart = new Chart($('#yoy-spend'), {
+    type: 'bar',
+    data: {
+      labels: yrs.map(y=>y.year),
+      datasets: [{label:'Total Spend', data: yrs.map(y=>y.total), backgroundColor: BAR_BLUE},
+                  {label:'Fare', data: yrs.map(y=>y.fare), backgroundColor: BAR_GREEN}]
+    },
+    options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom'}},
+      scales:{y:{ticks:{callback:tickFmt}}}}
+  });
+
+  if (yoyPppnChart) yoyPppnChart.destroy();
+  yoyPppnChart = new Chart($('#yoy-pppn'), {
+    type: 'line',
+    data: {
+      labels: yrs.map(y=>y.year),
+      datasets: [{label:'Avg PPPN', data: yrs.map(y=>y.pppn), borderColor: BAR_BLUE, backgroundColor:'rgba(46,117,182,0.1)', fill:true, tension:0.3, pointRadius:5}]
+    },
+    options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+      scales:{y:{ticks:{callback:tickFmtShort}}}}
+  });
+
+  renderTable('#yoy-table',
+    ['Year','Sailings','Nights','Person-Nights','Total','PPPN','Fare','Fare %','Avg/Sailing'],
+    yrs.map(y => [y.year, y.sailings, y.nights, y.personNights, fmt(y.total), fmt(y.pppn), fmt(y.fare), pct(y.farePct), fmt(y.avgPerSailing)])
+  );
+}
+
+// ══════════════════════════════════════════════════════════════
+// FARE ANALYSIS
+// ══════════════════════════════════════════════════════════════
+let fareBarChart, fareScatterChart;
+function renderFare(filter='all') {
+  const sailings = filterSailings(filter);
+
+  if (fareBarChart) fareBarChart.destroy();
+  fareBarChart = new Chart($('#fare-chart'), {
+    type: 'bar',
+    data: {
+      labels: sailings.map(s => shortName(s.name)),
+      datasets: [{label:'Fare PPPN', data: sailings.map(s=>s.fppn),
+        backgroundColor: sailings.map(s => s.isOutlier ? '#ccc' : s.isUpcoming ? BAR_ORANGE : (s.roomType==='Suite' ? BAR_BLUE : BAR_GREEN))}]
+    },
+    options: {responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{afterLabel:i=>{const s=sailings[i.dataIndex];return `${s.ship} — ${s.roomSubtype}\n${s.roomType}`}}}},
+      scales:{x:{ticks:{maxRotation:45,font:{size:10}}},y:{ticks:{callback:tickFmtShort}}}}
+  });
+
+  const suiteSailings = sailings.filter(s => s.roomType === 'Suite' && !s.isOutlier);
+  const balconySailings = sailings.filter(s => s.roomType === 'Balcony' && !s.isOutlier);
+  const suitePast = suiteSailings.filter(s => s.isPast);
+  const balconyPast = balconySailings.filter(s => s.isPast);
+  const suiteAvgFppn = suitePast.reduce((a,s) => a+s.fppn, 0) / (suitePast.length || 1);
+  const balconyAvgFppn = balconyPast.reduce((a,s) => a+s.fppn, 0) / (balconyPast.length || 1);
+  if (fareScatterChart) fareScatterChart.destroy();
+  fareScatterChart = new Chart($('#suite-vs-balcony'), {
+    type: 'scatter',
+    data: {
+      datasets: [
+        {label: 'Suite', data: suiteSailings.map(s => ({x: s.fppn, y: 1 + (Math.random()-0.5)*0.3})), backgroundColor: suiteSailings.map(s => s.isUpcoming ? 'rgba(255,152,0,0.7)' : 'rgba(46,117,182,0.7)'), pointRadius: 8, pointHoverRadius: 10},
+        {label: 'Balcony', data: balconySailings.map(s => ({x: s.fppn, y: 0 + (Math.random()-0.5)*0.3})), backgroundColor: balconySailings.map(s => s.isUpcoming ? 'rgba(255,152,0,0.7)' : 'rgba(112,173,71,0.7)'), pointRadius: 8, pointHoverRadius: 10},
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: {display: false},
+        tooltip: {callbacks: {label: ctx => {
+          const ds = ctx.dataset;
+          const idx = ctx.dataIndex;
+          const list = ds.label === 'Suite' ? suiteSailings : balconySailings;
+          return `${list[idx].name}: ${fmt(list[idx].fppn)}`;
+        }}}
+      },
+      scales: {
+        x: {title: {display: true, text: 'Fare PPPN'}, ticks: {callback: tickFmtShort}},
+        y: {display: false, min: -0.8, max: 1.8}
+      },
+    },
+    plugins: [{
+      id: 'avgLines',
+      afterDraw(chart) {
+        const {ctx, scales: {x, y}} = chart;
+        ctx.save();
+        [[suiteAvgFppn, 1, BAR_BLUE], [balconyAvgFppn, 0, BAR_GREEN]].forEach(([avg, yVal, color]) => {
+          const px = x.getPixelForValue(avg);
+          const py = y.getPixelForValue(yVal);
+          ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.setLineDash([6,3]);
+          ctx.beginPath(); ctx.moveTo(px, py - 30); ctx.lineTo(px, py + 30); ctx.stroke();
+          ctx.setLineDash([]);
+          ctx.fillStyle = color; ctx.font = 'bold 11px sans-serif'; ctx.textAlign = 'center';
+          ctx.fillText(privacyMode ? '$•••' : '$'+Math.round(avg), px, py - 36);
+        });
+        ctx.restore();
+      }
+    }]
+  });
+
+  renderTable('#fare-table',
+    ['Sailing','Nights','People','Ship','Room','Fare','Fare/Night','FPPN','Fare %'],
+    sailings.map(s => {
+      const fpn = s.nights ? Math.round(s.fare/s.nights) : 0;
+      const roomTag = s.roomType === 'Suite' ? ' <span class="tag suite">Suite</span>' : ' <span class="tag balcony">Balcony</span>';
+      return [s.name + (s.isUpcoming ? ' <span class="tag upcoming">Upcoming</span>' : s.isOutlier ? ' <span class="tag outlier">Outlier</span>' : ''),
+        s.nights, s.people, s.ship, s.roomSubtype + roomTag,
+        fmt(s.fare), fmt(fpn), fmt(s.fppn), pct(s.farePct)];
+    }),
+    sailings.map(s => s.isOutlier ? 'outlier' : s.isUpcoming ? 'upcoming' : '')
+  );
+}
+
+// ══════════════════════════════════════════════════════════════
+// FUNDING
+// ══════════════════════════════════════════════════════════════
+let fundingChart;
+function renderFunding() {
+  const fd = DATA.funding;
+
+  if (fundingChart) fundingChart.destroy();
+  fundingChart = new Chart($('#funding-chart'), {
+    type: 'bar',
+    data: {
+      labels: fd.map(f=>f.year),
+      datasets: [
+        {label:'Income', data: fd.map(f=>f.income), backgroundColor:'#70ad47', order:1},
+        {label:'Expense', data: fd.map(f=>-f.expense), backgroundColor:'#ef5350', order:1},
+        {label:'Running Balance', data: fd.map(f=>f.running), type:'line', borderColor: BAR_BLUE, pointRadius:5, fill:false, order:0},
+      ]
+    },
+    options: {responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom'}},
+      scales:{
+        x:{stacked:true},
+        y:{stacked:true,ticks:{callback:tickFmt}},
+      }}
+  });
+
+  renderTable('#funding-table',
+    ['Year','Income','Sailings','Other','Net','Balance'],
+    fd.map(f => [f.year, fmt(f.income), fmt(-f.vacation), fmt(-f.nonVacation),
+      `<span style="color:${f.net>=0?'#66bb6a':'#ef5350'};font-weight:700">${fmt(f.net)}</span>`,
+      `<span style="color:${f.running>=0?'#66bb6a':'#ef5350'};font-weight:700">${fmt(f.running)}</span>`])
+  );
+}
+
+// ══════════════════════════════════════════════════════════════
+// FULL TABLE
+// ══════════════════════════════════════════════════════════════
+const fullTableGroups = { extras: false, other: false };
+function renderFullTable(filter='all') {
+  const sailings = filterSailings(filter);
+  const catSum = (s, keys) => keys.reduce((a, k) => a + (s.categories[k] || 0), 0);
+  const tog = (key) => `<span class="col-toggle" data-group="${key}" style="cursor:pointer;font-size:10px;margin-left:4px;opacity:0.7">${fullTableGroups[key] ? '−' : '+'}</span>`;
+
+  // Build headers
+  const headers = ['Sailing','Nights','Ppl','Ship','Room','Cruise Fare','Travel','Onboard Pre-booked','Onboard Spending'];
+  if (fullTableGroups.extras) {
+    headers.push('Excursion' + tog('extras'), 'Cabana/Casita');
+  } else {
+    headers.push('Extras' + tog('extras'));
+  }
+  if (fullTableGroups.other) {
+    headers.push('Supplies' + tog('other'), 'Dogs');
+  } else {
+    headers.push('Other' + tog('other'));
+  }
+  headers.push('Total','PPPN');
+
+  // Build rows
+  const rows = sailings.map(s => {
+    const row = [
+      s.name + (s.isUpcoming ? ' <span class="tag upcoming">Upcoming</span>' : s.isOutlier ? ' <span class="tag outlier">Outlier</span>' : ''),
+      s.nights, s.people, s.ship,
+      s.roomSubtype + ' <span class="tag ' + s.roomType.toLowerCase() + '">' + s.roomType + '</span>',
+      s.categories['Cruise Fare'] ? fmt(s.categories['Cruise Fare']) : '—',
+      s.categories['Travel'] ? fmt(s.categories['Travel']) : '—',
+      s.categories['Onboard Pre-booked'] ? fmt(s.categories['Onboard Pre-booked']) : '—',
+      s.categories['Onboard Spending'] ? fmt(s.categories['Onboard Spending']) : '—',
+    ];
+    if (fullTableGroups.extras) {
+      row.push(s.categories['Excursion'] ? fmt(s.categories['Excursion']) : '—');
+      row.push(s.categories['Cabana/Casita'] ? fmt(s.categories['Cabana/Casita']) : '—');
+    } else {
+      row.push(catSum(s, ['Excursion','Cabana/Casita']) ? fmt(catSum(s, ['Excursion','Cabana/Casita'])) : '—');
+    }
+    if (fullTableGroups.other) {
+      row.push(s.categories['Supplies'] ? fmt(s.categories['Supplies']) : '—');
+      row.push(s.categories['Dogs'] ? fmt(s.categories['Dogs']) : '—');
+    } else {
+      row.push(catSum(s, ['Supplies','Dogs']) ? fmt(catSum(s, ['Supplies','Dogs'])) : '—');
+    }
+    row.push(fmt(s.total), fmt(s.pppn));
+    return row;
+  });
+
+  renderTable('#full-table', headers, rows,
+    sailings.map(s => s.isOutlier ? 'outlier' : s.isUpcoming ? 'upcoming' : ''),
+    { boldCols: [-2, -1] }
+  );
+
+  // Bind toggle clicks
+  $('#full-table').querySelectorAll('.col-toggle').forEach(el => {
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      fullTableGroups[el.dataset.group] = !fullTableGroups[el.dataset.group];
+      renderFullTable(currentFilter);
+    });
+  });
+}
+
+// ══════════════════════════════════════════════════════════════
+// Table helper
+// ══════════════════════════════════════════════════════════════
+function renderTable(sel, headers, rows, rowClasses, opts) {
+  const el = $(sel);
+  const diagonal = opts && opts.diagonal;
+  if (diagonal) el.classList.add('diagonal-headers');
+  let html = '';
+  if (opts && opts.colWidths) {
+    html += '<colgroup>' + headers.map((_,i) => opts.colWidths[i] ? `<col style="width:${opts.colWidths[i]}">` : '<col>').join('') + '</colgroup>';
+  }
+  html += '<thead><tr>' + headers.map(h => `<th><span>${h.replace('Pre-booked', 'Pre&#8209;booked')}</span></th>`).join('') + '</tr></thead><tbody>';
+  rows.forEach((row, i) => {
+    const cls = rowClasses && rowClasses[i] ? ` class="${rowClasses[i]}"` : '';
+    const explicitBold = opts && opts.boldCols ? opts.boldCols.map(c => c < 0 ? row.length + c : c) : [];
+    const autoBold = headers.reduce((acc, h, ci) => { if (h === 'Total') acc.push(ci); return acc; }, []);
+    const bold = [...new Set([...explicitBold, ...autoBold])];
+    html += `<tr${cls}>` + row.map((c, ci) => bold.includes(ci) ? `<td style="font-weight:700">${c}</td>` : `<td>${c}</td>`).join('') + '</tr>';
+  });
+  html += '</tbody>';
+  el.innerHTML = html;
+}
+</script>
+</body>
+</html>
