@@ -460,26 +460,41 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
 .bt-card {
   background: var(--card);
   border-radius: var(--radius);
-  padding: 24px;
+  padding: 0;
   box-shadow: var(--shadow);
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   border-left: 5px solid var(--primary);
+  overflow: hidden;
 }
 .bt-card-header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 12px;
-  margin-bottom: 18px;
+  padding: 18px 20px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
 }
-.bt-card-title { font-size: 18px; font-weight: 700; color: var(--text); }
+.bt-card-header:hover { background: rgba(255,255,255,0.04); }
+.bt-card-chevron {
+  font-size: 16px;
+  color: var(--text-muted);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+  margin-right: 4px;
+}
+.bt-card.open .bt-card-chevron { transform: rotate(90deg); }
+.bt-card-title-wrap { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
+.bt-card-title { font-size: 17px; font-weight: 700; color: var(--text); }
 .bt-card-meta { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
 .bt-totals {
   display: flex;
   gap: 24px;
   flex-wrap: wrap;
   text-align: right;
+  align-items: center;
 }
 .bt-total-block { display: flex; flex-direction: column; gap: 2px; }
 .bt-total-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); }
@@ -488,8 +503,16 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
 .bt-total-val.fore    { color: var(--warn); }
 .bt-total-val.total   { color: var(--primary); }
 
+/* Collapsible card body */
+.bt-card-body {
+  display: none;
+  padding: 0 20px 20px;
+  border-top: 1px solid var(--border);
+}
+.bt-card.open .bt-card-body { display: block; }
+
 /* Progress bar */
-.bt-progress-wrap { margin: 6px 0 20px; }
+.bt-progress-wrap { margin: 16px 0 20px; }
 .bt-progress-label {
   display: flex;
   justify-content: space-between;
@@ -595,13 +618,13 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
     <div class="nav-tab" data-page="fare">Fare Analysis</div>
     <div class="nav-tab" data-page="funding">Funding</div>
     <div class="nav-tab" data-page="table">All Sailings</div>
-    <div class="nav-tab" data-page="pricecheck">🔍 Price Check</div>
-    <div class="nav-tab" data-page="budget">💳 Budget Tracker</div>
+    <div class="nav-tab" data-page="pricecheck">Value Check</div>
+    <div class="nav-tab" data-page="budget">Budget Tracker</div>
   </div>
   <div style="margin-left:auto;display:flex;align-items:center;gap:8px;white-space:nowrap">
     <span style="font-size:14px">🤑</span>
     <label class="toggle-switch" for="privacy-toggle">
-      <input type="checkbox" id="privacy-toggle">
+      <input type="checkbox" id="privacy-toggle" checked>
       <span class="toggle-slider"></span>
     </label>
     <span style="font-size:14px">🙈</span>
@@ -762,7 +785,7 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
 <!-- ════════════════════════════════════════════════ PRICE CHECK ════════════════════════════════════════════════ -->
 <div id="pricecheck" class="page">
   <div class="card">
-    <h2>🔍 Price Check — Is This Fare a Good Deal?</h2>
+    <h2>Value Check — Is This Fare a Good Deal?</h2>
     <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px">
       Enter a cruise you're considering and see how the fare stacks up against your historical FPPN benchmarks by ship and room type.
     </p>
@@ -815,7 +838,7 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
   <!-- History -->
   <div class="card">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
-      <h2 style="margin:0;border:none;padding:0">📋 Price Check History</h2>
+      <h2 style="margin:0;border:none;padding:0">📋 Value Check History</h2>
       <button class="pc-clear-btn" id="pc-clear-btn">Clear All</button>
     </div>
     <div id="pc-history-list"></div>
@@ -836,7 +859,7 @@ Chart.defaults.plugins.legend.labels.color = '#b0b0b0';
 let DATA = {};
 const $ = s => document.querySelector(s);
 const $$ = s => document.querySelectorAll(s);
-let privacyMode = false;
+let privacyMode = true;
 const fmt = n => privacyMode ? '$•••' : '$' + n.toLocaleString();
 const pct = n => n.toFixed(1) + '%';
 const tickFmt = v => privacyMode ? '$•••' : '$' + v.toLocaleString();
@@ -1690,7 +1713,7 @@ function pcRenderHistory() {
   const hist = pcGetHistory();
   const el = $('#pc-history-list');
   if (!hist.length) {
-    el.innerHTML = '<div class="pc-history-empty">No price checks yet — run your first check above.</div>';
+    el.innerHTML = '<div class="pc-history-empty">No value checks yet — run your first check above.</div>';
     return;
   }
 
@@ -1853,7 +1876,7 @@ function renderPriceCheck() {
   });
 
   $('#pc-clear-btn').addEventListener('click', () => {
-    if (confirm('Clear all price check history?')) {
+    if (confirm('Clear all value check history?')) {
       pcSaveHistory([]);
       pcRenderHistory();
     }
@@ -1933,11 +1956,14 @@ function renderBudgetTracker() {
       </div>`).join('');
 
     return `
-    <div class="bt-card" style="border-left-color:${borderColor}">
-      <div class="bt-card-header">
-        <div>
-          <div class="bt-card-title">${s.name}</div>
-          <div class="bt-card-meta">${s.month} · ${s.nights} nights · ${s.people} people · ${s.ship} · ${s.roomSubtype}</div>
+    <div class="bt-card" style="border-left-color:${borderColor}" id="bt-card-${idx}">
+      <div class="bt-card-header" data-idx="${idx}">
+        <span class="bt-card-chevron">▶</span>
+        <div class="bt-card-title-wrap">
+          <div>
+            <div class="bt-card-title">${s.name}</div>
+            <div class="bt-card-meta">${s.month} · ${s.nights} nights · ${s.people} people · ${s.ship} · ${s.roomSubtype}</div>
+          </div>
         </div>
         <div class="bt-totals">
           <div class="bt-total-block">
@@ -1955,7 +1981,7 @@ function renderBudgetTracker() {
         </div>
       </div>
 
-      <div class="bt-progress-wrap">
+      <div class="bt-progress-wrap" style="padding:0 20px 14px">
         <div class="bt-progress-label">
           <span>${pct}% paid</span>
           <span>${fmt(s.totalPaid)} of ${fmt(s.totalBudgeted)}</span>
@@ -1965,21 +1991,35 @@ function renderBudgetTracker() {
         </div>
       </div>
 
-      <table class="bt-cat-table">
-        <thead><tr><th>Category</th><th>Paid</th><th>Forecasted</th><th>Total</th></tr></thead>
-        <tbody>${catRows}${catTotalRow}</tbody>
-      </table>
+      <div class="bt-card-body">
+        <table class="bt-cat-table">
+          <thead><tr><th>Category</th><th>Paid</th><th>Forecasted</th><th>Total</th></tr></thead>
+          <tbody>${catRows}${catTotalRow}</tbody>
+        </table>
 
-      <button class="bt-toggle-btn" data-idx="${idx}">▸ Show ${s.lineItems.length} line item${s.lineItems.length !== 1 ? 's' : ''}</button>
-      <div class="bt-line-items" id="bt-items-${idx}">
-        ${lineItemsHtml}
+        <button class="bt-toggle-btn" data-idx="${idx}">▸ Show ${s.lineItems.length} line item${s.lineItems.length !== 1 ? 's' : ''}</button>
+        <div class="bt-line-items" id="bt-items-${idx}">
+          ${lineItemsHtml}
+        </div>
       </div>
     </div>`;
   }).join('');
 
-  // Wire toggle buttons
+  // Wire card header expand/collapse
+  container.querySelectorAll('.bt-card-header').forEach(header => {
+    header.addEventListener('click', (e) => {
+      // Don't collapse if clicking the line items toggle button inside
+      if (e.target.closest('.bt-toggle-btn')) return;
+      const idx = header.dataset.idx;
+      const card = $(`#bt-card-${idx}`);
+      card.classList.toggle('open');
+    });
+  });
+
+  // Wire line items toggle buttons
   container.querySelectorAll('.bt-toggle-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
       const idx = btn.dataset.idx;
       const panel = $(`#bt-items-${idx}`);
       const open = panel.classList.toggle('open');
