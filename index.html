@@ -267,85 +267,194 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
 .toggle-switch input:checked + .toggle-slider { background: var(--accent); }
 .toggle-switch input:checked + .toggle-slider::before { transform: translateX(16px); background: white; }
 
-/* ── PIN Modal ── */
-.pin-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.75);
-  z-index: 1000;
-  align-items: center;
-  justify-content: center;
-}
-.pin-overlay.visible { display: flex; }
-.pin-modal {
-  background: #1e1e2e;
-  border: 1px solid #2e2e3e;
-  border-radius: 14px;
-  padding: 32px 28px 24px;
-  width: 300px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
-  text-align: center;
-  animation: pinSlideIn 0.18s ease;
-}
-@keyframes pinSlideIn {
-  from { transform: translateY(-12px); opacity: 0; }
-  to   { transform: translateY(0);     opacity: 1; }
-}
-.pin-modal h2 { font-size: 16px; color: var(--primary); margin-bottom: 6px; }
-.pin-modal p  { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; }
-.pin-dots {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
+/* ── Price Check ── */
+.pc-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
   margin-bottom: 20px;
 }
-.pin-dot {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  border: 2px solid #444;
-  background: transparent;
-  transition: background 0.15s, border-color 0.15s;
+.pc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
-.pin-dot.filled { background: var(--primary); border-color: var(--primary); }
-.pin-keypad {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-bottom: 16px;
+.pc-field label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
 }
-.pin-key {
-  background: #2a2a3e;
+.pc-field select, .pc-field input {
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  font-size: 13px;
+  background: #16162a;
+  color: var(--text);
+  transition: border-color 0.2s;
+}
+.pc-field select:focus, .pc-field input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+.pc-run-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 28px;
+  background: var(--primary);
+  color: #fff;
   border: none;
   border-radius: 8px;
-  color: var(--text);
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 600;
-  padding: 14px 0;
   cursor: pointer;
-  transition: background 0.12s;
+  transition: background 0.18s, transform 0.1s;
 }
-.pin-key:hover { background: #3a3a52; }
-.pin-key:active { background: var(--primary); }
-.pin-key.wide { grid-column: span 3; font-size: 13px; color: var(--text-muted); background: #222235; }
-.pin-error {
+.pc-run-btn:hover { background: var(--primary-light); }
+.pc-run-btn:active { transform: scale(0.97); }
+
+.pc-verdict {
+  display: none;
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin-bottom: 24px;
+  border-left: 5px solid var(--primary);
+}
+.pc-verdict.show { display: block; }
+.pc-verdict.verdict-great { background: #0d2416; border-left-color: #43a047; }
+.pc-verdict.verdict-good  { background: #1a2408; border-left-color: #8bc34a; }
+.pc-verdict.verdict-fair  { background: #2a2000; border-left-color: var(--warn); }
+.pc-verdict.verdict-high  { background: #2a1010; border-left-color: var(--danger); }
+.pc-verdict.verdict-nodata { background: #1a1a2e; border-left-color: #555; }
+
+.pc-verdict-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.pc-verdict-emoji { font-size: 28px; }
+.pc-verdict-label { font-size: 20px; font-weight: 700; }
+.pc-verdict-fppn  { font-size: 32px; font-weight: 800; color: var(--primary); }
+.pc-verdict-vs    { font-size: 13px; color: var(--text-muted); }
+
+.pc-benchmarks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+.pc-bench {
+  background: rgba(255,255,255,0.04);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.pc-bench-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); margin-bottom: 4px; }
+.pc-bench-val   { font-size: 18px; font-weight: 700; color: var(--text); }
+.pc-bench-sub   { font-size: 10px; color: var(--text-light); margin-top: 2px; }
+
+.pc-bar-wrap { margin: 14px 0 6px; }
+.pc-bar-track {
+  position: relative;
+  height: 10px;
+  background: #2a2a3e;
+  border-radius: 5px;
+  margin: 20px 0 8px;
+}
+.pc-bar-range {
+  position: absolute;
+  height: 100%;
+  background: rgba(91,155,213,0.35);
+  border-radius: 5px;
+}
+.pc-bar-avg {
+  position: absolute;
+  width: 3px;
+  height: 20px;
+  top: -5px;
+  background: var(--primary);
+  border-radius: 2px;
+}
+.pc-bar-pin {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  top: -2px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  border: 2px solid #fff;
+  z-index: 2;
+}
+.pc-bar-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--text-light);
+}
+.pc-sailings-note { font-size: 11px; color: var(--text-muted); margin-top: 8px; font-style: italic; }
+.pc-movement {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 20px;
   font-size: 12px;
-  color: var(--danger);
-  min-height: 18px;
-  margin-top: -8px;
-  margin-bottom: 8px;
+  font-weight: 700;
+  margin-left: 12px;
 }
-.pin-shake {
-  animation: pinShake 0.35s ease;
+.pc-movement.up   { background: #2a1010; color: #ef5350; }
+.pc-movement.down { background: #0d2416; color: #66bb6a; }
+.pc-movement.same { background: #1a1a2e; color: #888; }
+
+/* ── Price Check History ── */
+.pc-history-empty { color: var(--text-muted); font-size: 13px; font-style: italic; padding: 16px 0; }
+.pc-hist-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto auto auto;
+  align-items: center;
+  gap: 10px 16px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  background: #1a1a28;
+  font-size: 13px;
 }
-@keyframes pinShake {
-  0%,100% { transform: translateX(0); }
-  20%      { transform: translateX(-8px); }
-  40%      { transform: translateX(8px); }
-  60%      { transform: translateX(-6px); }
-  80%      { transform: translateX(6px); }
+.pc-hist-row:hover { background: #1e1e32; }
+.pc-hist-name { font-weight: 700; color: var(--text); }
+.pc-hist-meta { font-size: 11px; color: var(--text-muted); grid-column: 1; }
+.pc-hist-fppn { font-weight: 700; font-size: 15px; color: var(--primary); }
+.pc-hist-verdict { font-size: 11px; }
+.pc-hist-date { font-size: 10px; color: var(--text-light); }
+.pc-hist-del {
+  background: none;
+  border: none;
+  color: #555;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0 4px;
+  line-height: 1;
+  transition: color 0.15s;
 }
+.pc-hist-del:hover { color: var(--danger); }
+.pc-hist-move { font-size: 11px; font-weight: 700; }
+.pc-hist-move.up   { color: #ef5350; }
+.pc-hist-move.down { color: #66bb6a; }
+.pc-hist-move.same { color: #888; }
+.pc-clear-btn {
+  background: none;
+  border: 1px solid #444;
+  color: var(--text-muted);
+  padding: 5px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.pc-clear-btn:hover { border-color: var(--danger); color: var(--danger); }
 </style>
 </head>
 <body>
@@ -360,47 +469,19 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
     <div class="nav-tab" data-page="fare">Fare Analysis</div>
     <div class="nav-tab" data-page="funding">Funding</div>
     <div class="nav-tab" data-page="table">All Sailings</div>
+    <div class="nav-tab" data-page="pricecheck">🔍 Price Check</div>
   </div>
   <div style="margin-left:auto;display:flex;align-items:center;gap:8px;white-space:nowrap">
     <span style="font-size:14px">🤑</span>
     <label class="toggle-switch" for="privacy-toggle">
-    <input type="checkbox" id="privacy-toggle" checked>
+      <input type="checkbox" id="privacy-toggle">
       <span class="toggle-slider"></span>
     </label>
     <span style="font-size:14px">🙈</span>
   </div>
 </div>
 
-<!-- ── PIN Modal ── -->
-<div class="pin-overlay" id="pin-overlay">
-  <div class="pin-modal" id="pin-modal">
-    <h2>🔐 Enter PIN</h2>
-    <p>Enter your PIN to reveal financial data</p>
-    <div class="pin-dots" id="pin-dots">
-      <div class="pin-dot" id="pd0"></div>
-      <div class="pin-dot" id="pd1"></div>
-      <div class="pin-dot" id="pd2"></div>
-      <div class="pin-dot" id="pd3"></div>
-    </div>
-    <div class="pin-error" id="pin-error"></div>
-    <div class="pin-keypad">
-      <button class="pin-key" onclick="pinKey('1')">1</button>
-      <button class="pin-key" onclick="pinKey('2')">2</button>
-      <button class="pin-key" onclick="pinKey('3')">3</button>
-      <button class="pin-key" onclick="pinKey('4')">4</button>
-      <button class="pin-key" onclick="pinKey('5')">5</button>
-      <button class="pin-key" onclick="pinKey('6')">6</button>
-      <button class="pin-key" onclick="pinKey('7')">7</button>
-      <button class="pin-key" onclick="pinKey('8')">8</button>
-      <button class="pin-key" onclick="pinKey('9')">9</button>
-      <button class="pin-key" onclick="pinBackspace()">⌫</button>
-      <button class="pin-key" onclick="pinKey('0')">0</button>
-      <button class="pin-key" onclick="pinCancel()">✕</button>
-    </div>
-  </div>
-</div>
-
-
+<div class="container">
 
 <!-- ════════════════════════════════════════════════ OVERVIEW ════════════════════════════════════════════════ -->
 <div id="overview" class="page active">
@@ -551,7 +632,68 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
 
 </div>
 
-<script>
+<!-- ════════════════════════════════════════════════ PRICE CHECK ════════════════════════════════════════════════ -->
+<div id="pricecheck" class="page">
+  <div class="card">
+    <h2>🔍 Price Check — Is This Fare a Good Deal?</h2>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px">
+      Enter a cruise you're considering and see how the fare stacks up against your historical FPPN benchmarks by ship and room type.
+    </p>
+    <div class="pc-form-grid">
+      <div class="pc-field">
+        <label>Sailing Name / Nickname</label>
+        <input type="text" id="pc-sailing-name" placeholder="e.g. Summer 2027 on Icon" />
+      </div>
+      <div class="pc-field">
+        <label>Sail Date (Month / Year)</label>
+        <input type="month" id="pc-sail-date" />
+      </div>
+      <div class="pc-field">
+        <label>Ship</label>
+        <select id="pc-ship">
+          <option value="">— select ship —</option>
+        </select>
+      </div>
+      <div class="pc-field">
+        <label>Room Type</label>
+        <select id="pc-room-type">
+          <option value="">— select type —</option>
+        </select>
+      </div>
+      <div class="pc-field">
+        <label>Room Sub-Type</label>
+        <select id="pc-room-subtype">
+          <option value="">— select sub-type —</option>
+        </select>
+      </div>
+      <div class="pc-field">
+        <label>Nights</label>
+        <input type="number" id="pc-nights" min="1" max="30" placeholder="7" />
+      </div>
+      <div class="pc-field">
+        <label>People</label>
+        <input type="number" id="pc-people" min="1" max="12" placeholder="4" />
+      </div>
+      <div class="pc-field">
+        <label>Total Cruise Fare ($)</label>
+        <input type="number" id="pc-fare" min="0" placeholder="e.g. 8500" />
+      </div>
+    </div>
+    <button class="pc-run-btn" id="pc-run-btn">⚓ Check This Price</button>
+  </div>
+
+  <!-- Verdict panel -->
+  <div class="pc-verdict card" id="pc-verdict"></div>
+
+  <!-- History -->
+  <div class="card">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <h2 style="margin:0;border:none;padding:0">📋 Price Check History</h2>
+      <button class="pc-clear-btn" id="pc-clear-btn">Clear All</button>
+    </div>
+    <div id="pc-history-list"></div>
+  </div>
+</div>
 // ── Chart.js dark mode defaults ──
 Chart.defaults.color = '#b0b0b0';
 Chart.defaults.borderColor = '#2e2e3e';
@@ -560,7 +702,7 @@ Chart.defaults.plugins.legend.labels.color = '#b0b0b0';
 let DATA = {};
 const $ = s => document.querySelector(s);
 const $$ = s => document.querySelectorAll(s);
-let privacyMode = true;
+let privacyMode = false;
 const fmt = n => privacyMode ? '$•••' : '$' + n.toLocaleString();
 const pct = n => n.toFixed(1) + '%';
 const tickFmt = v => privacyMode ? '$•••' : '$' + v.toLocaleString();
@@ -681,92 +823,12 @@ function renderAll() {
   renderFare(currentFilter);
   renderFunding();
   renderFullTable(currentFilter);
+  renderPriceCheck();
 }
-
-// ── PIN logic ──
-// PIN is stored as a simple hash — not plaintext in source.
-// To change the PIN, update PIN_HASH below using: btoa(yourPin.split('').reverse().join(''))
-const PIN_HASH = 'OTg5MQ=='; // change PIN: use btoa(yourPin.split('').reverse().join(''))
-
-function _checkPin(input) {
-  return btoa(input.split('').reverse().join('')) === PIN_HASH;
-}
-
-let _pinBuffer = '';
-
-function pinKey(digit) {
-  if (_pinBuffer.length >= 4) return;
-  _pinBuffer += digit;
-  _updatePinDots();
-  if (_pinBuffer.length === 4) {
-    setTimeout(_submitPin, 120); // brief pause so last dot fills visually
-  }
-}
-
-function pinBackspace() {
-  if (_pinBuffer.length === 0) return;
-  _pinBuffer = _pinBuffer.slice(0, -1);
-  _updatePinDots();
-  $('#pin-error').textContent = '';
-}
-
-function pinCancel() {
-  _pinBuffer = '';
-  _updatePinDots();
-  $('#pin-error').textContent = '';
-  $('#pin-overlay').classList.remove('visible');
-  // Restore toggle to checked (privacy stays ON)
-  $('#privacy-toggle').checked = true;
-}
-
-function _updatePinDots() {
-  for (let i = 0; i < 4; i++) {
-    document.getElementById('pd' + i).classList.toggle('filled', i < _pinBuffer.length);
-  }
-}
-
-function _submitPin() {
-  if (_checkPin(_pinBuffer)) {
-    $('#pin-overlay').classList.remove('visible');
-    $('#pin-error').textContent = '';
-    _pinBuffer = '';
-    _updatePinDots();
-    privacyMode = false;
-    renderAll();
-  } else {
-    $('#pin-error').textContent = 'Incorrect PIN — try again';
-    $('#pin-modal').classList.add('pin-shake');
-    setTimeout(() => $('#pin-modal').classList.remove('pin-shake'), 400);
-    _pinBuffer = '';
-    _updatePinDots();
-  }
-}
-
-// Close modal on overlay click (outside the modal box)
-$('#pin-overlay').addEventListener('click', e => {
-  if (e.target === $('#pin-overlay')) pinCancel();
-});
-
-// Keyboard support for PIN entry
-document.addEventListener('keydown', e => {
-  if (!$('#pin-overlay').classList.contains('visible')) return;
-  if (e.key >= '0' && e.key <= '9') pinKey(e.key);
-  else if (e.key === 'Backspace') pinBackspace();
-  else if (e.key === 'Escape') pinCancel();
-});
 
 $('#privacy-toggle').addEventListener('change', e => {
-  if (e.target.checked) {
-    // Turning privacy ON — no PIN required
-    privacyMode = true;
-    renderAll();
-  } else {
-    // Turning privacy OFF — require PIN
-    $('#pin-error').textContent = '';
-    _pinBuffer = '';
-    _updatePinDots();
-    $('#pin-overlay').classList.add('visible');
-  }
+  privacyMode = e.target.checked;
+  renderAll();
 });
 
 fetch('data.json').then(r => r.json()).then(data => {
@@ -1311,8 +1373,359 @@ function renderFullTable(filter='all') {
 }
 
 // ══════════════════════════════════════════════════════════════
-// Table helper
+// PRICE CHECK
 // ══════════════════════════════════════════════════════════════
+const PC_STORAGE_KEY = 'cruisePriceCheckHistory';
+const SEASON_MONTHS = {
+  '01':'Off-Peak','02':'Off-Peak','03':'Spring Break','04':'Off-Peak',
+  '05':'Off-Peak','06':'Peak Summer','07':'Peak Summer','08':'Peak Summer',
+  '09':'Off-Peak','10':'Off-Peak','11':'Holiday','12':'Holiday'
+};
+
+function pcGetHistory() {
+  try { return JSON.parse(localStorage.getItem(PC_STORAGE_KEY) || '[]'); }
+  catch(e) { return []; }
+}
+function pcSaveHistory(arr) {
+  try { localStorage.setItem(PC_STORAGE_KEY, JSON.stringify(arr)); } catch(e) {}
+}
+
+function pcSeasonFromDate(monthVal) {
+  // monthVal is 'YYYY-MM'
+  if (!monthVal) return 'Off-Peak';
+  const mon = monthVal.split('-')[1] || '01';
+  return SEASON_MONTHS[mon] || 'Off-Peak';
+}
+
+function pcGetBenchmark(pc, ship, subtype, roomType) {
+  // Fallback chain: ship+subtype → subtype → roomType → overall
+  const shipKey = `${subtype}|${ship}`;
+  if (pc.byShipAndSubtype[shipKey] && pc.byShipAndSubtype[shipKey].count >= 2)
+    return { bench: pc.byShipAndSubtype[shipKey], level: `${subtype} on ${ship}` };
+  if (pc.byRoomSubtype[subtype] && pc.byRoomSubtype[subtype].count >= 2)
+    return { bench: pc.byRoomSubtype[subtype], level: subtype };
+  if (pc.byRoomType[roomType] && pc.byRoomType[roomType].count >= 1)
+    return { bench: pc.byRoomType[roomType], level: roomType };
+  if (pc.overall && pc.overall.count >= 1)
+    return { bench: pc.overall, level: 'All sailings' };
+  return null;
+}
+
+function pcGetSeasonBench(pc, subtype, season) {
+  const key = `${subtype}|${season}`;
+  if (pc.bySeasonAndSubtype[key] && pc.bySeasonAndSubtype[key].count >= 2)
+    return pc.bySeasonAndSubtype[key];
+  if (pc.bySeason[season] && pc.bySeason[season].count >= 2)
+    return pc.bySeason[season];
+  return null;
+}
+
+function pcVerdictClass(pct) {
+  if (pct <= -10)  return { cls: 'verdict-great', emoji: '🏆', label: 'Great Deal' };
+  if (pct <= 5)    return { cls: 'verdict-good',  emoji: '✅', label: 'Good Value' };
+  if (pct <= 20)   return { cls: 'verdict-fair',  emoji: '⚠️',  label: 'Slightly High' };
+  return            { cls: 'verdict-high',  emoji: '🔴', label: 'Expensive' };
+}
+
+function pcBar(userFppn, bench) {
+  const lo = bench.minFppn, hi = bench.maxFppn, avg = bench.avgFppn;
+  const p25 = bench.p25Fppn, p75 = bench.p75Fppn;
+  // Extend range 15% each side for breathing room
+  const span = hi - lo || 1;
+  const vizLo = Math.max(0, lo - span * 0.15);
+  const vizHi = hi + span * 0.15;
+  const vizSpan = vizHi - vizLo;
+  const toPos = v => Math.max(0, Math.min(100, ((v - vizLo) / vizSpan * 100)));
+
+  const rangeLeft  = toPos(p25);
+  const rangeWidth = toPos(p75) - toPos(p25);
+  const avgPos     = toPos(avg);
+  const userPos    = toPos(userFppn);
+  const pinColor   = userFppn <= avg ? '#43a047' : userFppn <= p75 ? '#ffc000' : '#ef5350';
+
+  return `
+    <div class="pc-bar-wrap">
+      <div style="font-size:11px;color:var(--text-muted);margin-bottom:6px">
+        Where your fare sits vs. historical range (IQR shaded, avg line, your fare = dot)
+      </div>
+      <div class="pc-bar-track">
+        <div class="pc-bar-range" style="left:${rangeLeft}%;width:${rangeWidth}%"></div>
+        <div class="pc-bar-avg"   style="left:${avgPos}%"></div>
+        <div class="pc-bar-pin"   style="left:${userPos}%;background:${pinColor}"></div>
+      </div>
+      <div class="pc-bar-labels">
+        <span>${fmt(Math.round(vizLo))}</span>
+        <span style="color:var(--primary);font-weight:600">avg ${fmt(avg)}</span>
+        <span>${fmt(Math.round(vizHi))}</span>
+      </div>
+    </div>`;
+}
+
+function pcRenderVerdict(input, matchResult, seasonBench, prevEntry) {
+  const { ship, subtype, roomType, nights, people, fare, sailDate, name } = input;
+  const fppn = Math.round(fare / (nights * people));
+  const el = $('#pc-verdict');
+
+  if (!matchResult) {
+    el.className = 'pc-verdict card show verdict-nodata';
+    el.innerHTML = `
+      <div class="pc-verdict-header">
+        <span class="pc-verdict-emoji">🤷</span>
+        <span class="pc-verdict-label">No Benchmark Data</span>
+        <span class="pc-verdict-fppn">${fmt(fppn)} FPPN</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted)">
+        No past sailings match ${subtype} on ${ship}. This would be your first — no comparison available yet.
+        Your fare computes to <strong>${fmt(fppn)}</strong> per person per night.
+      </p>`;
+    return;
+  }
+
+  const { bench, level } = matchResult;
+  const diff = Math.round(((fppn - bench.avgFppn) / bench.avgFppn) * 100);
+  const { cls, emoji, label } = pcVerdictClass(diff);
+  const diffStr = diff >= 0 ? `+${diff}%` : `${diff}%`;
+
+  // Movement vs previous check
+  let moveBadge = '';
+  if (prevEntry) {
+    const prevFppn = prevEntry.fppn;
+    const movePct = Math.round(((fppn - prevFppn) / prevFppn) * 100);
+    if (Math.abs(movePct) < 2) {
+      moveBadge = `<span class="pc-movement same">↔ Same as last check (${fmt(prevFppn)} FPPN)</span>`;
+    } else if (fppn > prevFppn) {
+      moveBadge = `<span class="pc-movement up">↑ +${Math.abs(movePct)}% vs last check (was ${fmt(prevFppn)} FPPN)</span>`;
+    } else {
+      moveBadge = `<span class="pc-movement down">↓ ${Math.abs(movePct)}% vs last check (was ${fmt(prevFppn)} FPPN)</span>`;
+    }
+  }
+
+  // Season context
+  let seasonNote = '';
+  if (seasonBench) {
+    const sDiff = Math.round(((fppn - seasonBench.avgFppn) / seasonBench.avgFppn) * 100);
+    const sDiffStr = sDiff >= 0 ? `+${sDiff}%` : `${sDiff}%`;
+    seasonNote = `<div style="font-size:12px;color:var(--text-muted);margin-top:8px">
+      📅 Seasonality: ${pcSeasonFromDate(sailDate)} benchmark avg is ${fmt(seasonBench.avgFppn)} FPPN
+      — your fare is <strong>${sDiffStr}</strong> vs same-season sailings (${seasonBench.count} sailing${seasonBench.count>1?'s':''}).
+    </div>`;
+  }
+
+  const sailingsNote = bench.sailings && bench.sailings.length
+    ? `Based on ${bench.count} sailing${bench.count>1?'s':''}: ${bench.sailings.join(', ')}`
+    : '';
+
+  el.className = `pc-verdict card show ${cls}`;
+  el.innerHTML = `
+    <div class="pc-verdict-header">
+      <span class="pc-verdict-emoji">${emoji}</span>
+      <span class="pc-verdict-label">${label}</span>
+      <span class="pc-verdict-fppn">${fmt(fppn)} FPPN</span>
+      <span class="pc-verdict-vs">${diffStr} vs ${level} avg</span>
+      ${moveBadge}
+    </div>
+    <div class="pc-benchmarks">
+      <div class="pc-bench">
+        <div class="pc-bench-label">Your FPPN</div>
+        <div class="pc-bench-val">${fmt(fppn)}</div>
+        <div class="pc-bench-sub">${fmt(fare)} / ${nights}n × ${people}p</div>
+      </div>
+      <div class="pc-bench">
+        <div class="pc-bench-label">Benchmark Avg</div>
+        <div class="pc-bench-val">${fmt(bench.avgFppn)}</div>
+        <div class="pc-bench-sub">${level}</div>
+      </div>
+      <div class="pc-bench">
+        <div class="pc-bench-label">Typical Range</div>
+        <div class="pc-bench-val">${fmt(bench.p25Fppn)}–${fmt(bench.p75Fppn)}</div>
+        <div class="pc-bench-sub">25th–75th percentile</div>
+      </div>
+      <div class="pc-bench">
+        <div class="pc-bench-label">Seen Range</div>
+        <div class="pc-bench-val">${fmt(bench.minFppn)}–${fmt(bench.maxFppn)}</div>
+        <div class="pc-bench-sub">min–max across ${bench.count} sailing${bench.count>1?'s':''}</div>
+      </div>
+    </div>
+    ${pcBar(fppn, bench)}
+    ${seasonNote}
+    <div class="pc-sailings-note">${sailingsNote}</div>`;
+}
+
+function pcRenderHistory() {
+  const hist = pcGetHistory();
+  const el = $('#pc-history-list');
+  if (!hist.length) {
+    el.innerHTML = '<div class="pc-history-empty">No price checks yet — run your first check above.</div>';
+    return;
+  }
+
+  // Group by sailingKey so we can show movement across checks of same sailing
+  const grouped = {};
+  hist.forEach(h => {
+    const k = h.sailingKey;
+    if (!grouped[k]) grouped[k] = [];
+    grouped[k].push(h);
+  });
+
+  el.innerHTML = hist.slice().reverse().map((h, revIdx) => {
+    const group = grouped[h.sailingKey] || [];
+    const sortedGroup = [...group].sort((a,b) => a.ts - b.ts);
+    const idx = sortedGroup.findIndex(x => x.ts === h.ts);
+    const prev = idx > 0 ? sortedGroup[idx - 1] : null;
+
+    let movHtml = '';
+    if (prev) {
+      const movPct = Math.round(((h.fppn - prev.fppn) / prev.fppn) * 100);
+      if (Math.abs(movPct) < 2) movHtml = `<span class="pc-hist-move same">↔ same</span>`;
+      else if (h.fppn > prev.fppn) movHtml = `<span class="pc-hist-move up">↑ +${Math.abs(movPct)}%</span>`;
+      else movHtml = `<span class="pc-hist-move down">↓ ${Math.abs(movPct)}%</span>`;
+    }
+
+    const { cls, emoji, label } = pcVerdictClass(h.diffPct || 0);
+    const verdictColor = cls === 'verdict-great' ? '#43a047' : cls === 'verdict-good' ? '#8bc34a' : cls === 'verdict-fair' ? '#ffc000' : cls === 'verdict-high' ? '#ef5350' : '#888';
+
+    return `<div class="pc-hist-row" data-ts="${h.ts}">
+      <div>
+        <div class="pc-hist-name">${h.name}</div>
+        <div class="pc-hist-meta">${h.nights}n · ${h.people}p · ${h.subtype} · ${h.ship} · ${h.season}</div>
+      </div>
+      <div class="pc-hist-fppn">${fmt(h.fppn)}<span style="font-size:10px;font-weight:400;color:var(--text-muted)"> FPPN</span></div>
+      <div class="pc-hist-verdict" style="color:${verdictColor}">${emoji} ${label}</div>
+      ${movHtml ? `<div>${movHtml}</div>` : '<div></div>'}
+      <div class="pc-hist-date">${new Date(h.ts).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</div>
+      <button class="pc-hist-del" data-ts="${h.ts}" title="Remove">×</button>
+    </div>`;
+  }).join('');
+
+  // Bind delete buttons
+  el.querySelectorAll('.pc-hist-del').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const ts = parseInt(btn.dataset.ts);
+      const updated = pcGetHistory().filter(h => h.ts !== ts);
+      pcSaveHistory(updated);
+      pcRenderHistory();
+    });
+  });
+}
+
+function pcPopulateDropdowns() {
+  const pc = DATA.priceCheck;
+  if (!pc) return;
+
+  const shipSel = $('#pc-ship');
+  const typeSel = $('#pc-room-type');
+  const subtypeSel = $('#pc-room-subtype');
+
+  // Populate ships — include known ships from sailing history even if not in benchmarks
+  const knownShips = [...new Set(DATA.sailings.map(s => s.ship))].sort();
+  knownShips.forEach(ship => {
+    const opt = document.createElement('option');
+    opt.value = ship; opt.textContent = ship;
+    shipSel.appendChild(opt);
+  });
+
+  // Room types
+  const knownTypes = [...new Set(DATA.sailings.map(s => s.roomType))].sort();
+  knownTypes.forEach(rt => {
+    const opt = document.createElement('option');
+    opt.value = rt; opt.textContent = rt;
+    typeSel.appendChild(opt);
+  });
+
+  // Room subtypes — filter by room type selection
+  function refreshSubtypes() {
+    const selType = typeSel.value;
+    subtypeSel.innerHTML = '<option value="">— select sub-type —</option>';
+    const subs = [...new Set(
+      DATA.sailings
+        .filter(s => !selType || s.roomType === selType)
+        .map(s => s.roomSubtype)
+    )].sort();
+    subs.forEach(st => {
+      const opt = document.createElement('option');
+      opt.value = st; opt.textContent = st;
+      subtypeSel.appendChild(opt);
+    });
+  }
+
+  typeSel.addEventListener('change', refreshSubtypes);
+  refreshSubtypes();
+}
+
+function renderPriceCheck() {
+  pcPopulateDropdowns();
+  pcRenderHistory();
+
+  $('#pc-run-btn').addEventListener('click', () => {
+    const name    = $('#pc-sailing-name').value.trim() || 'Unnamed Sailing';
+    const sailDate = $('#pc-sail-date').value;
+    const ship    = $('#pc-ship').value;
+    const roomType = $('#pc-room-type').value;
+    const subtype = $('#pc-room-subtype').value;
+    const nights  = parseInt($('#pc-nights').value);
+    const people  = parseInt($('#pc-people').value);
+    const fare    = parseFloat($('#pc-fare').value);
+
+    if (!ship || !subtype || !nights || !people || !fare) {
+      alert('Please fill in all fields before checking.');
+      return;
+    }
+    if (!roomType) {
+      alert('Please select a room type.');
+      return;
+    }
+
+    const pc = DATA.priceCheck;
+    const season = pcSeasonFromDate(sailDate);
+    const fppn = Math.round(fare / (nights * people));
+    const matchResult = pcGetBenchmark(pc, ship, subtype, roomType);
+    const seasonBench = pcGetSeasonBench(pc, subtype, season);
+
+    // Check previous entry for same sailing
+    const sailingKey = `${subtype}|${ship}|${name}`;
+    const history = pcGetHistory();
+    const prevEntries = history.filter(h => h.sailingKey === sailingKey);
+    const prevEntry = prevEntries.length
+      ? prevEntries.reduce((a, b) => a.ts > b.ts ? a : b)
+      : null;
+
+    pcRenderVerdict({ ship, subtype, roomType, nights, people, fare, sailDate, name }, matchResult, seasonBench, prevEntry);
+
+    // Log to history
+    const diffPct = matchResult
+      ? Math.round(((fppn - matchResult.bench.avgFppn) / matchResult.bench.avgFppn) * 100)
+      : null;
+
+    history.push({
+      ts: Date.now(),
+      sailingKey,
+      name,
+      sailDate,
+      ship,
+      roomType,
+      subtype,
+      nights,
+      people,
+      fare,
+      fppn,
+      season,
+      benchLevel: matchResult ? matchResult.level : null,
+      diffPct,
+    });
+    pcSaveHistory(history);
+    pcRenderHistory();
+  });
+
+  $('#pc-clear-btn').addEventListener('click', () => {
+    if (confirm('Clear all price check history?')) {
+      pcSaveHistory([]);
+      pcRenderHistory();
+    }
+  });
+}
+
+
 function renderTable(sel, headers, rows, rowClasses, opts) {
   const el = $(sel);
   const diagonal = opts && opts.diagonal;

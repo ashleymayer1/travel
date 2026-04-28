@@ -1069,5 +1069,588 @@
     "Cabana/Casita",
     "Excursion",
     "Onboard Spending"
-  ]
+  ],
+  "priceCheck": {
+    "byShipAndSubtype": {
+      "Multi-Room Balcony|Freedom": {
+        "count": 1,
+        "avgFppn": 120,
+        "minFppn": 120,
+        "maxFppn": 120,
+        "p25Fppn": 120,
+        "p75Fppn": 120,
+        "sailings": [
+          "Spring Break 2022"
+        ]
+      },
+      "Grand Suite|Freedom": {
+        "count": 3,
+        "avgFppn": 270,
+        "minFppn": 221,
+        "maxFppn": 324,
+        "p25Fppn": 221,
+        "p75Fppn": 324,
+        "sailings": [
+          "Summer 2022",
+          "Spring Break 2023",
+          "Spring Break 2024"
+        ]
+      },
+      "Standard Balcony|Freedom": {
+        "count": 2,
+        "avgFppn": 175,
+        "minFppn": 160,
+        "maxFppn": 190,
+        "p25Fppn": 160,
+        "p75Fppn": 190,
+        "sailings": [
+          "Work From Ship 2022",
+          "Ashley's Birthday 2022"
+        ]
+      },
+      "Connecting Balconies|Oasis": {
+        "count": 2,
+        "avgFppn": 250,
+        "minFppn": 161,
+        "maxFppn": 339,
+        "p25Fppn": 161,
+        "p75Fppn": 339,
+        "sailings": [
+          "Winter 2022",
+          "Christmas Vacation 2023"
+        ]
+      },
+      "Junior Suite|Liberty": {
+        "count": 1,
+        "avgFppn": 194,
+        "minFppn": 194,
+        "maxFppn": 194,
+        "p25Fppn": 194,
+        "p75Fppn": 194,
+        "sailings": [
+          "ShePack Cruise 2023"
+        ]
+      },
+      "Grand Suite|Symphony": {
+        "count": 1,
+        "avgFppn": 334,
+        "minFppn": 334,
+        "maxFppn": 334,
+        "p25Fppn": 334,
+        "p75Fppn": 334,
+        "sailings": [
+          "Diamond Cruise 2024"
+        ]
+      },
+      "Surfside Family Suite|Icon": {
+        "count": 1,
+        "avgFppn": 420,
+        "minFppn": 420,
+        "maxFppn": 420,
+        "p25Fppn": 420,
+        "p75Fppn": 420,
+        "sailings": [
+          "Summer on Icon 2024"
+        ]
+      },
+      "Connecting Balconies|Wonder": {
+        "count": 1,
+        "avgFppn": 414,
+        "minFppn": 414,
+        "maxFppn": 414,
+        "p25Fppn": 414,
+        "p75Fppn": 414,
+        "sailings": [
+          "Winter Vacay 2024"
+        ]
+      },
+      "Crown Loft Suite|Utopia": {
+        "count": 1,
+        "avgFppn": 506,
+        "minFppn": 506,
+        "maxFppn": 506,
+        "p25Fppn": 506,
+        "p75Fppn": 506,
+        "sailings": [
+          "Spring Break 2025"
+        ]
+      },
+      "Family Infinite Balcony|Icon": {
+        "count": 2,
+        "avgFppn": 379,
+        "minFppn": 284,
+        "maxFppn": 474,
+        "p25Fppn": 284,
+        "p75Fppn": 474,
+        "sailings": [
+          "Summer Vacay 2025",
+          "Sabbatical 2025"
+        ]
+      },
+      "Disney Balcony|Disney Wish": {
+        "count": 1,
+        "avgFppn": 569,
+        "minFppn": 569,
+        "maxFppn": 569,
+        "p25Fppn": 569,
+        "p75Fppn": 569,
+        "sailings": [
+          "Thanksgiving 2025"
+        ]
+      },
+      "Connecting Balconies|Allure": {
+        "count": 1,
+        "avgFppn": 339,
+        "minFppn": 339,
+        "maxFppn": 339,
+        "p25Fppn": 339,
+        "p75Fppn": 339,
+        "sailings": [
+          "Winter Vacay 2025"
+        ]
+      },
+      "Connecting Balconies|Star": {
+        "count": 1,
+        "avgFppn": 433,
+        "minFppn": 433,
+        "maxFppn": 433,
+        "p25Fppn": 433,
+        "p75Fppn": 433,
+        "sailings": [
+          "Spring Break 2026"
+        ]
+      }
+    },
+    "byRoomSubtype": {
+      "Multi-Room Balcony": {
+        "count": 1,
+        "avgFppn": 120,
+        "minFppn": 120,
+        "maxFppn": 120,
+        "p25Fppn": 120,
+        "p75Fppn": 120,
+        "sailings": [
+          "Spring Break 2022"
+        ]
+      },
+      "Grand Suite": {
+        "count": 4,
+        "avgFppn": 286,
+        "minFppn": 221,
+        "maxFppn": 334,
+        "p25Fppn": 264,
+        "p75Fppn": 334,
+        "sailings": [
+          "Summer 2022",
+          "Spring Break 2023",
+          "Spring Break 2024",
+          "Diamond Cruise 2024"
+        ]
+      },
+      "Standard Balcony": {
+        "count": 2,
+        "avgFppn": 175,
+        "minFppn": 160,
+        "maxFppn": 190,
+        "p25Fppn": 160,
+        "p75Fppn": 190,
+        "sailings": [
+          "Work From Ship 2022",
+          "Ashley's Birthday 2022"
+        ]
+      },
+      "Connecting Balconies": {
+        "count": 5,
+        "avgFppn": 337,
+        "minFppn": 161,
+        "maxFppn": 433,
+        "p25Fppn": 339,
+        "p75Fppn": 414,
+        "sailings": [
+          "Winter 2022",
+          "Christmas Vacation 2023",
+          "Winter Vacay 2024",
+          "Winter Vacay 2025",
+          "Spring Break 2026"
+        ]
+      },
+      "Junior Suite": {
+        "count": 1,
+        "avgFppn": 194,
+        "minFppn": 194,
+        "maxFppn": 194,
+        "p25Fppn": 194,
+        "p75Fppn": 194,
+        "sailings": [
+          "ShePack Cruise 2023"
+        ]
+      },
+      "Surfside Family Suite": {
+        "count": 1,
+        "avgFppn": 420,
+        "minFppn": 420,
+        "maxFppn": 420,
+        "p25Fppn": 420,
+        "p75Fppn": 420,
+        "sailings": [
+          "Summer on Icon 2024"
+        ]
+      },
+      "Crown Loft Suite": {
+        "count": 1,
+        "avgFppn": 506,
+        "minFppn": 506,
+        "maxFppn": 506,
+        "p25Fppn": 506,
+        "p75Fppn": 506,
+        "sailings": [
+          "Spring Break 2025"
+        ]
+      },
+      "Family Infinite Balcony": {
+        "count": 2,
+        "avgFppn": 379,
+        "minFppn": 284,
+        "maxFppn": 474,
+        "p25Fppn": 284,
+        "p75Fppn": 474,
+        "sailings": [
+          "Summer Vacay 2025",
+          "Sabbatical 2025"
+        ]
+      },
+      "Disney Balcony": {
+        "count": 1,
+        "avgFppn": 569,
+        "minFppn": 569,
+        "maxFppn": 569,
+        "p25Fppn": 569,
+        "p75Fppn": 569,
+        "sailings": [
+          "Thanksgiving 2025"
+        ]
+      }
+    },
+    "byRoomType": {
+      "Balcony": {
+        "count": 11,
+        "avgFppn": 317,
+        "minFppn": 120,
+        "maxFppn": 569,
+        "p25Fppn": 161,
+        "p75Fppn": 433,
+        "sailings": [
+          "Spring Break 2022",
+          "Work From Ship 2022",
+          "Ashley's Birthday 2022",
+          "Winter 2022",
+          "Christmas Vacation 2023",
+          "Winter Vacay 2024",
+          "Summer Vacay 2025",
+          "Sabbatical 2025",
+          "Thanksgiving 2025",
+          "Winter Vacay 2025",
+          "Spring Break 2026"
+        ]
+      },
+      "Suite": {
+        "count": 7,
+        "avgFppn": 323,
+        "minFppn": 194,
+        "maxFppn": 506,
+        "p25Fppn": 221,
+        "p75Fppn": 420,
+        "sailings": [
+          "Summer 2022",
+          "ShePack Cruise 2023",
+          "Spring Break 2023",
+          "Spring Break 2024",
+          "Diamond Cruise 2024",
+          "Summer on Icon 2024",
+          "Spring Break 2025"
+        ]
+      }
+    },
+    "bySeason": {
+      "Spring Break": {
+        "count": 5,
+        "avgFppn": 321,
+        "minFppn": 120,
+        "maxFppn": 506,
+        "p25Fppn": 221,
+        "p75Fppn": 433,
+        "sailings": [
+          "Spring Break 2022",
+          "Spring Break 2023",
+          "Spring Break 2024",
+          "Spring Break 2025",
+          "Spring Break 2026"
+        ]
+      },
+      "Peak Summer": {
+        "count": 3,
+        "avgFppn": 386,
+        "minFppn": 264,
+        "maxFppn": 474,
+        "p25Fppn": 264,
+        "p75Fppn": 474,
+        "sailings": [
+          "Summer 2022",
+          "Summer on Icon 2024",
+          "Summer Vacay 2025"
+        ]
+      },
+      "Off-Peak": {
+        "count": 4,
+        "avgFppn": 243,
+        "minFppn": 160,
+        "maxFppn": 334,
+        "p25Fppn": 194,
+        "p75Fppn": 334,
+        "sailings": [
+          "Work From Ship 2022",
+          "ShePack Cruise 2023",
+          "Diamond Cruise 2024",
+          "Sabbatical 2025"
+        ]
+      },
+      "Holiday": {
+        "count": 6,
+        "avgFppn": 335,
+        "minFppn": 161,
+        "maxFppn": 569,
+        "p25Fppn": 190,
+        "p75Fppn": 414,
+        "sailings": [
+          "Ashley's Birthday 2022",
+          "Winter 2022",
+          "Christmas Vacation 2023",
+          "Winter Vacay 2024",
+          "Thanksgiving 2025",
+          "Winter Vacay 2025"
+        ]
+      }
+    },
+    "bySeasonAndSubtype": {
+      "Multi-Room Balcony|Spring Break": {
+        "count": 1,
+        "avgFppn": 120,
+        "minFppn": 120,
+        "maxFppn": 120,
+        "p25Fppn": 120,
+        "p75Fppn": 120,
+        "sailings": [
+          "Spring Break 2022"
+        ]
+      },
+      "Grand Suite|Peak Summer": {
+        "count": 1,
+        "avgFppn": 264,
+        "minFppn": 264,
+        "maxFppn": 264,
+        "p25Fppn": 264,
+        "p75Fppn": 264,
+        "sailings": [
+          "Summer 2022"
+        ]
+      },
+      "Standard Balcony|Off-Peak": {
+        "count": 1,
+        "avgFppn": 160,
+        "minFppn": 160,
+        "maxFppn": 160,
+        "p25Fppn": 160,
+        "p75Fppn": 160,
+        "sailings": [
+          "Work From Ship 2022"
+        ]
+      },
+      "Standard Balcony|Holiday": {
+        "count": 1,
+        "avgFppn": 190,
+        "minFppn": 190,
+        "maxFppn": 190,
+        "p25Fppn": 190,
+        "p75Fppn": 190,
+        "sailings": [
+          "Ashley's Birthday 2022"
+        ]
+      },
+      "Connecting Balconies|Holiday": {
+        "count": 4,
+        "avgFppn": 313,
+        "minFppn": 161,
+        "maxFppn": 414,
+        "p25Fppn": 339,
+        "p75Fppn": 414,
+        "sailings": [
+          "Winter 2022",
+          "Christmas Vacation 2023",
+          "Winter Vacay 2024",
+          "Winter Vacay 2025"
+        ]
+      },
+      "Junior Suite|Off-Peak": {
+        "count": 1,
+        "avgFppn": 194,
+        "minFppn": 194,
+        "maxFppn": 194,
+        "p25Fppn": 194,
+        "p75Fppn": 194,
+        "sailings": [
+          "ShePack Cruise 2023"
+        ]
+      },
+      "Grand Suite|Spring Break": {
+        "count": 2,
+        "avgFppn": 273,
+        "minFppn": 221,
+        "maxFppn": 324,
+        "p25Fppn": 221,
+        "p75Fppn": 324,
+        "sailings": [
+          "Spring Break 2023",
+          "Spring Break 2024"
+        ]
+      },
+      "Grand Suite|Off-Peak": {
+        "count": 1,
+        "avgFppn": 334,
+        "minFppn": 334,
+        "maxFppn": 334,
+        "p25Fppn": 334,
+        "p75Fppn": 334,
+        "sailings": [
+          "Diamond Cruise 2024"
+        ]
+      },
+      "Surfside Family Suite|Peak Summer": {
+        "count": 1,
+        "avgFppn": 420,
+        "minFppn": 420,
+        "maxFppn": 420,
+        "p25Fppn": 420,
+        "p75Fppn": 420,
+        "sailings": [
+          "Summer on Icon 2024"
+        ]
+      },
+      "Crown Loft Suite|Spring Break": {
+        "count": 1,
+        "avgFppn": 506,
+        "minFppn": 506,
+        "maxFppn": 506,
+        "p25Fppn": 506,
+        "p75Fppn": 506,
+        "sailings": [
+          "Spring Break 2025"
+        ]
+      },
+      "Family Infinite Balcony|Peak Summer": {
+        "count": 1,
+        "avgFppn": 474,
+        "minFppn": 474,
+        "maxFppn": 474,
+        "p25Fppn": 474,
+        "p75Fppn": 474,
+        "sailings": [
+          "Summer Vacay 2025"
+        ]
+      },
+      "Family Infinite Balcony|Off-Peak": {
+        "count": 1,
+        "avgFppn": 284,
+        "minFppn": 284,
+        "maxFppn": 284,
+        "p25Fppn": 284,
+        "p75Fppn": 284,
+        "sailings": [
+          "Sabbatical 2025"
+        ]
+      },
+      "Disney Balcony|Holiday": {
+        "count": 1,
+        "avgFppn": 569,
+        "minFppn": 569,
+        "maxFppn": 569,
+        "p25Fppn": 569,
+        "p75Fppn": 569,
+        "sailings": [
+          "Thanksgiving 2025"
+        ]
+      },
+      "Connecting Balconies|Spring Break": {
+        "count": 1,
+        "avgFppn": 433,
+        "minFppn": 433,
+        "maxFppn": 433,
+        "p25Fppn": 433,
+        "p75Fppn": 433,
+        "sailings": [
+          "Spring Break 2026"
+        ]
+      }
+    },
+    "overall": {
+      "count": 18,
+      "avgFppn": 319,
+      "minFppn": 120,
+      "maxFppn": 569,
+      "p25Fppn": 194,
+      "p75Fppn": 420,
+      "sailings": [
+        "Spring Break 2022",
+        "Summer 2022",
+        "Work From Ship 2022",
+        "Ashley's Birthday 2022",
+        "Winter 2022",
+        "ShePack Cruise 2023",
+        "Spring Break 2023",
+        "Christmas Vacation 2023",
+        "Spring Break 2024",
+        "Diamond Cruise 2024",
+        "Summer on Icon 2024",
+        "Winter Vacay 2024",
+        "Spring Break 2025",
+        "Summer Vacay 2025",
+        "Sabbatical 2025",
+        "Thanksgiving 2025",
+        "Winter Vacay 2025",
+        "Spring Break 2026"
+      ]
+    },
+    "ships": [
+      "Allure",
+      "Disney Wish",
+      "Freedom",
+      "Icon",
+      "Liberty",
+      "Oasis",
+      "Star",
+      "Symphony",
+      "Utopia",
+      "Wonder"
+    ],
+    "roomSubtypes": [
+      "Connecting Balconies",
+      "Crown Loft Suite",
+      "Disney Balcony",
+      "Family Infinite Balcony",
+      "Grand Suite",
+      "Junior Suite",
+      "Multi-Room Balcony",
+      "Standard Balcony",
+      "Surfside Family Suite"
+    ],
+    "roomTypes": [
+      "Balcony",
+      "Suite"
+    ],
+    "seasons": [
+      "Peak Summer",
+      "Holiday",
+      "Spring Break",
+      "Off-Peak"
+    ]
+  }
 }
