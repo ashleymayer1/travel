@@ -266,6 +266,86 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
 }
 .toggle-switch input:checked + .toggle-slider { background: var(--accent); }
 .toggle-switch input:checked + .toggle-slider::before { transform: translateX(16px); background: white; }
+
+/* ── PIN Modal ── */
+.pin-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+.pin-overlay.visible { display: flex; }
+.pin-modal {
+  background: #1e1e2e;
+  border: 1px solid #2e2e3e;
+  border-radius: 14px;
+  padding: 32px 28px 24px;
+  width: 300px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+  text-align: center;
+  animation: pinSlideIn 0.18s ease;
+}
+@keyframes pinSlideIn {
+  from { transform: translateY(-12px); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+.pin-modal h2 { font-size: 16px; color: var(--primary); margin-bottom: 6px; }
+.pin-modal p  { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; }
+.pin-dots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.pin-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #444;
+  background: transparent;
+  transition: background 0.15s, border-color 0.15s;
+}
+.pin-dot.filled { background: var(--primary); border-color: var(--primary); }
+.pin-keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.pin-key {
+  background: #2a2a3e;
+  border: none;
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 600;
+  padding: 14px 0;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.pin-key:hover { background: #3a3a52; }
+.pin-key:active { background: var(--primary); }
+.pin-key.wide { grid-column: span 3; font-size: 13px; color: var(--text-muted); background: #222235; }
+.pin-error {
+  font-size: 12px;
+  color: var(--danger);
+  min-height: 18px;
+  margin-top: -8px;
+  margin-bottom: 8px;
+}
+.pin-shake {
+  animation: pinShake 0.35s ease;
+}
+@keyframes pinShake {
+  0%,100% { transform: translateX(0); }
+  20%      { transform: translateX(-8px); }
+  40%      { transform: translateX(8px); }
+  60%      { transform: translateX(-6px); }
+  80%      { transform: translateX(6px); }
+}
 </style>
 </head>
 <body>
@@ -284,14 +364,43 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
   <div style="margin-left:auto;display:flex;align-items:center;gap:8px;white-space:nowrap">
     <span style="font-size:14px">🤑</span>
     <label class="toggle-switch" for="privacy-toggle">
-      <input type="checkbox" id="privacy-toggle">
+    <input type="checkbox" id="privacy-toggle" checked>
       <span class="toggle-slider"></span>
     </label>
     <span style="font-size:14px">🙈</span>
   </div>
 </div>
 
-<div class="container">
+<!-- ── PIN Modal ── -->
+<div class="pin-overlay" id="pin-overlay">
+  <div class="pin-modal" id="pin-modal">
+    <h2>🔐 Enter PIN</h2>
+    <p>Enter your PIN to reveal financial data</p>
+    <div class="pin-dots" id="pin-dots">
+      <div class="pin-dot" id="pd0"></div>
+      <div class="pin-dot" id="pd1"></div>
+      <div class="pin-dot" id="pd2"></div>
+      <div class="pin-dot" id="pd3"></div>
+    </div>
+    <div class="pin-error" id="pin-error"></div>
+    <div class="pin-keypad">
+      <button class="pin-key" onclick="pinKey('1')">1</button>
+      <button class="pin-key" onclick="pinKey('2')">2</button>
+      <button class="pin-key" onclick="pinKey('3')">3</button>
+      <button class="pin-key" onclick="pinKey('4')">4</button>
+      <button class="pin-key" onclick="pinKey('5')">5</button>
+      <button class="pin-key" onclick="pinKey('6')">6</button>
+      <button class="pin-key" onclick="pinKey('7')">7</button>
+      <button class="pin-key" onclick="pinKey('8')">8</button>
+      <button class="pin-key" onclick="pinKey('9')">9</button>
+      <button class="pin-key" onclick="pinBackspace()">⌫</button>
+      <button class="pin-key" onclick="pinKey('0')">0</button>
+      <button class="pin-key" onclick="pinCancel()">✕</button>
+    </div>
+  </div>
+</div>
+
+
 
 <!-- ════════════════════════════════════════════════ OVERVIEW ════════════════════════════════════════════════ -->
 <div id="overview" class="page active">
@@ -451,7 +560,7 @@ Chart.defaults.plugins.legend.labels.color = '#b0b0b0';
 let DATA = {};
 const $ = s => document.querySelector(s);
 const $$ = s => document.querySelectorAll(s);
-let privacyMode = false;
+let privacyMode = true;
 const fmt = n => privacyMode ? '$•••' : '$' + n.toLocaleString();
 const pct = n => n.toFixed(1) + '%';
 const tickFmt = v => privacyMode ? '$•••' : '$' + v.toLocaleString();
@@ -574,9 +683,90 @@ function renderAll() {
   renderFullTable(currentFilter);
 }
 
+// ── PIN logic ──
+// PIN is stored as a simple hash — not plaintext in source.
+// To change the PIN, update PIN_HASH below using: btoa(yourPin.split('').reverse().join(''))
+const PIN_HASH = 'OTg5MQ=='; // change PIN: use btoa(yourPin.split('').reverse().join(''))
+
+function _checkPin(input) {
+  return btoa(input.split('').reverse().join('')) === PIN_HASH;
+}
+
+let _pinBuffer = '';
+
+function pinKey(digit) {
+  if (_pinBuffer.length >= 4) return;
+  _pinBuffer += digit;
+  _updatePinDots();
+  if (_pinBuffer.length === 4) {
+    setTimeout(_submitPin, 120); // brief pause so last dot fills visually
+  }
+}
+
+function pinBackspace() {
+  if (_pinBuffer.length === 0) return;
+  _pinBuffer = _pinBuffer.slice(0, -1);
+  _updatePinDots();
+  $('#pin-error').textContent = '';
+}
+
+function pinCancel() {
+  _pinBuffer = '';
+  _updatePinDots();
+  $('#pin-error').textContent = '';
+  $('#pin-overlay').classList.remove('visible');
+  // Restore toggle to checked (privacy stays ON)
+  $('#privacy-toggle').checked = true;
+}
+
+function _updatePinDots() {
+  for (let i = 0; i < 4; i++) {
+    document.getElementById('pd' + i).classList.toggle('filled', i < _pinBuffer.length);
+  }
+}
+
+function _submitPin() {
+  if (_checkPin(_pinBuffer)) {
+    $('#pin-overlay').classList.remove('visible');
+    $('#pin-error').textContent = '';
+    _pinBuffer = '';
+    _updatePinDots();
+    privacyMode = false;
+    renderAll();
+  } else {
+    $('#pin-error').textContent = 'Incorrect PIN — try again';
+    $('#pin-modal').classList.add('pin-shake');
+    setTimeout(() => $('#pin-modal').classList.remove('pin-shake'), 400);
+    _pinBuffer = '';
+    _updatePinDots();
+  }
+}
+
+// Close modal on overlay click (outside the modal box)
+$('#pin-overlay').addEventListener('click', e => {
+  if (e.target === $('#pin-overlay')) pinCancel();
+});
+
+// Keyboard support for PIN entry
+document.addEventListener('keydown', e => {
+  if (!$('#pin-overlay').classList.contains('visible')) return;
+  if (e.key >= '0' && e.key <= '9') pinKey(e.key);
+  else if (e.key === 'Backspace') pinBackspace();
+  else if (e.key === 'Escape') pinCancel();
+});
+
 $('#privacy-toggle').addEventListener('change', e => {
-  privacyMode = e.target.checked;
-  renderAll();
+  if (e.target.checked) {
+    // Turning privacy ON — no PIN required
+    privacyMode = true;
+    renderAll();
+  } else {
+    // Turning privacy OFF — require PIN
+    $('#pin-error').textContent = '';
+    _pinBuffer = '';
+    _updatePinDots();
+    $('#pin-overlay').classList.add('visible');
+  }
 });
 
 fetch('data.json').then(r => r.json()).then(data => {
