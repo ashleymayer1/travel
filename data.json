@@ -1652,5 +1652,613 @@
       "Spring Break",
       "Off-Peak"
     ]
-  }
+  },
+  "budgetTracker": [
+    {
+      "name": "Summer B2B 2026",
+      "month": "Jul 2026",
+      "nights": 7,
+      "people": 4,
+      "ship": "Wonder",
+      "roomSubtype": "Grand Suite",
+      "totalBudgeted": 18870,
+      "totalPaid": 2110,
+      "totalForecasted": 16760,
+      "paidPct": 11.2,
+      "categories": {
+        "Cruise Fare": {
+          "paid": 1921,
+          "forecasted": 11139,
+          "total": 13060
+        },
+        "Travel": {
+          "paid": 0,
+          "forecasted": 3466,
+          "total": 3466
+        },
+        "Dogs": {
+          "paid": 0,
+          "forecasted": 1000,
+          "total": 1000
+        },
+        "Supplies": {
+          "paid": 0,
+          "forecasted": 150,
+          "total": 150
+        },
+        "Onboard Pre-booked": {
+          "paid": 189,
+          "forecasted": 0,
+          "total": 189
+        },
+        "Excursion": {
+          "paid": 0,
+          "forecasted": 505,
+          "total": 505
+        },
+        "Onboard Spending": {
+          "paid": 0,
+          "forecasted": 500,
+          "total": 500
+        }
+      },
+      "lineItems": [
+        {
+          "expense": "Deposit",
+          "amount": 1476,
+          "category": "Cruise Fare",
+          "date": "2024-10-30",
+          "status": "paid"
+        },
+        {
+          "expense": "Deposit",
+          "amount": 445,
+          "category": "Cruise Fare",
+          "date": "2026-01-23",
+          "status": "paid"
+        },
+        {
+          "expense": "Chef's Table",
+          "amount": 189,
+          "category": "Onboard Pre-booked",
+          "date": "2026-02-14",
+          "status": "paid"
+        },
+        {
+          "expense": "Final Payment",
+          "amount": 11139,
+          "category": "Cruise Fare",
+          "date": "2026-05-17",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Flights",
+          "amount": 1811,
+          "category": "Travel",
+          "date": "2026-05-01",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Dog Boarding",
+          "amount": 1000,
+          "category": "Dogs",
+          "date": "2026-08-08",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Tips, Uber, Food, Lounges",
+          "amount": 705,
+          "category": "Travel",
+          "date": "2026-08-07",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Hotel",
+          "amount": 700,
+          "category": "Travel",
+          "date": "2026-08-01",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Final Balance",
+          "amount": 500,
+          "category": "Onboard Spending",
+          "date": "2026-08-07",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Royal Beach Club",
+          "amount": 375,
+          "category": "Excursion",
+          "date": "2026-08-07",
+          "status": "forecasted"
+        },
+        {
+          "expense": "RDU Parking",
+          "amount": 250,
+          "category": "Travel",
+          "date": "2026-05-17",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Supplies",
+          "amount": 150,
+          "category": "Supplies",
+          "date": "2026-08-07",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Zipline",
+          "amount": 130,
+          "category": "Excursion",
+          "date": "2026-08-07",
+          "status": "forecasted"
+        }
+      ]
+    },
+    {
+      "name": "Thanksgiving 2026",
+      "month": "Nov 2026",
+      "nights": 6,
+      "people": 4,
+      "ship": "Legend",
+      "roomSubtype": "Family Infinite Balcony",
+      "totalBudgeted": 18414,
+      "totalPaid": 200,
+      "totalForecasted": 18214,
+      "paidPct": 1.1,
+      "categories": {
+        "Cruise Fare": {
+          "paid": 200,
+          "forecasted": 12412,
+          "total": 12612
+        },
+        "Travel": {
+          "paid": 0,
+          "forecasted": 2010,
+          "total": 2010
+        },
+        "Dogs": {
+          "paid": 0,
+          "forecasted": 1000,
+          "total": 1000
+        },
+        "Supplies": {
+          "paid": 0,
+          "forecasted": 400,
+          "total": 400
+        },
+        "Onboard Pre-booked": {
+          "paid": 0,
+          "forecasted": 1792,
+          "total": 1792
+        },
+        "Onboard Spending": {
+          "paid": 0,
+          "forecasted": 600,
+          "total": 600
+        }
+      },
+      "lineItems": [
+        {
+          "expense": "Deposit",
+          "amount": 200,
+          "category": "Cruise Fare",
+          "date": "2026-04-04",
+          "status": "paid"
+        },
+        {
+          "expense": "Final Payment",
+          "amount": 12412,
+          "category": "Cruise Fare",
+          "date": "2026-08-24",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Onboard Pre-booked",
+          "amount": 1792,
+          "category": "Onboard Pre-booked",
+          "date": "2026-11-27",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Dog Boarding",
+          "amount": 1000,
+          "category": "Dogs",
+          "date": "2026-11-28",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Tips, Uber, Food, Lounges",
+          "amount": 760,
+          "category": "Travel",
+          "date": "2026-11-27",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Hotel",
+          "amount": 600,
+          "category": "Travel",
+          "date": "2026-11-23",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Final Balance",
+          "amount": 600,
+          "category": "Onboard Spending",
+          "date": "2026-11-27",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Flights",
+          "amount": 400,
+          "category": "Travel",
+          "date": "2026-08-24",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Supplies",
+          "amount": 400,
+          "category": "Supplies",
+          "date": "2026-11-27",
+          "status": "forecasted"
+        },
+        {
+          "expense": "RDU Parking",
+          "amount": 250,
+          "category": "Travel",
+          "date": "2026-08-24",
+          "status": "forecasted"
+        }
+      ]
+    },
+    {
+      "name": "Winter NYE 2026",
+      "month": "Dec 2026",
+      "nights": 7,
+      "people": 4,
+      "ship": "Star",
+      "roomSubtype": "Family Infinite Balcony",
+      "totalBudgeted": 23952,
+      "totalPaid": 1000,
+      "totalForecasted": 22952,
+      "paidPct": 4.2,
+      "categories": {
+        "Cruise Fare": {
+          "paid": 1000,
+          "forecasted": 13582,
+          "total": 14582
+        },
+        "Travel": {
+          "paid": 0,
+          "forecasted": 4420,
+          "total": 4420
+        },
+        "Dogs": {
+          "paid": 0,
+          "forecasted": 1000,
+          "total": 1000
+        },
+        "Supplies": {
+          "paid": 0,
+          "forecasted": 500,
+          "total": 500
+        },
+        "Onboard Pre-booked": {
+          "paid": 0,
+          "forecasted": 2950,
+          "total": 2950
+        },
+        "Onboard Spending": {
+          "paid": 0,
+          "forecasted": 500,
+          "total": 500
+        }
+      },
+      "lineItems": [
+        {
+          "expense": "Deposit",
+          "amount": 1000,
+          "category": "Cruise Fare",
+          "date": "2024-11-27",
+          "status": "paid"
+        },
+        {
+          "expense": "Final Payment",
+          "amount": 13582,
+          "category": "Cruise Fare",
+          "date": "2026-09-28",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Onboard Pre-booked",
+          "amount": 2950,
+          "category": "Onboard Pre-booked",
+          "date": "2027-01-04",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Flights",
+          "amount": 2800,
+          "category": "Travel",
+          "date": "2026-10-01",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Dog Boarding",
+          "amount": 1000,
+          "category": "Dogs",
+          "date": "2027-01-04",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Tips, Uber, Food, Lounges",
+          "amount": 870,
+          "category": "Travel",
+          "date": "2027-01-04",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Hotel",
+          "amount": 500,
+          "category": "Travel",
+          "date": "2026-12-27",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Final Balance",
+          "amount": 500,
+          "category": "Onboard Spending",
+          "date": "2027-01-04",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Supplies",
+          "amount": 500,
+          "category": "Supplies",
+          "date": "2027-01-04",
+          "status": "forecasted"
+        },
+        {
+          "expense": "RDU Parking",
+          "amount": 250,
+          "category": "Travel",
+          "date": "2026-10-01",
+          "status": "forecasted"
+        }
+      ]
+    },
+    {
+      "name": "Spring Break 2027",
+      "month": "Mar 2027",
+      "nights": 8,
+      "people": 4,
+      "ship": "Legend",
+      "roomSubtype": "Family Balcony",
+      "totalBudgeted": 20543,
+      "totalPaid": 200,
+      "totalForecasted": 20343,
+      "paidPct": 1.0,
+      "categories": {
+        "Cruise Fare": {
+          "paid": 200,
+          "forecasted": 13061,
+          "total": 13261
+        },
+        "Travel": {
+          "paid": 0,
+          "forecasted": 3630,
+          "total": 3630
+        },
+        "Dogs": {
+          "paid": 0,
+          "forecasted": 1000,
+          "total": 1000
+        },
+        "Supplies": {
+          "paid": 0,
+          "forecasted": 200,
+          "total": 200
+        },
+        "Onboard Pre-booked": {
+          "paid": 0,
+          "forecasted": 1952,
+          "total": 1952
+        },
+        "Onboard Spending": {
+          "paid": 0,
+          "forecasted": 500,
+          "total": 500
+        }
+      },
+      "lineItems": [
+        {
+          "expense": "Deposit",
+          "amount": 200,
+          "category": "Cruise Fare",
+          "date": "2026-04-04",
+          "status": "paid"
+        },
+        {
+          "expense": "Final Payment",
+          "amount": 13061,
+          "category": "Cruise Fare",
+          "date": "2026-12-20",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Flights",
+          "amount": 2000,
+          "category": "Travel",
+          "date": "2027-01-01",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Onboard Pre-booked",
+          "amount": 1952,
+          "category": "Onboard Pre-booked",
+          "date": "2027-03-28",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Dog Boarding",
+          "amount": 1000,
+          "category": "Dogs",
+          "date": "2027-03-29",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Tips, Uber, Food, Lounges",
+          "amount": 780,
+          "category": "Travel",
+          "date": "2027-03-28",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Hotel",
+          "amount": 600,
+          "category": "Travel",
+          "date": "2027-03-20",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Final Balance",
+          "amount": 500,
+          "category": "Onboard Spending",
+          "date": "2027-03-28",
+          "status": "forecasted"
+        },
+        {
+          "expense": "RDU Parking",
+          "amount": 250,
+          "category": "Travel",
+          "date": "2027-01-01",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Supplies",
+          "amount": 200,
+          "category": "Supplies",
+          "date": "2027-03-28",
+          "status": "forecasted"
+        }
+      ]
+    },
+    {
+      "name": "Summer 2027",
+      "month": "Aug 2027",
+      "nights": 7,
+      "people": 4,
+      "ship": "Hero",
+      "roomSubtype": "Family Infinite Balcony",
+      "totalBudgeted": 19319,
+      "totalPaid": 200,
+      "totalForecasted": 19119,
+      "paidPct": 1.0,
+      "categories": {
+        "Cruise Fare": {
+          "paid": 200,
+          "forecasted": 11859,
+          "total": 12059
+        },
+        "Travel": {
+          "paid": 0,
+          "forecasted": 3720,
+          "total": 3720
+        },
+        "Dogs": {
+          "paid": 0,
+          "forecasted": 1000,
+          "total": 1000
+        },
+        "Supplies": {
+          "paid": 0,
+          "forecasted": 150,
+          "total": 150
+        },
+        "Onboard Pre-booked": {
+          "paid": 0,
+          "forecasted": 1890,
+          "total": 1890
+        },
+        "Onboard Spending": {
+          "paid": 0,
+          "forecasted": 500,
+          "total": 500
+        }
+      },
+      "lineItems": [
+        {
+          "expense": "Deposit",
+          "amount": 200,
+          "category": "Cruise Fare",
+          "date": "2026-04-04",
+          "status": "paid"
+        },
+        {
+          "expense": "Final Payment",
+          "amount": 11859,
+          "category": "Cruise Fare",
+          "date": "2027-05-16",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Flights",
+          "amount": 2000,
+          "category": "Travel",
+          "date": "2027-05-16",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Onboard Pre-booked",
+          "amount": 1890,
+          "category": "Onboard Pre-booked",
+          "date": "2027-08-21",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Dog Boarding",
+          "amount": 1000,
+          "category": "Dogs",
+          "date": "2027-08-23",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Tips, Uber, Food, Lounges",
+          "amount": 770,
+          "category": "Travel",
+          "date": "2027-08-21",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Hotel",
+          "amount": 700,
+          "category": "Travel",
+          "date": "2027-08-14",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Final Balance",
+          "amount": 500,
+          "category": "Onboard Spending",
+          "date": "2027-08-21",
+          "status": "forecasted"
+        },
+        {
+          "expense": "RDU Parking",
+          "amount": 250,
+          "category": "Travel",
+          "date": "2027-05-16",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Supplies",
+          "amount": 150,
+          "category": "Supplies",
+          "date": "2027-08-21",
+          "status": "forecasted"
+        }
+      ]
+    }
+  ]
 }

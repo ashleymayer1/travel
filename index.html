@@ -455,6 +455,132 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
   transition: all 0.15s;
 }
 .pc-clear-btn:hover { border-color: var(--danger); color: var(--danger); }
+
+/* ── Budget Tracker ── */
+.bt-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+  border-left: 5px solid var(--primary);
+}
+.bt-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.bt-card-title { font-size: 18px; font-weight: 700; color: var(--text); }
+.bt-card-meta { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.bt-totals {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  text-align: right;
+}
+.bt-total-block { display: flex; flex-direction: column; gap: 2px; }
+.bt-total-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); }
+.bt-total-val { font-size: 20px; font-weight: 700; }
+.bt-total-val.paid    { color: #66bb6a; }
+.bt-total-val.fore    { color: var(--warn); }
+.bt-total-val.total   { color: var(--primary); }
+
+/* Progress bar */
+.bt-progress-wrap { margin: 6px 0 20px; }
+.bt-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+}
+.bt-progress-track {
+  height: 12px;
+  background: #2a2a3e;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.bt-progress-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.4s ease;
+  background: linear-gradient(90deg, #43a047, #66bb6a);
+}
+.bt-progress-fill.full { background: linear-gradient(90deg, #43a047, #2e7d32); }
+
+/* Category breakdown table */
+.bt-cat-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+.bt-cat-table th {
+  background: #16162a;
+  color: var(--text-muted);
+  padding: 7px 10px;
+  text-align: right;
+  font-size: 11px;
+  font-weight: 600;
+}
+.bt-cat-table th:first-child { text-align: left; }
+.bt-cat-table td {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: right;
+  white-space: nowrap;
+}
+.bt-cat-table td:first-child { text-align: left; font-weight: 600; color: var(--text); }
+.bt-cat-table tr:last-child td { border-bottom: none; font-weight: 700; background: #16162a; }
+.bt-cat-table .paid-cell  { color: #66bb6a; }
+.bt-cat-table .fore-cell  { color: var(--warn); }
+.bt-cat-table .total-cell { color: var(--text); }
+
+/* Line items toggle */
+.bt-toggle-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 5px 14px;
+  border-radius: 6px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.15s;
+  margin-bottom: 12px;
+}
+.bt-toggle-btn:hover { border-color: var(--primary); color: var(--primary); }
+.bt-line-items { display: none; }
+.bt-line-items.open { display: block; }
+.bt-line-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;
+  gap: 8px 14px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  margin-bottom: 3px;
+  font-size: 12px;
+}
+.bt-line-item:nth-child(odd) { background: #1a1a28; }
+.bt-line-item:nth-child(even) { background: #1e1e2e; }
+.bt-line-item .li-name { color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bt-line-item .li-cat  { font-size: 10px; color: var(--text-muted); }
+.bt-line-item .li-date { font-size: 10px; color: var(--text-light); white-space: nowrap; }
+.bt-line-item .li-amt  { font-weight: 700; white-space: nowrap; }
+.bt-line-item .li-badge {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+.li-badge.paid { background: #1a3a1e; color: #66bb6a; }
+.li-badge.forecasted { background: #3a2e00; color: #ffc000; }
+.bt-empty { color: var(--text-muted); font-style: italic; font-size: 13px; padding: 20px 0; }
 </style>
 </head>
 <body>
@@ -470,6 +596,7 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
     <div class="nav-tab" data-page="funding">Funding</div>
     <div class="nav-tab" data-page="table">All Sailings</div>
     <div class="nav-tab" data-page="pricecheck">🔍 Price Check</div>
+    <div class="nav-tab" data-page="budget">💳 Budget Tracker</div>
   </div>
   <div style="margin-left:auto;display:flex;align-items:center;gap:8px;white-space:nowrap">
     <span style="font-size:14px">🤑</span>
@@ -694,6 +821,12 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
     <div id="pc-history-list"></div>
   </div>
 </div>
+
+<!-- ════════════════════════════════════════════════ BUDGET TRACKER ════════════════════════════════════════════════ -->
+<div id="budget" class="page">
+  <div class="kpi-grid" id="bt-kpi-grid"></div>
+  <div id="bt-cards"></div>
+</div>
 // ── Chart.js dark mode defaults ──
 Chart.defaults.color = '#b0b0b0';
 Chart.defaults.borderColor = '#2e2e3e';
@@ -824,6 +957,7 @@ function renderAll() {
   renderFunding();
   renderFullTable(currentFilter);
   renderPriceCheck();
+  renderBudgetTracker();
 }
 
 $('#privacy-toggle').addEventListener('change', e => {
@@ -1725,6 +1859,136 @@ function renderPriceCheck() {
   });
 }
 
+
+// ══════════════════════════════════════════════════════════════
+// BUDGET TRACKER
+// ══════════════════════════════════════════════════════════════
+function renderBudgetTracker() {
+  const bt = DATA.budgetTracker || [];
+  const cats = DATA.categories || [];
+
+  // ── KPI summary ──
+  const totalBudgeted  = bt.reduce((a,s) => a + s.totalBudgeted, 0);
+  const totalPaid      = bt.reduce((a,s) => a + s.totalPaid, 0);
+  const totalFore      = bt.reduce((a,s) => a + s.totalForecasted, 0);
+  const overallPaidPct = totalBudgeted ? Math.round(totalPaid / totalBudgeted * 100) : 0;
+
+  const kpis = [
+    { label: 'Upcoming Sailings',    value: bt.length,            ctx: 'with tracked expenses' },
+    { label: 'Total Budgeted',       value: fmt(totalBudgeted),   ctx: 'across all upcoming' },
+    { label: 'Already Paid',         value: fmt(totalPaid),       ctx: `${overallPaidPct}% of budget` },
+    { label: 'Still Forecasted',     value: fmt(totalFore),       ctx: 'remaining to spend' },
+  ];
+  $('#bt-kpi-grid').innerHTML = kpis.map(k => `
+    <div class="kpi-card">
+      <div class="kpi-label">${k.label}</div>
+      <div class="kpi-value">${k.value}</div>
+      <div class="kpi-context">${k.ctx}</div>
+    </div>`).join('');
+
+  // ── Per-sailing cards ──
+  const container = $('#bt-cards');
+  if (!bt.length) {
+    container.innerHTML = '<div class="bt-empty">No upcoming sailings with tracked expenses found.</div>';
+    return;
+  }
+
+  container.innerHTML = bt.map((s, idx) => {
+    const pct = Math.min(s.paidPct, 100);
+    const isFull = pct >= 100;
+    const borderColor = pct >= 75 ? '#43a047' : pct >= 40 ? 'var(--warn)' : 'var(--primary)';
+
+    // Category rows
+    const catRows = cats
+      .filter(cat => s.categories[cat])
+      .map(cat => {
+        const c = s.categories[cat];
+        return `<tr>
+          <td>${cat}</td>
+          <td class="paid-cell">${c.paid ? fmt(c.paid) : '—'}</td>
+          <td class="fore-cell">${c.forecasted ? fmt(c.forecasted) : '—'}</td>
+          <td class="total-cell">${fmt(c.total)}</td>
+        </tr>`;
+      }).join('');
+
+    // Total row for category table
+    const catTotalRow = `<tr>
+      <td>Total</td>
+      <td class="paid-cell">${fmt(s.totalPaid)}</td>
+      <td class="fore-cell">${fmt(s.totalForecasted)}</td>
+      <td class="total-cell">${fmt(s.totalBudgeted)}</td>
+    </tr>`;
+
+    // Line items
+    const lineItemsHtml = s.lineItems.map(item => `
+      <div class="bt-line-item">
+        <div>
+          <div class="li-name">${item.expense}</div>
+          <div class="li-cat">${item.category}</div>
+        </div>
+        <div class="li-date">${item.date || 'No date'}</div>
+        <div class="li-amt ${item.status === 'paid' ? 'paid-cell' : 'fore-cell'}">${fmt(item.amount)}</div>
+        <span class="li-badge ${item.status}">${item.status}</span>
+      </div>`).join('');
+
+    return `
+    <div class="bt-card" style="border-left-color:${borderColor}">
+      <div class="bt-card-header">
+        <div>
+          <div class="bt-card-title">${s.name}</div>
+          <div class="bt-card-meta">${s.month} · ${s.nights} nights · ${s.people} people · ${s.ship} · ${s.roomSubtype}</div>
+        </div>
+        <div class="bt-totals">
+          <div class="bt-total-block">
+            <span class="bt-total-label">Paid</span>
+            <span class="bt-total-val paid">${fmt(s.totalPaid)}</span>
+          </div>
+          <div class="bt-total-block">
+            <span class="bt-total-label">Forecasted</span>
+            <span class="bt-total-val fore">${fmt(s.totalForecasted)}</span>
+          </div>
+          <div class="bt-total-block">
+            <span class="bt-total-label">Total</span>
+            <span class="bt-total-val total">${fmt(s.totalBudgeted)}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bt-progress-wrap">
+        <div class="bt-progress-label">
+          <span>${pct}% paid</span>
+          <span>${fmt(s.totalPaid)} of ${fmt(s.totalBudgeted)}</span>
+        </div>
+        <div class="bt-progress-track">
+          <div class="bt-progress-fill${isFull ? ' full' : ''}" style="width:${pct}%"></div>
+        </div>
+      </div>
+
+      <table class="bt-cat-table">
+        <thead><tr><th>Category</th><th>Paid</th><th>Forecasted</th><th>Total</th></tr></thead>
+        <tbody>${catRows}${catTotalRow}</tbody>
+      </table>
+
+      <button class="bt-toggle-btn" data-idx="${idx}">▸ Show ${s.lineItems.length} line item${s.lineItems.length !== 1 ? 's' : ''}</button>
+      <div class="bt-line-items" id="bt-items-${idx}">
+        ${lineItemsHtml}
+      </div>
+    </div>`;
+  }).join('');
+
+  // Wire toggle buttons
+  container.querySelectorAll('.bt-toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = btn.dataset.idx;
+      const panel = $(`#bt-items-${idx}`);
+      const open = panel.classList.toggle('open');
+      const count = (DATA.budgetTracker[idx]?.lineItems || []).length;
+      btn.textContent = open
+        ? `▾ Hide line items`
+        : `▸ Show ${count} line item${count !== 1 ? 's' : ''}`;
+    });
+  });
+}
 
 function renderTable(sel, headers, rows, rowClasses, opts) {
   const el = $(sel);
