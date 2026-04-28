@@ -21,13 +21,13 @@
       "isOutlier": false,
       "categories": {
         "Cruise Fare": 2881,
-        "Travel": 750,
-        "Dogs": 0,
-        "Supplies": 1008,
+        "Travel": 1500,
+        "Dogs": 247,
+        "Supplies": 202,
         "Onboard Pre-booked": 119,
-        "Cabana/Casita": 0,
+        "Cabana/Casita": 273,
         "Excursion": 0,
-        "Onboard Spending": 1256
+        "Onboard Spending": 1196
       }
     },
     {
@@ -41,23 +41,23 @@
       "roomType": "Suite",
       "roomSubtype": "Grand Suite",
       "total": 6372,
-      "fare": 4346,
+      "fare": 4218,
       "cpn": 1593,
       "pppn": 398,
-      "fppn": 272,
-      "farePct": 68.2,
+      "fppn": 264,
+      "farePct": 66.2,
       "isPast": true,
       "isUpcoming": false,
       "isOutlier": false,
       "categories": {
-        "Cruise Fare": 4346,
-        "Travel": 415,
-        "Dogs": 0,
-        "Supplies": 927,
+        "Cruise Fare": 4218,
+        "Travel": 628,
+        "Dogs": 232,
+        "Supplies": 323,
         "Onboard Pre-booked": 80,
-        "Cabana/Casita": 0,
+        "Cabana/Casita": 333,
         "Excursion": 0,
-        "Onboard Spending": 604
+        "Onboard Spending": 558
       }
     },
     {
@@ -81,13 +81,13 @@
       "isOutlier": false,
       "categories": {
         "Cruise Fare": 640,
-        "Travel": 51,
+        "Travel": 243,
         "Dogs": 0,
-        "Supplies": 418,
+        "Supplies": 161,
         "Onboard Pre-booked": 16,
         "Cabana/Casita": 0,
         "Excursion": 0,
-        "Onboard Spending": 567
+        "Onboard Spending": 631
       }
     },
     {
@@ -111,13 +111,13 @@
       "isOutlier": false,
       "categories": {
         "Cruise Fare": 760,
-        "Travel": 494,
+        "Travel": 614,
         "Dogs": 0,
-        "Supplies": 570,
-        "Onboard Pre-booked": 0,
-        "Cabana/Casita": 0,
+        "Supplies": 0,
+        "Onboard Pre-booked": 84,
+        "Cabana/Casita": 354,
         "Excursion": 0,
-        "Onboard Spending": 326
+        "Onboard Spending": 338
       }
     },
     {
@@ -141,11 +141,11 @@
       "isOutlier": false,
       "categories": {
         "Cruise Fare": 4500,
-        "Travel": 813,
-        "Dogs": 0,
-        "Supplies": 828,
+        "Travel": 1112,
+        "Dogs": 320,
+        "Supplies": 106,
         "Onboard Pre-booked": 105,
-        "Cabana/Casita": 0,
+        "Cabana/Casita": 103,
         "Excursion": 0,
         "Onboard Spending": 1206
       }
@@ -171,13 +171,13 @@
       "isOutlier": false,
       "categories": {
         "Cruise Fare": 2327,
-        "Travel": 2038,
-        "Dogs": 0,
-        "Supplies": 1044,
+        "Travel": 2128,
+        "Dogs": 200,
+        "Supplies": 0,
         "Onboard Pre-booked": 90,
         "Cabana/Casita": 0,
         "Excursion": 0,
-        "Onboard Spending": 141
+        "Onboard Spending": 895
       }
     },
     {
@@ -201,13 +201,13 @@
       "isOutlier": false,
       "categories": {
         "Cruise Fare": 3540,
-        "Travel": 1258,
-        "Dogs": 0,
-        "Supplies": 360,
-        "Onboard Pre-booked": 128,
+        "Travel": 1378,
+        "Dogs": 240,
+        "Supplies": 0,
+        "Onboard Pre-booked": 430,
         "Cabana/Casita": 0,
         "Excursion": 0,
-        "Onboard Spending": 302
+        "Onboard Spending": 0
       }
     },
     {
@@ -231,13 +231,13 @@
       "isOutlier": false,
       "categories": {
         "Cruise Fare": 9498,
-        "Travel": 390,
+        "Travel": 1759,
         "Dogs": 360,
-        "Supplies": 2734,
-        "Onboard Pre-booked": 357,
+        "Supplies": 1365,
+        "Onboard Pre-booked": 1290,
         "Cabana/Casita": 0,
         "Excursion": 0,
-        "Onboard Spending": 1579
+        "Onboard Spending": 646
       }
     },
     {
@@ -281,20 +281,20 @@
       "roomType": "Suite",
       "roomSubtype": "Grand Suite",
       "total": 6514,
-      "fare": 3905,
+      "fare": 4010,
       "cpn": 2171,
       "pppn": 543,
-      "fppn": 325,
-      "farePct": 59.9,
+      "fppn": 334,
+      "farePct": 61.6,
       "isPast": true,
       "isUpcoming": false,
       "isOutlier": false,
       "categories": {
-        "Cruise Fare": 3905,
+        "Cruise Fare": 4010,
         "Travel": 1856,
         "Dogs": 0,
         "Supplies": 0,
-        "Onboard Pre-booked": 232,
+        "Onboard Pre-booked": 127,
         "Cabana/Casita": 0,
         "Excursion": 0,
         "Onboard Spending": 521
@@ -325,8 +325,8 @@
         "Dogs": 0,
         "Supplies": 0,
         "Onboard Pre-booked": 329,
-        "Cabana/Casita": 630,
-        "Excursion": 112,
+        "Cabana/Casita": 742,
+        "Excursion": 0,
         "Onboard Spending": 1388
       }
     },
@@ -340,12 +340,12 @@
       "ship": "Wonder",
       "roomType": "Balcony",
       "roomSubtype": "Connecting Balconies",
-      "total": 19375,
+      "total": 19604,
       "fare": 11603,
-      "cpn": 2768,
-      "pppn": 692,
+      "cpn": 2801,
+      "pppn": 700,
       "fppn": 414,
-      "farePct": 59.9,
+      "farePct": 59.2,
       "isPast": true,
       "isUpcoming": false,
       "isOutlier": false,
@@ -355,7 +355,7 @@
         "Dogs": 960,
         "Supplies": 42,
         "Onboard Pre-booked": 1484,
-        "Cabana/Casita": 0,
+        "Cabana/Casita": 229,
         "Excursion": 0,
         "Onboard Spending": 2514
       }
@@ -371,21 +371,21 @@
       "roomType": "Suite",
       "roomSubtype": "Crown Loft Suite",
       "total": 16041,
-      "fare": 6784,
+      "fare": 8103,
       "cpn": 4010,
       "pppn": 1003,
-      "fppn": 424,
-      "farePct": 42.3,
+      "fppn": 506,
+      "farePct": 50.5,
       "isPast": true,
       "isUpcoming": false,
       "isOutlier": false,
       "categories": {
-        "Cruise Fare": 6784,
+        "Cruise Fare": 8103,
         "Travel": 5079,
         "Dogs": 870,
         "Supplies": 0,
         "Onboard Pre-booked": 352,
-        "Cabana/Casita": 2308,
+        "Cabana/Casita": 989,
         "Excursion": 306,
         "Onboard Spending": 343
       }
@@ -722,13 +722,13 @@
     }
   ],
   "kpi": {
-    "totalSpent": 206032,
-    "avgPppn": 566,
-    "avgFppn": 333,
+    "totalSpent": 206261,
+    "avgPppn": 567,
+    "avgFppn": 336,
     "farePct": 59,
     "totalNights": 93,
     "totalPersonNights": 364,
-    "avgPerSailing": 11446,
+    "avgPerSailing": 11459,
     "pastCount": 18,
     "upcomingCount": 5,
     "upcomingSpend": 101098,
@@ -769,20 +769,20 @@
     },
     {
       "name": "Winter Vacay 2024",
-      "pppn": 692,
+      "pppn": 700,
       "ship": "Wonder",
       "roomSubtype": "Connecting Balconies"
     }
   ],
   "categoryTotals": {
-    "Cruise Fare": 121039,
-    "Travel": 35992,
-    "Dogs": 7344,
-    "Supplies": 9415,
-    "Onboard Pre-booked": 8677,
-    "Cabana/Casita": 4494,
-    "Excursion": 1330,
-    "Onboard Spending": 17774
+    "Cruise Fare": 122334,
+    "Travel": 39144,
+    "Dogs": 8583,
+    "Supplies": 3684,
+    "Onboard Pre-booked": 9891,
+    "Cabana/Casita": 4579,
+    "Excursion": 1218,
+    "Onboard Spending": 17264
   },
   "years": [
     {
@@ -793,8 +793,8 @@
       "total": 23646,
       "pppn": 311,
       "avgPerSailing": 4729,
-      "fare": 13126,
-      "farePct": 55.5
+      "fare": 12998,
+      "farePct": 55.0
     },
     {
       "year": "2023",
@@ -812,11 +812,11 @@
       "sailings": 4,
       "nights": 21,
       "personNights": 84,
-      "total": 51689,
-      "pppn": 615,
-      "avgPerSailing": 12922,
-      "fare": 32451,
-      "farePct": 62.8
+      "total": 51918,
+      "pppn": 618,
+      "avgPerSailing": 12979,
+      "fare": 32556,
+      "farePct": 62.7
     },
     {
       "year": "2025",
@@ -826,8 +826,8 @@
       "total": 86694,
       "pppn": 722,
       "avgPerSailing": 17339,
-      "fare": 47969,
-      "farePct": 55.3
+      "fare": 49288,
+      "farePct": 56.9
     },
     {
       "year": "2026",
@@ -854,7 +854,7 @@
   ],
   "roomComparison": {
     "suiteAvg": 559,
-    "balconyAvg": 589,
+    "balconyAvg": 590,
     "suiteCount": 7,
     "balconyCount": 9
   },
@@ -863,8 +863,8 @@
       "year": 2022,
       "income": 44795,
       "expense": 39373,
-      "vacation": 25791,
-      "nonVacation": 13582,
+      "vacation": 24672,
+      "nonVacation": 14701,
       "net": 5421,
       "running": 5421
     },
@@ -915,6 +915,46 @@
     }
   ],
   "dogBoarding": [
+    {
+      "name": "Spring Break 2022",
+      "nights": 4,
+      "cost": 247,
+      "costPerNight": 62,
+      "provider": "Friend",
+      "isPast": true
+    },
+    {
+      "name": "Summer 2022",
+      "nights": 4,
+      "cost": 232,
+      "costPerNight": 58,
+      "provider": "Friend",
+      "isPast": true
+    },
+    {
+      "name": "Winter 2022",
+      "nights": 7,
+      "cost": 320,
+      "costPerNight": 46,
+      "provider": "Friend",
+      "isPast": true
+    },
+    {
+      "name": "ShePack Cruise 2023",
+      "nights": 3,
+      "cost": 200,
+      "costPerNight": 67,
+      "provider": "Friend",
+      "isPast": true
+    },
+    {
+      "name": "Spring Break 2023",
+      "nights": 4,
+      "cost": 240,
+      "costPerNight": 60,
+      "provider": "Friend",
+      "isPast": true
+    },
     {
       "name": "Christmas Vacation 2023",
       "nights": 7,
