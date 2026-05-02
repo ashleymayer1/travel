@@ -1662,9 +1662,9 @@
       "ship": "Wonder",
       "roomSubtype": "Grand Suite",
       "totalBudgeted": 17580,
-      "totalPaid": 2110,
-      "totalForecasted": 15470,
-      "paidPct": 12.0,
+      "totalPaid": 3386,
+      "totalForecasted": 14194,
+      "paidPct": 19.3,
       "categories": {
         "Cruise Fare": {
           "paid": 1921,
@@ -1672,8 +1672,8 @@
           "total": 13060
         },
         "Travel": {
-          "paid": 0,
-          "forecasted": 1977,
+          "paid": 572,
+          "forecasted": 1405,
           "total": 1977
         },
         "Dogs": {
@@ -1687,13 +1687,13 @@
           "total": 150
         },
         "Onboard Pre-booked": {
-          "paid": 189,
-          "forecasted": 143,
+          "paid": 332,
+          "forecasted": 0,
           "total": 332
         },
         "Excursion": {
-          "paid": 0,
-          "forecasted": 561,
+          "paid": 561,
+          "forecasted": 0,
           "total": 561
         },
         "Onboard Spending": {
@@ -1718,10 +1718,59 @@
           "status": "paid"
         },
         {
+          "expense": "Flights",
+          "amount": 367,
+          "category": "Travel",
+          "date": "2026-05-02",
+          "status": "paid"
+        },
+        {
+          "expense": "Paradise Island",
+          "amount": 325,
+          "category": "Excursion",
+          "date": "2026-05-02",
+          "status": "paid"
+        },
+        {
+          "expense": "RDU Parking",
+          "amount": 205,
+          "category": "Travel",
+          "date": "2026-05-02",
+          "status": "paid"
+        },
+        {
           "expense": "Chef's Table",
           "amount": 189,
           "category": "Onboard Pre-booked",
           "date": "2026-02-14",
+          "status": "paid"
+        },
+        {
+          "expense": "Hideaway",
+          "amount": 142,
+          "category": "Excursion",
+          "date": "2026-05-02",
+          "status": "paid"
+        },
+        {
+          "expense": "150 Central Park",
+          "amount": 123,
+          "category": "Onboard Pre-booked",
+          "date": "2026-05-02",
+          "status": "paid"
+        },
+        {
+          "expense": "Zipline",
+          "amount": 94,
+          "category": "Excursion",
+          "date": "2026-05-02",
+          "status": "paid"
+        },
+        {
+          "expense": "Sparking Water",
+          "amount": 20,
+          "category": "Onboard Pre-booked",
+          "date": "2026-05-02",
           "status": "paid"
         },
         {
@@ -1760,59 +1809,10 @@
           "status": "forecasted"
         },
         {
-          "expense": "Flights",
-          "amount": 367,
-          "category": "Travel",
-          "date": "2026-05-02",
-          "status": "forecasted"
-        },
-        {
-          "expense": "Paradise Island",
-          "amount": 325,
-          "category": "Excursion",
-          "date": "2026-05-02",
-          "status": "forecasted"
-        },
-        {
-          "expense": "RDU Parking",
-          "amount": 205,
-          "category": "Travel",
-          "date": "2026-05-02",
-          "status": "forecasted"
-        },
-        {
           "expense": "Supplies",
           "amount": 150,
           "category": "Supplies",
           "date": "2026-08-07",
-          "status": "forecasted"
-        },
-        {
-          "expense": "Hideaway",
-          "amount": 142,
-          "category": "Excursion",
-          "date": "2026-05-02",
-          "status": "forecasted"
-        },
-        {
-          "expense": "150 Central Park",
-          "amount": 123,
-          "category": "Onboard Pre-booked",
-          "date": "2026-05-02",
-          "status": "forecasted"
-        },
-        {
-          "expense": "Zipline",
-          "amount": 94,
-          "category": "Excursion",
-          "date": "2026-05-02",
-          "status": "forecasted"
-        },
-        {
-          "expense": "Sparking Water",
-          "amount": 20,
-          "category": "Onboard Pre-booked",
-          "date": "2026-05-02",
           "status": "forecasted"
         }
       ]
@@ -1825,9 +1825,9 @@
       "ship": "Legend",
       "roomSubtype": "Family Infinite Balcony",
       "totalBudgeted": 18384,
-      "totalPaid": 200,
-      "totalForecasted": 18184,
-      "paidPct": 1.1,
+      "totalPaid": 1262,
+      "totalForecasted": 17122,
+      "paidPct": 6.9,
       "categories": {
         "Cruise Fare": {
           "paid": 200,
@@ -1850,8 +1850,8 @@
           "total": 400
         },
         "Onboard Pre-booked": {
-          "paid": 0,
-          "forecasted": 1762,
+          "paid": 1062,
+          "forecasted": 700,
           "total": 1762
         },
         "Onboard Spending": {
@@ -1861,6 +1861,13 @@
         }
       },
       "lineItems": [
+        {
+          "expense": "Hollywoodland, Railway",
+          "amount": 1062,
+          "category": "Onboard Pre-booked",
+          "date": "2026-05-02",
+          "status": "paid"
+        },
         {
           "expense": "Deposit",
           "amount": 200,
@@ -1873,13 +1880,6 @@
           "amount": 12412,
           "category": "Cruise Fare",
           "date": "2026-08-24",
-          "status": "forecasted"
-        },
-        {
-          "expense": "Hollywoodland, Railway",
-          "amount": 1062,
-          "category": "Onboard Pre-booked",
-          "date": "2026-05-02",
           "status": "forecasted"
         },
         {
