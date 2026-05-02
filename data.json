@@ -580,23 +580,23 @@
       "ship": "Wonder",
       "roomType": "Suite",
       "roomSubtype": "Grand Suite",
-      "total": 18870,
+      "total": 17579,
       "fare": 13060,
-      "cpn": 2696,
-      "pppn": 674,
+      "cpn": 2511,
+      "pppn": 628,
       "fppn": 466,
-      "farePct": 69.2,
+      "farePct": 74.3,
       "isPast": false,
       "isUpcoming": true,
       "isOutlier": false,
       "categories": {
         "Cruise Fare": 13060,
-        "Travel": 3466,
+        "Travel": 1976,
         "Dogs": 1000,
         "Supplies": 150,
-        "Onboard Pre-booked": 189,
+        "Onboard Pre-booked": 331,
         "Cabana/Casita": 0,
-        "Excursion": 505,
+        "Excursion": 561,
         "Onboard Spending": 500
       }
     },
@@ -610,12 +610,12 @@
       "ship": "Legend",
       "roomType": "Balcony",
       "roomSubtype": "Family Infinite Balcony",
-      "total": 18414,
+      "total": 18384,
       "fare": 12612,
-      "cpn": 3069,
-      "pppn": 767,
+      "cpn": 3064,
+      "pppn": 766,
       "fppn": 526,
-      "farePct": 68.5,
+      "farePct": 68.6,
       "isPast": false,
       "isUpcoming": true,
       "isOutlier": false,
@@ -624,7 +624,7 @@
         "Travel": 2010,
         "Dogs": 1000,
         "Supplies": 400,
-        "Onboard Pre-booked": 1792,
+        "Onboard Pre-booked": 1762,
         "Cabana/Casita": 0,
         "Excursion": 0,
         "Onboard Spending": 600
@@ -731,8 +731,8 @@
     "avgPerSailing": 11459,
     "pastCount": 18,
     "upcomingCount": 5,
-    "upcomingSpend": 101098,
-    "upcomingAvgPppn": 722
+    "upcomingSpend": 99777,
+    "upcomingAvgPppn": 713
   },
   "bestValue": [
     {
@@ -834,11 +834,11 @@
       "sailings": 4,
       "nights": 27,
       "personNights": 108,
-      "total": 79093,
-      "pppn": 732,
-      "avgPerSailing": 19773,
+      "total": 77772,
+      "pppn": 720,
+      "avgPerSailing": 19443,
       "fare": 52380,
-      "farePct": 66.2
+      "farePct": 67.4
     },
     {
       "year": "2027",
@@ -898,11 +898,11 @@
     {
       "year": 2026,
       "income": 86961,
-      "expense": 88649,
-      "vacation": 79666,
+      "expense": 87328,
+      "vacation": 78345,
       "nonVacation": 8983,
-      "net": -1688,
-      "running": 32219
+      "net": -367,
+      "running": 33540
     },
     {
       "year": 2027,
@@ -911,7 +911,7 @@
       "vacation": 39862,
       "nonVacation": 0,
       "net": 26192,
-      "running": 58411
+      "running": 59732
     }
   ],
   "dogBoarding": [
@@ -1661,10 +1661,10 @@
       "people": 4,
       "ship": "Wonder",
       "roomSubtype": "Grand Suite",
-      "totalBudgeted": 18870,
+      "totalBudgeted": 17580,
       "totalPaid": 2110,
-      "totalForecasted": 16760,
-      "paidPct": 11.2,
+      "totalForecasted": 15470,
+      "paidPct": 12.0,
       "categories": {
         "Cruise Fare": {
           "paid": 1921,
@@ -1673,8 +1673,8 @@
         },
         "Travel": {
           "paid": 0,
-          "forecasted": 3466,
-          "total": 3466
+          "forecasted": 1977,
+          "total": 1977
         },
         "Dogs": {
           "paid": 0,
@@ -1688,13 +1688,13 @@
         },
         "Onboard Pre-booked": {
           "paid": 189,
-          "forecasted": 0,
-          "total": 189
+          "forecasted": 143,
+          "total": 332
         },
         "Excursion": {
           "paid": 0,
-          "forecasted": 505,
-          "total": 505
+          "forecasted": 561,
+          "total": 561
         },
         "Onboard Spending": {
           "paid": 0,
@@ -1732,13 +1732,6 @@
           "status": "forecasted"
         },
         {
-          "expense": "Flights",
-          "amount": 1811,
-          "category": "Travel",
-          "date": "2026-05-01",
-          "status": "forecasted"
-        },
-        {
           "expense": "Dog Boarding",
           "amount": 1000,
           "category": "Dogs",
@@ -1767,17 +1760,24 @@
           "status": "forecasted"
         },
         {
-          "expense": "Royal Beach Club",
-          "amount": 375,
+          "expense": "Flights",
+          "amount": 367,
+          "category": "Travel",
+          "date": "2026-05-02",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Paradise Island",
+          "amount": 325,
           "category": "Excursion",
-          "date": "2026-08-07",
+          "date": "2026-05-02",
           "status": "forecasted"
         },
         {
           "expense": "RDU Parking",
-          "amount": 250,
+          "amount": 205,
           "category": "Travel",
-          "date": "2026-05-17",
+          "date": "2026-05-02",
           "status": "forecasted"
         },
         {
@@ -1788,10 +1788,31 @@
           "status": "forecasted"
         },
         {
-          "expense": "Zipline",
-          "amount": 130,
+          "expense": "Hideaway",
+          "amount": 142,
           "category": "Excursion",
-          "date": "2026-08-07",
+          "date": "2026-05-02",
+          "status": "forecasted"
+        },
+        {
+          "expense": "150 Central Park",
+          "amount": 123,
+          "category": "Onboard Pre-booked",
+          "date": "2026-05-02",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Zipline",
+          "amount": 94,
+          "category": "Excursion",
+          "date": "2026-05-02",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Sparking Water",
+          "amount": 20,
+          "category": "Onboard Pre-booked",
+          "date": "2026-05-02",
           "status": "forecasted"
         }
       ]
@@ -1803,9 +1824,9 @@
       "people": 4,
       "ship": "Legend",
       "roomSubtype": "Family Infinite Balcony",
-      "totalBudgeted": 18414,
+      "totalBudgeted": 18384,
       "totalPaid": 200,
-      "totalForecasted": 18214,
+      "totalForecasted": 18184,
       "paidPct": 1.1,
       "categories": {
         "Cruise Fare": {
@@ -1830,8 +1851,8 @@
         },
         "Onboard Pre-booked": {
           "paid": 0,
-          "forecasted": 1792,
-          "total": 1792
+          "forecasted": 1762,
+          "total": 1762
         },
         "Onboard Spending": {
           "paid": 0,
@@ -1855,10 +1876,10 @@
           "status": "forecasted"
         },
         {
-          "expense": "Onboard Pre-booked",
-          "amount": 1792,
+          "expense": "Hollywoodland, Railway",
+          "amount": 1062,
           "category": "Onboard Pre-booked",
-          "date": "2026-11-27",
+          "date": "2026-05-02",
           "status": "forecasted"
         },
         {
@@ -1872,6 +1893,13 @@
           "expense": "Tips, Uber, Food, Lounges",
           "amount": 760,
           "category": "Travel",
+          "date": "2026-11-27",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Onboard Pre-booked",
+          "amount": 700,
+          "category": "Onboard Pre-booked",
           "date": "2026-11-27",
           "status": "forecasted"
         },

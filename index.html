@@ -604,6 +604,140 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
 .li-badge.paid { background: #1a3a1e; color: #66bb6a; }
 .li-badge.forecasted { background: #3a2e00; color: #ffc000; }
 .bt-empty { color: var(--text-muted); font-style: italic; font-size: 13px; padding: 20px 0; }
+
+/* ── Hamburger nav (hidden on desktop) ── */
+.nav-mobile-label {
+  display: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  white-space: nowrap;
+}
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+.nav-hamburger:hover { background: rgba(255,255,255,0.1); }
+.mobile-nav-menu {
+  display: none;
+  width: 100%;
+  order: 10;
+  background: #16162a;
+  border-top: 1px solid var(--border);
+}
+.mobile-nav-menu.open { display: block; }
+.mobile-nav-item {
+  padding: 13px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.mobile-nav-item:last-child { border-bottom: none; }
+.mobile-nav-item:hover { background: rgba(255,255,255,0.06); color: white; }
+.mobile-nav-item.active { color: white; background: rgba(91,155,213,0.15); border-left: 3px solid var(--accent); padding-left: 17px; }
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  /* Nav: title + active-label + hamburger + toggle on one row */
+  .nav {
+    flex-wrap: wrap;
+    padding: 0 16px;
+    gap: 0;
+  }
+  .nav h1 {
+    flex: 1;
+    padding: 10px 0;
+    font-size: 15px;
+  }
+  .nav-tabs { display: none; }
+  .nav-mobile-label { display: block; align-self: center; margin-right: 4px; }
+  .nav-hamburger { display: inline-flex; align-items: center; justify-content: center; align-self: center; }
+
+  /* Container pages */
+  .container { padding: 12px; }
+
+  /* Pages outside .container (pricecheck, budget) */
+  #pricecheck, #budget { padding: 12px; }
+
+  /* Charts: always single column, override inline styles */
+  .chart-row { grid-template-columns: 1fr !important; gap: 12px; }
+
+  /* KPI: 2 columns instead of 1 on narrow screens */
+  .kpi-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .kpi-value { font-size: 22px; }
+  .kpi-card { padding: 14px 12px; }
+
+  /* Cards */
+  .card { padding: 16px; }
+
+  /* Ensure all non-wrapped tables scroll horizontally */
+  .card table, .bt-card-body table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: max-content;
+    max-width: 100%;
+  }
+
+  /* Price check verdict */
+  .pc-verdict-fppn { font-size: 22px; }
+  .pc-verdict-label { font-size: 16px; }
+  .pc-verdict { padding: 16px; }
+
+  /* Price check history rows: collapse 6-col grid */
+  .pc-hist-row {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 4px 8px;
+    padding: 10px 12px;
+  }
+  .pc-hist-name  { grid-column: 1; grid-row: 1; }
+  .pc-hist-fppn  { grid-column: 2; grid-row: 1; font-size: 13px; }
+  .pc-hist-meta  { grid-column: 1; grid-row: 2; }
+  .pc-hist-del   { grid-column: 2; grid-row: 2; align-self: end; }
+  .pc-hist-verdict, .pc-hist-date, .pc-hist-move { display: none; }
+
+  /* Budget tracker card header */
+  .bt-card-title { font-size: 14px; }
+  .bt-card-meta  { font-size: 11px; }
+  .bt-totals { gap: 12px; }
+  .bt-total-val { font-size: 16px; }
+
+  /* Budget line items: collapse 4-col grid */
+  .bt-line-item {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 2px 8px;
+  }
+  .li-name  { grid-column: 1; grid-row: 1; }
+  .li-amt   { grid-column: 2; grid-row: 1; }
+  .li-cat   { grid-column: 1; grid-row: 2; }
+  .li-badge { grid-column: 2; grid-row: 2; justify-self: end; }
+  .li-date  { display: none; }
+
+  /* Rankings */
+  .rank-item .pppn { font-size: 14px; }
+
+  /* Filter bar */
+  .filter-bar { gap: 8px; }
+  .filter-bar select, .filter-bar input { font-size: 13px; }
+}
+
+/* ── Phone landscape: restore 2-column charts ── */
+@media (min-width: 641px) and (max-width: 768px) {
+  .chart-row { grid-template-columns: 1fr 1fr !important; }
+}
 </style>
 </head>
 <body>
@@ -620,6 +754,19 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
     <div class="nav-tab" data-page="table">All Sailings</div>
     <div class="nav-tab" data-page="pricecheck">Value Check</div>
     <div class="nav-tab" data-page="budget">Budget Tracker</div>
+  </div>
+  <span class="nav-mobile-label" id="nav-mobile-label">Overview</span>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation">&#9776;</button>
+  <div class="mobile-nav-menu" id="mobile-nav-menu">
+    <div class="mobile-nav-item active" data-page="overview">Overview</div>
+    <div class="mobile-nav-item" data-page="pppn">PPPN Trend</div>
+    <div class="mobile-nav-item" data-page="categories">Categories</div>
+    <div class="mobile-nav-item" data-page="yoy">Year over Year</div>
+    <div class="mobile-nav-item" data-page="fare">Fare Analysis</div>
+    <div class="mobile-nav-item" data-page="funding">Funding</div>
+    <div class="mobile-nav-item" data-page="table">All Sailings</div>
+    <div class="mobile-nav-item" data-page="pricecheck">Value Check</div>
+    <div class="mobile-nav-item" data-page="budget">Budget Tracker</div>
   </div>
   <div style="margin-left:auto;display:flex;align-items:center;gap:8px;white-space:nowrap">
     <span style="font-size:14px">🤑</span>
@@ -962,13 +1109,39 @@ $$('.global-filter').forEach(sel => {
 });
 
 // ── Tab switching ──
+function switchPage(page, label) {
+  $$('.nav-tab').forEach(t => t.classList.remove('active'));
+  $$('.mobile-nav-item').forEach(t => t.classList.remove('active'));
+  $$('.page').forEach(p => p.classList.remove('active'));
+  const desktopTab = $(`.nav-tab[data-page="${page}"]`);
+  const mobileItem = $(`.mobile-nav-item[data-page="${page}"]`);
+  if (desktopTab) desktopTab.classList.add('active');
+  if (mobileItem) mobileItem.classList.add('active');
+  $(`#${page}`).classList.add('active');
+  $('#nav-mobile-label').textContent = label;
+  $('#mobile-nav-menu').classList.remove('open');
+  $('#nav-hamburger').setAttribute('aria-label', 'Open navigation');
+}
+
 $$('.nav-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    $$('.nav-tab').forEach(t => t.classList.remove('active'));
-    $$('.page').forEach(p => p.classList.remove('active'));
-    tab.classList.add('active');
-    $(`#${tab.dataset.page}`).classList.add('active');
-  });
+  tab.addEventListener('click', () => switchPage(tab.dataset.page, tab.textContent));
+});
+
+$$('.mobile-nav-item').forEach(item => {
+  item.addEventListener('click', () => switchPage(item.dataset.page, item.textContent));
+});
+
+$('#nav-hamburger').addEventListener('click', e => {
+  e.stopPropagation();
+  const menu = $('#mobile-nav-menu');
+  const isOpen = menu.classList.toggle('open');
+  $('#nav-hamburger').setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+});
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.nav')) {
+    $('#mobile-nav-menu').classList.remove('open');
+  }
 });
 
 // ── Load data ──
