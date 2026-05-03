@@ -215,7 +215,8 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
   margin-bottom: 16px;
   flex-wrap: wrap;
 }
-.filter-bar label { font-size: 12px; font-weight: 600; color: var(--text-muted); }
+.filter-bar label { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.filter-group { display: flex; align-items: center; gap: 7px; }
 .filter-bar select, .filter-bar input {
   padding: 6px 10px;
   border: 1px solid var(--border);
@@ -224,6 +225,33 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
   background: var(--card);
   color: var(--text);
 }
+/* ── Segmented pill buttons ── */
+.pill-group {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.pill {
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  border-right: 1px solid var(--border);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+  line-height: 1.4;
+}
+.pill:last-child { border-right: none; }
+.pill:hover:not(.active) { background: rgba(255,255,255,0.06); color: var(--text); }
+.pill.active { background: var(--primary); color: #fff; font-weight: 600; }
+/* Desktop: show pills, hide selects */
+@media (min-width: 769px) { .filter-select { display: none !important; } }
+/* Mobile: hide pills, show selects */
+@media (max-width: 768px) { .pill-group { display: none !important; } }
 .tag {
   display: inline-block;
   padding: 2px 8px;
@@ -783,17 +811,46 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
 <!-- ════════════════════════════════════════════════ OVERVIEW ════════════════════════════════════════════════ -->
 <div id="overview" class="page active">
   <div class="filter-bar">
-    <label>Filter:</label>
-    <select class="global-filter" data-page="overview">
+  <div class="filter-group">
+    <label>Era:</label>
+    <div class="pill-group" data-dim="era">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="era1">Post-Covid</button>
+      <button class="pill" data-value="era2">Normalized</button>
+    </div>
+    <select class="filter-era filter-select">
       <option value="all">All</option>
-      <option value="past">Past Only</option>
-      <option value="upcoming">Upcoming Only</option>
-      <option value="suite">Suites Only</option>
-      <option value="balcony">Balconies Only</option>
-      <option value="era1">Era 1 — COVID Recovery</option>
-      <option value="era2">Era 2 — Normalized Pricing</option>
+      <option value="era1">Post-Covid</option>
+      <option value="era2">Normalized</option>
     </select>
   </div>
+  <div class="filter-group">
+    <label>Time:</label>
+    <div class="pill-group" data-dim="time">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="past">Past</button>
+      <button class="pill" data-value="upcoming">Upcoming</button>
+    </div>
+    <select class="filter-time filter-select">
+      <option value="all">All</option>
+      <option value="past">Past</option>
+      <option value="upcoming">Upcoming</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label>Cabin:</label>
+    <div class="pill-group" data-dim="cabin">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="balcony">Balcony</button>
+      <button class="pill" data-value="suite">Suite</button>
+    </div>
+    <select class="filter-cabin filter-select">
+      <option value="all">All</option>
+      <option value="balcony">Balcony</option>
+      <option value="suite">Suite</option>
+    </select>
+  </div>
+</div>
   <div class="kpi-grid" id="kpi-grid"></div>
   <div class="rankings-row">
     <div class="rank-card best"><h3>🏆 Best Value Sailings (Lowest PPPN)</h3><div id="best-rank"></div></div>
@@ -818,17 +875,46 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
 <!-- ════════════════════════════════════════════════ PPPN TREND ════════════════════════════════════════════════ -->
 <div id="pppn" class="page">
   <div class="filter-bar">
-    <label>Filter:</label>
-    <select class="global-filter" data-page="pppn">
+  <div class="filter-group">
+    <label>Era:</label>
+    <div class="pill-group" data-dim="era">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="era1">Post-Covid</button>
+      <button class="pill" data-value="era2">Normalized</button>
+    </div>
+    <select class="filter-era filter-select">
       <option value="all">All</option>
-      <option value="past">Past Only</option>
-      <option value="upcoming">Upcoming Only</option>
-      <option value="suite">Suites Only</option>
-      <option value="balcony">Balconies Only</option>
-      <option value="era1">Era 1 — COVID Recovery</option>
-      <option value="era2">Era 2 — Normalized Pricing</option>
+      <option value="era1">Post-Covid</option>
+      <option value="era2">Normalized</option>
     </select>
   </div>
+  <div class="filter-group">
+    <label>Time:</label>
+    <div class="pill-group" data-dim="time">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="past">Past</button>
+      <button class="pill" data-value="upcoming">Upcoming</button>
+    </div>
+    <select class="filter-time filter-select">
+      <option value="all">All</option>
+      <option value="past">Past</option>
+      <option value="upcoming">Upcoming</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label>Cabin:</label>
+    <div class="pill-group" data-dim="cabin">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="balcony">Balcony</button>
+      <button class="pill" data-value="suite">Suite</button>
+    </div>
+    <select class="filter-cabin filter-select">
+      <option value="all">All</option>
+      <option value="balcony">Balcony</option>
+      <option value="suite">Suite</option>
+    </select>
+  </div>
+</div>
   <div class="card">
     <h2>Cost per Person per Night — All Sailings</h2>
     <div class="chart-container" style="height:400px"><canvas id="pppn-chart"></canvas></div>
@@ -839,17 +925,46 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
 <!-- ════════════════════════════════════════════════ CATEGORIES ════════════════════════════════════════════════ -->
 <div id="categories" class="page">
   <div class="filter-bar">
-    <label>Filter:</label>
-    <select class="global-filter" data-page="categories">
+  <div class="filter-group">
+    <label>Era:</label>
+    <div class="pill-group" data-dim="era">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="era1">Post-Covid</button>
+      <button class="pill" data-value="era2">Normalized</button>
+    </div>
+    <select class="filter-era filter-select">
       <option value="all">All</option>
-      <option value="past">Past Only</option>
-      <option value="upcoming">Upcoming Only</option>
-      <option value="suite">Suites Only</option>
-      <option value="balcony">Balconies Only</option>
-      <option value="era1">Era 1 — COVID Recovery</option>
-      <option value="era2">Era 2 — Normalized Pricing</option>
+      <option value="era1">Post-Covid</option>
+      <option value="era2">Normalized</option>
     </select>
   </div>
+  <div class="filter-group">
+    <label>Time:</label>
+    <div class="pill-group" data-dim="time">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="past">Past</button>
+      <button class="pill" data-value="upcoming">Upcoming</button>
+    </div>
+    <select class="filter-time filter-select">
+      <option value="all">All</option>
+      <option value="past">Past</option>
+      <option value="upcoming">Upcoming</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label>Cabin:</label>
+    <div class="pill-group" data-dim="cabin">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="balcony">Balcony</button>
+      <button class="pill" data-value="suite">Suite</button>
+    </div>
+    <select class="filter-cabin filter-select">
+      <option value="all">All</option>
+      <option value="balcony">Balcony</option>
+      <option value="suite">Suite</option>
+    </select>
+  </div>
+</div>
   <div class="chart-row">
     <div class="card"><h2>Category % of Total by Sailing</h2><div class="chart-container" style="height:400px"><canvas id="cat-stacked"></canvas></div></div>
     <div class="card"><h2>Category Dollar Amounts</h2><div class="chart-container" style="height:400px"><canvas id="cat-dollars"></canvas></div></div>
@@ -860,17 +975,46 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
 <!-- ════════════════════════════════════════════════ YEAR OVER YEAR ════════════════════════════════════════════════ -->
 <div id="yoy" class="page">
   <div class="filter-bar">
-    <label>Filter:</label>
-    <select class="global-filter" data-page="yoy">
+  <div class="filter-group">
+    <label>Era:</label>
+    <div class="pill-group" data-dim="era">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="era1">Post-Covid</button>
+      <button class="pill" data-value="era2">Normalized</button>
+    </div>
+    <select class="filter-era filter-select">
       <option value="all">All</option>
-      <option value="past">Past Only</option>
-      <option value="upcoming">Upcoming Only</option>
-      <option value="suite">Suites Only</option>
-      <option value="balcony">Balconies Only</option>
-      <option value="era1">Era 1 — COVID Recovery</option>
-      <option value="era2">Era 2 — Normalized Pricing</option>
+      <option value="era1">Post-Covid</option>
+      <option value="era2">Normalized</option>
     </select>
   </div>
+  <div class="filter-group">
+    <label>Time:</label>
+    <div class="pill-group" data-dim="time">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="past">Past</button>
+      <button class="pill" data-value="upcoming">Upcoming</button>
+    </div>
+    <select class="filter-time filter-select">
+      <option value="all">All</option>
+      <option value="past">Past</option>
+      <option value="upcoming">Upcoming</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label>Cabin:</label>
+    <div class="pill-group" data-dim="cabin">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="balcony">Balcony</button>
+      <button class="pill" data-value="suite">Suite</button>
+    </div>
+    <select class="filter-cabin filter-select">
+      <option value="all">All</option>
+      <option value="balcony">Balcony</option>
+      <option value="suite">Suite</option>
+    </select>
+  </div>
+</div>
   <div class="chart-row">
     <div class="card"><h2>Total Spend by Year</h2><div class="chart-container" style="height:350px"><canvas id="yoy-spend"></canvas></div></div>
     <div class="card"><h2>Average PPPN by Year</h2><div class="chart-container" style="height:350px"><canvas id="yoy-pppn"></canvas></div></div>
@@ -881,17 +1025,46 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
 <!-- ════════════════════════════════════════════════ FARE ANALYSIS ════════════════════════════════════════════════ -->
 <div id="fare" class="page">
   <div class="filter-bar">
-    <label>Filter:</label>
-    <select class="global-filter" data-page="fare">
+  <div class="filter-group">
+    <label>Era:</label>
+    <div class="pill-group" data-dim="era">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="era1">Post-Covid</button>
+      <button class="pill" data-value="era2">Normalized</button>
+    </div>
+    <select class="filter-era filter-select">
       <option value="all">All</option>
-      <option value="past">Past Only</option>
-      <option value="upcoming">Upcoming Only</option>
-      <option value="suite">Suites Only</option>
-      <option value="balcony">Balconies Only</option>
-      <option value="era1">Era 1 — COVID Recovery</option>
-      <option value="era2">Era 2 — Normalized Pricing</option>
+      <option value="era1">Post-Covid</option>
+      <option value="era2">Normalized</option>
     </select>
   </div>
+  <div class="filter-group">
+    <label>Time:</label>
+    <div class="pill-group" data-dim="time">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="past">Past</button>
+      <button class="pill" data-value="upcoming">Upcoming</button>
+    </div>
+    <select class="filter-time filter-select">
+      <option value="all">All</option>
+      <option value="past">Past</option>
+      <option value="upcoming">Upcoming</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label>Cabin:</label>
+    <div class="pill-group" data-dim="cabin">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="balcony">Balcony</button>
+      <button class="pill" data-value="suite">Suite</button>
+    </div>
+    <select class="filter-cabin filter-select">
+      <option value="all">All</option>
+      <option value="balcony">Balcony</option>
+      <option value="suite">Suite</option>
+    </select>
+  </div>
+</div>
   <div class="chart-row">
     <div class="card"><h2>Fare per Person per Night</h2><div class="chart-container" style="height:400px"><canvas id="fare-chart"></canvas></div></div>
     <div class="card"><h2>Suite vs Balcony Fare PPPN</h2><div class="chart-container" style="height:400px"><canvas id="suite-vs-balcony"></canvas></div></div>
@@ -912,16 +1085,45 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
   <div class="card">
     <h2>All Sailings</h2>
     <div class="filter-bar">
-      <label>Filter:</label>
-      <select class="global-filter" data-page="table">
-        <option value="all">All</option>
-        <option value="past">Past Only</option>
-        <option value="upcoming">Upcoming Only</option>
-        <option value="suite">Suites Only</option>
-        <option value="balcony">Balconies Only</option>
-        <option value="era1">Era 1 — COVID Recovery</option>
-        <option value="era2">Era 2 — Normalized Pricing</option>
-      </select>
+      <div class="filter-group">
+        <label>Era:</label>
+        <div class="pill-group" data-dim="era">
+          <button class="pill active" data-value="all">All</button>
+          <button class="pill" data-value="era1">Post-Covid</button>
+          <button class="pill" data-value="era2">Normalized</button>
+        </div>
+        <select class="filter-era filter-select">
+          <option value="all">All</option>
+          <option value="era1">Post-Covid</option>
+          <option value="era2">Normalized</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Time:</label>
+        <div class="pill-group" data-dim="time">
+          <button class="pill active" data-value="all">All</button>
+          <button class="pill" data-value="past">Past</button>
+          <button class="pill" data-value="upcoming">Upcoming</button>
+        </div>
+        <select class="filter-time filter-select">
+          <option value="all">All</option>
+          <option value="past">Past</option>
+          <option value="upcoming">Upcoming</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Cabin:</label>
+        <div class="pill-group" data-dim="cabin">
+          <button class="pill active" data-value="all">All</button>
+          <button class="pill" data-value="balcony">Balcony</button>
+          <button class="pill" data-value="suite">Suite</button>
+        </div>
+        <select class="filter-cabin filter-select">
+          <option value="all">All</option>
+          <option value="balcony">Balcony</option>
+          <option value="suite">Suite</option>
+        </select>
+      </div>
     </div>
     <div style="overflow-x:auto"><table id="full-table"></table></div>
   </div>
@@ -1026,18 +1228,19 @@ function shortName(s) {
 }
 
 // ── Shared filter ──
-let currentFilter = 'all';
+let currentFilters = { era: 'all', time: 'all', cabin: 'all' };
 const ERA1 = new Set(['Spring Break 2022','Summer 2022','Work From Ship 2022',"Ashley's Birthday 2022",'Winter 2022','ShePack Cruise 2023','Spring Break 2023','Spring Break 2024']);
 const ERA2 = new Set(['Christmas Vacation 2023','Diamond Cruise 2024','Summer on Icon 2024','Winter Vacay 2024','Spring Break 2025','Summer Vacay 2025','Sabbatical 2025','Thanksgiving 2025','Winter Vacay 2025','Beach Club 2026','Spring Break 2026','Summer B2B 2026','Thanksgiving 2026','Winter NYE 2026','Spring Break 2027','Summer 2027']);
 
-function filterSailings(filter) {
+function filterSailings(filters) {
+  if (!filters) filters = currentFilters;
   let sailings = DATA.sailings;
-  if (filter === 'past') sailings = sailings.filter(s => s.isPast);
-  if (filter === 'upcoming') sailings = sailings.filter(s => s.isUpcoming);
-  if (filter === 'suite') sailings = sailings.filter(s => s.roomType === 'Suite');
-  if (filter === 'balcony') sailings = sailings.filter(s => s.roomType === 'Balcony');
-  if (filter === 'era1') sailings = sailings.filter(s => ERA1.has(s.name));
-  if (filter === 'era2') sailings = sailings.filter(s => ERA2.has(s.name));
+  if (filters.era === 'era1') sailings = sailings.filter(s => ERA1.has(s.name));
+  else if (filters.era === 'era2') sailings = sailings.filter(s => ERA2.has(s.name));
+  if (filters.time === 'past') sailings = sailings.filter(s => s.isPast);
+  else if (filters.time === 'upcoming') sailings = sailings.filter(s => s.isUpcoming);
+  if (filters.cabin === 'suite') sailings = sailings.filter(s => s.roomType === 'Suite');
+  else if (filters.cabin === 'balcony') sailings = sailings.filter(s => s.roomType === 'Balcony');
   return sailings;
 }
 
@@ -1097,18 +1300,21 @@ function computeCategoryTotals(sailings) {
 }
 
 // ── Global filter sync ──
-$$('.global-filter').forEach(sel => {
-  sel.addEventListener('change', e => {
-    currentFilter = e.target.value;
-    $$('.global-filter').forEach(s => s.value = currentFilter);
-    renderOverview(currentFilter);
-    renderPPPN(currentFilter);
-    renderCategories(currentFilter);
-    renderYoY(currentFilter);
-    renderFare(currentFilter);
-    renderFullTable(currentFilter);
-  });
-});
+function onFilterChange(dim, value) {
+  currentFilters[dim] = value;
+  $$(`.filter-${dim}`).forEach(s => s.value = value);
+  $$(`.pill-group[data-dim="${dim}"] .pill`).forEach(p => p.classList.toggle('active', p.dataset.value === value));
+  renderOverview(currentFilters);
+  renderPPPN(currentFilters);
+  renderCategories(currentFilters);
+  renderYoY(currentFilters);
+  renderFare(currentFilters);
+  renderFullTable(currentFilters);
+}
+$$('.filter-era').forEach(sel => sel.addEventListener('change', e => onFilterChange('era', e.target.value)));
+$$('.filter-time').forEach(sel => sel.addEventListener('change', e => onFilterChange('time', e.target.value)));
+$$('.filter-cabin').forEach(sel => sel.addEventListener('change', e => onFilterChange('cabin', e.target.value)));
+$$('.pill').forEach(btn => btn.addEventListener('click', () => onFilterChange(btn.closest('.pill-group').dataset.dim, btn.dataset.value)));
 
 // ── Tab switching ──
 function switchPage(page, label) {
@@ -1148,13 +1354,13 @@ document.addEventListener('click', e => {
 
 // ── Load data ──
 function renderAll() {
-  renderOverview(currentFilter);
-  renderPPPN(currentFilter);
-  renderCategories(currentFilter);
-  renderYoY(currentFilter);
-  renderFare(currentFilter);
+  renderOverview(currentFilters);
+  renderPPPN(currentFilters);
+  renderCategories(currentFilters);
+  renderYoY(currentFilters);
+  renderFare(currentFilters);
   renderFunding();
-  renderFullTable(currentFilter);
+  renderFullTable(currentFilters);
   renderPriceCheck();
   renderBudgetTracker();
 }
@@ -1173,8 +1379,8 @@ fetch('data.json').then(r => r.json()).then(data => {
 // OVERVIEW
 // ══════════════════════════════════════════════════════════════
 let overviewPppnChart, overviewPieChart, overviewYoyChart;
-function renderOverview(filter='all') {
-  const sailings = filterSailings(filter);
+function renderOverview(filters) {
+  const sailings = filterSailings(filters);
   const k = computeKPI(sailings);
   const kpis = [
     {label:'Total Spent', value: fmt(k.totalSpent), ctx: `${k.pastCount} sailings`},
@@ -1579,8 +1785,8 @@ function renderOverview(filter='all') {
 // PPPN TREND
 // ══════════════════════════════════════════════════════════════
 let pppnChart;
-function renderPPPN(filter='all') {
-  const sailings = filterSailings(filter);
+function renderPPPN(filters) {
+  const sailings = filterSailings(filters);
 
   if (pppnChart) pppnChart.destroy();
   pppnChart = new Chart($('#pppn-chart'), {
@@ -1612,8 +1818,8 @@ function renderPPPN(filter='all') {
 // CATEGORIES
 // ══════════════════════════════════════════════════════════════
 let catStackedChart, catDollarsChart;
-function renderCategories(filter='all') {
-  const sailings = filterSailings(filter);
+function renderCategories(filters) {
+  const sailings = filterSailings(filters);
   const cats = DATA.categories;
 
   // Stacked bar (% of total)
@@ -1665,8 +1871,8 @@ function renderCategories(filter='all') {
 // YEAR OVER YEAR
 // ══════════════════════════════════════════════════════════════
 let yoySpendChart, yoyPppnChart;
-function renderYoY(filter='all') {
-  const sailings = filterSailings(filter);
+function renderYoY(filters) {
+  const sailings = filterSailings(filters);
   const yrs = computeYears(sailings);
 
   if (yoySpendChart) yoySpendChart.destroy();
@@ -1702,8 +1908,8 @@ function renderYoY(filter='all') {
 // FARE ANALYSIS
 // ══════════════════════════════════════════════════════════════
 let fareBarChart, fareScatterChart;
-function renderFare(filter='all') {
-  const sailings = filterSailings(filter);
+function renderFare(filters) {
+  const sailings = filterSailings(filters);
 
   if (fareBarChart) fareBarChart.destroy();
   fareBarChart = new Chart($('#fare-chart'), {
@@ -1819,8 +2025,8 @@ function renderFunding() {
 // FULL TABLE
 // ══════════════════════════════════════════════════════════════
 const fullTableGroups = { extras: false, other: false };
-function renderFullTable(filter='all') {
-  const sailings = filterSailings(filter);
+function renderFullTable(filters) {
+  const sailings = filterSailings(filters);
   const catSum = (s, keys) => keys.reduce((a, k) => a + (s.categories[k] || 0), 0);
   const tog = (key) => `<span class="col-toggle" data-group="${key}" style="cursor:pointer;font-size:10px;margin-left:4px;opacity:0.7">${fullTableGroups[key] ? '−' : '+'}</span>`;
 
