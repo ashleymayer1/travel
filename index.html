@@ -1445,9 +1445,9 @@ function renderOverview(filters) {
   const nonOutlier = sailings.filter(s => !s.isOutlier);
   const yrs = computeYears(sailings);
   const TARGET_COUNT = 10;
-  const isUpcomingOnly = filter === 'upcoming';
-  const isSuiteOnly = filter === 'suite';
-  const isBalconyOnly = filter === 'balcony';
+  const isUpcomingOnly = filters.time === 'upcoming';
+  const isSuiteOnly = filters.cabin === 'suite';
+  const isBalconyOnly = filters.cabin === 'balcony';
   const pool = [];
 
   // ── NEW: Recent trajectory (last 4 completed vs all-time average) ──
