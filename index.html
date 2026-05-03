@@ -1926,10 +1926,8 @@ function renderFare(filters) {
 
   const suiteSailings = sailings.filter(s => s.roomType === 'Suite' && !s.isOutlier);
   const balconySailings = sailings.filter(s => s.roomType === 'Balcony' && !s.isOutlier);
-  const suitePast = suiteSailings.filter(s => s.isPast);
-  const balconyPast = balconySailings.filter(s => s.isPast);
-  const suiteAvgFppn = suitePast.reduce((a,s) => a+s.fppn, 0) / (suitePast.length || 1);
-  const balconyAvgFppn = balconyPast.reduce((a,s) => a+s.fppn, 0) / (balconyPast.length || 1);
+  const suiteAvgFppn = suiteSailings.reduce((a,s) => a+s.fppn, 0) / (suiteSailings.length || 1);
+  const balconyAvgFppn = balconySailings.reduce((a,s) => a+s.fppn, 0) / (balconySailings.length || 1);
   if (fareScatterChart) fareScatterChart.destroy();
   fareScatterChart = new Chart($('#suite-vs-balcony'), {
     type: 'scatter',
