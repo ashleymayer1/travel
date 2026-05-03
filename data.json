@@ -3,6 +3,7 @@
     {
       "name": "Spring Break 2022",
       "month": "Mar 2022",
+      "season": "Spring Break",
       "nights": 4,
       "people": 6,
       "rooms": 3,
@@ -33,6 +34,7 @@
     {
       "name": "Summer 2022",
       "month": "Jun 2022",
+      "season": "Peak Summer",
       "nights": 4,
       "people": 4,
       "rooms": 1,
@@ -63,6 +65,7 @@
     {
       "name": "Work From Ship 2022",
       "month": "Sep 2022",
+      "season": "Off-Peak",
       "nights": 4,
       "people": 1,
       "rooms": 1,
@@ -93,6 +96,7 @@
     {
       "name": "Ashley's Birthday 2022",
       "month": "Dec 2022",
+      "season": "Holiday",
       "nights": 2,
       "people": 2,
       "rooms": 1,
@@ -123,6 +127,7 @@
     {
       "name": "Winter 2022",
       "month": "Dec 2022",
+      "season": "Holiday",
       "nights": 7,
       "people": 4,
       "rooms": 2,
@@ -153,6 +158,7 @@
     {
       "name": "ShePack Cruise 2023",
       "month": "Feb 2023",
+      "season": "Off-Peak",
       "nights": 3,
       "people": 4,
       "rooms": 1,
@@ -183,6 +189,7 @@
     {
       "name": "Spring Break 2023",
       "month": "Mar 2023",
+      "season": "Spring Break",
       "nights": 4,
       "people": 4,
       "rooms": 1,
@@ -213,6 +220,7 @@
     {
       "name": "Christmas Vacation 2023",
       "month": "Dec 2023",
+      "season": "Holiday",
       "nights": 7,
       "people": 4,
       "rooms": 1,
@@ -243,6 +251,7 @@
     {
       "name": "Spring Break 2024",
       "month": "Mar 2024",
+      "season": "Spring Break",
       "nights": 4,
       "people": 4,
       "rooms": 1,
@@ -273,6 +282,7 @@
     {
       "name": "Diamond Cruise 2024",
       "month": "May 2024",
+      "season": "Off-Peak",
       "nights": 3,
       "people": 4,
       "rooms": 1,
@@ -303,6 +313,7 @@
     {
       "name": "Summer on Icon 2024",
       "month": "Aug 2024",
+      "season": "Peak Summer",
       "nights": 7,
       "people": 4,
       "rooms": 1,
@@ -333,6 +344,7 @@
     {
       "name": "Winter Vacay 2024",
       "month": "Dec 2024",
+      "season": "Holiday",
       "nights": 7,
       "people": 4,
       "rooms": 1,
@@ -363,6 +375,7 @@
     {
       "name": "Spring Break 2025",
       "month": "Mar 2025",
+      "season": "Spring Break",
       "nights": 4,
       "people": 4,
       "rooms": 1,
@@ -393,6 +406,7 @@
     {
       "name": "Summer Vacay 2025",
       "month": "Jul 2025",
+      "season": "Peak Summer",
       "nights": 7,
       "people": 4,
       "rooms": 1,
@@ -423,6 +437,7 @@
     {
       "name": "Sabbatical 2025",
       "month": "Oct 2025",
+      "season": "Off-Peak",
       "nights": 7,
       "people": 4,
       "rooms": 1,
@@ -453,6 +468,7 @@
     {
       "name": "Thanksgiving 2025",
       "month": "Nov 2025",
+      "season": "Holiday",
       "nights": 4,
       "people": 4,
       "rooms": 1,
@@ -483,6 +499,7 @@
     {
       "name": "Winter Vacay 2025",
       "month": "Dec 2025",
+      "season": "Holiday",
       "nights": 8,
       "people": 4,
       "rooms": 1,
@@ -513,6 +530,7 @@
     {
       "name": "Beach Club 2026",
       "month": "Jan 2026",
+      "season": "Off-Peak",
       "nights": 3,
       "people": 1,
       "rooms": 1,
@@ -543,6 +561,7 @@
     {
       "name": "Spring Break 2026",
       "month": "Mar 2026",
+      "season": "Spring Break",
       "nights": 7,
       "people": 4,
       "rooms": 1,
@@ -573,6 +592,7 @@
     {
       "name": "Summer B2B 2026",
       "month": "Jul 2026",
+      "season": "Peak Summer",
       "nights": 7,
       "people": 4,
       "rooms": 1,
@@ -603,6 +623,7 @@
     {
       "name": "Thanksgiving 2026",
       "month": "Nov 2026",
+      "season": "Holiday",
       "nights": 6,
       "people": 4,
       "rooms": 1,
@@ -633,6 +654,7 @@
     {
       "name": "Winter NYE 2026",
       "month": "Dec 2026",
+      "season": "Holiday",
       "nights": 7,
       "people": 4,
       "rooms": 1,
@@ -663,6 +685,7 @@
     {
       "name": "Spring Break 2027",
       "month": "Mar 2027",
+      "season": "Spring Break",
       "nights": 8,
       "people": 4,
       "rooms": 1,
@@ -693,6 +716,7 @@
     {
       "name": "Summer 2027",
       "month": "Aug 2027",
+      "season": "Peak Summer",
       "nights": 7,
       "people": 4,
       "rooms": 1,
