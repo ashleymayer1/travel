@@ -600,17 +600,17 @@
       "ship": "Wonder",
       "roomType": "Suite",
       "roomSubtype": "Grand Suite",
-      "total": 18613,
-      "fare": 14092,
-      "cpn": 2659,
-      "pppn": 665,
-      "fppn": 503,
-      "farePct": 75.7,
+      "total": 17515,
+      "fare": 12994,
+      "cpn": 2502,
+      "pppn": 626,
+      "fppn": 464,
+      "farePct": 74.2,
       "isPast": false,
       "isUpcoming": true,
       "isOutlier": false,
       "categories": {
-        "Cruise Fare": 14092,
+        "Cruise Fare": 12994,
         "Travel": 1978,
         "Dogs": 1000,
         "Supplies": 150,
@@ -755,8 +755,8 @@
     "avgPerSailing": 11459,
     "pastCount": 18,
     "upcomingCount": 5,
-    "upcomingSpend": 100811,
-    "upcomingAvgPppn": 720
+    "upcomingSpend": 99713,
+    "upcomingAvgPppn": 712
   },
   "bestValue": [
     {
@@ -858,11 +858,11 @@
       "sailings": 4,
       "nights": 27,
       "personNights": 108,
-      "total": 78806,
-      "pppn": 730,
-      "avgPerSailing": 19701,
-      "fare": 53413,
-      "farePct": 67.8
+      "total": 77708,
+      "pppn": 720,
+      "avgPerSailing": 19427,
+      "fare": 52315,
+      "farePct": 67.3
     },
     {
       "year": "2027",
@@ -922,11 +922,11 @@
     {
       "year": 2026,
       "income": 87957,
-      "expense": 88362,
-      "vacation": 79379,
+      "expense": 87264,
+      "vacation": 78281,
       "nonVacation": 8983,
-      "net": -406,
-      "running": 33502
+      "net": 692,
+      "running": 34600
     },
     {
       "year": 2027,
@@ -935,7 +935,7 @@
       "vacation": 39862,
       "nonVacation": 0,
       "net": 26978,
-      "running": 60480
+      "running": 61578
     }
   ],
   "dogBoarding": [
@@ -1685,15 +1685,15 @@
       "people": 4,
       "ship": "Wonder",
       "roomSubtype": "Grand Suite",
-      "totalBudgeted": 18613,
+      "totalBudgeted": 17515,
       "totalPaid": 3387,
-      "totalForecasted": 15226,
-      "paidPct": 18.2,
+      "totalForecasted": 14128,
+      "paidPct": 19.3,
       "categories": {
         "Cruise Fare": {
           "paid": 1921,
-          "forecasted": 12171,
-          "total": 14092
+          "forecasted": 11073,
+          "total": 12994
         },
         "Travel": {
           "paid": 573,
@@ -1799,7 +1799,7 @@
         },
         {
           "expense": "Final Payment",
-          "amount": 12171,
+          "amount": 11073,
           "category": "Cruise Fare",
           "date": "2026-05-17",
           "status": "forecasted"
