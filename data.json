@@ -600,22 +600,22 @@
       "ship": "Wonder",
       "roomType": "Suite",
       "roomSubtype": "Grand Suite",
-      "total": 17515,
-      "fare": 12994,
-      "cpn": 2502,
-      "pppn": 626,
-      "fppn": 464,
-      "farePct": 74.2,
+      "total": 18198,
+      "fare": 12954,
+      "cpn": 2600,
+      "pppn": 650,
+      "fppn": 463,
+      "farePct": 71.2,
       "isPast": false,
       "isUpcoming": true,
       "isOutlier": false,
       "categories": {
-        "Cruise Fare": 12994,
+        "Cruise Fare": 12954,
         "Travel": 1978,
         "Dogs": 1000,
         "Supplies": 150,
         "Onboard Pre-booked": 331,
-        "Cabana/Casita": 0,
+        "Cabana/Casita": 724,
         "Excursion": 561,
         "Onboard Spending": 500
       }
@@ -755,8 +755,8 @@
     "avgPerSailing": 11459,
     "pastCount": 18,
     "upcomingCount": 5,
-    "upcomingSpend": 99713,
-    "upcomingAvgPppn": 712
+    "upcomingSpend": 100397,
+    "upcomingAvgPppn": 717
   },
   "bestValue": [
     {
@@ -858,11 +858,11 @@
       "sailings": 4,
       "nights": 27,
       "personNights": 108,
-      "total": 77708,
-      "pppn": 720,
-      "avgPerSailing": 19427,
-      "fare": 52315,
-      "farePct": 67.3
+      "total": 78391,
+      "pppn": 726,
+      "avgPerSailing": 19598,
+      "fare": 52274,
+      "farePct": 66.7
     },
     {
       "year": "2027",
@@ -921,21 +921,21 @@
     },
     {
       "year": 2026,
-      "income": 87957,
-      "expense": 87264,
-      "vacation": 78281,
+      "income": 88110,
+      "expense": 87948,
+      "vacation": 78965,
       "nonVacation": 8983,
-      "net": 692,
-      "running": 34600
+      "net": 163,
+      "running": 34070
     },
     {
       "year": 2027,
-      "income": 66840,
+      "income": 76840,
       "expense": 39862,
       "vacation": 39862,
       "nonVacation": 0,
-      "net": 26978,
-      "running": 61578
+      "net": 36978,
+      "running": 71048
     }
   ],
   "dogBoarding": [
@@ -1685,15 +1685,15 @@
       "people": 4,
       "ship": "Wonder",
       "roomSubtype": "Grand Suite",
-      "totalBudgeted": 17515,
-      "totalPaid": 3387,
-      "totalForecasted": 14128,
-      "paidPct": 19.3,
+      "totalBudgeted": 18199,
+      "totalPaid": 15144,
+      "totalForecasted": 3055,
+      "paidPct": 83.2,
       "categories": {
         "Cruise Fare": {
-          "paid": 1921,
-          "forecasted": 11073,
-          "total": 12994
+          "paid": 12954,
+          "forecasted": 0,
+          "total": 12954
         },
         "Travel": {
           "paid": 573,
@@ -1715,6 +1715,11 @@
           "forecasted": 0,
           "total": 332
         },
+        "Cabana/Casita": {
+          "paid": 724,
+          "forecasted": 0,
+          "total": 724
+        },
         "Excursion": {
           "paid": 561,
           "forecasted": 0,
@@ -1728,10 +1733,24 @@
       },
       "lineItems": [
         {
+          "expense": "Final Payment",
+          "amount": 11033,
+          "category": "Cruise Fare",
+          "date": "2026-05-06",
+          "status": "paid"
+        },
+        {
           "expense": "Deposit",
           "amount": 1476,
           "category": "Cruise Fare",
           "date": "2024-10-30",
+          "status": "paid"
+        },
+        {
+          "expense": "Pool Cabana",
+          "amount": 724,
+          "category": "Cabana/Casita",
+          "date": "2026-05-07",
           "status": "paid"
         },
         {
@@ -1796,13 +1815,6 @@
           "category": "Onboard Pre-booked",
           "date": "2026-05-02",
           "status": "paid"
-        },
-        {
-          "expense": "Final Payment",
-          "amount": 11073,
-          "category": "Cruise Fare",
-          "date": "2026-05-17",
-          "status": "forecasted"
         },
         {
           "expense": "Dog Boarding",
