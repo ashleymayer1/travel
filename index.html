@@ -695,9 +695,6 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
   /* Container pages */
   .container { padding: 12px; }
 
-  /* Pages outside .container (pricecheck, budget) */
-  #pricecheck, #budget { padding: 12px; }
-
   /* Charts: always single column, override inline styles */
   .chart-row { grid-template-columns: 1fr !important; gap: 12px; }
 
@@ -1129,8 +1126,6 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
   </div>
 </div>
 
-</div>
-
 <!-- ════════════════════════════════════════════════ PRICE CHECK ════════════════════════════════════════════════ -->
 <div id="pricecheck" class="page">
   <div class="card">
@@ -1199,6 +1194,8 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
   <div class="kpi-grid" id="bt-kpi-grid"></div>
   <div id="bt-cards"></div>
 </div>
+
+</div><!-- /.container -->
 <script>
 // ── Chart.js dark mode defaults ──
 Chart.defaults.color = '#b0b0b0';
