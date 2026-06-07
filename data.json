@@ -958,7 +958,16 @@
     {"name": "Spring Break 2027", "nights": 8, "cost": 1000, "costPerNight": 125, "provider": "Facility", "isPast": false},
     {"name": "Summer 2027", "nights": 7, "cost": 1000, "costPerNight": 143, "provider": "Facility", "isPast": false}
   ],
-  "categories": ["Cruise Fare", "Travel", "Dogs", "Supplies", "Onboard Pre-booked", "Cabana/Casita", "Excursion", "Onboard Spending"],
+  "categories": [
+    "Cruise Fare",
+    "Travel",
+    "Dogs",
+    "Supplies",
+    "Onboard Pre-booked",
+    "Cabana/Casita",
+    "Excursion",
+    "Onboard Spending"
+  ],
   "priceCheck": {
     "byShipAndSubtype": {
       "Multi-Room Balcony|Freedom": {"count": 1, "avgFppn": 120, "minFppn": 120, "maxFppn": 120, "p25Fppn": 120, "p75Fppn": 120, "sailings": ["Spring Break 2022"]},
@@ -1014,7 +1023,7 @@
     },
     "overall": {"count": 18, "avgFppn": 319, "minFppn": 120, "maxFppn": 569, "p25Fppn": 194, "p75Fppn": 420, "sailings": ["Spring Break 2022", "Summer 2022", "Work From Ship 2022", "Ashley's Birthday 2022", "Winter 2022", "ShePack Cruise 2023", "Spring Break 2023", "Christmas Vacation 2023", "Spring Break 2024", "Diamond Cruise 2024", "Summer on Icon 2024", "Winter Vacay 2024", "Spring Break 2025", "Summer Vacay 2025", "Sabbatical 2025", "Thanksgiving 2025", "Winter Vacay 2025", "Spring Break 2026"]},
     "ships": ["Allure", "Disney Wish", "Freedom", "Icon", "Liberty", "Oasis", "Star", "Symphony", "Utopia", "Wonder"],
-    "roomSubtypes": ["Connecting Balconies", "Crown Loft Suite", "Disney Balcony", "Family Infinite Balcony", "Grand Suite", "Junior Suit", "Multi-Room Balcony", "Standard Balcony", "Surfside Family Suite"],
+    "roomSubtypes": ["Connecting Balconies", "Crown Loft Suite", "Disney Balcony", "Family Infinite Balcony", "Grand Suite", "Junior Suite", "Multi-Room Balcony", "Standard Balcony", "Surfside Family Suite"],
     "roomTypes": ["Balcony", "Suite"],
     "seasons": ["Peak Summer", "Holiday", "Spring Break", "Off-Peak"]
   },
