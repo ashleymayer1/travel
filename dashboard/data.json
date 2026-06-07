@@ -886,56 +886,56 @@
     {
       "year": 2022,
       "income": 44795,
-      "expense": 39373,
-      "vacation": 24672,
+      "expense": 44795,
+      "vacation": 30094,
       "nonVacation": 14701,
-      "net": 5421,
-      "running": 5421
+      "net": 0,
+      "running": 0
     },
     {
       "year": 2023,
       "income": 68102,
-      "expense": 57827,
-      "vacation": 26546,
+      "expense": 56937,
+      "vacation": 25656,
       "nonVacation": 31281,
-      "net": 10276,
-      "running": 15697
+      "net": 11166,
+      "running": 11165
     },
     {
       "year": 2024,
-      "income": 73479,
-      "expense": 72314,
-      "vacation": 52539,
+      "income": 74798,
+      "expense": 70862,
+      "vacation": 51087,
       "nonVacation": 19775,
-      "net": 1165,
-      "running": 16862
+      "net": 3935,
+      "running": 15101
     },
     {
       "year": 2025,
-      "income": 129448,
-      "expense": 112403,
-      "vacation": 91040,
-      "nonVacation": 21364,
-      "net": 17045,
-      "running": 33907
+      "income": 128927,
+      "expense": 128478,
+      "vacation": 102863,
+      "nonVacation": 25615,
+      "net": 449,
+      "running": 15550
     },
     {
       "year": 2026,
-      "income": 64598,
-      "expense": 88080,
-      "vacation": 79097,
-      "nonVacation": 8983,
-      "net": -23482,
-      "running": 10426
+      "income": 62105,
+      "expense": 76565,
+      "vacation": 71834,
+      "nonVacation": 4732,
+      "net": -14460,
+      "running": 1089
     },
     {
       "year": 2027,
-      "income": 76840,
-      "expense": 39862,
-      "vacation": 39862,
+      "income": 0,
+      "expense": 32221,
+      "vacation": 32221,
       "nonVacation": 0,
-      "net": 36978,
-      "running": 47404
+      "net": -32221,
+      "running": -31132
     }
   ],
   "dogBoarding": [
