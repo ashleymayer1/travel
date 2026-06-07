@@ -600,12 +600,12 @@
       "ship": "Wonder",
       "roomType": "Suite",
       "roomSubtype": "Grand Suite",
-      "total": 18198,
+      "total": 18330,
       "fare": 12954,
-      "cpn": 2600,
-      "pppn": 650,
+      "cpn": 2619,
+      "pppn": 655,
       "fppn": 463,
-      "farePct": 71.2,
+      "farePct": 70.7,
       "isPast": false,
       "isUpcoming": true,
       "isOutlier": false,
@@ -614,7 +614,7 @@
         "Travel": 1978,
         "Dogs": 1000,
         "Supplies": 150,
-        "Onboard Pre-booked": 331,
+        "Onboard Pre-booked": 464,
         "Cabana/Casita": 724,
         "Excursion": 561,
         "Onboard Spending": 500
@@ -755,8 +755,8 @@
     "avgPerSailing": 11459,
     "pastCount": 18,
     "upcomingCount": 5,
-    "upcomingSpend": 100397,
-    "upcomingAvgPppn": 717
+    "upcomingSpend": 100529,
+    "upcomingAvgPppn": 718
   },
   "bestValue": [
     {
@@ -858,11 +858,11 @@
       "sailings": 4,
       "nights": 27,
       "personNights": 108,
-      "total": 78391,
-      "pppn": 726,
-      "avgPerSailing": 19598,
+      "total": 78523,
+      "pppn": 727,
+      "avgPerSailing": 19631,
       "fare": 52274,
-      "farePct": 66.7
+      "farePct": 66.6
     },
     {
       "year": "2027",
@@ -921,12 +921,12 @@
     },
     {
       "year": 2026,
-      "income": 88110,
-      "expense": 87948,
-      "vacation": 78965,
+      "income": 64598,
+      "expense": 88080,
+      "vacation": 79097,
       "nonVacation": 8983,
-      "net": 163,
-      "running": 34070
+      "net": -23482,
+      "running": 10426
     },
     {
       "year": 2027,
@@ -935,7 +935,7 @@
       "vacation": 39862,
       "nonVacation": 0,
       "net": 36978,
-      "running": 71048
+      "running": 47404
     }
   ],
   "dogBoarding": [
@@ -1103,7 +1103,9 @@
         "maxFppn": 120,
         "p25Fppn": 120,
         "p75Fppn": 120,
-        "sailings": ["Spring Break 2022"]
+        "sailings": [
+          "Spring Break 2022"
+        ]
       },
       "Grand Suite|Freedom": {
         "count": 3,
@@ -1112,7 +1114,11 @@
         "maxFppn": 324,
         "p25Fppn": 221,
         "p75Fppn": 324,
-        "sailings": ["Summer 2022", "Spring Break 2023", "Spring Break 2024"]
+        "sailings": [
+          "Summer 2022",
+          "Spring Break 2023",
+          "Spring Break 2024"
+        ]
       },
       "Standard Balcony|Freedom": {
         "count": 2,
@@ -1121,7 +1127,10 @@
         "maxFppn": 190,
         "p25Fppn": 160,
         "p75Fppn": 190,
-        "sailings": ["Work From Ship 2022", "Ashley's Birthday 2022"]
+        "sailings": [
+          "Work From Ship 2022",
+          "Ashley's Birthday 2022"
+        ]
       },
       "Connecting Balconies|Oasis": {
         "count": 2,
@@ -1130,7 +1139,10 @@
         "maxFppn": 339,
         "p25Fppn": 161,
         "p75Fppn": 339,
-        "sailings": ["Winter 2022", "Christmas Vacation 2023"]
+        "sailings": [
+          "Winter 2022",
+          "Christmas Vacation 2023"
+        ]
       },
       "Junior Suite|Liberty": {
         "count": 1,
@@ -1139,7 +1151,9 @@
         "maxFppn": 194,
         "p25Fppn": 194,
         "p75Fppn": 194,
-        "sailings": ["ShePack Cruise 2023"]
+        "sailings": [
+          "ShePack Cruise 2023"
+        ]
       },
       "Grand Suite|Symphony": {
         "count": 1,
@@ -1148,7 +1162,9 @@
         "maxFppn": 334,
         "p25Fppn": 334,
         "p75Fppn": 334,
-        "sailings": ["Diamond Cruise 2024"]
+        "sailings": [
+          "Diamond Cruise 2024"
+        ]
       },
       "Surfside Family Suite|Icon": {
         "count": 1,
@@ -1157,7 +1173,9 @@
         "maxFppn": 420,
         "p25Fppn": 420,
         "p75Fppn": 420,
-        "sailings": ["Summer on Icon 2024"]
+        "sailings": [
+          "Summer on Icon 2024"
+        ]
       },
       "Connecting Balconies|Wonder": {
         "count": 1,
@@ -1166,7 +1184,9 @@
         "maxFppn": 414,
         "p25Fppn": 414,
         "p75Fppn": 414,
-        "sailings": ["Winter Vacay 2024"]
+        "sailings": [
+          "Winter Vacay 2024"
+        ]
       },
       "Crown Loft Suite|Utopia": {
         "count": 1,
@@ -1175,7 +1195,9 @@
         "maxFppn": 506,
         "p25Fppn": 506,
         "p75Fppn": 506,
-        "sailings": ["Spring Break 2025"]
+        "sailings": [
+          "Spring Break 2025"
+        ]
       },
       "Family Infinite Balcony|Icon": {
         "count": 2,
@@ -1184,7 +1206,10 @@
         "maxFppn": 474,
         "p25Fppn": 284,
         "p75Fppn": 474,
-        "sailings": ["Summer Vacay 2025", "Sabbatical 2025"]
+        "sailings": [
+          "Summer Vacay 2025",
+          "Sabbatical 2025"
+        ]
       },
       "Disney Balcony|Disney Wish": {
         "count": 1,
@@ -1193,7 +1218,9 @@
         "maxFppn": 569,
         "p25Fppn": 569,
         "p75Fppn": 569,
-        "sailings": ["Thanksgiving 2025"]
+        "sailings": [
+          "Thanksgiving 2025"
+        ]
       },
       "Connecting Balconies|Allure": {
         "count": 1,
@@ -1202,7 +1229,9 @@
         "maxFppn": 339,
         "p25Fppn": 339,
         "p75Fppn": 339,
-        "sailings": ["Winter Vacay 2025"]
+        "sailings": [
+          "Winter Vacay 2025"
+        ]
       },
       "Connecting Balconies|Star": {
         "count": 1,
@@ -1211,7 +1240,9 @@
         "maxFppn": 433,
         "p25Fppn": 433,
         "p75Fppn": 433,
-        "sailings": ["Spring Break 2026"]
+        "sailings": [
+          "Spring Break 2026"
+        ]
       }
     },
     "byRoomSubtype": {
@@ -1222,7 +1253,9 @@
         "maxFppn": 120,
         "p25Fppn": 120,
         "p75Fppn": 120,
-        "sailings": ["Spring Break 2022"]
+        "sailings": [
+          "Spring Break 2022"
+        ]
       },
       "Grand Suite": {
         "count": 4,
@@ -1231,7 +1264,12 @@
         "maxFppn": 334,
         "p25Fppn": 264,
         "p75Fppn": 334,
-        "sailings": ["Summer 2022", "Spring Break 2023", "Spring Break 2024", "Diamond Cruise 2024"]
+        "sailings": [
+          "Summer 2022",
+          "Spring Break 2023",
+          "Spring Break 2024",
+          "Diamond Cruise 2024"
+        ]
       },
       "Standard Balcony": {
         "count": 2,
@@ -1240,7 +1278,10 @@
         "maxFppn": 190,
         "p25Fppn": 160,
         "p75Fppn": 190,
-        "sailings": ["Work From Ship 2022", "Ashley's Birthday 2022"]
+        "sailings": [
+          "Work From Ship 2022",
+          "Ashley's Birthday 2022"
+        ]
       },
       "Connecting Balconies": {
         "count": 5,
@@ -1249,7 +1290,13 @@
         "maxFppn": 433,
         "p25Fppn": 339,
         "p75Fppn": 414,
-        "sailings": ["Winter 2022", "Christmas Vacation 2023", "Winter Vacay 2024", "Winter Vacay 2025", "Spring Break 2026"]
+        "sailings": [
+          "Winter 2022",
+          "Christmas Vacation 2023",
+          "Winter Vacay 2024",
+          "Winter Vacay 2025",
+          "Spring Break 2026"
+        ]
       },
       "Junior Suite": {
         "count": 1,
@@ -1258,7 +1305,9 @@
         "maxFppn": 194,
         "p25Fppn": 194,
         "p75Fppn": 194,
-        "sailings": ["ShePack Cruise 2023"]
+        "sailings": [
+          "ShePack Cruise 2023"
+        ]
       },
       "Surfside Family Suite": {
         "count": 1,
@@ -1267,7 +1316,9 @@
         "maxFppn": 420,
         "p25Fppn": 420,
         "p75Fppn": 420,
-        "sailings": ["Summer on Icon 2024"]
+        "sailings": [
+          "Summer on Icon 2024"
+        ]
       },
       "Crown Loft Suite": {
         "count": 1,
@@ -1276,7 +1327,9 @@
         "maxFppn": 506,
         "p25Fppn": 506,
         "p75Fppn": 506,
-        "sailings": ["Spring Break 2025"]
+        "sailings": [
+          "Spring Break 2025"
+        ]
       },
       "Family Infinite Balcony": {
         "count": 2,
@@ -1285,7 +1338,10 @@
         "maxFppn": 474,
         "p25Fppn": 284,
         "p75Fppn": 474,
-        "sailings": ["Summer Vacay 2025", "Sabbatical 2025"]
+        "sailings": [
+          "Summer Vacay 2025",
+          "Sabbatical 2025"
+        ]
       },
       "Disney Balcony": {
         "count": 1,
@@ -1294,7 +1350,9 @@
         "maxFppn": 569,
         "p25Fppn": 569,
         "p75Fppn": 569,
-        "sailings": ["Thanksgiving 2025"]
+        "sailings": [
+          "Thanksgiving 2025"
+        ]
       }
     },
     "byRoomType": {
@@ -1305,7 +1363,19 @@
         "maxFppn": 569,
         "p25Fppn": 161,
         "p75Fppn": 433,
-        "sailings": ["Spring Break 2022", "Work From Ship 2022", "Ashley's Birthday 2022", "Winter 2022", "Christmas Vacation 2023", "Winter Vacay 2024", "Summer Vacay 2025", "Sabbatical 2025", "Thanksgiving 2025", "Winter Vacay 2025", "Spring Break 2026"]
+        "sailings": [
+          "Spring Break 2022",
+          "Work From Ship 2022",
+          "Ashley's Birthday 2022",
+          "Winter 2022",
+          "Christmas Vacation 2023",
+          "Winter Vacay 2024",
+          "Summer Vacay 2025",
+          "Sabbatical 2025",
+          "Thanksgiving 2025",
+          "Winter Vacay 2025",
+          "Spring Break 2026"
+        ]
       },
       "Suite": {
         "count": 7,
@@ -1314,7 +1384,15 @@
         "maxFppn": 506,
         "p25Fppn": 221,
         "p75Fppn": 420,
-        "sailings": ["Summer 2022", "ShePack Cruise 2023", "Spring Break 2023", "Spring Break 2024", "Diamond Cruise 2024", "Summer on Icon 2024", "Spring Break 2025"]
+        "sailings": [
+          "Summer 2022",
+          "ShePack Cruise 2023",
+          "Spring Break 2023",
+          "Spring Break 2024",
+          "Diamond Cruise 2024",
+          "Summer on Icon 2024",
+          "Spring Break 2025"
+        ]
       }
     },
     "bySeason": {
@@ -1325,7 +1403,13 @@
         "maxFppn": 506,
         "p25Fppn": 221,
         "p75Fppn": 433,
-        "sailings": ["Spring Break 2022", "Spring Break 2023", "Spring Break 2024", "Spring Break 2025", "Spring Break 2026"]
+        "sailings": [
+          "Spring Break 2022",
+          "Spring Break 2023",
+          "Spring Break 2024",
+          "Spring Break 2025",
+          "Spring Break 2026"
+        ]
       },
       "Peak Summer": {
         "count": 3,
@@ -1334,7 +1418,11 @@
         "maxFppn": 474,
         "p25Fppn": 264,
         "p75Fppn": 474,
-        "sailings": ["Summer 2022", "Summer on Icon 2024", "Summer Vacay 2025"]
+        "sailings": [
+          "Summer 2022",
+          "Summer on Icon 2024",
+          "Summer Vacay 2025"
+        ]
       },
       "Off-Peak": {
         "count": 4,
@@ -1343,7 +1431,12 @@
         "maxFppn": 334,
         "p25Fppn": 194,
         "p75Fppn": 334,
-        "sailings": ["Work From Ship 2022", "ShePack Cruise 2023", "Diamond Cruise 2024", "Sabbatical 2025"]
+        "sailings": [
+          "Work From Ship 2022",
+          "ShePack Cruise 2023",
+          "Diamond Cruise 2024",
+          "Sabbatical 2025"
+        ]
       },
       "Holiday": {
         "count": 6,
@@ -1352,24 +1445,175 @@
         "maxFppn": 569,
         "p25Fppn": 190,
         "p75Fppn": 414,
-        "sailings": ["Ashley's Birthday 2022", "Winter 2022", "Christmas Vacation 2023", "Winter Vacay 2024", "Thanksgiving 2025", "Winter Vacay 2025"]
+        "sailings": [
+          "Ashley's Birthday 2022",
+          "Winter 2022",
+          "Christmas Vacation 2023",
+          "Winter Vacay 2024",
+          "Thanksgiving 2025",
+          "Winter Vacay 2025"
+        ]
       }
     },
     "bySeasonAndSubtype": {
-      "Multi-Room Balcony|Spring Break": {"count": 1, "avgFppn": 120, "minFppn": 120, "maxFppn": 120, "p25Fppn": 120, "p75Fppn": 120, "sailings": ["Spring Break 2022"]},
-      "Grand Suite|Peak Summer": {"count": 1, "avgFppn": 264, "minFppn": 264, "maxFppn": 264, "p25Fppn": 264, "p75Fppn": 264, "sailings": ["Summer 2022"]},
-      "Standard Balcony|Off-Peak": {"count": 1, "avgFppn": 160, "minFppn": 160, "maxFppn": 160, "p25Fppn": 160, "p75Fppn": 160, "sailings": ["Work From Ship 2022"]},
-      "Standard Balcony|Holiday": {"count": 1, "avgFppn": 190, "minFppn": 190, "maxFppn": 190, "p25Fppn": 190, "p75Fppn": 190, "sailings": ["Ashley's Birthday 2022"]},
-      "Connecting Balconies|Holiday": {"count": 4, "avgFppn": 313, "minFppn": 161, "maxFppn": 414, "p25Fppn": 339, "p75Fppn": 414, "sailings": ["Winter 2022", "Christmas Vacation 2023", "Winter Vacay 2024", "Winter Vacay 2025"]},
-      "Junior Suite|Off-Peak": {"count": 1, "avgFppn": 194, "minFppn": 194, "maxFppn": 194, "p25Fppn": 194, "p75Fppn": 194, "sailings": ["ShePack Cruise 2023"]},
-      "Grand Suite|Spring Break": {"count": 2, "avgFppn": 273, "minFppn": 221, "maxFppn": 324, "p25Fppn": 221, "p75Fppn": 324, "sailings": ["Spring Break 2023", "Spring Break 2024"]},
-      "Grand Suite|Off-Peak": {"count": 1, "avgFppn": 334, "minFppn": 334, "maxFppn": 334, "p25Fppn": 334, "p75Fppn": 334, "sailings": ["Diamond Cruise 2024"]},
-      "Surfside Family Suite|Peak Summer": {"count": 1, "avgFppn": 420, "minFppn": 420, "maxFppn": 420, "p25Fppn": 420, "p75Fppn": 420, "sailings": ["Summer on Icon 2024"]},
-      "Crown Loft Suite|Spring Break": {"count": 1, "avgFppn": 506, "minFppn": 506, "maxFppn": 506, "p25Fppn": 506, "p75Fppn": 506, "sailings": ["Spring Break 2025"]},
-      "Family Infinite Balcony|Peak Summer": {"count": 1, "avgFppn": 474, "minFppn": 474, "maxFppn": 474, "p25Fppn": 474, "p75Fppn": 474, "sailings": ["Summer Vacay 2025"]},
-      "Family Infinite Balcony|Off-Peak": {"count": 1, "avgFppn": 284, "minFppn": 284, "maxFppn": 284, "p25Fppn": 284, "p75Fppn": 284, "sailings": ["Sabbatical 2025"]},
-      "Disney Balcony|Holiday": {"count": 1, "avgFppn": 569, "minFppn": 569, "maxFppn": 569, "p25Fppn": 569, "p75Fppn": 569, "sailings": ["Thanksgiving 2025"]},
-      "Connecting Balconies|Spring Break": {"count": 1, "avgFppn": 433, "minFppn": 433, "maxFppn": 433, "p25Fppn": 433, "p75Fppn": 433, "sailings": ["Spring Break 2026"]}
+      "Multi-Room Balcony|Spring Break": {
+        "count": 1,
+        "avgFppn": 120,
+        "minFppn": 120,
+        "maxFppn": 120,
+        "p25Fppn": 120,
+        "p75Fppn": 120,
+        "sailings": [
+          "Spring Break 2022"
+        ]
+      },
+      "Grand Suite|Peak Summer": {
+        "count": 1,
+        "avgFppn": 264,
+        "minFppn": 264,
+        "maxFppn": 264,
+        "p25Fppn": 264,
+        "p75Fppn": 264,
+        "sailings": [
+          "Summer 2022"
+        ]
+      },
+      "Standard Balcony|Off-Peak": {
+        "count": 1,
+        "avgFppn": 160,
+        "minFppn": 160,
+        "maxFppn": 160,
+        "p25Fppn": 160,
+        "p75Fppn": 160,
+        "sailings": [
+          "Work From Ship 2022"
+        ]
+      },
+      "Standard Balcony|Holiday": {
+        "count": 1,
+        "avgFppn": 190,
+        "minFppn": 190,
+        "maxFppn": 190,
+        "p25Fppn": 190,
+        "p75Fppn": 190,
+        "sailings": [
+          "Ashley's Birthday 2022"
+        ]
+      },
+      "Connecting Balconies|Holiday": {
+        "count": 4,
+        "avgFppn": 313,
+        "minFppn": 161,
+        "maxFppn": 414,
+        "p25Fppn": 339,
+        "p75Fppn": 414,
+        "sailings": [
+          "Winter 2022",
+          "Christmas Vacation 2023",
+          "Winter Vacay 2024",
+          "Winter Vacay 2025"
+        ]
+      },
+      "Junior Suite|Off-Peak": {
+        "count": 1,
+        "avgFppn": 194,
+        "minFppn": 194,
+        "maxFppn": 194,
+        "p25Fppn": 194,
+        "p75Fppn": 194,
+        "sailings": [
+          "ShePack Cruise 2023"
+        ]
+      },
+      "Grand Suite|Spring Break": {
+        "count": 2,
+        "avgFppn": 273,
+        "minFppn": 221,
+        "maxFppn": 324,
+        "p25Fppn": 221,
+        "p75Fppn": 324,
+        "sailings": [
+          "Spring Break 2023",
+          "Spring Break 2024"
+        ]
+      },
+      "Grand Suite|Off-Peak": {
+        "count": 1,
+        "avgFppn": 334,
+        "minFppn": 334,
+        "maxFppn": 334,
+        "p25Fppn": 334,
+        "p75Fppn": 334,
+        "sailings": [
+          "Diamond Cruise 2024"
+        ]
+      },
+      "Surfside Family Suite|Peak Summer": {
+        "count": 1,
+        "avgFppn": 420,
+        "minFppn": 420,
+        "maxFppn": 420,
+        "p25Fppn": 420,
+        "p75Fppn": 420,
+        "sailings": [
+          "Summer on Icon 2024"
+        ]
+      },
+      "Crown Loft Suite|Spring Break": {
+        "count": 1,
+        "avgFppn": 506,
+        "minFppn": 506,
+        "maxFppn": 506,
+        "p25Fppn": 506,
+        "p75Fppn": 506,
+        "sailings": [
+          "Spring Break 2025"
+        ]
+      },
+      "Family Infinite Balcony|Peak Summer": {
+        "count": 1,
+        "avgFppn": 474,
+        "minFppn": 474,
+        "maxFppn": 474,
+        "p25Fppn": 474,
+        "p75Fppn": 474,
+        "sailings": [
+          "Summer Vacay 2025"
+        ]
+      },
+      "Family Infinite Balcony|Off-Peak": {
+        "count": 1,
+        "avgFppn": 284,
+        "minFppn": 284,
+        "maxFppn": 284,
+        "p25Fppn": 284,
+        "p75Fppn": 284,
+        "sailings": [
+          "Sabbatical 2025"
+        ]
+      },
+      "Disney Balcony|Holiday": {
+        "count": 1,
+        "avgFppn": 569,
+        "minFppn": 569,
+        "maxFppn": 569,
+        "p25Fppn": 569,
+        "p75Fppn": 569,
+        "sailings": [
+          "Thanksgiving 2025"
+        ]
+      },
+      "Connecting Balconies|Spring Break": {
+        "count": 1,
+        "avgFppn": 433,
+        "minFppn": 433,
+        "maxFppn": 433,
+        "p25Fppn": 433,
+        "p75Fppn": 433,
+        "sailings": [
+          "Spring Break 2026"
+        ]
+      }
     },
     "overall": {
       "count": 18,
@@ -1378,12 +1622,60 @@
       "maxFppn": 569,
       "p25Fppn": 194,
       "p75Fppn": 420,
-      "sailings": ["Spring Break 2022", "Summer 2022", "Work From Ship 2022", "Ashley's Birthday 2022", "Winter 2022", "ShePack Cruise 2023", "Spring Break 2023", "Christmas Vacation 2023", "Spring Break 2024", "Diamond Cruise 2024", "Summer on Icon 2024", "Winter Vacay 2024", "Spring Break 2025", "Summer Vacay 2025", "Sabbatical 2025", "Thanksgiving 2025", "Winter Vacay 2025", "Spring Break 2026"]
+      "sailings": [
+        "Spring Break 2022",
+        "Summer 2022",
+        "Work From Ship 2022",
+        "Ashley's Birthday 2022",
+        "Winter 2022",
+        "ShePack Cruise 2023",
+        "Spring Break 2023",
+        "Christmas Vacation 2023",
+        "Spring Break 2024",
+        "Diamond Cruise 2024",
+        "Summer on Icon 2024",
+        "Winter Vacay 2024",
+        "Spring Break 2025",
+        "Summer Vacay 2025",
+        "Sabbatical 2025",
+        "Thanksgiving 2025",
+        "Winter Vacay 2025",
+        "Spring Break 2026"
+      ]
     },
-    "ships": ["Allure", "Disney Wish", "Freedom", "Icon", "Liberty", "Oasis", "Star", "Symphony", "Utopia", "Wonder"],
-    "roomSubtypes": ["Connecting Balconies", "Crown Loft Suite", "Disney Balcony", "Family Infinite Balcony", "Grand Suite", "Junior Suite", "Multi-Room Balcony", "Standard Balcony", "Surfside Family Suite"],
-    "roomTypes": ["Balcony", "Suite"],
-    "seasons": ["Peak Summer", "Holiday", "Spring Break", "Off-Peak"]
+    "ships": [
+      "Allure",
+      "Disney Wish",
+      "Freedom",
+      "Icon",
+      "Liberty",
+      "Oasis",
+      "Star",
+      "Symphony",
+      "Utopia",
+      "Wonder"
+    ],
+    "roomSubtypes": [
+      "Connecting Balconies",
+      "Crown Loft Suite",
+      "Disney Balcony",
+      "Family Infinite Balcony",
+      "Grand Suite",
+      "Junior Suite",
+      "Multi-Room Balcony",
+      "Standard Balcony",
+      "Surfside Family Suite"
+    ],
+    "roomTypes": [
+      "Balcony",
+      "Suite"
+    ],
+    "seasons": [
+      "Peak Summer",
+      "Holiday",
+      "Spring Break",
+      "Off-Peak"
+    ]
   },
   "budgetTracker": [
     {
@@ -1393,38 +1685,179 @@
       "people": 4,
       "ship": "Wonder",
       "roomSubtype": "Grand Suite",
-      "totalBudgeted": 18199,
-      "totalPaid": 15144,
+      "totalBudgeted": 18331,
+      "totalPaid": 15276,
       "totalForecasted": 3055,
-      "paidPct": 83.2,
+      "paidPct": 83.3,
       "categories": {
-        "Cruise Fare": {"paid": 12954, "forecasted": 0, "total": 12954},
-        "Travel": {"paid": 573, "forecasted": 1405, "total": 1978},
-        "Dogs": {"paid": 0, "forecasted": 1000, "total": 1000},
-        "Supplies": {"paid": 0, "forecasted": 150, "total": 150},
-        "Onboard Pre-booked": {"paid": 332, "forecasted": 0, "total": 332},
-        "Cabana/Casita": {"paid": 724, "forecasted": 0, "total": 724},
-        "Excursion": {"paid": 561, "forecasted": 0, "total": 561},
-        "Onboard Spending": {"paid": 0, "forecasted": 500, "total": 500}
+        "Cruise Fare": {
+          "paid": 12954,
+          "forecasted": 0,
+          "total": 12954
+        },
+        "Travel": {
+          "paid": 573,
+          "forecasted": 1405,
+          "total": 1978
+        },
+        "Dogs": {
+          "paid": 0,
+          "forecasted": 1000,
+          "total": 1000
+        },
+        "Supplies": {
+          "paid": 0,
+          "forecasted": 150,
+          "total": 150
+        },
+        "Onboard Pre-booked": {
+          "paid": 464,
+          "forecasted": 0,
+          "total": 464
+        },
+        "Cabana/Casita": {
+          "paid": 724,
+          "forecasted": 0,
+          "total": 724
+        },
+        "Excursion": {
+          "paid": 561,
+          "forecasted": 0,
+          "total": 561
+        },
+        "Onboard Spending": {
+          "paid": 0,
+          "forecasted": 500,
+          "total": 500
+        }
       },
       "lineItems": [
-        {"expense": "Final Payment", "amount": 11033, "category": "Cruise Fare", "date": "2026-05-06", "status": "paid"},
-        {"expense": "Deposit", "amount": 1476, "category": "Cruise Fare", "date": "2024-10-30", "status": "paid"},
-        {"expense": "Pool Cabana", "amount": 724, "category": "Cabana/Casita", "date": "2026-05-07", "status": "paid"},
-        {"expense": "Deposit", "amount": 445, "category": "Cruise Fare", "date": "2026-01-23", "status": "paid"},
-        {"expense": "Flights", "amount": 368, "category": "Travel", "date": "2026-05-02", "status": "paid"},
-        {"expense": "Paradise Island", "amount": 325, "category": "Excursion", "date": "2026-05-02", "status": "paid"},
-        {"expense": "RDU Parking", "amount": 205, "category": "Travel", "date": "2026-05-02", "status": "paid"},
-        {"expense": "Chef's Table", "amount": 189, "category": "Onboard Pre-booked", "date": "2026-02-14", "status": "paid"},
-        {"expense": "Hideaway", "amount": 142, "category": "Excursion", "date": "2026-05-02", "status": "paid"},
-        {"expense": "150 Central Park", "amount": 123, "category": "Onboard Pre-booked", "date": "2026-05-02", "status": "paid"},
-        {"expense": "Zipline", "amount": 94, "category": "Excursion", "date": "2026-05-02", "status": "paid"},
-        {"expense": "Sparking Water", "amount": 20, "category": "Onboard Pre-booked", "date": "2026-05-02", "status": "paid"},
-        {"expense": "Dog Boarding", "amount": 1000, "category": "Dogs", "date": "2026-08-08", "status": "forecasted"},
-        {"expense": "Tips, Uber, Food, Lounges", "amount": 705, "category": "Travel", "date": "2026-08-07", "status": "forecasted"},
-        {"expense": "Hotel", "amount": 700, "category": "Travel", "date": "2026-08-01", "status": "forecasted"},
-        {"expense": "Final Balance", "amount": 500, "category": "Onboard Spending", "date": "2026-08-07", "status": "forecasted"},
-        {"expense": "Supplies", "amount": 150, "category": "Supplies", "date": "2026-08-07", "status": "forecasted"}
+        {
+          "expense": "Final Payment",
+          "amount": 11033,
+          "category": "Cruise Fare",
+          "date": "2026-05-06",
+          "status": "paid"
+        },
+        {
+          "expense": "Deposit",
+          "amount": 1476,
+          "category": "Cruise Fare",
+          "date": "2024-10-30",
+          "status": "paid"
+        },
+        {
+          "expense": "Pool Cabana",
+          "amount": 724,
+          "category": "Cabana/Casita",
+          "date": "2026-05-07",
+          "status": "paid"
+        },
+        {
+          "expense": "Deposit",
+          "amount": 445,
+          "category": "Cruise Fare",
+          "date": "2026-01-23",
+          "status": "paid"
+        },
+        {
+          "expense": "Flights",
+          "amount": 368,
+          "category": "Travel",
+          "date": "2026-05-02",
+          "status": "paid"
+        },
+        {
+          "expense": "Paradise Island",
+          "amount": 325,
+          "category": "Excursion",
+          "date": "2026-05-02",
+          "status": "paid"
+        },
+        {
+          "expense": "RDU Parking",
+          "amount": 205,
+          "category": "Travel",
+          "date": "2026-05-02",
+          "status": "paid"
+        },
+        {
+          "expense": "Chef's Table",
+          "amount": 189,
+          "category": "Onboard Pre-booked",
+          "date": "2026-02-14",
+          "status": "paid"
+        },
+        {
+          "expense": "Hideaway",
+          "amount": 142,
+          "category": "Excursion",
+          "date": "2026-05-02",
+          "status": "paid"
+        },
+        {
+          "expense": "Wonderland",
+          "amount": 132,
+          "category": "Onboard Pre-booked",
+          "date": "2026-05-10",
+          "status": "paid"
+        },
+        {
+          "expense": "150 Central Park",
+          "amount": 123,
+          "category": "Onboard Pre-booked",
+          "date": "2026-05-02",
+          "status": "paid"
+        },
+        {
+          "expense": "Zipline",
+          "amount": 94,
+          "category": "Excursion",
+          "date": "2026-05-02",
+          "status": "paid"
+        },
+        {
+          "expense": "Sparking Water",
+          "amount": 20,
+          "category": "Onboard Pre-booked",
+          "date": "2026-05-02",
+          "status": "paid"
+        },
+        {
+          "expense": "Dog Boarding",
+          "amount": 1000,
+          "category": "Dogs",
+          "date": "2026-08-08",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Tips, Uber, Food, Lounges",
+          "amount": 705,
+          "category": "Travel",
+          "date": "2026-08-07",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Hotel",
+          "amount": 700,
+          "category": "Travel",
+          "date": "2026-08-01",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Final Balance",
+          "amount": 500,
+          "category": "Onboard Spending",
+          "date": "2026-08-07",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Supplies",
+          "amount": 150,
+          "category": "Supplies",
+          "date": "2026-08-07",
+          "status": "forecasted"
+        }
       ]
     },
     {
@@ -1439,25 +1872,115 @@
       "totalForecasted": 17122,
       "paidPct": 6.9,
       "categories": {
-        "Cruise Fare": {"paid": 200, "forecasted": 12412, "total": 12612},
-        "Travel": {"paid": 0, "forecasted": 2010, "total": 2010},
-        "Dogs": {"paid": 0, "forecasted": 1000, "total": 1000},
-        "Supplies": {"paid": 0, "forecasted": 400, "total": 400},
-        "Onboard Pre-booked": {"paid": 1062, "forecasted": 700, "total": 1762},
-        "Onboard Spending": {"paid": 0, "forecasted": 600, "total": 600}
+        "Cruise Fare": {
+          "paid": 200,
+          "forecasted": 12412,
+          "total": 12612
+        },
+        "Travel": {
+          "paid": 0,
+          "forecasted": 2010,
+          "total": 2010
+        },
+        "Dogs": {
+          "paid": 0,
+          "forecasted": 1000,
+          "total": 1000
+        },
+        "Supplies": {
+          "paid": 0,
+          "forecasted": 400,
+          "total": 400
+        },
+        "Onboard Pre-booked": {
+          "paid": 1062,
+          "forecasted": 700,
+          "total": 1762
+        },
+        "Onboard Spending": {
+          "paid": 0,
+          "forecasted": 600,
+          "total": 600
+        }
       },
       "lineItems": [
-        {"expense": "Hollywoodland, Railway", "amount": 1062, "category": "Onboard Pre-booked", "date": "2026-05-02", "status": "paid"},
-        {"expense": "Deposit", "amount": 200, "category": "Cruise Fare", "date": "2026-04-04", "status": "paid"},
-        {"expense": "Final Payment", "amount": 12412, "category": "Cruise Fare", "date": "2026-08-24", "status": "forecasted"},
-        {"expense": "Dog Boarding", "amount": 1000, "category": "Dogs", "date": "2026-11-28", "status": "forecasted"},
-        {"expense": "Tips, Uber, Food, Lounges", "amount": 760, "category": "Travel", "date": "2026-11-27", "status": "forecasted"},
-        {"expense": "Onboard Pre-booked", "amount": 700, "category": "Onboard Pre-booked", "date": "2026-11-27", "status": "forecasted"},
-        {"expense": "Hotel", "amount": 600, "category": "Travel", "date": "2026-11-23", "status": "forecasted"},
-        {"expense": "Final Balance", "amount": 600, "category": "Onboard Spending", "date": "2026-11-27", "status": "forecasted"},
-        {"expense": "Flights", "amount": 400, "category": "Travel", "date": "2026-08-24", "status": "forecasted"},
-        {"expense": "Supplies", "amount": 400, "category": "Supplies", "date": "2026-11-27", "status": "forecasted"},
-        {"expense": "RDU Parking", "amount": 250, "category": "Travel", "date": "2026-08-24", "status": "forecasted"}
+        {
+          "expense": "Hollywoodland, Railway",
+          "amount": 1062,
+          "category": "Onboard Pre-booked",
+          "date": "2026-05-02",
+          "status": "paid"
+        },
+        {
+          "expense": "Deposit",
+          "amount": 200,
+          "category": "Cruise Fare",
+          "date": "2026-04-04",
+          "status": "paid"
+        },
+        {
+          "expense": "Final Payment",
+          "amount": 12412,
+          "category": "Cruise Fare",
+          "date": "2026-08-24",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Dog Boarding",
+          "amount": 1000,
+          "category": "Dogs",
+          "date": "2026-11-28",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Tips, Uber, Food, Lounges",
+          "amount": 760,
+          "category": "Travel",
+          "date": "2026-11-27",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Onboard Pre-booked",
+          "amount": 700,
+          "category": "Onboard Pre-booked",
+          "date": "2026-11-27",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Hotel",
+          "amount": 600,
+          "category": "Travel",
+          "date": "2026-11-23",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Final Balance",
+          "amount": 600,
+          "category": "Onboard Spending",
+          "date": "2026-11-27",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Flights",
+          "amount": 400,
+          "category": "Travel",
+          "date": "2026-08-24",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Supplies",
+          "amount": 400,
+          "category": "Supplies",
+          "date": "2026-11-27",
+          "status": "forecasted"
+        },
+        {
+          "expense": "RDU Parking",
+          "amount": 250,
+          "category": "Travel",
+          "date": "2026-08-24",
+          "status": "forecasted"
+        }
       ]
     },
     {
@@ -1472,24 +1995,108 @@
       "totalForecasted": 22952,
       "paidPct": 4.2,
       "categories": {
-        "Cruise Fare": {"paid": 1000, "forecasted": 13582, "total": 14582},
-        "Travel": {"paid": 0, "forecasted": 4420, "total": 4420},
-        "Dogs": {"paid": 0, "forecasted": 1000, "total": 1000},
-        "Supplies": {"paid": 0, "forecasted": 500, "total": 500},
-        "Onboard Pre-booked": {"paid": 0, "forecasted": 2950, "total": 2950},
-        "Onboard Spending": {"paid": 0, "forecasted": 500, "total": 500}
+        "Cruise Fare": {
+          "paid": 1000,
+          "forecasted": 13582,
+          "total": 14582
+        },
+        "Travel": {
+          "paid": 0,
+          "forecasted": 4420,
+          "total": 4420
+        },
+        "Dogs": {
+          "paid": 0,
+          "forecasted": 1000,
+          "total": 1000
+        },
+        "Supplies": {
+          "paid": 0,
+          "forecasted": 500,
+          "total": 500
+        },
+        "Onboard Pre-booked": {
+          "paid": 0,
+          "forecasted": 2950,
+          "total": 2950
+        },
+        "Onboard Spending": {
+          "paid": 0,
+          "forecasted": 500,
+          "total": 500
+        }
       },
       "lineItems": [
-        {"expense": "Deposit", "amount": 1000, "category": "Cruise Fare", "date": "2024-11-27", "status": "paid"},
-        {"expense": "Final Payment", "amount": 13582, "category": "Cruise Fare", "date": "2026-09-28", "status": "forecasted"},
-        {"expense": "Onboard Pre-booked", "amount": 2950, "category": "Onboard Pre-booked", "date": "2027-01-04", "status": "forecasted"},
-        {"expense": "Flights", "amount": 2800, "category": "Travel", "date": "2026-10-01", "status": "forecasted"},
-        {"expense": "Dog Boarding", "amount": 1000, "category": "Dogs", "date": "2027-01-04", "status": "forecasted"},
-        {"expense": "Tips, Uber, Food, Lounges", "amount": 870, "category": "Travel", "date": "2027-01-04", "status": "forecasted"},
-        {"expense": "Hotel", "amount": 500, "category": "Travel", "date": "2026-12-27", "status": "forecasted"},
-        {"expense": "Final Balance", "amount": 500, "category": "Onboard Spending", "date": "2027-01-04", "status": "forecasted"},
-        {"expense": "Supplies", "amount": 500, "category": "Supplies", "date": "2027-01-04", "status": "forecasted"},
-        {"expense": "RDU Parking", "amount": 250, "category": "Travel", "date": "2026-10-01", "status": "forecasted"}
+        {
+          "expense": "Deposit",
+          "amount": 1000,
+          "category": "Cruise Fare",
+          "date": "2024-11-27",
+          "status": "paid"
+        },
+        {
+          "expense": "Final Payment",
+          "amount": 13582,
+          "category": "Cruise Fare",
+          "date": "2026-09-28",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Onboard Pre-booked",
+          "amount": 2950,
+          "category": "Onboard Pre-booked",
+          "date": "2027-01-04",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Flights",
+          "amount": 2800,
+          "category": "Travel",
+          "date": "2026-10-01",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Dog Boarding",
+          "amount": 1000,
+          "category": "Dogs",
+          "date": "2027-01-04",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Tips, Uber, Food, Lounges",
+          "amount": 870,
+          "category": "Travel",
+          "date": "2027-01-04",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Hotel",
+          "amount": 500,
+          "category": "Travel",
+          "date": "2026-12-27",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Final Balance",
+          "amount": 500,
+          "category": "Onboard Spending",
+          "date": "2027-01-04",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Supplies",
+          "amount": 500,
+          "category": "Supplies",
+          "date": "2027-01-04",
+          "status": "forecasted"
+        },
+        {
+          "expense": "RDU Parking",
+          "amount": 250,
+          "category": "Travel",
+          "date": "2026-10-01",
+          "status": "forecasted"
+        }
       ]
     },
     {
@@ -1504,24 +2111,108 @@
       "totalForecasted": 20343,
       "paidPct": 1.0,
       "categories": {
-        "Cruise Fare": {"paid": 200, "forecasted": 13061, "total": 13261},
-        "Travel": {"paid": 0, "forecasted": 3630, "total": 3630},
-        "Dogs": {"paid": 0, "forecasted": 1000, "total": 1000},
-        "Supplies": {"paid": 0, "forecasted": 200, "total": 200},
-        "Onboard Pre-booked": {"paid": 0, "forecasted": 1952, "total": 1952},
-        "Onboard Spending": {"paid": 0, "forecasted": 500, "total": 500}
+        "Cruise Fare": {
+          "paid": 200,
+          "forecasted": 13061,
+          "total": 13261
+        },
+        "Travel": {
+          "paid": 0,
+          "forecasted": 3630,
+          "total": 3630
+        },
+        "Dogs": {
+          "paid": 0,
+          "forecasted": 1000,
+          "total": 1000
+        },
+        "Supplies": {
+          "paid": 0,
+          "forecasted": 200,
+          "total": 200
+        },
+        "Onboard Pre-booked": {
+          "paid": 0,
+          "forecasted": 1952,
+          "total": 1952
+        },
+        "Onboard Spending": {
+          "paid": 0,
+          "forecasted": 500,
+          "total": 500
+        }
       },
       "lineItems": [
-        {"expense": "Deposit", "amount": 200, "category": "Cruise Fare", "date": "2026-04-04", "status": "paid"},
-        {"expense": "Final Payment", "amount": 13061, "category": "Cruise Fare", "date": "2026-12-20", "status": "forecasted"},
-        {"expense": "Flights", "amount": 2000, "category": "Travel", "date": "2027-01-01", "status": "forecasted"},
-        {"expense": "Onboard Pre-booked", "amount": 1952, "category": "Onboard Pre-booked", "date": "2027-03-28", "status": "forecasted"},
-        {"expense": "Dog Boarding", "amount": 1000, "category": "Dogs", "date": "2027-03-29", "status": "forecasted"},
-        {"expense": "Tips, Uber, Food, Lounges", "amount": 780, "category": "Travel", "date": "2027-03-28", "status": "forecasted"},
-        {"expense": "Hotel", "amount": 600, "category": "Travel", "date": "2027-03-20", "status": "forecasted"},
-        {"expense": "Final Balance", "amount": 500, "category": "Onboard Spending", "date": "2027-03-28", "status": "forecasted"},
-        {"expense": "RDU Parking", "amount": 250, "category": "Travel", "date": "2027-01-01", "status": "forecasted"},
-        {"expense": "Supplies", "amount": 200, "category": "Supplies", "date": "2027-03-28", "status": "forecasted"}
+        {
+          "expense": "Deposit",
+          "amount": 200,
+          "category": "Cruise Fare",
+          "date": "2026-04-04",
+          "status": "paid"
+        },
+        {
+          "expense": "Final Payment",
+          "amount": 13061,
+          "category": "Cruise Fare",
+          "date": "2026-12-20",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Flights",
+          "amount": 2000,
+          "category": "Travel",
+          "date": "2027-01-01",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Onboard Pre-booked",
+          "amount": 1952,
+          "category": "Onboard Pre-booked",
+          "date": "2027-03-28",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Dog Boarding",
+          "amount": 1000,
+          "category": "Dogs",
+          "date": "2027-03-29",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Tips, Uber, Food, Lounges",
+          "amount": 780,
+          "category": "Travel",
+          "date": "2027-03-28",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Hotel",
+          "amount": 600,
+          "category": "Travel",
+          "date": "2027-03-20",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Final Balance",
+          "amount": 500,
+          "category": "Onboard Spending",
+          "date": "2027-03-28",
+          "status": "forecasted"
+        },
+        {
+          "expense": "RDU Parking",
+          "amount": 250,
+          "category": "Travel",
+          "date": "2027-01-01",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Supplies",
+          "amount": 200,
+          "category": "Supplies",
+          "date": "2027-03-28",
+          "status": "forecasted"
+        }
       ]
     },
     {
@@ -1536,24 +2227,108 @@
       "totalForecasted": 19119,
       "paidPct": 1.0,
       "categories": {
-        "Cruise Fare": {"paid": 200, "forecasted": 11859, "total": 12059},
-        "Travel": {"paid": 0, "forecasted": 3720, "total": 3720},
-        "Dogs": {"paid": 0, "forecasted": 1000, "total": 1000},
-        "Supplies": {"paid": 0, "forecasted": 150, "total": 150},
-        "Onboard Pre-booked": {"paid": 0, "forecasted": 1890, "total": 1890},
-        "Onboard Spending": {"paid": 0, "forecasted": 500, "total": 500}
+        "Cruise Fare": {
+          "paid": 200,
+          "forecasted": 11859,
+          "total": 12059
+        },
+        "Travel": {
+          "paid": 0,
+          "forecasted": 3720,
+          "total": 3720
+        },
+        "Dogs": {
+          "paid": 0,
+          "forecasted": 1000,
+          "total": 1000
+        },
+        "Supplies": {
+          "paid": 0,
+          "forecasted": 150,
+          "total": 150
+        },
+        "Onboard Pre-booked": {
+          "paid": 0,
+          "forecasted": 1890,
+          "total": 1890
+        },
+        "Onboard Spending": {
+          "paid": 0,
+          "forecasted": 500,
+          "total": 500
+        }
       },
       "lineItems": [
-        {"expense": "Deposit", "amount": 200, "category": "Cruise Fare", "date": "2026-04-04", "status": "paid"},
-        {"expense": "Final Payment", "amount": 11859, "category": "Cruise Fare", "date": "2027-05-16", "status": "forecasted"},
-        {"expense": "Flights", "amount": 2000, "category": "Travel", "date": "2027-05-16", "status": "forecasted"},
-        {"expense": "Onboard Pre-booked", "amount": 1890, "category": "Onboard Pre-booked", "date": "2027-08-21", "status": "forecasted"},
-        {"expense": "Dog Boarding", "amount": 1000, "category": "Dogs", "date": "2027-08-23", "status": "forecasted"},
-        {"expense": "Tips, Uber, Food, Lounges", "amount": 770, "category": "Travel", "date": "2027-08-21", "status": "forecasted"},
-        {"expense": "Hotel", "amount": 700, "category": "Travel", "date": "2027-08-14", "status": "forecasted"},
-        {"expense": "Final Balance", "amount": 500, "category": "Onboard Spending", "date": "2027-08-21", "status": "forecasted"},
-        {"expense": "RDU Parking", "amount": 250, "category": "Travel", "date": "2027-05-16", "status": "forecasted"},
-        {"expense": "Supplies", "amount": 150, "category": "Supplies", "date": "2027-08-21", "status": "forecasted"}
+        {
+          "expense": "Deposit",
+          "amount": 200,
+          "category": "Cruise Fare",
+          "date": "2026-04-04",
+          "status": "paid"
+        },
+        {
+          "expense": "Final Payment",
+          "amount": 11859,
+          "category": "Cruise Fare",
+          "date": "2027-05-16",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Flights",
+          "amount": 2000,
+          "category": "Travel",
+          "date": "2027-05-16",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Onboard Pre-booked",
+          "amount": 1890,
+          "category": "Onboard Pre-booked",
+          "date": "2027-08-21",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Dog Boarding",
+          "amount": 1000,
+          "category": "Dogs",
+          "date": "2027-08-23",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Tips, Uber, Food, Lounges",
+          "amount": 770,
+          "category": "Travel",
+          "date": "2027-08-21",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Hotel",
+          "amount": 700,
+          "category": "Travel",
+          "date": "2027-08-14",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Final Balance",
+          "amount": 500,
+          "category": "Onboard Spending",
+          "date": "2027-08-21",
+          "status": "forecasted"
+        },
+        {
+          "expense": "RDU Parking",
+          "amount": 250,
+          "category": "Travel",
+          "date": "2027-05-16",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Supplies",
+          "amount": 150,
+          "category": "Supplies",
+          "date": "2027-08-21",
+          "status": "forecasted"
+        }
       ]
     }
   ]
