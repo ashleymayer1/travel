@@ -1995,9 +1995,10 @@ function renderFunding() {
     data: {
       labels: fd.map(f=>f.year),
       datasets: [
-        {label:'Income', data: fd.map(f=>f.income), backgroundColor:'#70ad47', order:1},
-        {label:'Expense', data: fd.map(f=>-f.expense), backgroundColor:'#ef5350', order:1},
-        {label:'Running Balance', data: fd.map(f=>f.running), type:'line', borderColor: BAR_BLUE, pointRadius:5, fill:false, order:0},
+        {label:'Funding', data: fd.map(f=>f.funding), backgroundColor:'#70ad47', order:1},
+        {label:'Sailings', data: fd.map(f=>-f.sailings), backgroundColor:'#ef5350', order:1},
+        {label:'Other', data: fd.map(f=>f.other), backgroundColor:'#ffa726', order:1},
+        {label:'Net', data: fd.map(f=>f.net), type:'line', borderColor: BAR_BLUE, pointRadius:5, fill:false, order:0},
       ]
     },
     options: {responsive:true, maintainAspectRatio:false,
@@ -2009,11 +2010,14 @@ function renderFunding() {
   });
 
   renderTable('#funding-table',
-    ['Year','Income','Sailings','Other','Net','Balance'],
-    fd.map(f => [f.year, fmt(f.income), fmt(-f.vacation), fmt(-f.nonVacation),
+    ['Year','Funding','Sailings','Other','Net'],
+    fd.map(f => [
+      f.year,
+      fmt(f.funding),
+      fmt(-f.sailings),
+      `<span style="color:${f.other>=0?'#66bb6a':'#ef5350'}">${fmt(f.other)}</span>`,
       `<span style="color:${f.net>=0?'#66bb6a':'#ef5350'};font-weight:700">${fmt(f.net)}</span>`,
-      `<span style="color:${f.running>=0?'#66bb6a':'#ef5350'};font-weight:700">${fmt(f.running)}</span>`])
-  );
+    ]));
 }
 
 // ══════════════════════════════════════════════════════════════
