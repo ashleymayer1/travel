@@ -885,57 +885,45 @@
   "funding": [
     {
       "year": 2022,
-      "income": 44795,
-      "expense": 44795,
-      "vacation": 30094,
-      "nonVacation": 14701,
-      "net": 0,
-      "running": 0
+      "funding": 43769,
+      "sailings": 30187,
+      "other": -13582,
+      "net": 0
     },
     {
       "year": 2023,
-      "income": 68102,
-      "expense": 56937,
-      "vacation": 25656,
-      "nonVacation": 31281,
-      "net": 11166,
-      "running": 11165
+      "funding": 61868,
+      "sailings": 25656,
+      "other": -25046,
+      "net": 11166
     },
     {
       "year": 2024,
-      "income": 74798,
-      "expense": 70862,
-      "vacation": 51087,
-      "nonVacation": 19775,
-      "net": 3935,
-      "running": 15101
+      "funding": 59695,
+      "sailings": 53340,
+      "other": -2419,
+      "net": 3935
     },
     {
       "year": 2025,
-      "income": 128927,
-      "expense": 128478,
-      "vacation": 102863,
-      "nonVacation": 25615,
-      "net": 449,
-      "running": 15550
+      "funding": 106901,
+      "sailings": 111445,
+      "other": 4993,
+      "net": 449
     },
     {
       "year": 2026,
-      "income": 62105,
-      "expense": 76565,
-      "vacation": 71834,
-      "nonVacation": 4732,
-      "net": -14460,
-      "running": 1089
+      "funding": 58206,
+      "sailings": 72310,
+      "other": -356,
+      "net": -14460
     },
     {
       "year": 2027,
-      "income": 0,
-      "expense": 32221,
-      "vacation": 32221,
-      "nonVacation": 0,
-      "net": -32221,
-      "running": -31132
+      "funding": 0,
+      "sailings": 32221,
+      "other": 0,
+      "net": -32221
     }
   ],
   "dogBoarding": [
@@ -1021,7 +1009,15 @@
       "Disney Balcony|Holiday": {"count": 1, "avgFppn": 569, "minFppn": 569, "maxFppn": 569, "p25Fppn": 569, "p75Fppn": 569, "sailings": ["Thanksgiving 2025"]},
       "Connecting Balconies|Spring Break": {"count": 1, "avgFppn": 433, "minFppn": 433, "maxFppn": 433, "p25Fppn": 433, "p75Fppn": 433, "sailings": ["Spring Break 2026"]}
     },
-    "overall": {"count": 18, "avgFppn": 319, "minFppn": 120, "maxFppn": 569, "p25Fppn": 194, "p75Fppn": 420, "sailings": ["Spring Break 2022", "Summer 2022", "Work From Ship 2022", "Ashley's Birthday 2022", "Winter 2022", "ShePack Cruise 2023", "Spring Break 2023", "Christmas Vacation 2023", "Spring Break 2024", "Diamond Cruise 2024", "Summer on Icon 2024", "Winter Vacay 2024", "Spring Break 2025", "Summer Vacay 2025", "Sabbatical 2025", "Thanksgiving 2025", "Winter Vacay 2025", "Spring Break 2026"]},
+    "overall": {
+      "count": 18,
+      "avgFppn": 319,
+      "minFppn": 120,
+      "maxFppn": 569,
+      "p25Fppn": 194,
+      "p75Fppn": 420,
+      "sailings": ["Spring Break 2022", "Summer 2022", "Work From Ship 2022", "Ashley's Birthday 2022", "Winter 2022", "ShePack Cruise 2023", "Spring Break 2023", "Christmas Vacation 2023", "Spring Break 2024", "Diamond Cruise 2024", "Summer on Icon 2024", "Winter Vacay 2024", "Spring Break 2025", "Summer Vacay 2025", "Sabbatical 2025", "Thanksgiving 2025", "Winter Vacay 2025", "Spring Break 2026"]
+    },
     "ships": ["Allure", "Disney Wish", "Freedom", "Icon", "Liberty", "Oasis", "Star", "Symphony", "Utopia", "Wonder"],
     "roomSubtypes": ["Connecting Balconies", "Crown Loft Suite", "Disney Balcony", "Family Infinite Balcony", "Grand Suite", "Junior Suite", "Multi-Room Balcony", "Standard Balcony", "Surfside Family Suite"],
     "roomTypes": ["Balcony", "Suite"],
@@ -1029,8 +1025,16 @@
   },
   "budgetTracker": [
     {
-      "name": "Summer B2B 2026", "month": "Jul 2026", "nights": 7, "people": 4, "ship": "Wonder", "roomSubtype": "Grand Suite",
-      "totalBudgeted": 18331, "totalPaid": 15276, "totalForecasted": 3055, "paidPct": 83.3,
+      "name": "Summer B2B 2026",
+      "month": "Jul 2026",
+      "nights": 7,
+      "people": 4,
+      "ship": "Wonder",
+      "roomSubtype": "Grand Suite",
+      "totalBudgeted": 18331,
+      "totalPaid": 15276,
+      "totalForecasted": 3055,
+      "paidPct": 83.3,
       "categories": {
         "Cruise Fare": {"paid": 12954, "forecasted": 0, "total": 12954},
         "Travel": {"paid": 573, "forecasted": 1405, "total": 1978},
@@ -1063,8 +1067,16 @@
       ]
     },
     {
-      "name": "Thanksgiving 2026", "month": "Nov 2026", "nights": 6, "people": 4, "ship": "Legend", "roomSubtype": "Family Infinite Balcony",
-      "totalBudgeted": 18384, "totalPaid": 1262, "totalForecasted": 17122, "paidPct": 6.9,
+      "name": "Thanksgiving 2026",
+      "month": "Nov 2026",
+      "nights": 6,
+      "people": 4,
+      "ship": "Legend",
+      "roomSubtype": "Family Infinite Balcony",
+      "totalBudgeted": 18384,
+      "totalPaid": 1262,
+      "totalForecasted": 17122,
+      "paidPct": 6.9,
       "categories": {
         "Cruise Fare": {"paid": 200, "forecasted": 12412, "total": 12612},
         "Travel": {"paid": 0, "forecasted": 2010, "total": 2010},
@@ -1088,8 +1100,16 @@
       ]
     },
     {
-      "name": "Winter NYE 2026", "month": "Dec 2026", "nights": 7, "people": 4, "ship": "Star", "roomSubtype": "Family Infinite Balcony",
-      "totalBudgeted": 23952, "totalPaid": 1000, "totalForecasted": 22952, "paidPct": 4.2,
+      "name": "Winter NYE 2026",
+      "month": "Dec 2026",
+      "nights": 7,
+      "people": 4,
+      "ship": "Star",
+      "roomSubtype": "Family Infinite Balcony",
+      "totalBudgeted": 23952,
+      "totalPaid": 1000,
+      "totalForecasted": 22952,
+      "paidPct": 4.2,
       "categories": {
         "Cruise Fare": {"paid": 1000, "forecasted": 13582, "total": 14582},
         "Travel": {"paid": 0, "forecasted": 4420, "total": 4420},
@@ -1112,8 +1132,16 @@
       ]
     },
     {
-      "name": "Spring Break 2027", "month": "Mar 2027", "nights": 8, "people": 4, "ship": "Legend", "roomSubtype": "Family Balcony",
-      "totalBudgeted": 20543, "totalPaid": 200, "totalForecasted": 20343, "paidPct": 1.0,
+      "name": "Spring Break 2027",
+      "month": "Mar 2027",
+      "nights": 8,
+      "people": 4,
+      "ship": "Legend",
+      "roomSubtype": "Family Balcony",
+      "totalBudgeted": 20543,
+      "totalPaid": 200,
+      "totalForecasted": 20343,
+      "paidPct": 1.0,
       "categories": {
         "Cruise Fare": {"paid": 200, "forecasted": 13061, "total": 13261},
         "Travel": {"paid": 0, "forecasted": 3630, "total": 3630},
@@ -1136,8 +1164,16 @@
       ]
     },
     {
-      "name": "Summer 2027", "month": "Aug 2027", "nights": 7, "people": 4, "ship": "Hero", "roomSubtype": "Family Infinite Balcony",
-      "totalBudgeted": 19319, "totalPaid": 200, "totalForecasted": 19119, "paidPct": 1.0,
+      "name": "Summer 2027",
+      "month": "Aug 2027",
+      "nights": 7,
+      "people": 4,
+      "ship": "Hero",
+      "roomSubtype": "Family Infinite Balcony",
+      "totalBudgeted": 19319,
+      "totalPaid": 200,
+      "totalForecasted": 19119,
+      "paidPct": 1.0,
       "categories": {
         "Cruise Fare": {"paid": 200, "forecasted": 11859, "total": 12059},
         "Travel": {"paid": 0, "forecasted": 3720, "total": 3720},
