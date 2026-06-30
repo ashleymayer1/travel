@@ -600,12 +600,12 @@
       "ship": "Wonder",
       "roomType": "Suite",
       "roomSubtype": "Grand Suite",
-      "total": 18330,
+      "total": 18270,
       "fare": 12954,
-      "cpn": 2619,
-      "pppn": 655,
+      "cpn": 2610,
+      "pppn": 653,
       "fppn": 463,
-      "farePct": 70.7,
+      "farePct": 70.9,
       "isPast": false,
       "isUpcoming": true,
       "isOutlier": false,
@@ -616,7 +616,7 @@
         "Supplies": 150,
         "Onboard Pre-booked": 464,
         "Cabana/Casita": 724,
-        "Excursion": 561,
+        "Excursion": 501,
         "Onboard Spending": 500
       }
     },
@@ -755,7 +755,7 @@
     "avgPerSailing": 11459,
     "pastCount": 18,
     "upcomingCount": 5,
-    "upcomingSpend": 100529,
+    "upcomingSpend": 100469,
     "upcomingAvgPppn": 718
   },
   "bestValue": [
@@ -858,9 +858,9 @@
       "sailings": 4,
       "nights": 27,
       "personNights": 108,
-      "total": 78523,
+      "total": 78463,
       "pppn": 727,
-      "avgPerSailing": 19631,
+      "avgPerSailing": 19616,
       "fare": 52274,
       "farePct": 66.6
     },
@@ -913,10 +913,10 @@
     },
     {
       "year": 2026,
-      "funding": 58206,
-      "sailings": 72310,
+      "funding": 57497,
+      "sailings": 72250,
       "other": -356,
-      "net": -14460
+      "net": -15110
     },
     {
       "year": 2027,
@@ -1673,8 +1673,8 @@
       "people": 4,
       "ship": "Wonder",
       "roomSubtype": "Grand Suite",
-      "totalBudgeted": 18331,
-      "totalPaid": 15276,
+      "totalBudgeted": 18271,
+      "totalPaid": 15216,
       "totalForecasted": 3055,
       "paidPct": 83.3,
       "categories": {
@@ -1709,9 +1709,9 @@
           "total": 724
         },
         "Excursion": {
-          "paid": 561,
+          "paid": 501,
           "forecasted": 0,
-          "total": 561
+          "total": 501
         },
         "Onboard Spending": {
           "paid": 0,
@@ -1812,6 +1812,20 @@
           "status": "paid"
         },
         {
+          "expense": "Hideaway",
+          "amount": -12,
+          "category": "Excursion",
+          "date": "2026-06-30",
+          "status": "paid"
+        },
+        {
+          "expense": "Paradise Island",
+          "amount": -48,
+          "category": "Excursion",
+          "date": "2026-06-30",
+          "status": "paid"
+        },
+        {
           "expense": "Dog Boarding",
           "amount": 1000,
           "category": "Dogs",
@@ -1829,7 +1843,7 @@
           "expense": "Hotel",
           "amount": 700,
           "category": "Travel",
-          "date": "2026-08-01",
+          "date": "2026-07-31",
           "status": "forecasted"
         },
         {
@@ -1843,7 +1857,7 @@
           "expense": "Supplies",
           "amount": 150,
           "category": "Supplies",
-          "date": "2026-08-07",
+          "date": "2026-07-29",
           "status": "forecasted"
         }
       ]
