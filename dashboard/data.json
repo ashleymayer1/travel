@@ -1,1 +1,27 @@
-REPLACE_WITH_FILE_CONTENT
+{
+  "sailings": [
+    {
+      "name": "Spring Break 2022",
+      "month": "Mar 2022",
+      "season": "Spring Break",
+      "nights": 4,
+      "people": 6,
+      "rooms": 3,
+      "cruiseLine": "Royal Caribbean",
+      "ship": "Freedom",
+      "roomType": "Balcony",
+      "roomSubtype": "Multi-Room Balcony",
+      "total": 6014,
+      "fare": 2881,
+      "cpn": 1504,
+      "pppn": 251,
+      "fppn": 120,
+      "farePct": 47.9,
+      "isPast": true,
+      "isUpcoming": false,
+      "isOutlier": false,
+      "categories": {"Cruise Fare": 2881, "Travel": 1500, "Dogs": 247, "Supplies": 202, "Onboard Pre-booked": 119, "Cabana/Casita": 273, "Excursion": 0, "Onboard Spending": 1196}
+    }
+  ]
+}
+PLACEHOLDER_TRUNCATED
