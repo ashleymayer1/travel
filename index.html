@@ -1439,6 +1439,11 @@ function renderOverview(filters) {
   });
 
   // Insights — patterns & trends only, no individual sailing callouts (rankings card handles those)
+  // Each candidate below is scored by the magnitude of the pattern it describes (roughly a
+  // "% difference" scale). We keep every candidate that clears its own significance bar, then
+  // rank the whole pool by score and take the top N — so the KPIs actually reorganize around
+  // whatever is most notable in the filtered slice, instead of always showing the same handful
+  // of insights (in code order) with recalculated numbers.
   const nonOutlier = sailings.filter(s => !s.isOutlier);
   const yrs = computeYears(sailings);
   const TARGET_COUNT = 10;
@@ -1446,8 +1451,9 @@ function renderOverview(filters) {
   const isSuiteOnly = filters.cabin === 'suite';
   const isBalconyOnly = filters.cabin === 'balcony';
   const pool = [];
+  const addInsight = (text, score) => pool.push({text, score});
 
-  // ── NEW: Recent trajectory (last 4 completed vs all-time average) ──
+  // ── Recent trajectory (last 4 completed vs all-time average) ──
   {
     const pastNO = nonOutlier.filter(s => s.isPast);
     const recentN = Math.min(4, Math.floor(pastNO.length / 2));
@@ -1457,12 +1463,12 @@ function renderOverview(filters) {
       const allAvg    = Math.round(pastNO.reduce((a, s) => a + s.pppn, 0) / pastNO.length);
       const delta = ((recentAvg / allAvg) - 1) * 100;
       if (Math.abs(delta) >= 5) {
-        pool.push(`Recent Trajectory: Last ${recentN} sailings average ${fmt(recentAvg)} PPPN — ${Math.abs(delta).toFixed(0)}% ${delta > 0 ? 'above' : 'below'} your all-time average of ${fmt(allAvg)}.`);
+        addInsight(`Recent Trajectory: Last ${recentN} sailings average ${fmt(recentAvg)} PPPN — ${Math.abs(delta).toFixed(0)}% ${delta > 0 ? 'above' : 'below'} your all-time average of ${fmt(allAvg)}.`, Math.abs(delta));
       }
     }
   }
 
-  // ── NEW: Season pricing gaps ──
+  // ── Season pricing gaps ──
   if (!isUpcomingOnly) {
     const seasonGroups = {};
     nonOutlier.filter(s => s.isPast && s.season).forEach(s => {
@@ -1475,12 +1481,12 @@ function renderOverview(filters) {
       .sort((a, b) => b.avg - a.avg);
     if (seasons.length >= 2) {
       const peak = seasons[0], off = seasons[seasons.length - 1];
-      const spread = (((peak.avg / off.avg) - 1) * 100).toFixed(0);
-      pool.push(`Season Spread: ${peak.season} averages ${fmt(peak.avg)} PPPN (${peak.count} sailings) vs ${fmt(off.avg)} for ${off.season} — a ${spread}% seasonal premium.`);
+      const spread = ((peak.avg / off.avg) - 1) * 100;
+      addInsight(`Season Spread: ${peak.season} averages ${fmt(peak.avg)} PPPN (${peak.count} sailings) vs ${fmt(off.avg)} for ${off.season} — a ${spread.toFixed(0)}% seasonal premium.`, Math.abs(spread));
     }
   }
 
-  // ── NEW: Fare share trend across years ──
+  // ── Fare share trend across years ──
   if (!isUpcomingOnly) {
     const allYrs = DATA.years || [];
     if (allYrs.length >= 3) {
@@ -1489,12 +1495,12 @@ function renderOverview(filters) {
       const recentPct = allYrs.slice(-half).reduce((a, y) => a + y.farePct, 0) / half;
       const diff = recentPct - earlyPct;
       if (Math.abs(diff) >= 3) {
-        pool.push(`Fare Share Trend: Cruise fare has ${diff > 0 ? 'risen' : 'fallen'} from ${earlyPct.toFixed(0)}% to ${recentPct.toFixed(0)}% of total spend — ${diff > 0 ? 'non-fare add-ons shrinking as a share' : 'non-fare costs claiming more of the budget'}.`);
+        addInsight(`Fare Share Trend: Cruise fare has ${diff > 0 ? 'risen' : 'fallen'} from ${earlyPct.toFixed(0)}% to ${recentPct.toFixed(0)}% of total spend — ${diff > 0 ? 'non-fare add-ons shrinking as a share' : 'non-fare costs claiming more of the budget'}.`, Math.abs(diff) * 2);
       }
     }
   }
 
-  // ── NEW: Room type momentum (last 5 sailings) ──
+  // ── Room type momentum (last 5 sailings) ──
   {
     const pastNO = nonOutlier.filter(s => s.isPast);
     const recentSlice = pastNO.slice(-5);
@@ -1504,12 +1510,13 @@ function renderOverview(filters) {
       const [topSubtype, topCount] = Object.entries(counts).sort((a, b) => b[1] - a[1])[0];
       if (topCount >= 2) {
         const allCount = nonOutlier.filter(s => s.isPast && s.roomSubtype === topSubtype).length;
-        pool.push(`Room Momentum: ${topSubtype} in ${topCount} of your last ${recentSlice.length} sailings — your dominant recent choice (${allCount} times across all completed sailings).`);
+        const dominance = (topCount / recentSlice.length) * 100;
+        addInsight(`Room Momentum: ${topSubtype} in ${topCount} of your last ${recentSlice.length} sailings — your dominant recent choice (${allCount} times across all completed sailings).`, dominance);
       }
     }
   }
 
-  // ── NEW: Ship class premium (Icon/Star-class vs older fleet) ──
+  // ── Ship class premium (Icon/Star-class vs older fleet) ──
   if (!isUpcomingOnly) {
     const iconClass = new Set(['Icon', 'Star', 'Legend', 'Hero']);
     const iconSails  = nonOutlier.filter(s => s.isPast && iconClass.has(s.ship));
@@ -1517,12 +1524,12 @@ function renderOverview(filters) {
     if (iconSails.length >= 2 && olderSails.length >= 2) {
       const iconAvg  = Math.round(iconSails.reduce((a, s)  => a + s.pppn, 0) / iconSails.length);
       const olderAvg = Math.round(olderSails.reduce((a, s) => a + s.pppn, 0) / olderSails.length);
-      const prem = (((iconAvg / olderAvg) - 1) * 100).toFixed(0);
-      pool.push(`Ship Class Premium: Icon/Star-class averages ${fmt(iconAvg)} PPPN vs ${fmt(olderAvg)} on older ships — ${prem}% more for the newer fleet (${iconSails.length} vs ${olderSails.length} sailings).`);
+      const prem = ((iconAvg / olderAvg) - 1) * 100;
+      addInsight(`Ship Class Premium: Icon/Star-class averages ${fmt(iconAvg)} PPPN vs ${fmt(olderAvg)} on older ships — ${Math.abs(prem).toFixed(0)}% ${prem >= 0 ? 'more' : 'less'} for the newer fleet (${iconSails.length} vs ${olderSails.length} sailings).`, Math.abs(prem));
     }
   }
 
-  // ── NEW: Dog boarding provider shift ──
+  // ── Dog boarding provider shift ──
   if (!isUpcomingOnly) {
     const dogs        = DATA.dogBoarding || [];
     const friendDogs  = dogs.filter(d => d.provider === 'Friend'   && d.isPast);
@@ -1530,12 +1537,12 @@ function renderOverview(filters) {
     if (friendDogs.length && facilityDogs.length) {
       const friendAvg   = Math.round(friendDogs.reduce((a, d)   => a + d.costPerNight, 0) / friendDogs.length);
       const facilityAvg = Math.round(facilityDogs.reduce((a, d) => a + d.costPerNight, 0) / facilityDogs.length);
-      const pct = (((facilityAvg / friendAvg) - 1) * 100).toFixed(0);
-      pool.push(`Dog Boarding Shift: Friend care averaged $${friendAvg}/night vs $${facilityAvg}/night at a facility — ${pct}% more, adding ~$${(facilityAvg - friendAvg) * 7} to a typical 7-night trip.`);
+      const pct2 = ((facilityAvg / friendAvg) - 1) * 100;
+      addInsight(`Dog Boarding Shift: Friend care averaged $${friendAvg}/night vs $${facilityAvg}/night at a facility — ${Math.abs(pct2).toFixed(0)}% ${pct2 >= 0 ? 'more' : 'less'}, ${pct2 >= 0 ? 'adding' : 'saving'} ~$${Math.abs(facilityAvg - friendAvg) * 7} on a typical 7-night trip.`, Math.abs(pct2));
     }
   }
 
-  // ── NEW: Cruise line comparison ──
+  // ── Cruise line comparison ──
   if (!isUpcomingOnly) {
     const rcSails = nonOutlier.filter(s => s.isPast && s.cruiseLine === 'Royal Caribbean');
     const otherLines = [...new Set(nonOutlier.filter(s => s.isPast && s.cruiseLine !== 'Royal Caribbean').map(s => s.cruiseLine))];
@@ -1544,24 +1551,25 @@ function renderOverview(filters) {
       if (lineSails.length >= 1 && rcSails.length >= 3) {
         const lineAvg = Math.round(lineSails.reduce((a, s) => a + s.pppn, 0) / lineSails.length);
         const rcAvg   = Math.round(rcSails.reduce((a, s)   => a + s.pppn, 0) / rcSails.length);
-        const pct = (((lineAvg / rcAvg) - 1) * 100);
-        pool.push(`${line} vs Royal Caribbean: ${line} averaged ${fmt(lineAvg)} PPPN vs ${fmt(rcAvg)} on Royal Caribbean — ${Math.abs(pct).toFixed(0)}% ${pct > 0 ? 'pricier' : 'cheaper'} across ${lineSails.length} sailing${lineSails.length > 1 ? 's' : ''}.`);
+        const pct3 = (((lineAvg / rcAvg) - 1) * 100);
+        addInsight(`${line} vs Royal Caribbean: ${line} averaged ${fmt(lineAvg)} PPPN vs ${fmt(rcAvg)} on Royal Caribbean — ${Math.abs(pct3).toFixed(0)}% ${pct3 > 0 ? 'pricier' : 'cheaper'} across ${lineSails.length} sailing${lineSails.length > 1 ? 's' : ''}.`, Math.abs(pct3));
       }
     });
   }
 
-  // ── NEW: Points/miles impact on travel costs ──
+  // ── Points/miles impact on travel costs ──
   if (!isUpcomingOnly) {
     const withTravel  = nonOutlier.filter(s => s.isPast);
     const pointsTrips = withTravel.filter(s => (s.categories['Travel'] || 0) < 200);
     const paidTrips   = withTravel.filter(s => (s.categories['Travel'] || 0) >= 200);
     if (pointsTrips.length >= 2 && paidTrips.length >= 2) {
       const paidAvg = Math.round(paidTrips.reduce((a, s) => a + (s.categories['Travel'] || 0), 0) / paidTrips.length);
-      pool.push(`Points/Miles Impact: ${pointsTrips.length} of ${withTravel.length} sailings had near-$0 travel costs (points/miles used). Paid-travel trips averaged ${fmt(paidAvg)} in flights & hotels.`);
+      const share = (pointsTrips.length / withTravel.length) * 100;
+      addInsight(`Points/Miles Impact: ${pointsTrips.length} of ${withTravel.length} sailings had near-$0 travel costs (points/miles used). Paid-travel trips averaged ${fmt(paidAvg)} in flights & hotels.`, Math.abs(share - 50) + 15);
     }
   }
 
-  // ── NEW: Biggest non-fare category shift (first half vs recent half of sailings) ──
+  // ── Biggest non-fare category shift (first half vs recent half of sailings) ──
   if (!isUpcomingOnly) {
     const pastNO = nonOutlier.filter(s => s.isPast);
     if (pastNO.length >= 6) {
@@ -1579,12 +1587,12 @@ function renderOverview(filters) {
       });
       if (biggestShift && biggestDiff >= 2) {
         const {cat, ep, rp, diff} = biggestShift;
-        pool.push(`Category Shift: ${cat} went from ${ep.toFixed(0)}% to ${rp.toFixed(0)}% of spend (first ${half} vs last ${half} sailings) — ${diff > 0 ? 'growing' : 'shrinking'} as a share of the budget.`);
+        addInsight(`Category Shift: ${cat} went from ${ep.toFixed(0)}% to ${rp.toFixed(0)}% of spend (first ${half} vs last ${half} sailings) — ${diff > 0 ? 'growing' : 'shrinking'} as a share of the budget.`, biggestDiff * 2);
       }
     }
   }
 
-  // ── NEW: PPPN consistency trend (is variability tightening?) ──
+  // ── PPPN consistency trend (is variability tightening?) ──
   if (!isUpcomingOnly) {
     const pastNO = nonOutlier.filter(s => s.isPast);
     if (pastNO.length >= 6) {
@@ -1596,12 +1604,13 @@ function renderOverview(filters) {
       if (Math.abs(earlyRange - recentRange) > 100) {
         const earlyMid  = Math.round(earlyPppns.reduce((a, v)  => a + v, 0) / earlyPppns.length);
         const recentMid = Math.round(recentPppns.reduce((a, v) => a + v, 0) / recentPppns.length);
-        pool.push(`PPPN Consistency: Recent sailings span ${fmt(recentRange)} PPPN vs ${fmt(earlyRange)} earlier — ${recentRange < earlyRange ? 'costs becoming more predictable' : 'growing more variable'} (recent avg ${fmt(recentMid)} vs early avg ${fmt(earlyMid)}).`);
+        const rangeDelta = earlyRange ? Math.abs(recentRange - earlyRange) / earlyRange * 100 : 0;
+        addInsight(`PPPN Consistency: Recent sailings span ${fmt(recentRange)} PPPN vs ${fmt(earlyRange)} earlier — ${recentRange < earlyRange ? 'costs becoming more predictable' : 'growing more variable'} (recent avg ${fmt(recentMid)} vs early avg ${fmt(earlyMid)}).`, rangeDelta);
       }
     }
   }
 
-  // ── NEW: Non-fare cost trajectory ──
+  // ── Non-fare cost trajectory ──
   if (!isUpcomingOnly) {
     const pastNO = nonOutlier.filter(s => s.isPast);
     const recentN = Math.min(4, Math.floor(pastNO.length / 2));
@@ -1617,7 +1626,7 @@ function renderOverview(filters) {
       const recentNF = avgNonFarePppn(recent);
       const delta = olderNF ? (((recentNF / olderNF) - 1) * 100) : 0;
       if (Math.abs(delta) >= 8 && olderNF > 0) {
-        pool.push(`Non-Fare Trajectory: Add-on costs (excl. fare) averaged ${fmt(recentNF)} PPPN in your last ${recentN} sailings vs ${fmt(olderNF)} earlier — ${Math.abs(delta).toFixed(0)}% ${delta > 0 ? 'increase' : 'decrease'} in non-cruise spending.`);
+        addInsight(`Non-Fare Trajectory: Add-on costs (excl. fare) averaged ${fmt(recentNF)} PPPN in your last ${recentN} sailings vs ${fmt(olderNF)} earlier — ${Math.abs(delta).toFixed(0)}% ${delta > 0 ? 'increase' : 'decrease'} in non-cruise spending.`, Math.abs(delta));
       }
     }
   }
@@ -1630,7 +1639,7 @@ function renderOverview(filters) {
       const sAvg = Math.round(suites.reduce((a,s)=>a+s.pppn,0)/suites.length);
       const bAvg = Math.round(balcs.reduce((a,s)=>a+s.pppn,0)/balcs.length);
       const prem = ((sAvg/bAvg)-1)*100;
-      pool.push(`Suite vs Balcony: Suites average ${fmt(sAvg)} PPPN vs ${fmt(bAvg)} for balconies — a ${Math.abs(prem).toFixed(0)}% ${prem>0?'premium':'discount'} across ${suites.length + balcs.length} sailings in this set.`);
+      addInsight(`Suite vs Balcony: Suites average ${fmt(sAvg)} PPPN vs ${fmt(bAvg)} for balconies — a ${Math.abs(prem).toFixed(0)}% ${prem>0?'premium':'discount'} across ${suites.length + balcs.length} sailings in this set.`, Math.abs(prem));
     }
   }
 
@@ -1639,14 +1648,14 @@ function renderOverview(filters) {
     const fareTotal = cats.find(c=>c[0]==='Cruise Fare')?.[1] || 0;
     const nonFareTotal = k.totalSpent - fareTotal;
     const nonFarePct = k.totalSpent ? (nonFareTotal/k.totalSpent*100).toFixed(0) : 0;
-    pool.push(`Spending Mix: Non-fare costs account for ${nonFarePct}% of total — averaging ${fmt(Math.round(nonFareTotal / (k.totalPersonNights||1)))} PPPN on top of the fare.`);
+    addInsight(`Spending Mix: Non-fare costs account for ${nonFarePct}% of total — averaging ${fmt(Math.round(nonFareTotal / (k.totalPersonNights||1)))} PPPN on top of the fare.`, Math.abs(nonFarePct - 50) * 0.6 + 5);
   }
 
   // ── Year-over-year trend ──
   if (yrs.length >= 2) {
     const firstY = yrs[0], lastY = yrs[yrs.length-1];
     const yoyChange = ((lastY.pppn / firstY.pppn) - 1) * 100;
-    pool.push(`Year Trend: PPPN ${yoyChange>0?'increased':'decreased'} ${Math.abs(yoyChange).toFixed(0)}% from ${firstY.year} (${fmt(firstY.pppn)}) to ${lastY.year} (${fmt(lastY.pppn)}).`);
+    addInsight(`Year Trend: PPPN ${yoyChange>0?'increased':'decreased'} ${Math.abs(yoyChange).toFixed(0)}% from ${firstY.year} (${fmt(firstY.pppn)}) to ${lastY.year} (${fmt(lastY.pppn)}).`, Math.abs(yoyChange));
   }
 
   // ── Ship comparison ──
@@ -1658,7 +1667,8 @@ function renderOverview(filters) {
         return {ship, avg: Math.round(ss.reduce((a,s)=>a+s.pppn,0)/ss.length), count: ss.length};
       }).sort((a,b) => a.avg - b.avg);
       const best = shipAvgs[0], worst = shipAvgs[shipAvgs.length-1];
-      pool.push(`Ship Comparison: ${best.ship} averages ${fmt(best.avg)} PPPN (${best.count} sailings) vs ${worst.ship} at ${fmt(worst.avg)} — a ${(((worst.avg/best.avg)-1)*100).toFixed(0)}% spread.`);
+      const shipSpread = ((worst.avg/best.avg)-1)*100;
+      addInsight(`Ship Comparison: ${best.ship} averages ${fmt(best.avg)} PPPN (${best.count} sailings) vs ${worst.ship} at ${fmt(worst.avg)} — a ${shipSpread.toFixed(0)}% spread.`, shipSpread);
     }
   }
 
@@ -1671,7 +1681,8 @@ function renderOverview(filters) {
     const shortAvg = Math.round(short.reduce((a,s)=>a+s.pppn,0)/short.length);
     const longAvg = Math.round(long.reduce((a,s)=>a+s.pppn,0)/long.length);
     if (shortAvg !== longAvg) {
-      pool.push(`Length Effect: Shorter sailings (≤${short[short.length-1].nights} nights) average ${fmt(shortAvg)} PPPN vs ${fmt(longAvg)} for longer ones — ${longAvg < shortAvg ? 'longer trips are more cost-efficient per night' : 'shorter trips cost less per night'}.`);
+      const lenDelta = shortAvg ? Math.abs(longAvg - shortAvg) / shortAvg * 100 : 0;
+      addInsight(`Length Effect: Shorter sailings (≤${short[short.length-1].nights} nights) average ${fmt(shortAvg)} PPPN vs ${fmt(longAvg)} for longer ones — ${longAvg < shortAvg ? 'longer trips are more cost-efficient per night' : 'shorter trips cost less per night'}.`, lenDelta);
     }
   }
 
@@ -1684,7 +1695,8 @@ function renderOverview(filters) {
         return {people: p, avg: Math.round(ss.reduce((a,s)=>a+s.pppn,0)/ss.length), count: ss.length};
       }).sort((a,b) => a.avg - b.avg);
       const cheapest = bySize[0], priciest = bySize[bySize.length-1];
-      pool.push(`Group Size: ${cheapest.people}-person sailings average ${fmt(cheapest.avg)} PPPN vs ${fmt(priciest.avg)} for ${priciest.people}-person trips.`);
+      const sizeDelta = cheapest.avg ? Math.abs(priciest.avg - cheapest.avg) / cheapest.avg * 100 : 0;
+      addInsight(`Group Size: ${cheapest.people}-person sailings average ${fmt(cheapest.avg)} PPPN vs ${fmt(priciest.avg)} for ${priciest.people}-person trips.`, sizeDelta);
     }
   }
 
@@ -1693,7 +1705,7 @@ function renderOverview(filters) {
     const fares = nonOutlier.map(s => s.farePct).sort((a,b) => a-b);
     const lo = fares[0], hi = fares[fares.length-1];
     if (hi - lo > 8) {
-      pool.push(`Add-on Variability: Fare share ranges from ${pct(lo)} to ${pct(hi)} — a ${(hi-lo).toFixed(0)}pp spread, showing some sailings have significantly more non-fare spending.`);
+      addInsight(`Add-on Variability: Fare share ranges from ${pct(lo)} to ${pct(hi)} — a ${(hi-lo).toFixed(0)}pp spread, showing some sailings have significantly more non-fare spending.`, (hi - lo) * 1.5);
     }
   }
 
@@ -1703,7 +1715,7 @@ function renderOverview(filters) {
     const median = pppns[Math.floor(pppns.length/2)];
     const diff = ((k.avgPppn / median) - 1) * 100;
     if (Math.abs(diff) >= 5) {
-      pool.push(`Distribution Skew: Median PPPN is ${fmt(median)} vs ${fmt(k.avgPppn)} average — ${diff > 0 ? 'a few high-cost sailings pull the average up' : 'a few low-cost sailings pull the average down'} by ${Math.abs(diff).toFixed(0)}%.`);
+      addInsight(`Distribution Skew: Median PPPN is ${fmt(median)} vs ${fmt(k.avgPppn)} average — ${diff > 0 ? 'a few high-cost sailings pull the average up' : 'a few low-cost sailings pull the average down'} by ${Math.abs(diff).toFixed(0)}%.`, Math.abs(diff));
     }
   }
 
@@ -1713,33 +1725,33 @@ function renderOverview(filters) {
     const pastAvg = pastSailings.length ? Math.round(pastSailings.reduce((a,s)=>a+s.pppn,0)/pastSailings.length) : 0;
     if (pastAvg && k.upcomingAvgPppn) {
       const delta = ((k.upcomingAvgPppn/pastAvg)-1)*100;
-      pool.push(`Upcoming vs Past: Booked sailings average ${fmt(k.upcomingAvgPppn)} PPPN — ${Math.abs(delta).toFixed(0)}% ${delta>0?'higher':'lower'} than the ${fmt(pastAvg)} historical average.`);
+      addInsight(`Upcoming vs Past: Booked sailings average ${fmt(k.upcomingAvgPppn)} PPPN — ${Math.abs(delta).toFixed(0)}% ${delta>0?'higher':'lower'} than the ${fmt(pastAvg)} historical average.`, Math.abs(delta));
     }
   }
 
   // ── Category concentration ──
   if (cats.length >= 3 && k.totalSpent) {
     const top2 = cats.slice(0,2);
-    const top2Pct = ((top2[0][1]+top2[1][1])/k.totalSpent*100).toFixed(0);
-    pool.push(`Spending Concentration: ${top2[0][0]} and ${top2[1][0]} together represent ${top2Pct}% of all spending — the remaining ${cats.length-2} categories split the other ${100-top2Pct}%.`);
+    const top2Pct = ((top2[0][1]+top2[1][1])/k.totalSpent*100);
+    addInsight(`Spending Concentration: ${top2[0][0]} and ${top2[1][0]} together represent ${top2Pct.toFixed(0)}% of all spending — the remaining ${cats.length-2} categories split the other ${(100-top2Pct).toFixed(0)}%.`, Math.max(0, top2Pct - 45));
   }
 
-  // ── PPPN range / consistency ──
+  // ── PPPN range / consistency (low-priority filler — always available as a fallback) ──
   if (nonOutlier.length >= 2) {
     const pppns = nonOutlier.map(s => s.pppn).sort((a,b) => a-b);
     const range = pppns[pppns.length-1] - pppns[0];
-    const cv = k.avgPppn ? (range/k.avgPppn*100).toFixed(0) : 0;
-    pool.push(`PPPN Range: ${fmt(pppns[0])} to ${fmt(pppns[pppns.length-1])} — a ${fmt(range)} spread, ${cv > 50 ? 'showing wide cost variability' : 'relatively consistent pricing'} across this set.`);
+    const cv = k.avgPppn ? (range/k.avgPppn*100) : 0;
+    addInsight(`PPPN Range: ${fmt(pppns[0])} to ${fmt(pppns[pppns.length-1])} — a ${fmt(range)} spread, ${cv > 50 ? 'showing wide cost variability' : 'relatively consistent pricing'} across this set.`, cv * 0.4 + 3);
   }
 
-  // ── Typical profile ──
+  // ── Typical profile (lowest-priority filler) ──
   if (nonOutlier.length >= 2) {
     const avgNights = (k.totalNights / nonOutlier.length).toFixed(1);
     const avgPeople = (nonOutlier.reduce((a,s)=>a+s.people,0) / nonOutlier.length).toFixed(1);
-    pool.push(`Typical Profile: Average sailing is ${avgNights} nights with ${avgPeople} people across ${nonOutlier.length} sailings.`);
+    addInsight(`Typical Profile: Average sailing is ${avgNights} nights with ${avgPeople} people across ${nonOutlier.length} sailings.`, 1);
   }
 
-  const insights = pool.slice(0, TARGET_COUNT);
+  const insights = pool.sort((a, b) => b.score - a.score).slice(0, TARGET_COUNT).map(i => i.text);
 
   $('#insights').innerHTML = insights.map(t => `<div class="insight"><span class="bullet">▸</span><span>${t}</span></div>`).join('');
 
@@ -2596,7 +2608,7 @@ function renderTable(sel, headers, rows, rowClasses, opts) {
   }
   html += '<thead><tr>' + headers.map(h => `<th><span>${h.replace('Pre-booked', 'Pre&#8209;booked')}</span></th>`).join('') + '</tr></thead><tbody>';
   rows.forEach((row, i) => {
-    const cls = rowClasses && rowClasses[i] ? ` class="${rowClasses[i]}"` : '';
+    const cls = rowClasses && rowClasses[i] ? ` class="${cls}"` : '';
     const explicitBold = opts && opts.boldCols ? opts.boldCols.map(c => c < 0 ? row.length + c : c) : [];
     const autoBold = headers.reduce((acc, h, ci) => { if (h === 'Total') acc.push(ci); return acc; }, []);
     const bold = [...new Set([...explicitBold, ...autoBold])];
