@@ -1,1 +1,2066 @@
-PLACEHOLDER_WILL_REPLACE
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cruise Expense Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #121218;
+  --card: #1e1e2e;
+  --primary: #5b9bd5;
+  --primary-light: #7bb3e0;
+  --accent: #70ad47;
+  --warn: #ffc000;
+  --danger: #ef5350;
+  --text: #e0e0e0;
+  --text-muted: #a0a0a0;
+  --text-light: #707070;
+  --border: #2e2e3e;
+  --shadow: 0 2px 8px rgba(0,0,0,0.4);
+  --radius: 10px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* Navigation */
+.nav {
+  background: #16162a;
+  color: white;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+  border-bottom: 1px solid var(--border);
+}
+.nav h1 { font-size: 18px; padding: 14px 0; white-space: nowrap; }
+.nav-tabs { display: flex; gap: 4px; overflow-x: auto; }
+.nav-tab {
+  padding: 14px 18px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.nav-tab:hover { color: white; background: rgba(255,255,255,0.08); }
+.nav-tab.active { color: white; border-bottom-color: var(--accent); }
+.container { max-width: 1400px; margin: 0 auto; padding: 24px; }
+.page { display: none; }
+.page.active { display: block; }
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.kpi-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  border-top: 3px solid var(--primary);
+}
+.kpi-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 4px; }
+.kpi-value { font-size: 28px; font-weight: 700; color: var(--primary); }
+.kpi-context { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+}
+.card h2 {
+  font-size: 16px;
+  color: var(--primary);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+}
+.chart-container { position: relative; width: 100%; }
+.chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+@media (max-width: 900px) { .chart-row { grid-template-columns: 1fr; } }
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13px;
+}
+th {
+  background: #1a2a3e;
+  color: #ccc;
+  padding: 10px 12px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 12px;
+  vertical-align: bottom;
+}
+th:first-child { text-align: left; border-radius: 6px 0 0 0; }
+th:last-child { border-radius: 0 6px 0 0; }
+td {
+  padding: 8px 12px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+td:first-child { text-align: left; font-weight: 600; }
+tr:hover td { background: #2a2a3e; }
+tr.upcoming td { background: #1a1a28; color: var(--text-muted); }
+tr.outlier td { background: #1a1a22; color: #666; font-style: italic; }
+tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid var(--primary); }
+.cat-trend-table th { white-space: nowrap; }
+.cat-trend-table td:last-child { font-weight: 700; }
+.diagonal-headers th {
+  position: relative;
+  white-space: nowrap;
+  padding: 0;
+  height: 120px;
+  vertical-align: bottom;
+  text-align: left;
+}
+.diagonal-headers th > span {
+  display: block;
+  transform: rotate(-45deg);
+  transform-origin: left bottom;
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  font-size: 11px;
+}
+.diagonal-headers th:first-child { padding: 10px 12px; }
+.diagonal-headers th:first-child > span {
+  transform: none;
+  position: static;
+  font-size: 12px;
+}
+.diagonal-headers td:first-child { white-space: nowrap; }
+.rankings-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+@media (max-width: 768px) { .rankings-row { grid-template-columns: 1fr; } }
+.rank-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.rank-card h3 { font-size: 14px; margin-bottom: 12px; }
+.rank-card.best h3 { color: #2e7d32; }
+.rank-card.worst h3 { color: var(--danger); }
+.rank-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+}
+.rank-item .medal { font-size: 20px; }
+.rank-item .info { flex: 1; }
+.rank-item .sailing-name { font-weight: 600; font-size: 13px; }
+.rank-item .sailing-detail { font-size: 11px; color: var(--text-muted); }
+.rank-item .pppn { font-weight: 700; font-size: 16px; white-space: nowrap; }
+.rank-item.r0 { background: #1a2e1a; }
+.rank-item.r1 { background: #1e2e1e; }
+.rank-item.r2 { background: #222e1e; }
+.rank-item.w0 { background: #2e1a1a; }
+.rank-item.w1 { background: #2e1e1e; }
+.rank-item.w2 { background: #2e2218; }
+.insight {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.insight:nth-child(odd) { background: #282840; }
+.insight:nth-child(even) { background: #282840; }
+.insight .bullet { color: var(--primary); font-weight: 700; font-size: 16px; flex-shrink: 0; }
+.filter-bar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.filter-bar label { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.filter-group { display: flex; align-items: center; gap: 7px; }
+.filter-bar select, .filter-bar input {
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 12px;
+  background: var(--card);
+  color: var(--text);
+}
+.pill-group {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.pill {
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  border-right: 1px solid var(--border);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+  line-height: 1.4;
+}
+.pill:last-child { border-right: none; }
+.pill:hover:not(.active) { background: rgba(255,255,255,0.06); color: var(--text); }
+.pill.active { background: var(--primary); color: #fff; font-weight: 600; }
+@media (min-width: 769px) { .filter-select { display: none !important; } }
+@media (max-width: 768px) { .pill-group { display: none !important; } }
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.tag.suite { background: #1a2a3e; color: #5b9bd5; }
+.tag.balcony { background: #1a2e1e; color: #70ad47; }
+.tag.upcoming { background: #2e2818; color: #ffa040; }
+.tag.outlier { background: #252525; color: #777; }
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+}
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #444;
+  border-radius: 20px;
+  transition: 0.2s;
+}
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background: #aaa;
+  border-radius: 50%;
+  transition: 0.2s;
+}
+.toggle-switch input:checked + .toggle-slider { background: var(--accent); }
+.toggle-switch input:checked + .toggle-slider::before { transform: translateX(16px); background: white; }
+.pc-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.pc-field { display: flex; flex-direction: column; gap: 6px; }
+.pc-field label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+}
+.pc-field select, .pc-field input {
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  font-size: 13px;
+  background: #16162a;
+  color: var(--text);
+  transition: border-color 0.2s;
+}
+.pc-field select:focus, .pc-field input:focus { outline: none; border-color: var(--primary); }
+.pc-run-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 28px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s, transform 0.1s;
+}
+.pc-run-btn:hover { background: var(--primary-light); }
+.pc-run-btn:active { transform: scale(0.97); }
+.pc-verdict {
+  display: none;
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin-bottom: 24px;
+  border-left: 5px solid var(--primary);
+}
+.pc-verdict.show { display: block; }
+.pc-verdict.verdict-great { background: #0d2416; border-left-color: #43a047; }
+.pc-verdict.verdict-good  { background: #1a2408; border-left-color: #8bc34a; }
+.pc-verdict.verdict-fair  { background: #2a2000; border-left-color: var(--warn); }
+.pc-verdict.verdict-high  { background: #2a1010; border-left-color: var(--danger); }
+.pc-verdict.verdict-nodata { background: #1a1a2e; border-left-color: #555; }
+.pc-verdict-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.pc-verdict-emoji { font-size: 28px; }
+.pc-verdict-label { font-size: 20px; font-weight: 700; }
+.pc-verdict-fppn  { font-size: 32px; font-weight: 800; color: var(--primary); }
+.pc-verdict-vs    { font-size: 13px; color: var(--text-muted); }
+.pc-benchmarks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+.pc-bench { background: rgba(255,255,255,0.04); border-radius: 8px; padding: 12px 14px; }
+.pc-bench-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); margin-bottom: 4px; }
+.pc-bench-val   { font-size: 18px; font-weight: 700; color: var(--text); }
+.pc-bench-sub   { font-size: 10px; color: var(--text-light); margin-top: 2px; }
+.pc-bar-wrap { margin: 14px 0 6px; }
+.pc-bar-track { position: relative; height: 10px; background: #2a2a3e; border-radius: 5px; margin: 20px 0 8px; }
+.pc-bar-range { position: absolute; height: 100%; background: rgba(91,155,213,0.35); border-radius: 5px; }
+.pc-bar-avg { position: absolute; width: 3px; height: 20px; top: -5px; background: var(--primary); border-radius: 2px; }
+.pc-bar-pin { position: absolute; width: 14px; height: 14px; top: -2px; border-radius: 50%; transform: translateX(-50%); border: 2px solid #fff; z-index: 2; }
+.pc-bar-labels { display: flex; justify-content: space-between; font-size: 10px; color: var(--text-light); }
+.pc-sailings-note { font-size: 11px; color: var(--text-muted); margin-top: 8px; font-style: italic; }
+.pc-movement { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-left: 12px; }
+.pc-movement.up   { background: #2a1010; color: #ef5350; }
+.pc-movement.down { background: #0d2416; color: #66bb6a; }
+.pc-movement.same { background: #1a1a2e; color: #888; }
+.pc-history-empty { color: var(--text-muted); font-size: 13px; font-style: italic; padding: 16px 0; }
+.pc-hist-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto auto auto;
+  align-items: center;
+  gap: 10px 16px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  background: #1a1a28;
+  font-size: 13px;
+}
+.pc-hist-row:hover { background: #1e1e32; }
+.pc-hist-name { font-weight: 700; color: var(--text); }
+.pc-hist-meta { font-size: 11px; color: var(--text-muted); grid-column: 1; }
+.pc-hist-fppn { font-weight: 700; font-size: 15px; color: var(--primary); }
+.pc-hist-verdict { font-size: 11px; }
+.pc-hist-date { font-size: 10px; color: var(--text-light); }
+.pc-hist-del { background: none; border: none; color: #555; cursor: pointer; font-size: 16px; padding: 0 4px; line-height: 1; transition: color 0.15s; }
+.pc-hist-del:hover { color: var(--danger); }
+.pc-hist-move { font-size: 11px; font-weight: 700; }
+.pc-hist-move.up   { color: #ef5350; }
+.pc-hist-move.down { color: #66bb6a; }
+.pc-hist-move.same { color: #888; }
+.pc-clear-btn { background: none; border: 1px solid #444; color: var(--text-muted); padding: 5px 14px; border-radius: 6px; font-size: 12px; cursor: pointer; transition: all 0.15s; }
+.pc-clear-btn:hover { border-color: var(--danger); color: var(--danger); }
+.bt-card { background: var(--card); border-radius: var(--radius); padding: 0; box-shadow: var(--shadow); margin-bottom: 16px; border-left: 5px solid var(--primary); overflow: hidden; }
+.bt-card-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 18px 20px; cursor: pointer; user-select: none; transition: background 0.15s; }
+.bt-card-header:hover { background: rgba(255,255,255,0.04); }
+.bt-card-chevron { font-size: 16px; color: var(--text-muted); transition: transform 0.2s; flex-shrink: 0; margin-right: 4px; }
+.bt-card.open .bt-card-chevron { transform: rotate(90deg); }
+.bt-card-title-wrap { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
+.bt-card-title { font-size: 17px; font-weight: 700; color: var(--text); }
+.bt-card-meta { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.bt-totals { display: flex; gap: 24px; flex-wrap: wrap; text-align: right; align-items: center; }
+.bt-total-block { display: flex; flex-direction: column; gap: 2px; }
+.bt-total-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); }
+.bt-total-val { font-size: 20px; font-weight: 700; }
+.bt-total-val.paid    { color: #66bb6a; }
+.bt-total-val.fore    { color: var(--warn); }
+.bt-total-val.total   { color: var(--primary); }
+.bt-card-body { display: none; padding: 0 20px 20px; border-top: 1px solid var(--border); }
+.bt-card.open .bt-card-body { display: block; }
+.bt-progress-wrap { margin: 16px 0 20px; }
+.bt-progress-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-bottom: 5px; }
+.bt-progress-track { height: 12px; background: #2a2a3e; border-radius: 6px; overflow: hidden; }
+.bt-progress-fill { height: 100%; border-radius: 6px; transition: width 0.4s ease; background: linear-gradient(90deg, #43a047, #66bb6a); }
+.bt-progress-fill.full { background: linear-gradient(90deg, #43a047, #2e7d32); }
+.bt-cat-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 16px; }
+.bt-cat-table th { background: #16162a; color: var(--text-muted); padding: 7px 10px; text-align: right; font-size: 11px; font-weight: 600; }
+.bt-cat-table th:first-child { text-align: left; }
+.bt-cat-table td { padding: 6px 10px; border-bottom: 1px solid var(--border); text-align: right; white-space: nowrap; }
+.bt-cat-table td:first-child { text-align: left; font-weight: 600; color: var(--text); }
+.bt-cat-table tr:last-child td { border-bottom: none; font-weight: 700; background: #16162a; }
+.bt-cat-table .paid-cell  { color: #66bb6a; }
+.bt-cat-table .fore-cell  { color: var(--warn); }
+.bt-cat-table .total-cell { color: var(--text); }
+.bt-toggle-btn { background: none; border: 1px solid var(--border); color: var(--text-muted); padding: 5px 14px; border-radius: 6px; font-size: 11px; cursor: pointer; transition: all 0.15s; margin-bottom: 12px; }
+.bt-toggle-btn:hover { border-color: var(--primary); color: var(--primary); }
+.bt-line-items { display: none; }
+.bt-line-items.open { display: block; }
+.bt-line-item { display: grid; grid-template-columns: 1fr auto auto auto; align-items: center; gap: 8px 14px; padding: 7px 10px; border-radius: 6px; margin-bottom: 3px; font-size: 12px; }
+.bt-line-item:nth-child(odd) { background: #1a1a28; }
+.bt-line-item:nth-child(even) { background: #1e1e2e; }
+.bt-line-item .li-name { color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bt-line-item .li-cat  { font-size: 10px; color: var(--text-muted); }
+.bt-line-item .li-date { font-size: 10px; color: var(--text-light); white-space: nowrap; }
+.bt-line-item .li-amt  { font-weight: 700; white-space: nowrap; }
+.bt-line-item .li-badge { font-size: 9px; font-weight: 700; text-transform: uppercase; padding: 2px 7px; border-radius: 10px; white-space: nowrap; }
+.li-badge.paid { background: #1a3a1e; color: #66bb6a; }
+.li-badge.forecasted { background: #3a2e00; color: #ffc000; }
+.bt-empty { color: var(--text-muted); font-style: italic; font-size: 13px; padding: 20px 0; }
+.nav-mobile-label { display: none; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; }
+.nav-hamburger { display: none; background: none; border: none; color: white; font-size: 20px; cursor: pointer; padding: 4px 8px; line-height: 1; border-radius: 6px; transition: background 0.15s; }
+.nav-hamburger:hover { background: rgba(255,255,255,0.1); }
+.mobile-nav-menu { display: none; width: 100%; order: 10; background: #16162a; border-top: 1px solid var(--border); }
+.mobile-nav-menu.open { display: block; }
+.mobile-nav-item { padding: 13px 20px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.7); border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.15s, color 0.15s; }
+.mobile-nav-item:last-child { border-bottom: none; }
+.mobile-nav-item:hover { background: rgba(255,255,255,0.06); color: white; }
+.mobile-nav-item.active { color: white; background: rgba(91,155,213,0.15); border-left: 3px solid var(--accent); padding-left: 17px; }
+@media (max-width: 768px) {
+  .nav { flex-wrap: wrap; padding: 0 16px; gap: 0; }
+  .nav h1 { flex: 1; padding: 10px 0; font-size: 15px; }
+  .nav-tabs { display: none; }
+  .nav-mobile-label { display: block; align-self: center; margin-right: 4px; }
+  .nav-hamburger { display: inline-flex; align-items: center; justify-content: center; align-self: center; }
+  .container { padding: 12px; }
+  .chart-row { grid-template-columns: 1fr !important; gap: 12px; }
+  .kpi-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .kpi-value { font-size: 22px; }
+  .kpi-card { padding: 14px 12px; }
+  .card { padding: 16px; }
+  .card table, .bt-card-body table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; width: max-content; max-width: 100%; }
+  .pc-verdict-fppn { font-size: 22px; }
+  .pc-verdict-label { font-size: 16px; }
+  .pc-verdict { padding: 16px; }
+  .pc-hist-row { grid-template-columns: 1fr auto; grid-template-rows: auto auto; gap: 4px 8px; padding: 10px 12px; }
+  .pc-hist-name  { grid-column: 1; grid-row: 1; }
+  .pc-hist-fppn  { grid-column: 2; grid-row: 1; font-size: 13px; }
+  .pc-hist-meta  { grid-column: 1; grid-row: 2; }
+  .pc-hist-del   { grid-column: 2; grid-row: 2; align-self: end; }
+  .pc-hist-verdict, .pc-hist-date, .pc-hist-move { display: none; }
+  .bt-card-title { font-size: 14px; }
+  .bt-card-meta  { font-size: 11px; }
+  .bt-totals { gap: 12px; }
+  .bt-total-val { font-size: 16px; }
+  .bt-line-item { grid-template-columns: 1fr auto; grid-template-rows: auto auto; gap: 2px 8px; }
+  .li-name  { grid-column: 1; grid-row: 1; }
+  .li-amt   { grid-column: 2; grid-row: 1; }
+  .li-cat   { grid-column: 1; grid-row: 2; }
+  .li-badge { grid-column: 2; grid-row: 2; justify-self: end; }
+  .li-date  { display: none; }
+  .rank-item .pppn { font-size: 14px; }
+  .filter-bar { gap: 8px; }
+  .filter-bar select, .filter-bar input { font-size: 13px; }
+}
+@media (min-width: 641px) and (max-width: 768px) {
+  .chart-row { grid-template-columns: 1fr 1fr !important; }
+}
+</style>
+</head>
+<body>
+<div class="nav">
+  <h1>Cruise Expenses</h1>
+  <div class="nav-tabs">
+    <div class="nav-tab active" data-page="overview">Overview</div>
+    <div class="nav-tab" data-page="pppn">PPPN Trend</div>
+    <div class="nav-tab" data-page="categories">Categories</div>
+    <div class="nav-tab" data-page="yoy">Year over Year</div>
+    <div class="nav-tab" data-page="fare">Fare Analysis</div>
+    <div class="nav-tab" data-page="funding">Funding</div>
+    <div class="nav-tab" data-page="table">All Sailings</div>
+    <div class="nav-tab" data-page="pricecheck">Value Check</div>
+    <div class="nav-tab" data-page="budget">Budget Tracker</div>
+  </div>
+  <span class="nav-mobile-label" id="nav-mobile-label">Overview</span>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation">&#9776;</button>
+  <div class="mobile-nav-menu" id="mobile-nav-menu">
+    <div class="mobile-nav-item active" data-page="overview">Overview</div>
+    <div class="mobile-nav-item" data-page="pppn">PPPN Trend</div>
+    <div class="mobile-nav-item" data-page="categories">Categories</div>
+    <div class="mobile-nav-item" data-page="yoy">Year over Year</div>
+    <div class="mobile-nav-item" data-page="fare">Fare Analysis</div>
+    <div class="mobile-nav-item" data-page="funding">Funding</div>
+    <div class="mobile-nav-item" data-page="table">All Sailings</div>
+    <div class="mobile-nav-item" data-page="pricecheck">Value Check</div>
+    <div class="mobile-nav-item" data-page="budget">Budget Tracker</div>
+  </div>
+  <div style="margin-left:auto;display:flex;align-items:center;gap:8px;white-space:nowrap">
+    <label class="toggle-switch" for="privacy-toggle">
+      <input type="checkbox" id="privacy-toggle" checked>
+      <span class="toggle-slider"></span>
+    </label>
+  </div>
+</div>
+<div class="container">
+<div id="overview" class="page active">
+  <div class="filter-bar">
+  <div class="filter-group">
+    <label>Era:</label>
+    <div class="pill-group" data-dim="era">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="era1">Post-Covid</button>
+      <button class="pill" data-value="era2">Normalized</button>
+    </div>
+    <select class="filter-era filter-select">
+      <option value="all">All</option>
+      <option value="era1">Post-Covid</option>
+      <option value="era2">Normalized</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label>Time:</label>
+    <div class="pill-group" data-dim="time">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="past">Past</button>
+      <button class="pill" data-value="upcoming">Upcoming</button>
+    </div>
+    <select class="filter-time filter-select">
+      <option value="all">All</option>
+      <option value="past">Past</option>
+      <option value="upcoming">Upcoming</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label>Cabin:</label>
+    <div class="pill-group" data-dim="cabin">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="balcony">Balcony</button>
+      <button class="pill" data-value="suite">Suite</button>
+    </div>
+    <select class="filter-cabin filter-select">
+      <option value="all">All</option>
+      <option value="balcony">Balcony</option>
+      <option value="suite">Suite</option>
+    </select>
+  </div>
+</div>
+  <div class="kpi-grid" id="kpi-grid"></div>
+  <div class="rankings-row">
+    <div class="rank-card best"><h3>Best Value Sailings (Lowest PPPN)</h3><div id="best-rank"></div></div>
+    <div class="rank-card worst"><h3>Highest Cost Sailings (Highest PPPN)</h3><div id="worst-rank"></div></div>
+  </div>
+  <div class="chart-row" style="grid-template-columns:3fr 2fr;align-items:stretch">
+    <div class="card" style="margin-bottom:0;display:flex;flex-direction:column"><h2>PPPN by Sailing</h2><div class="chart-container" style="flex:1;min-height:0"><canvas id="overview-pppn"></canvas></div></div>
+    <div class="card" style="margin-bottom:0"><h2>Key Insights</h2><div id="insights"></div></div>
+  </div>
+  <div class="chart-row" style="align-items:stretch">
+    <div class="card"><h2>Year-by-Year Summary</h2>
+      <div class="chart-container" style="height:280px"><canvas id="overview-yoy"></canvas></div>
+      <table id="overview-yoy-table" style="margin-top:16px"></table>
+    </div>
+    <div class="card"><h2>Spending Breakdown</h2>
+      <div class="chart-container" style="height:280px;display:flex;justify-content:center;align-items:center"><canvas id="overview-pie"></canvas></div>
+      <table id="overview-cat-table" style="margin-top:16px"></table>
+    </div>
+  </div>
+</div>
+<div id="pppn" class="page">
+  <div class="filter-bar">
+  <div class="filter-group">
+    <label>Era:</label>
+    <div class="pill-group" data-dim="era">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="era1">Post-Covid</button>
+      <button class="pill" data-value="era2">Normalized</button>
+    </div>
+    <select class="filter-era filter-select">
+      <option value="all">All</option>
+      <option value="era1">Post-Covid</option>
+      <option value="era2">Normalized</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label>Time:</label>
+    <div class="pill-group" data-dim="time">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="past">Past</button>
+      <button class="pill" data-value="upcoming">Upcoming</button>
+    </div>
+    <select class="filter-time filter-select">
+      <option value="all">All</option>
+      <option value="past">Past</option>
+      <option value="upcoming">Upcoming</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label>Cabin:</label>
+    <div class="pill-group" data-dim="cabin">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="balcony">Balcony</button>
+      <button class="pill" data-value="suite">Suite</button>
+    </div>
+    <select class="filter-cabin filter-select">
+      <option value="all">All</option>
+      <option value="balcony">Balcony</option>
+      <option value="suite">Suite</option>
+    </select>
+  </div>
+</div>
+  <div class="card">
+    <h2>Cost per Person per Night - All Sailings</h2>
+    <div class="chart-container" style="height:400px"><canvas id="pppn-chart"></canvas></div>
+  </div>
+  <div class="card"><h2>PPPN Detail Table</h2><div style="overflow-x:auto"><table id="pppn-table"></table></div></div>
+</div>
+<div id="categories" class="page">
+  <div class="filter-bar">
+  <div class="filter-group">
+    <label>Era:</label>
+    <div class="pill-group" data-dim="era">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="era1">Post-Covid</button>
+      <button class="pill" data-value="era2">Normalized</button>
+    </div>
+    <select class="filter-era filter-select">
+      <option value="all">All</option>
+      <option value="era1">Post-Covid</option>
+      <option value="era2">Normalized</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label>Time:</label>
+    <div class="pill-group" data-dim="time">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="past">Past</button>
+      <button class="pill" data-value="upcoming">Upcoming</button>
+    </div>
+    <select class="filter-time filter-select">
+      <option value="all">All</option>
+      <option value="past">Past</option>
+      <option value="upcoming">Upcoming</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label>Cabin:</label>
+    <div class="pill-group" data-dim="cabin">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="balcony">Balcony</button>
+      <button class="pill" data-value="suite">Suite</button>
+    </div>
+    <select class="filter-cabin filter-select">
+      <option value="all">All</option>
+      <option value="balcony">Balcony</option>
+      <option value="suite">Suite</option>
+    </select>
+  </div>
+</div>
+  <div class="chart-row">
+    <div class="card"><h2>Category % of Total by Sailing</h2><div class="chart-container" style="height:400px"><canvas id="cat-stacked"></canvas></div></div>
+    <div class="card"><h2>Category Dollar Amounts</h2><div class="chart-container" style="height:400px"><canvas id="cat-dollars"></canvas></div></div>
+  </div>
+  <div class="card"><h2>Category Trend Table</h2><div style="overflow-x:auto"><table id="cat-table" class="cat-trend-table"></table></div></div>
+</div>
+<div id="yoy" class="page">
+  <div class="filter-bar">
+  <div class="filter-group">
+    <label>Era:</label>
+    <div class="pill-group" data-dim="era">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="era1">Post-Covid</button>
+      <button class="pill" data-value="era2">Normalized</button>
+    </div>
+    <select class="filter-era filter-select">
+      <option value="all">All</option>
+      <option value="era1">Post-Covid</option>
+      <option value="era2">Normalized</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label>Time:</label>
+    <div class="pill-group" data-dim="time">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="past">Past</button>
+      <button class="pill" data-value="upcoming">Upcoming</button>
+    </div>
+    <select class="filter-time filter-select">
+      <option value="all">All</option>
+      <option value="past">Past</option>
+      <option value="upcoming">Upcoming</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label>Cabin:</label>
+    <div class="pill-group" data-dim="cabin">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="balcony">Balcony</button>
+      <button class="pill" data-value="suite">Suite</button>
+    </div>
+    <select class="filter-cabin filter-select">
+      <option value="all">All</option>
+      <option value="balcony">Balcony</option>
+      <option value="suite">Suite</option>
+    </select>
+  </div>
+</div>
+  <div class="chart-row">
+    <div class="card"><h2>Total Spend by Year</h2><div class="chart-container" style="height:350px"><canvas id="yoy-spend"></canvas></div></div>
+    <div class="card"><h2>Average PPPN by Year</h2><div class="chart-container" style="height:350px"><canvas id="yoy-pppn"></canvas></div></div>
+  </div>
+  <div class="card"><h2>Year Over Year Detail</h2><table id="yoy-table"></table></div>
+</div>
+<div id="fare" class="page">
+  <div class="filter-bar">
+  <div class="filter-group">
+    <label>Era:</label>
+    <div class="pill-group" data-dim="era">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="era1">Post-Covid</button>
+      <button class="pill" data-value="era2">Normalized</button>
+    </div>
+    <select class="filter-era filter-select">
+      <option value="all">All</option>
+      <option value="era1">Post-Covid</option>
+      <option value="era2">Normalized</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label>Time:</label>
+    <div class="pill-group" data-dim="time">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="past">Past</button>
+      <button class="pill" data-value="upcoming">Upcoming</button>
+    </div>
+    <select class="filter-time filter-select">
+      <option value="all">All</option>
+      <option value="past">Past</option>
+      <option value="upcoming">Upcoming</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label>Cabin:</label>
+    <div class="pill-group" data-dim="cabin">
+      <button class="pill active" data-value="all">All</button>
+      <button class="pill" data-value="balcony">Balcony</button>
+      <button class="pill" data-value="suite">Suite</button>
+    </div>
+    <select class="filter-cabin filter-select">
+      <option value="all">All</option>
+      <option value="balcony">Balcony</option>
+      <option value="suite">Suite</option>
+    </select>
+  </div>
+</div>
+  <div class="chart-row">
+    <div class="card"><h2>Fare per Person per Night</h2><div class="chart-container" style="height:400px"><canvas id="fare-chart"></canvas></div></div>
+    <div class="card"><h2>Suite vs Balcony Fare PPPN</h2><div class="chart-container" style="height:400px"><canvas id="suite-vs-balcony"></canvas></div></div>
+  </div>
+  <div class="card"><h2>Fare Detail Table</h2><div style="overflow-x:auto"><table id="fare-table"></table></div></div>
+</div>
+<div id="funding" class="page">
+  <div class="chart-row" style="align-items:stretch">
+    <div class="card" style="display:flex;flex-direction:column"><h2>Cash Flow Over Time</h2><div class="chart-container" style="flex:1;min-height:0"><canvas id="funding-chart"></canvas></div></div>
+    <div class="card"><h2>Funding Detail</h2><table id="funding-table"></table></div>
+  </div>
+</div>
+<div id="table" class="page">
+  <div class="card">
+    <h2>All Sailings</h2>
+    <div class="filter-bar">
+      <div class="filter-group">
+        <label>Era:</label>
+        <div class="pill-group" data-dim="era">
+          <button class="pill active" data-value="all">All</button>
+          <button class="pill" data-value="era1">Post-Covid</button>
+          <button class="pill" data-value="era2">Normalized</button>
+        </div>
+        <select class="filter-era filter-select">
+          <option value="all">All</option>
+          <option value="era1">Post-Covid</option>
+          <option value="era2">Normalized</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Time:</label>
+        <div class="pill-group" data-dim="time">
+          <button class="pill active" data-value="all">All</button>
+          <button class="pill" data-value="past">Past</button>
+          <button class="pill" data-value="upcoming">Upcoming</button>
+        </div>
+        <select class="filter-time filter-select">
+          <option value="all">All</option>
+          <option value="past">Past</option>
+          <option value="upcoming">Upcoming</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Cabin:</label>
+        <div class="pill-group" data-dim="cabin">
+          <button class="pill active" data-value="all">All</button>
+          <button class="pill" data-value="balcony">Balcony</button>
+          <button class="pill" data-value="suite">Suite</button>
+        </div>
+        <select class="filter-cabin filter-select">
+          <option value="all">All</option>
+          <option value="balcony">Balcony</option>
+          <option value="suite">Suite</option>
+        </select>
+      </div>
+    </div>
+    <div style="overflow-x:auto"><table id="full-table"></table></div>
+  </div>
+</div>
+<div id="pricecheck" class="page">
+  <div class="card">
+    <h2>Value Check - Is This Fare a Good Deal?</h2>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px">
+      Enter a cruise you're considering and see how the fare stacks up against your historical FPPN benchmarks by ship and room type.
+    </p>
+    <div class="pc-form-grid">
+      <div class="pc-field">
+        <label>Sailing Name / Nickname</label>
+        <input type="text" id="pc-sailing-name" placeholder="e.g. Summer 2027 on Icon" />
+      </div>
+      <div class="pc-field">
+        <label>Sail Date (Month / Year)</label>
+        <input type="month" id="pc-sail-date" />
+      </div>
+      <div class="pc-field">
+        <label>Ship</label>
+        <select id="pc-ship"><option value="">- select ship -</option></select>
+      </div>
+      <div class="pc-field">
+        <label>Room Type</label>
+        <select id="pc-room-type"><option value="">- select type -</option></select>
+      </div>
+      <div class="pc-field">
+        <label>Room Sub-Type</label>
+        <select id="pc-room-subtype"><option value="">- select sub-type -</option></select>
+      </div>
+      <div class="pc-field">
+        <label>Nights</label>
+        <input type="number" id="pc-nights" min="1" max="30" placeholder="7" />
+      </div>
+      <div class="pc-field">
+        <label>People</label>
+        <input type="number" id="pc-people" min="1" max="12" placeholder="4" />
+      </div>
+      <div class="pc-field">
+        <label>Total Cruise Fare ($)</label>
+        <input type="number" id="pc-fare" min="0" placeholder="e.g. 8500" />
+      </div>
+    </div>
+    <button class="pc-run-btn" id="pc-run-btn">Check This Price</button>
+  </div>
+  <div class="pc-verdict card" id="pc-verdict"></div>
+  <div class="card">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <h2 style="margin:0;border:none;padding:0">Value Check History</h2>
+      <button class="pc-clear-btn" id="pc-clear-btn">Clear All</button>
+    </div>
+    <div id="pc-history-list"></div>
+  </div>
+</div>
+<div id="budget" class="page">
+  <div class="kpi-grid" id="bt-kpi-grid"></div>
+  <div id="bt-cards"></div>
+</div>
+</div>
+<script>
+Chart.defaults.color = '#b0b0b0';
+Chart.defaults.borderColor = '#2e2e3e';
+Chart.defaults.plugins.legend.labels.color = '#b0b0b0';
+let DATA = {};
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+let privacyMode = true;
+const fmt = n => privacyMode ? '$***' : '$' + n.toLocaleString();
+const pct = n => n.toFixed(1) + '%';
+const tickFmt = v => privacyMode ? '$***' : '$' + v.toLocaleString();
+const tickFmtShort = v => privacyMode ? '$***' : '$' + v;
+const PIE_COLORS = ['#2e75b6','#70ad47','#ffc000','#c00000','#7030a0','#00b0f0','#ff6600','#808080'];
+const BAR_BLUE = '#2e75b6';
+const BAR_GREEN = '#70ad47';
+const BAR_ORANGE = '#ff9800';
+const BAR_RED = '#ef5350';
+function shortName(s) {
+  return s.replace('Cruise ','').replace('Vacation ','Vac ').replace('Vacay ','Vac ')
+    .replace('Christmas ','Xmas ').replace('Thanksgiving ','Thx ')
+    .replace('Spring Break ','SB ').replace('Summer ','Sum ')
+    .replace('Winter ','Win ').replace('on Icon ','Icon ')
+    .replace('Beach Club ','BC ').replace('Sabbatical ','Sab ');
+}
+let currentFilters = { era: 'all', time: 'all', cabin: 'all' };
+const ERA1 = new Set(['Spring Break 2022','Summer 2022','Work From Ship 2022',"Ashley's Birthday 2022",'Winter 2022','ShePack Cruise 2023','Spring Break 2023','Spring Break 2024']);
+const ERA2 = new Set(['Christmas Vacation 2023','Diamond Cruise 2024','Summer on Icon 2024','Winter Vacay 2024','Spring Break 2025','Summer Vacay 2025','Sabbatical 2025','Thanksgiving 2025','Winter Vacay 2025','Beach Club 2026','Spring Break 2026','Summer B2B 2026','Thanksgiving 2026','Winter NYE 2026','Spring Break 2027','Summer 2027']);
+function filterSailings(filters) {
+  if (!filters) filters = currentFilters;
+  let sailings = DATA.sailings;
+  if (filters.era === 'era1') sailings = sailings.filter(s => ERA1.has(s.name));
+  else if (filters.era === 'era2') sailings = sailings.filter(s => ERA2.has(s.name));
+  if (filters.time === 'past') sailings = sailings.filter(s => s.isPast);
+  else if (filters.time === 'upcoming') sailings = sailings.filter(s => s.isUpcoming);
+  if (filters.cabin === 'suite') sailings = sailings.filter(s => s.roomType === 'Suite');
+  else if (filters.cabin === 'balcony') sailings = sailings.filter(s => s.roomType === 'Balcony');
+  return sailings;
+}
+function computeKPI(sailings) {
+  const past = sailings.filter(s => s.isPast && !s.isOutlier);
+  const upcoming = sailings.filter(s => s.isUpcoming);
+  const all = sailings.filter(s => !s.isOutlier);
+  const totalSpent = all.reduce((a,s) => a+s.total, 0);
+  const totalNights = all.reduce((a,s) => a+s.nights, 0);
+  const totalPN = all.reduce((a,s) => a+s.nights*s.people, 0);
+  const totalFare = all.reduce((a,s) => a+s.fare, 0);
+  return {
+    totalSpent, pastCount: all.length,
+    avgPppn: totalPN ? Math.round(totalSpent/totalPN) : 0,
+    avgFppn: totalPN ? Math.round(totalFare/totalPN) : 0,
+    farePct: totalSpent ? (totalFare/totalSpent*100).toFixed(0) : '0',
+    totalNights, totalPersonNights: totalPN,
+    avgPerSailing: all.length ? Math.round(totalSpent/all.length) : 0,
+    upcomingSpend: upcoming.reduce((a,s) => a+s.total, 0),
+    upcomingCount: upcoming.length,
+    upcomingAvgPppn: (() => { const pn = upcoming.reduce((a,s) => a+s.nights*s.people, 0); return pn ? Math.round(upcoming.reduce((a,s) => a+s.total,0)/pn) : 0; })(),
+    actualSpent: past.reduce((a,s) => a+s.total, 0),
+    actualCount: past.length,
+  };
+}
+function computeYears(sailings) {
+  sailings = sailings.filter(s => !s.isOutlier);
+  const byYear = {};
+  sailings.forEach(s => {
+    const y = s.month.split(' ').pop();
+    if (!byYear[y]) byYear[y] = {year:y, sailings:0, nights:0, personNights:0, total:0, fare:0};
+    byYear[y].sailings++;
+    byYear[y].nights += s.nights;
+    byYear[y].personNights += s.nights * s.people;
+    byYear[y].total += s.total;
+    byYear[y].fare += s.fare;
+  });
+  return Object.values(byYear).sort((a,b) => a.year-b.year).map(y => ({
+    ...y,
+    pppn: y.personNights ? Math.round(y.total/y.personNights) : 0,
+    farePct: y.total ? (y.fare/y.total*100) : 0,
+    avgPerSailing: y.sailings ? Math.round(y.total/y.sailings) : 0,
+  }));
+}
+function computeCategoryTotals(sailings) {
+  sailings = sailings.filter(s => !s.isOutlier);
+  const totals = {};
+  sailings.forEach(s => {
+    Object.entries(s.categories).forEach(([cat, amt]) => {
+      totals[cat] = (totals[cat] || 0) + amt;
+    });
+  });
+  return totals;
+}
+function onFilterChange(dim, value) {
+  currentFilters[dim] = value;
+  $$(`.filter-${dim}`).forEach(s => s.value = value);
+  $$(`.pill-group[data-dim="${dim}"] .pill`).forEach(p => p.classList.toggle('active', p.dataset.value === value));
+  renderOverview(currentFilters);
+  renderPPPN(currentFilters);
+  renderCategories(currentFilters);
+  renderYoY(currentFilters);
+  renderFare(currentFilters);
+  renderFullTable(currentFilters);
+}
+$$('.filter-era').forEach(sel => sel.addEventListener('change', e => onFilterChange('era', e.target.value)));
+$$('.filter-time').forEach(sel => sel.addEventListener('change', e => onFilterChange('time', e.target.value)));
+$$('.filter-cabin').forEach(sel => sel.addEventListener('change', e => onFilterChange('cabin', e.target.value)));
+$$('.pill').forEach(btn => btn.addEventListener('click', () => onFilterChange(btn.closest('.pill-group').dataset.dim, btn.dataset.value)));
+function switchPage(page, label) {
+  $$('.nav-tab').forEach(t => t.classList.remove('active'));
+  $$('.mobile-nav-item').forEach(t => t.classList.remove('active'));
+  $$('.page').forEach(p => p.classList.remove('active'));
+  const desktopTab = $(`.nav-tab[data-page="${page}"]`);
+  const mobileItem = $(`.mobile-nav-item[data-page="${page}"]`);
+  if (desktopTab) desktopTab.classList.add('active');
+  if (mobileItem) mobileItem.classList.add('active');
+  $(`#${page}`).classList.add('active');
+  $('#nav-mobile-label').textContent = label;
+  $('#mobile-nav-menu').classList.remove('open');
+  $('#nav-hamburger').setAttribute('aria-label', 'Open navigation');
+}
+$$('.nav-tab').forEach(tab => { tab.addEventListener('click', () => switchPage(tab.dataset.page, tab.textContent)); });
+$$('.mobile-nav-item').forEach(item => { item.addEventListener('click', () => switchPage(item.dataset.page, item.textContent)); });
+$('#nav-hamburger').addEventListener('click', e => {
+  e.stopPropagation();
+  const menu = $('#mobile-nav-menu');
+  const isOpen = menu.classList.toggle('open');
+  $('#nav-hamburger').setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+});
+document.addEventListener('click', e => { if (!e.target.closest('.nav')) { $('#mobile-nav-menu').classList.remove('open'); } });
+function renderAll() {
+  renderOverview(currentFilters);
+  renderPPPN(currentFilters);
+  renderCategories(currentFilters);
+  renderYoY(currentFilters);
+  renderFare(currentFilters);
+  renderFunding();
+  renderFullTable(currentFilters);
+  renderPriceCheck();
+  renderBudgetTracker();
+}
+$('#privacy-toggle').addEventListener('change', e => { privacyMode = e.target.checked; renderAll(); });
+fetch('data.json').then(r => r.json()).then(data => { DATA = data; renderAll(); });
+let overviewPppnChart, overviewPieChart, overviewYoyChart;
+function renderOverview(filters) {
+  const sailings = filterSailings(filters);
+  const k = computeKPI(sailings);
+  const kpis = [
+    {label:'Total Spent', value: fmt(k.totalSpent), ctx: `${k.pastCount} sailings`},
+    {label:'Avg PPPN', value: fmt(k.avgPppn), ctx: 'cost per person per night'},
+    {label:'Avg Fare PPPN', value: fmt(k.avgFppn), ctx: `${k.farePct}% of total spend`},
+    {label:'Total Nights', value: k.totalNights, ctx: `${k.totalPersonNights} person-nights`},
+    {label:'Avg per Sailing', value: fmt(k.avgPerSailing), ctx: 'all-in cost'},
+    {label:'Upcoming Est.', value: fmt(k.upcomingSpend), ctx: `${k.upcomingCount} sailings booked`},
+  ];
+  $('#kpi-grid').innerHTML = kpis.map(k => `
+    <div class="kpi-card">
+      <div class="kpi-label">${k.label}</div>
+      <div class="kpi-value">${k.value}</div>
+      <div class="kpi-context">${k.ctx}</div>
+    </div>`).join('');
+  const ranked = sailings.filter(s => !s.isOutlier).sort((a,b) => a.pppn - b.pppn);
+  const bestValue = ranked.slice(0,3);
+  const worstValue = ranked.slice(-3).reverse();
+  const medals = ['1','2','3'];
+  $('#best-rank').innerHTML = bestValue.map((s,i) => `
+    <div class="rank-item r${i}">
+      <span class="medal">${medals[i]}</span>
+      <div class="info"><div class="sailing-name">${s.name}</div><div class="sailing-detail">${s.ship} - ${s.roomSubtype}</div></div>
+      <div class="pppn" style="color:#66bb6a">${fmt(s.pppn)}</div>
+    </div>`).join('');
+  $('#worst-rank').innerHTML = worstValue.map((s,i) => `
+    <div class="rank-item w${i}">
+      <div class="info"><div class="sailing-name">${s.name}</div><div class="sailing-detail">${s.ship} - ${s.roomSubtype}</div></div>
+      <div class="pppn" style="color:var(--danger)">${fmt(s.pppn)}</div>
+    </div>`).join('');
+  if (overviewPppnChart) overviewPppnChart.destroy();
+  overviewPppnChart = new Chart($('#overview-pppn'), {
+    type: 'bar',
+    data: {
+      labels: sailings.map(s => shortName(s.name)),
+      datasets: [
+        {label:'Total PPPN', data: sailings.map(s => s.pppn), backgroundColor: sailings.map(s => s.isOutlier ? '#ccc' : s.isUpcoming ? BAR_ORANGE : BAR_BLUE)},
+        {label:'Fare PPPN', data: sailings.map(s => s.fppn), backgroundColor: sailings.map(s => s.isOutlier ? '#ddd' : s.isUpcoming ? '#ffcc80' : BAR_GREEN)},
+      ]
+    },
+    options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom'}}, scales:{x:{ticks:{maxRotation:45,font:{size:10}}},y:{ticks:{callback:tickFmtShort}}}}
+  });
+  const catTotals = computeCategoryTotals(sailings);
+  const cats = Object.entries(catTotals).sort((a,b) => b[1]-a[1]);
+  if (overviewPieChart) overviewPieChart.destroy();
+  overviewPieChart = new Chart($('#overview-pie'), {
+    type: 'doughnut',
+    data: { labels: cats.map(c => c[0]), datasets: [{data: cats.map(c => c[1]), backgroundColor: PIE_COLORS, borderWidth: 0}] },
+    options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:14,borderRadius:0,useBorderRadius:false,usePointStyle:true,pointStyle:'rectRounded'}}}}
+  });
+  const nonOutlier = sailings.filter(s => !s.isOutlier);
+  const yrs = computeYears(sailings);
+  const TARGET_COUNT = 10;
+  const isUpcomingOnly = filters.time === 'upcoming';
+  const isSuiteOnly = filters.cabin === 'suite';
+  const isBalconyOnly = filters.cabin === 'balcony';
+  const pool = [];
+  const addInsight = (text, score) => pool.push({text, score});
+  {
+    const pastNO = nonOutlier.filter(s => s.isPast);
+    const recentN = Math.min(4, Math.floor(pastNO.length / 2));
+    if (pastNO.length > recentN + 2 && recentN >= 2) {
+      const recent = pastNO.slice(-recentN);
+      const recentAvg = Math.round(recent.reduce((a, s) => a + s.pppn, 0) / recent.length);
+      const allAvg    = Math.round(pastNO.reduce((a, s) => a + s.pppn, 0) / pastNO.length);
+      const delta = ((recentAvg / allAvg) - 1) * 100;
+      if (Math.abs(delta) >= 5) {
+        addInsight(`Recent Trajectory: Last ${recentN} sailings average ${fmt(recentAvg)} PPPN - ${Math.abs(delta).toFixed(0)}% ${delta > 0 ? 'above' : 'below'} your all-time average of ${fmt(allAvg)}.`, Math.abs(delta));
+      }
+    }
+  }
+  if (!isUpcomingOnly) {
+    const seasonGroups = {};
+    nonOutlier.filter(s => s.isPast && s.season).forEach(s => {
+      if (!seasonGroups[s.season]) seasonGroups[s.season] = [];
+      seasonGroups[s.season].push(s.pppn);
+    });
+    const seasons = Object.entries(seasonGroups)
+      .filter(([, ps]) => ps.length >= 2)
+      .map(([season, ps]) => ({season, avg: Math.round(ps.reduce((a, p) => a + p, 0) / ps.length), count: ps.length}))
+      .sort((a, b) => b.avg - a.avg);
+    if (seasons.length >= 2) {
+      const peak = seasons[0], off = seasons[seasons.length - 1];
+      const spread = ((peak.avg / off.avg) - 1) * 100;
+      addInsight(`Season Spread: ${peak.season} averages ${fmt(peak.avg)} PPPN (${peak.count} sailings) vs ${fmt(off.avg)} for ${off.season} - a ${spread.toFixed(0)}% seasonal premium.`, Math.abs(spread));
+    }
+  }
+  if (!isUpcomingOnly) {
+    const allYrs = DATA.years || [];
+    if (allYrs.length >= 3) {
+      const half = Math.floor(allYrs.length / 2);
+      const earlyPct  = allYrs.slice(0, half).reduce((a, y) => a + y.farePct, 0) / half;
+      const recentPct = allYrs.slice(-half).reduce((a, y) => a + y.farePct, 0) / half;
+      const diff = recentPct - earlyPct;
+      if (Math.abs(diff) >= 3) {
+        addInsight(`Fare Share Trend: Cruise fare has ${diff > 0 ? 'risen' : 'fallen'} from ${earlyPct.toFixed(0)}% to ${recentPct.toFixed(0)}% of total spend - ${diff > 0 ? 'non-fare add-ons shrinking as a share' : 'non-fare costs claiming more of the budget'}.`, Math.abs(diff) * 2);
+      }
+    }
+  }
+  {
+    const pastNO = nonOutlier.filter(s => s.isPast);
+    const recentSlice = pastNO.slice(-5);
+    if (recentSlice.length >= 3) {
+      const counts = {};
+      recentSlice.forEach(s => counts[s.roomSubtype] = (counts[s.roomSubtype] || 0) + 1);
+      const [topSubtype, topCount] = Object.entries(counts).sort((a, b) => b[1] - a[1])[0];
+      if (topCount >= 2) {
+        const allCount = nonOutlier.filter(s => s.isPast && s.roomSubtype === topSubtype).length;
+        const dominance = (topCount / recentSlice.length) * 100;
+        addInsight(`Room Momentum: ${topSubtype} in ${topCount} of your last ${recentSlice.length} sailings - your dominant recent choice (${allCount} times across all completed sailings).`, dominance);
+      }
+    }
+  }
+  if (!isUpcomingOnly) {
+    const iconClass = new Set(['Icon', 'Star', 'Legend', 'Hero']);
+    const iconSails  = nonOutlier.filter(s => s.isPast && iconClass.has(s.ship));
+    const olderSails = nonOutlier.filter(s => s.isPast && !iconClass.has(s.ship) && s.cruiseLine === 'Royal Caribbean');
+    if (iconSails.length >= 2 && olderSails.length >= 2) {
+      const iconAvg  = Math.round(iconSails.reduce((a, s)  => a + s.pppn, 0) / iconSails.length);
+      const olderAvg = Math.round(olderSails.reduce((a, s) => a + s.pppn, 0) / olderSails.length);
+      const prem = ((iconAvg / olderAvg) - 1) * 100;
+      addInsight(`Ship Class Premium: Icon/Star-class averages ${fmt(iconAvg)} PPPN vs ${fmt(olderAvg)} on older ships - ${Math.abs(prem).toFixed(0)}% ${prem >= 0 ? 'more' : 'less'} for the newer fleet (${iconSails.length} vs ${olderSails.length} sailings).`, Math.abs(prem));
+    }
+  }
+  if (!isUpcomingOnly) {
+    const dogs        = DATA.dogBoarding || [];
+    const friendDogs  = dogs.filter(d => d.provider === 'Friend'   && d.isPast);
+    const facilityDogs = dogs.filter(d => d.provider === 'Facility' && d.isPast);
+    if (friendDogs.length && facilityDogs.length) {
+      const friendAvg   = Math.round(friendDogs.reduce((a, d)   => a + d.costPerNight, 0) / friendDogs.length);
+      const facilityAvg = Math.round(facilityDogs.reduce((a, d) => a + d.costPerNight, 0) / facilityDogs.length);
+      const pct2 = ((facilityAvg / friendAvg) - 1) * 100;
+      addInsight(`Dog Boarding Shift: Friend care averaged $${friendAvg}/night vs $${facilityAvg}/night at a facility - ${Math.abs(pct2).toFixed(0)}% ${pct2 >= 0 ? 'more' : 'less'}, ${pct2 >= 0 ? 'adding' : 'saving'} ~$${Math.abs(facilityAvg - friendAvg) * 7} on a typical 7-night trip.`, Math.abs(pct2));
+    }
+  }
+  if (!isUpcomingOnly) {
+    const rcSails = nonOutlier.filter(s => s.isPast && s.cruiseLine === 'Royal Caribbean');
+    const otherLines = [...new Set(nonOutlier.filter(s => s.isPast && s.cruiseLine !== 'Royal Caribbean').map(s => s.cruiseLine))];
+    otherLines.forEach(line => {
+      const lineSails = nonOutlier.filter(s => s.isPast && s.cruiseLine === line);
+      if (lineSails.length >= 1 && rcSails.length >= 3) {
+        const lineAvg = Math.round(lineSails.reduce((a, s) => a + s.pppn, 0) / lineSails.length);
+        const rcAvg   = Math.round(rcSails.reduce((a, s)   => a + s.pppn, 0) / rcSails.length);
+        const pct3 = (((lineAvg / rcAvg) - 1) * 100);
+        addInsight(`${line} vs Royal Caribbean: ${line} averaged ${fmt(lineAvg)} PPPN vs ${fmt(rcAvg)} on Royal Caribbean - ${Math.abs(pct3).toFixed(0)}% ${pct3 > 0 ? 'pricier' : 'cheaper'} across ${lineSails.length} sailing${lineSails.length > 1 ? 's' : ''}.`, Math.abs(pct3));
+      }
+    });
+  }
+  if (!isUpcomingOnly) {
+    const withTravel  = nonOutlier.filter(s => s.isPast);
+    const pointsTrips = withTravel.filter(s => (s.categories['Travel'] || 0) < 200);
+    const paidTrips   = withTravel.filter(s => (s.categories['Travel'] || 0) >= 200);
+    if (pointsTrips.length >= 2 && paidTrips.length >= 2) {
+      const paidAvg = Math.round(paidTrips.reduce((a, s) => a + (s.categories['Travel'] || 0), 0) / paidTrips.length);
+      const share = (pointsTrips.length / withTravel.length) * 100;
+      addInsight(`Points/Miles Impact: ${pointsTrips.length} of ${withTravel.length} sailings had near-$0 travel costs (points/miles used). Paid-travel trips averaged ${fmt(paidAvg)} in flights & hotels.`, Math.abs(share - 50) + 15);
+    }
+  }
+  if (!isUpcomingOnly) {
+    const pastNO = nonOutlier.filter(s => s.isPast);
+    if (pastNO.length >= 6) {
+      const half        = Math.floor(pastNO.length / 2);
+      const early       = pastNO.slice(0, half);
+      const recent      = pastNO.slice(-half);
+      const earlyTotal  = early.reduce((a, s)  => a + s.total, 0);
+      const recentTotal = recent.reduce((a, s) => a + s.total, 0);
+      const nonFareCats = (DATA.categories || []).filter(c => c !== 'Cruise Fare');
+      let biggestShift = null, biggestDiff = 0;
+      nonFareCats.forEach(cat => {
+        const ep = earlyTotal  ? early.reduce((a, s)  => a + (s.categories[cat] || 0), 0) / earlyTotal  * 100 : 0;
+        const rp = recentTotal ? recent.reduce((a, s) => a + (s.categories[cat] || 0), 0) / recentTotal * 100 : 0;
+        if (Math.abs(rp - ep) > biggestDiff) { biggestDiff = Math.abs(rp - ep); biggestShift = {cat, ep, rp, diff: rp - ep}; }
+      });
+      if (biggestShift && biggestDiff >= 2) {
+        const {cat, ep, rp, diff} = biggestShift;
+        addInsight(`Category Shift: ${cat} went from ${ep.toFixed(0)}% to ${rp.toFixed(0)}% of spend (first ${half} vs last ${half} sailings) - ${diff > 0 ? 'growing' : 'shrinking'} as a share of the budget.`, biggestDiff * 2);
+      }
+    }
+  }
+  if (!isUpcomingOnly) {
+    const pastNO = nonOutlier.filter(s => s.isPast);
+    if (pastNO.length >= 6) {
+      const half        = Math.floor(pastNO.length / 2);
+      const earlyPppns  = pastNO.slice(0, half).map(s => s.pppn);
+      const recentPppns = pastNO.slice(-half).map(s => s.pppn);
+      const earlyRange  = Math.max(...earlyPppns)  - Math.min(...earlyPppns);
+      const recentRange = Math.max(...recentPppns) - Math.min(...recentPppns);
+      if (Math.abs(earlyRange - recentRange) > 100) {
+        const earlyMid  = Math.round(earlyPppns.reduce((a, v)  => a + v, 0) / earlyPppns.length);
+        const recentMid = Math.round(recentPppns.reduce((a, v) => a + v, 0) / recentPppns.length);
+        const rangeDelta = earlyRange ? Math.abs(recentRange - earlyRange) / earlyRange * 100 : 0;
+        addInsight(`PPPN Consistency: Recent sailings span ${fmt(recentRange)} PPPN vs ${fmt(earlyRange)} earlier - ${recentRange < earlyRange ? 'costs becoming more predictable' : 'growing more variable'} (recent avg ${fmt(recentMid)} vs early avg ${fmt(earlyMid)}).`, rangeDelta);
+      }
+    }
+  }
+  if (!isUpcomingOnly) {
+    const pastNO = nonOutlier.filter(s => s.isPast);
+    const recentN = Math.min(4, Math.floor(pastNO.length / 2));
+    if (pastNO.length > recentN + 2) {
+      const older  = pastNO.slice(0, -recentN);
+      const recent = pastNO.slice(-recentN);
+      const avgNonFarePppn = arr => {
+        const totalPn = arr.reduce((a, s) => a + s.nights * s.people, 0);
+        const totalNF = arr.reduce((a, s) => a + s.total - (s.categories['Cruise Fare'] || 0), 0);
+        return totalPn ? Math.round(totalNF / totalPn) : 0;
+      };
+      const olderNF  = avgNonFarePppn(older);
+      const recentNF = avgNonFarePppn(recent);
+      const delta = olderNF ? (((recentNF / olderNF) - 1) * 100) : 0;
+      if (Math.abs(delta) >= 8 && olderNF > 0) {
+        addInsight(`Non-Fare Trajectory: Add-on costs (excl. fare) averaged ${fmt(recentNF)} PPPN in your last ${recentN} sailings vs ${fmt(olderNF)} earlier - ${Math.abs(delta).toFixed(0)}% ${delta > 0 ? 'increase' : 'decrease'} in non-cruise spending.`, Math.abs(delta));
+      }
+    }
+  }
+  if (!isSuiteOnly && !isBalconyOnly) {
+    const suites = nonOutlier.filter(s => s.roomType==='Suite');
+    const balcs = nonOutlier.filter(s => s.roomType==='Balcony');
+    if (suites.length && balcs.length) {
+      const sAvg = Math.round(suites.reduce((a,s)=>a+s.pppn,0)/suites.length);
+      const bAvg = Math.round(balcs.reduce((a,s)=>a+s.pppn,0)/balcs.length);
+      const prem = ((sAvg/bAvg)-1)*100;
+      addInsight(`Suite vs Balcony: Suites average ${fmt(sAvg)} PPPN vs ${fmt(bAvg)} for balconies - a ${Math.abs(prem).toFixed(0)}% ${prem>0?'premium':'discount'} across ${suites.length + balcs.length} sailings in this set.`, Math.abs(prem));
+    }
+  }
+  if (nonOutlier.length >= 2) {
+    const fareTotal = cats.find(c=>c[0]==='Cruise Fare')?.[1] || 0;
+    const nonFareTotal = k.totalSpent - fareTotal;
+    const nonFarePct = k.totalSpent ? (nonFareTotal/k.totalSpent*100).toFixed(0) : 0;
+    addInsight(`Spending Mix: Non-fare costs account for ${nonFarePct}% of total - averaging ${fmt(Math.round(nonFareTotal / (k.totalPersonNights||1)))} PPPN on top of the fare.`, Math.abs(nonFarePct - 50) * 0.6 + 5);
+  }
+  if (yrs.length >= 2) {
+    const firstY = yrs[0], lastY = yrs[yrs.length-1];
+    const yoyChange = ((lastY.pppn / firstY.pppn) - 1) * 100;
+    addInsight(`Year Trend: PPPN ${yoyChange>0?'increased':'decreased'} ${Math.abs(yoyChange).toFixed(0)}% from ${firstY.year} (${fmt(firstY.pppn)}) to ${lastY.year} (${fmt(lastY.pppn)}).`, Math.abs(yoyChange));
+  }
+  if (nonOutlier.length >= 2) {
+    const ships = [...new Set(nonOutlier.map(s => s.ship))];
+    if (ships.length > 1) {
+      const shipAvgs = ships.map(ship => {
+        const ss = nonOutlier.filter(s => s.ship === ship);
+        return {ship, avg: Math.round(ss.reduce((a,s)=>a+s.pppn,0)/ss.length), count: ss.length};
+      }).sort((a,b) => a.avg - b.avg);
+      const best = shipAvgs[0], worst = shipAvgs[shipAvgs.length-1];
+      const shipSpread = ((worst.avg/best.avg)-1)*100;
+      addInsight(`Ship Comparison: ${best.ship} averages ${fmt(best.avg)} PPPN (${best.count} sailings) vs ${worst.ship} at ${fmt(worst.avg)} - a ${shipSpread.toFixed(0)}% spread.`, shipSpread);
+    }
+  }
+  if (nonOutlier.length >= 4) {
+    const sorted = [...nonOutlier].sort((a,b) => a.nights - b.nights);
+    const half = Math.ceil(sorted.length/2);
+    const short = sorted.slice(0, half);
+    const long = sorted.slice(half);
+    const shortAvg = Math.round(short.reduce((a,s)=>a+s.pppn,0)/short.length);
+    const longAvg = Math.round(long.reduce((a,s)=>a+s.pppn,0)/long.length);
+    if (shortAvg !== longAvg) {
+      const lenDelta = shortAvg ? Math.abs(longAvg - shortAvg) / shortAvg * 100 : 0;
+      addInsight(`Length Effect: Shorter sailings (<=${short[short.length-1].nights} nights) average ${fmt(shortAvg)} PPPN vs ${fmt(longAvg)} for longer ones - ${longAvg < shortAvg ? 'longer trips are more cost-efficient per night' : 'shorter trips cost less per night'}.`, lenDelta);
+    }
+  }
+  if (nonOutlier.length >= 3) {
+    const peopleCounts = [...new Set(nonOutlier.map(s => s.people))];
+    if (peopleCounts.length > 1) {
+      const bySize = peopleCounts.map(p => {
+        const ss = nonOutlier.filter(s => s.people === p);
+        return {people: p, avg: Math.round(ss.reduce((a,s)=>a+s.pppn,0)/ss.length), count: ss.length};
+      }).sort((a,b) => a.avg - b.avg);
+      const cheapest = bySize[0], priciest = bySize[bySize.length-1];
+      const sizeDelta = cheapest.avg ? Math.abs(priciest.avg - cheapest.avg) / cheapest.avg * 100 : 0;
+      addInsight(`Group Size: ${cheapest.people}-person sailings average ${fmt(cheapest.avg)} PPPN vs ${fmt(priciest.avg)} for ${priciest.people}-person trips.`, sizeDelta);
+    }
+  }
+  if (nonOutlier.length >= 2) {
+    const fares = nonOutlier.map(s => s.farePct).sort((a,b) => a-b);
+    const lo = fares[0], hi = fares[fares.length-1];
+    if (hi - lo > 8) {
+      addInsight(`Add-on Variability: Fare share ranges from ${pct(lo)} to ${pct(hi)} - a ${(hi-lo).toFixed(0)}pp spread, showing some sailings have significantly more non-fare spending.`, (hi - lo) * 1.5);
+    }
+  }
+  if (nonOutlier.length >= 3) {
+    const pppns = nonOutlier.map(s => s.pppn).sort((a,b) => a-b);
+    const median = pppns[Math.floor(pppns.length/2)];
+    const diff = ((k.avgPppn / median) - 1) * 100;
+    if (Math.abs(diff) >= 5) {
+      addInsight(`Distribution Skew: Median PPPN is ${fmt(median)} vs ${fmt(k.avgPppn)} average - ${diff > 0 ? 'a few high-cost sailings pull the average up' : 'a few low-cost sailings pull the average down'} by ${Math.abs(diff).toFixed(0)}%.`, Math.abs(diff));
+    }
+  }
+  if (!isUpcomingOnly && k.upcomingCount > 0) {
+    const pastSailings = nonOutlier.filter(s => s.isPast);
+    const pastAvg = pastSailings.length ? Math.round(pastSailings.reduce((a,s)=>a+s.pppn,0)/pastSailings.length) : 0;
+    if (pastAvg && k.upcomingAvgPppn) {
+      const delta = ((k.upcomingAvgPppn/pastAvg)-1)*100;
+      addInsight(`Upcoming vs Past: Booked sailings average ${fmt(k.upcomingAvgPppn)} PPPN - ${Math.abs(delta).toFixed(0)}% ${delta>0?'higher':'lower'} than the ${fmt(pastAvg)} historical average.`, Math.abs(delta));
+    }
+  }
+  if (cats.length >= 3 && k.totalSpent) {
+    const top2 = cats.slice(0,2);
+    const top2Pct = ((top2[0][1]+top2[1][1])/k.totalSpent*100);
+    addInsight(`Spending Concentration: ${top2[0][0]} and ${top2[1][0]} together represent ${top2Pct.toFixed(0)}% of all spending - the remaining ${cats.length-2} categories split the other ${(100-top2Pct).toFixed(0)}%.`, Math.max(0, top2Pct - 45));
+  }
+  if (nonOutlier.length >= 2) {
+    const pppns = nonOutlier.map(s => s.pppn).sort((a,b) => a-b);
+    const range = pppns[pppns.length-1] - pppns[0];
+    const cv = k.avgPppn ? (range/k.avgPppn*100) : 0;
+    addInsight(`PPPN Range: ${fmt(pppns[0])} to ${fmt(pppns[pppns.length-1])} - a ${fmt(range)} spread, ${cv > 50 ? 'showing wide cost variability' : 'relatively consistent pricing'} across this set.`, cv * 0.4 + 3);
+  }
+  if (nonOutlier.length >= 2) {
+    const avgNights = (k.totalNights / nonOutlier.length).toFixed(1);
+    const avgPeople = (nonOutlier.reduce((a,s)=>a+s.people,0) / nonOutlier.length).toFixed(1);
+    addInsight(`Typical Profile: Average sailing is ${avgNights} nights with ${avgPeople} people across ${nonOutlier.length} sailings.`, 1);
+  }
+  const insights = pool.sort((a, b) => b.score - a.score).slice(0, TARGET_COUNT).map(i => i.text);
+  $('#insights').innerHTML = insights.map(t => `<div class="insight"><span class="bullet">-</span><span>${t}</span></div>`).join('');
+  if (overviewYoyChart) overviewYoyChart.destroy();
+  overviewYoyChart = new Chart($('#overview-yoy'), {
+    type: 'bar',
+    data: {
+      labels: yrs.map(y => y.year),
+      datasets: [
+        {label:'Total Spend', data: yrs.map(y => y.total), backgroundColor: BAR_BLUE, yAxisID:'y', order:1},
+        {label:'Avg PPPN', data: yrs.map(y => y.pppn), type:'line', borderColor: BAR_ORANGE, backgroundColor:'transparent', pointRadius:4, yAxisID:'y1', order:0},
+      ]
+    },
+    options: {responsive:true, plugins:{legend:{position:'bottom'}}, scales:{
+      y:{position:'left',ticks:{callback:tickFmt}},
+      y1:{position:'right',grid:{drawOnChartArea:false},ticks:{callback:tickFmtShort}},
+    }}
+  });
+  renderTable('#overview-yoy-table',
+    ['Year','Sailings','Nights','Total','PPPN','Avg/Sailing'],
+    yrs.map(y => [y.year, y.sailings, y.nights, fmt(y.total), fmt(y.pppn), fmt(y.avgPerSailing)])
+  );
+  renderTable('#overview-cat-table',
+    ['Category','Total','%','Avg/Sailing','Avg/Night','Avg PPPN'],
+    cats.map(([cat,amt]) => [
+      cat, fmt(amt), pct(k.totalSpent ? amt/k.totalSpent*100 : 0),
+      fmt(k.pastCount ? Math.round(amt/k.pastCount) : 0),
+      fmt(k.totalNights ? Math.round(amt/k.totalNights) : 0),
+      fmt(k.totalPersonNights ? Math.round(amt/k.totalPersonNights) : 0),
+    ])
+  );
+}
+let pppnChart;
+function renderPPPN(filters) {
+  const sailings = filterSailings(filters);
+  if (pppnChart) pppnChart.destroy();
+  pppnChart = new Chart($('#pppn-chart'), {
+    type: 'bar',
+    data: {
+      labels: sailings.map(s => shortName(s.name)),
+      datasets: [
+        {label:'Total PPPN', data: sailings.map(s=>s.pppn), backgroundColor: sailings.map(s => s.isOutlier?'#ccc':s.isUpcoming?BAR_ORANGE:BAR_BLUE)},
+        {label:'Fare PPPN', data: sailings.map(s=>s.fppn), backgroundColor: sailings.map(s => s.isOutlier?'#ddd':s.isUpcoming?'#ffcc80':BAR_GREEN)},
+      ]
+    },
+    options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom'}},
+      scales:{x:{ticks:{maxRotation:45,font:{size:10}}},y:{ticks:{callback:tickFmtShort}}}}
+  });
+  renderTable('#pppn-table',
+    ['Sailing','Nights','Ppl','Ship','Room','Total','CPN','PPPN','FPPN'],
+    sailings.map(s => [
+      s.name + (s.isUpcoming ? ' <span class="tag upcoming">Upcoming</span>' : s.isOutlier ? ' <span class="tag outlier">Outlier</span>' : ''),
+      s.nights, s.people, s.ship,
+      s.roomSubtype + ' <span class="tag ' + s.roomType.toLowerCase() + '">' + s.roomType + '</span>',
+      fmt(s.total), fmt(s.cpn), fmt(s.pppn), fmt(s.fppn),
+    ]),
+    sailings.map(s => s.isOutlier ? 'outlier' : s.isUpcoming ? 'upcoming' : '')
+  );
+}
+let catStackedChart, catDollarsChart;
+function renderCategories(filters) {
+  const sailings = filterSailings(filters);
+  const cats = DATA.categories;
+  if (catStackedChart) catStackedChart.destroy();
+  catStackedChart = new Chart($('#cat-stacked'), {
+    type: 'bar',
+    data: {
+      labels: sailings.map(s => shortName(s.name)),
+      datasets: cats.map((cat,i) => ({
+        label: cat,
+        data: sailings.map(s => s.total ? (s.categories[cat]/s.total*100).toFixed(1) : 0),
+        backgroundColor: PIE_COLORS[i],
+      }))
+    },
+    options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},
+      scales:{x:{stacked:true,ticks:{maxRotation:45,font:{size:9}}},y:{stacked:true,max:100,ticks:{callback:v=>v+'%'}}}}
+  });
+  if (catDollarsChart) catDollarsChart.destroy();
+  catDollarsChart = new Chart($('#cat-dollars'), {
+    type: 'bar',
+    data: {
+      labels: sailings.map(s => shortName(s.name)),
+      datasets: cats.map((cat,i) => ({
+        label: cat,
+        data: sailings.map(s => s.categories[cat] || 0),
+        backgroundColor: PIE_COLORS[i],
+      }))
+    },
+    options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},
+      scales:{x:{stacked:true,ticks:{maxRotation:45,font:{size:9}}},y:{stacked:true,ticks:{callback:tickFmt}}}}
+  });
+  const catOrder = ['Cruise Fare', 'Travel', 'Onboard Pre-booked', 'Onboard Spending', 'Excursion', 'Cabana/Casita', 'Supplies', 'Dogs'];
+  const headers = ['Sailing', 'Room', ...catOrder, 'Total'];
+  const rows = sailings.map(s => [
+    s.name + (s.isUpcoming ? ' <span class="tag upcoming">Upcoming</span>' : s.isOutlier ? ' <span class="tag outlier">Outlier</span>' : ''),
+    s.roomSubtype + ' <span class="tag ' + s.roomType.toLowerCase() + '">' + s.roomType + '</span>',
+    ...catOrder.map(cat => s.categories[cat] ? fmt(s.categories[cat]) : '-'),
+    fmt(s.total)
+  ]);
+  const catRowClasses = sailings.map(s => s.isOutlier ? 'outlier' : s.isUpcoming ? 'upcoming' : '');
+  renderTable('#cat-table', headers, rows, catRowClasses);
+}
+let yoySpendChart, yoyPppnChart;
+function renderYoY(filters) {
+  const sailings = filterSailings(filters);
+  const yrs = computeYears(sailings);
+  if (yoySpendChart) yoySpendChart.destroy();
+  yoySpendChart = new Chart($('#yoy-spend'), {
+    type: 'bar',
+    data: {
+      labels: yrs.map(y=>y.year),
+      datasets: [{label:'Total Spend', data: yrs.map(y=>y.total), backgroundColor: BAR_BLUE},
+                  {label:'Fare', data: yrs.map(y=>y.fare), backgroundColor: BAR_GREEN}]
+    },
+    options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom'}},
+      scales:{y:{ticks:{callback:tickFmt}}}}
+  });
+  if (yoyPppnChart) yoyPppnChart.destroy();
+  yoyPppnChart = new Chart($('#yoy-pppn'), {
+    type: 'line',
+    data: {
+      labels: yrs.map(y=>y.year),
+      datasets: [{label:'Avg PPPN', data: yrs.map(y=>y.pppn), borderColor: BAR_BLUE, backgroundColor:'rgba(46,117,182,0.1)', fill:true, tension:0.3, pointRadius:5}]
+    },
+    options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+      scales:{y:{ticks:{callback:tickFmtShort}}}}
+  });
+  renderTable('#yoy-table',
+    ['Year','Sailings','Nights','Person-Nights','Total','PPPN','Fare','Fare %','Avg/Sailing'],
+    yrs.map(y => [y.year, y.sailings, y.nights, y.personNights, fmt(y.total), fmt(y.pppn), fmt(y.fare), pct(y.farePct), fmt(y.avgPerSailing)])
+  );
+}
+let fareBarChart, fareScatterChart;
+function renderFare(filters) {
+  const sailings = filterSailings(filters);
+  if (fareBarChart) fareBarChart.destroy();
+  fareBarChart = new Chart($('#fare-chart'), {
+    type: 'bar',
+    data: {
+      labels: sailings.map(s => shortName(s.name)),
+      datasets: [{label:'Fare PPPN', data: sailings.map(s=>s.fppn),
+        backgroundColor: sailings.map(s => s.isOutlier ? '#ccc' : s.isUpcoming ? BAR_ORANGE : (s.roomType==='Suite' ? BAR_BLUE : BAR_GREEN))}]
+    },
+    options: {responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{afterLabel:i=>{const s=sailings[i.dataIndex];return `${s.ship} - ${s.roomSubtype}\n${s.roomType}`}}}},
+      scales:{x:{ticks:{maxRotation:45,font:{size:10}}},y:{ticks:{callback:tickFmtShort}}}}
+  });
+  const suiteSailings = sailings.filter(s => s.roomType === 'Suite' && !s.isOutlier);
+  const balconySailings = sailings.filter(s => s.roomType === 'Balcony' && !s.isOutlier);
+  const suiteAvgFppn = suiteSailings.reduce((a,s) => a+s.fppn, 0) / (suiteSailings.length || 1);
+  const balconyAvgFppn = balconySailings.reduce((a,s) => a+s.fppn, 0) / (balconySailings.length || 1);
+  if (fareScatterChart) fareScatterChart.destroy();
+  fareScatterChart = new Chart($('#suite-vs-balcony'), {
+    type: 'scatter',
+    data: {
+      datasets: [
+        {label: 'Suite', data: suiteSailings.map(s => ({x: s.fppn, y: 1 + (Math.random()-0.5)*0.3})), backgroundColor: suiteSailings.map(s => s.isUpcoming ? 'rgba(255,152,0,0.7)' : 'rgba(46,117,182,0.7)'), pointRadius: 8, pointHoverRadius: 10},
+        {label: 'Balcony', data: balconySailings.map(s => ({x: s.fppn, y: 0 + (Math.random()-0.5)*0.3})), backgroundColor: balconySailings.map(s => s.isUpcoming ? 'rgba(255,152,0,0.7)' : 'rgba(112,173,71,0.7)'), pointRadius: 8, pointHoverRadius: 10},
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: {display: false},
+        tooltip: {callbacks: {label: ctx => {
+          const ds = ctx.dataset;
+          const idx = ctx.dataIndex;
+          const list = ds.label === 'Suite' ? suiteSailings : balconySailings;
+          return `${list[idx].name}: ${fmt(list[idx].fppn)}`;
+        }}}
+      },
+      scales: {
+        x: {title: {display: true, text: 'Fare PPPN'}, ticks: {callback: tickFmtShort}},
+        y: {display: false, min: -0.8, max: 1.8}
+      },
+    },
+    plugins: [{
+      id: 'avgLines',
+      afterDraw(chart) {
+        const {ctx, scales: {x, y}} = chart;
+        ctx.save();
+        [[suiteAvgFppn, 1, BAR_BLUE], [balconyAvgFppn, 0, BAR_GREEN]].forEach(([avg, yVal, color]) => {
+          const px = x.getPixelForValue(avg);
+          const py = y.getPixelForValue(yVal);
+          ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.setLineDash([6,3]);
+          ctx.beginPath(); ctx.moveTo(px, py - 30); ctx.lineTo(px, py + 30); ctx.stroke();
+          ctx.setLineDash([]);
+          ctx.fillStyle = color; ctx.font = 'bold 11px sans-serif'; ctx.textAlign = 'center';
+          ctx.fillText(privacyMode ? '$***' : '$'+Math.round(avg), px, py - 36);
+        });
+        ctx.restore();
+      }
+    }]
+  });
+  renderTable('#fare-table',
+    ['Sailing','Nights','People','Ship','Room','Fare','Fare/Night','FPPN','Fare %'],
+    sailings.map(s => {
+      const fpn = s.nights ? Math.round(s.fare/s.nights) : 0;
+      const roomTag = s.roomType === 'Suite' ? ' <span class="tag suite">Suite</span>' : ' <span class="tag balcony">Balcony</span>';
+      return [s.name + (s.isUpcoming ? ' <span class="tag upcoming">Upcoming</span>' : s.isOutlier ? ' <span class="tag outlier">Outlier</span>' : ''),
+        s.nights, s.people, s.ship, s.roomSubtype + roomTag,
+        fmt(s.fare), fmt(fpn), fmt(s.fppn), pct(s.farePct)];
+    }),
+    sailings.map(s => s.isOutlier ? 'outlier' : s.isUpcoming ? 'upcoming' : '')
+  );
+}
+let fundingChart;
+function renderFunding() {
+  const fd = DATA.funding;
+  if (fundingChart) fundingChart.destroy();
+  fundingChart = new Chart($('#funding-chart'), {
+    type: 'bar',
+    data: {
+      labels: fd.map(f=>f.year),
+      datasets: [
+        {label:'Funding', data: fd.map(f=>f.funding), backgroundColor:'#70ad47', order:1},
+        {label:'Sailings', data: fd.map(f=>-f.sailings), backgroundColor:'#ef5350', order:1},
+        {label:'Other', data: fd.map(f=>f.other), backgroundColor:'#ffa726', order:1},
+        {label:'Net', data: fd.map(f=>f.net), type:'line', borderColor: BAR_BLUE, pointRadius:5, fill:false, order:0},
+      ]
+    },
+    options: {responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom'}},
+      scales:{
+        x:{stacked:true},
+        y:{stacked:true,ticks:{callback:tickFmt}},
+      }}
+  });
+  renderTable('#funding-table',
+    ['Year','Funding','Sailings','Other','Net'],
+    fd.map(f => [
+      f.year,
+      fmt(f.funding),
+      fmt(-f.sailings),
+      `<span style="color:${f.other>=0?'#66bb6a':'#ef5350'}">${fmt(f.other)}</span>`,
+      `<span style="color:${f.net>=0?'#66bb6a':'#ef5350'};font-weight:700">${fmt(f.net)}</span>`,
+    ]));
+}
+const fullTableGroups = { extras: false, other: false };
+function renderFullTable(filters) {
+  const sailings = filterSailings(filters);
+  const catSum = (s, keys) => keys.reduce((a, k) => a + (s.categories[k] || 0), 0);
+  const tog = (key) => `<span class="col-toggle" data-group="${key}" style="cursor:pointer;font-size:10px;margin-left:4px;opacity:0.7">${fullTableGroups[key] ? '-' : '+'}</span>`;
+  const headers = ['Sailing','Nights','Ppl','Ship','Room','Cruise Fare','Travel','Onboard Pre-booked','Onboard Spending'];
+  if (fullTableGroups.extras) {
+    headers.push('Excursion' + tog('extras'), 'Cabana/Casita');
+  } else {
+    headers.push('Extras' + tog('extras'));
+  }
+  if (fullTableGroups.other) {
+    headers.push('Supplies' + tog('other'), 'Dogs');
+  } else {
+    headers.push('Other' + tog('other'));
+  }
+  headers.push('Total','PPPN');
+  const rows = sailings.map(s => {
+    const row = [
+      s.name + (s.isUpcoming ? ' <span class="tag upcoming">Upcoming</span>' : s.isOutlier ? ' <span class="tag outlier">Outlier</span>' : ''),
+      s.nights, s.people, s.ship,
+      s.roomSubtype + ' <span class="tag ' + s.roomType.toLowerCase() + '">' + s.roomType + '</span>',
+      s.categories['Cruise Fare'] ? fmt(s.categories['Cruise Fare']) : '-',
+      s.categories['Travel'] ? fmt(s.categories['Travel']) : '-',
+      s.categories['Onboard Pre-booked'] ? fmt(s.categories['Onboard Pre-booked']) : '-',
+      s.categories['Onboard Spending'] ? fmt(s.categories['Onboard Spending']) : '-',
+    ];
+    if (fullTableGroups.extras) {
+      row.push(s.categories['Excursion'] ? fmt(s.categories['Excursion']) : '-');
+      row.push(s.categories['Cabana/Casita'] ? fmt(s.categories['Cabana/Casita']) : '-');
+    } else {
+      row.push(catSum(s, ['Excursion','Cabana/Casita']) ? fmt(catSum(s, ['Excursion','Cabana/Casita'])) : '-');
+    }
+    if (fullTableGroups.other) {
+      row.push(s.categories['Supplies'] ? fmt(s.categories['Supplies']) : '-');
+      row.push(s.categories['Dogs'] ? fmt(s.categories['Dogs']) : '-');
+    } else {
+      row.push(catSum(s, ['Supplies','Dogs']) ? fmt(catSum(s, ['Supplies','Dogs'])) : '-');
+    }
+    row.push(fmt(s.total), fmt(s.pppn));
+    return row;
+  });
+  renderTable('#full-table', headers, rows,
+    sailings.map(s => s.isOutlier ? 'outlier' : s.isUpcoming ? 'upcoming' : ''),
+    { boldCols: [-2, -1] }
+  );
+  $('#full-table').querySelectorAll('.col-toggle').forEach(el => {
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      fullTableGroups[el.dataset.group] = !fullTableGroups[el.dataset.group];
+      renderFullTable(currentFilter);
+    });
+  });
+}
+const PC_STORAGE_KEY = 'cruisePriceCheckHistory';
+const SEASON_MONTHS = {
+  '01':'Off-Peak','02':'Off-Peak','03':'Spring Break','04':'Off-Peak',
+  '05':'Off-Peak','06':'Peak Summer','07':'Peak Summer','08':'Peak Summer',
+  '09':'Off-Peak','10':'Off-Peak','11':'Holiday','12':'Holiday'
+};
+function pcGetHistory() {
+  try { return JSON.parse(localStorage.getItem(PC_STORAGE_KEY) || '[]'); }
+  catch(e) { return []; }
+}
+function pcSaveHistory(arr) {
+  try { localStorage.setItem(PC_STORAGE_KEY, JSON.stringify(arr)); } catch(e) {}
+}
+function pcSeasonFromDate(monthVal) {
+  if (!monthVal) return 'Off-Peak';
+  const mon = monthVal.split('-')[1] || '01';
+  return SEASON_MONTHS[mon] || 'Off-Peak';
+}
+function pcGetBenchmark(pc, ship, subtype, roomType) {
+  const shipKey = `${subtype}|${ship}`;
+  if (pc.byShipAndSubtype[shipKey] && pc.byShipAndSubtype[shipKey].count >= 2)
+    return { bench: pc.byShipAndSubtype[shipKey], level: `${subtype} on ${ship}` };
+  if (pc.byRoomSubtype[subtype] && pc.byRoomSubtype[subtype].count >= 2)
+    return { bench: pc.byRoomSubtype[subtype], level: subtype };
+  if (pc.byRoomType[roomType] && pc.byRoomType[roomType].count >= 1)
+    return { bench: pc.byRoomType[roomType], level: roomType };
+  if (pc.overall && pc.overall.count >= 1)
+    return { bench: pc.overall, level: 'All sailings' };
+  return null;
+}
+function pcGetSeasonBench(pc, subtype, season) {
+  const key = `${subtype}|${season}`;
+  if (pc.bySeasonAndSubtype[key] && pc.bySeasonAndSubtype[key].count >= 2)
+    return pc.bySeasonAndSubtype[key];
+  if (pc.bySeason[season] && pc.bySeason[season].count >= 2)
+    return pc.bySeason[season];
+  return null;
+}
+function pcVerdictClass(pct) {
+  if (pct <= -10)  return { cls: 'verdict-great', emoji: '', label: 'Great Deal' };
+  if (pct <= 5)    return { cls: 'verdict-good',  emoji: '', label: 'Good Value' };
+  if (pct <= 20)   return { cls: 'verdict-fair',  emoji: '',  label: 'Slightly High' };
+  return            { cls: 'verdict-high',  emoji: '', label: 'Expensive' };
+}
+function pcBar(userFppn, bench) {
+  const lo = bench.minFppn, hi = bench.maxFppn, avg = bench.avgFppn;
+  const p25 = bench.p25Fppn, p75 = bench.p75Fppn;
+  const span = hi - lo || 1;
+  const vizLo = Math.max(0, lo - span * 0.15);
+  const vizHi = hi + span * 0.15;
+  const vizSpan = vizHi - vizLo;
+  const toPos = v => Math.max(0, Math.min(100, ((v - vizLo) / vizSpan * 100)));
+  const rangeLeft  = toPos(p25);
+  const rangeWidth = toPos(p75) - toPos(p25);
+  const avgPos     = toPos(avg);
+  const userPos    = toPos(userFppn);
+  const pinColor   = userFppn <= avg ? '#43a047' : userFppn <= p75 ? '#ffc000' : '#ef5350';
+  return `
+    <div class="pc-bar-wrap">
+      <div style="font-size:11px;color:var(--text-muted);margin-bottom:6px">
+        Where your fare sits vs. historical range (IQR shaded, avg line, your fare = dot)
+      </div>
+      <div class="pc-bar-track">
+        <div class="pc-bar-range" style="left:${rangeLeft}%;width:${rangeWidth}%"></div>
+        <div class="pc-bar-avg"   style="left:${avgPos}%"></div>
+        <div class="pc-bar-pin"   style="left:${userPos}%;background:${pinColor}"></div>
+      </div>
+      <div class="pc-bar-labels">
+        <span>${fmt(Math.round(vizLo))}</span>
+        <span style="color:var(--primary);font-weight:600">avg ${fmt(avg)}</span>
+        <span>${fmt(Math.round(vizHi))}</span>
+      </div>
+    </div>`;
+}
+function pcRenderVerdict(input, matchResult, seasonBench, prevEntry) {
+  const { ship, subtype, roomType, nights, people, fare, sailDate, name } = input;
+  const fppn = Math.round(fare / (nights * people));
+  const el = $('#pc-verdict');
+  if (!matchResult) {
+    el.className = 'pc-verdict card show verdict-nodata';
+    el.innerHTML = `
+      <div class="pc-verdict-header">
+        <span class="pc-verdict-emoji"></span>
+        <span class="pc-verdict-label">No Benchmark Data</span>
+        <span class="pc-verdict-fppn">${fmt(fppn)} FPPN</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted)">
+        No past sailings match ${subtype} on ${ship}. This would be your first - no comparison available yet.
+        Your fare computes to <strong>${fmt(fppn)}</strong> per person per night.
+      </p>`;
+    return;
+  }
+  const { bench, level } = matchResult;
+  const diff = Math.round(((fppn - bench.avgFppn) / bench.avgFppn) * 100);
+  const { cls, emoji, label } = pcVerdictClass(diff);
+  const diffStr = diff >= 0 ? `+${diff}%` : `${diff}%`;
+  let moveBadge = '';
+  if (prevEntry) {
+    const prevFppn = prevEntry.fppn;
+    const movePct = Math.round(((fppn - prevFppn) / prevFppn) * 100);
+    if (Math.abs(movePct) < 2) {
+      moveBadge = `<span class="pc-movement same">Same as last check (${fmt(prevFppn)} FPPN)</span>`;
+    } else if (fppn > prevFppn) {
+      moveBadge = `<span class="pc-movement up">+${Math.abs(movePct)}% vs last check (was ${fmt(prevFppn)} FPPN)</span>`;
+    } else {
+      moveBadge = `<span class="pc-movement down">${Math.abs(movePct)}% vs last check (was ${fmt(prevFppn)} FPPN)</span>`;
+    }
+  }
+  let seasonNote = '';
+  if (seasonBench) {
+    const sDiff = Math.round(((fppn - seasonBench.avgFppn) / seasonBench.avgFppn) * 100);
+    const sDiffStr = sDiff >= 0 ? `+${sDiff}%` : `${sDiff}%`;
+    seasonNote = `<div style="font-size:12px;color:var(--text-muted);margin-top:8px">
+      Seasonality: ${pcSeasonFromDate(sailDate)} benchmark avg is ${fmt(seasonBench.avgFppn)} FPPN
+      - your fare is <strong>${sDiffStr}</strong> vs same-season sailings (${seasonBench.count} sailing${seasonBench.count>1?'s':''}).
+    </div>`;
+  }
+  const sailingsNote = bench.sailings && bench.sailings.length
+    ? `Based on ${bench.count} sailing${bench.count>1?'s':''}: ${bench.sailings.join(', ')}`
+    : '';
+  el.className = `pc-verdict card show ${cls}`;
+  el.innerHTML = `
+    <div class="pc-verdict-header">
+      <span class="pc-verdict-emoji">${emoji}</span>
+      <span class="pc-verdict-label">${label}</span>
+      <span class="pc-verdict-fppn">${fmt(fppn)} FPPN</span>
+      <span class="pc-verdict-vs">${diffStr} vs ${level} avg</span>
+      ${moveBadge}
+    </div>
+    <div class="pc-benchmarks">
+      <div class="pc-bench">
+        <div class="pc-bench-label">Your FPPN</div>
+        <div class="pc-bench-val">${fmt(fppn)}</div>
+        <div class="pc-bench-sub">${fmt(fare)} / ${nights}n x ${people}p</div>
+      </div>
+      <div class="pc-bench">
+        <div class="pc-bench-label">Benchmark Avg</div>
+        <div class="pc-bench-val">${fmt(bench.avgFppn)}</div>
+        <div class="pc-bench-sub">${level}</div>
+      </div>
+      <div class="pc-bench">
+        <div class="pc-bench-label">Typical Range</div>
+        <div class="pc-bench-val">${fmt(bench.p25Fppn)}-${fmt(bench.p75Fppn)}</div>
+        <div class="pc-bench-sub">25th-75th percentile</div>
+      </div>
+      <div class="pc-bench">
+        <div class="pc-bench-label">Seen Range</div>
+        <div class="pc-bench-val">${fmt(bench.minFppn)}-${fmt(bench.maxFppn)}</div>
+        <div class="pc-bench-sub">min-max across ${bench.count} sailing${bench.count>1?'s':''}</div>
+      </div>
+    </div>
+    ${pcBar(fppn, bench)}
+    ${seasonNote}
+    <div class="pc-sailings-note">${sailingsNote}</div>`;
+}
+function pcRenderHistory() {
+  const hist = pcGetHistory();
+  const el = $('#pc-history-list');
+  if (!hist.length) {
+    el.innerHTML = '<div class="pc-history-empty">No value checks yet - run your first check above.</div>';
+    return;
+  }
+  const grouped = {};
+  hist.forEach(h => {
+    const k = h.sailingKey;
+    if (!grouped[k]) grouped[k] = [];
+    grouped[k].push(h);
+  });
+  el.innerHTML = hist.slice().reverse().map((h, revIdx) => {
+    const group = grouped[h.sailingKey] || [];
+    const sortedGroup = [...group].sort((a,b) => a.ts - b.ts);
+    const idx = sortedGroup.findIndex(x => x.ts === h.ts);
+    const prev = idx > 0 ? sortedGroup[idx - 1] : null;
+    let movHtml = '';
+    if (prev) {
+      const movPct = Math.round(((h.fppn - prev.fppn) / prev.fppn) * 100);
+      if (Math.abs(movPct) < 2) movHtml = `<span class="pc-hist-move same">same</span>`;
+      else if (h.fppn > prev.fppn) movHtml = `<span class="pc-hist-move up">+${Math.abs(movPct)}%</span>`;
+      else movHtml = `<span class="pc-hist-move down">${Math.abs(movPct)}%</span>`;
+    }
+    const { cls, emoji, label } = pcVerdictClass(h.diffPct || 0);
+    const verdictColor = cls === 'verdict-great' ? '#43a047' : cls === 'verdict-good' ? '#8bc34a' : cls === 'verdict-fair' ? '#ffc000' : cls === 'verdict-high' ? '#ef5350' : '#888';
+    return `<div class="pc-hist-row" data-ts="${h.ts}">
+      <div>
+        <div class="pc-hist-name">${h.name}</div>
+        <div class="pc-hist-meta">${h.nights}n . ${h.people}p . ${h.subtype} . ${h.ship} . ${h.season}</div>
+      </div>
+      <div class="pc-hist-fppn">${fmt(h.fppn)}<span style="font-size:10px;font-weight:400;color:var(--text-muted)"> FPPN</span></div>
+      <div class="pc-hist-verdict" style="color:${verdictColor}">${emoji} ${label}</div>
+      ${movHtml ? `<div>${movHtml}</div>` : '<div></div>'}
+      <div class="pc-hist-date">${new Date(h.ts).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</div>
+      <button class="pc-hist-del" data-ts="${h.ts}" title="Remove">x</button>
+    </div>`;
+  }).join('');
+  el.querySelectorAll('.pc-hist-del').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const ts = parseInt(btn.dataset.ts);
+      const updated = pcGetHistory().filter(h => h.ts !== ts);
+      pcSaveHistory(updated);
+      pcRenderHistory();
+    });
+  });
+}
+function pcPopulateDropdowns() {
+  const pc = DATA.priceCheck;
+  if (!pc) return;
+  const shipSel = $('#pc-ship');
+  const typeSel = $('#pc-room-type');
+  const subtypeSel = $('#pc-room-subtype');
+  const knownShips = [...new Set(DATA.sailings.map(s => s.ship))].sort();
+  knownShips.forEach(ship => {
+    const opt = document.createElement('option');
+    opt.value = ship; opt.textContent = ship;
+    shipSel.appendChild(opt);
+  });
+  const knownTypes = [...new Set(DATA.sailings.map(s => s.roomType))].sort();
+  knownTypes.forEach(rt => {
+    const opt = document.createElement('option');
+    opt.value = rt; opt.textContent = rt;
+    typeSel.appendChild(opt);
+  });
+  function refreshSubtypes() {
+    const selType = typeSel.value;
+    subtypeSel.innerHTML = '<option value="">- select sub-type -</option>';
+    const subs = [...new Set(
+      DATA.sailings
+        .filter(s => !selType || s.roomType === selType)
+        .map(s => s.roomSubtype)
+    )].sort();
+    subs.forEach(st => {
+      const opt = document.createElement('option');
+      opt.value = st; opt.textContent = st;
+      subtypeSel.appendChild(opt);
+    });
+  }
+  typeSel.addEventListener('change', refreshSubtypes);
+  refreshSubtypes();
+}
+function renderPriceCheck() {
+  pcPopulateDropdowns();
+  pcRenderHistory();
+  $('#pc-run-btn').addEventListener('click', () => {
+    const name    = $('#pc-sailing-name').value.trim() || 'Unnamed Sailing';
+    const sailDate = $('#pc-sail-date').value;
+    const ship    = $('#pc-ship').value;
+    const roomType = $('#pc-room-type').value;
+    const subtype = $('#pc-room-subtype').value;
+    const nights  = parseInt($('#pc-nights').value);
+    const people  = parseInt($('#pc-people').value);
+    const fare    = parseFloat($('#pc-fare').value);
+    if (!ship || !subtype || !nights || !people || !fare) {
+      alert('Please fill in all fields before checking.');
+      return;
+    }
+    if (!roomType) {
+      alert('Please select a room type.');
+      return;
+    }
+    const pc = DATA.priceCheck;
+    const season = pcSeasonFromDate(sailDate);
+    const fppn = Math.round(fare / (nights * people));
+    const matchResult = pcGetBenchmark(pc, ship, subtype, roomType);
+    const seasonBench = pcGetSeasonBench(pc, subtype, season);
+    const sailingKey = `${subtype}|${ship}|${name}`;
+    const history = pcGetHistory();
+    const prevEntries = history.filter(h => h.sailingKey === sailingKey);
+    const prevEntry = prevEntries.length
+      ? prevEntries.reduce((a, b) => a.ts > b.ts ? a : b)
+      : null;
+    pcRenderVerdict({ ship, subtype, roomType, nights, people, fare, sailDate, name }, matchResult, seasonBench, prevEntry);
+    const diffPct = matchResult
+      ? Math.round(((fppn - matchResult.bench.avgFppn) / matchResult.bench.avgFppn) * 100)
+      : null;
+    history.push({
+      ts: Date.now(),
+      sailingKey,
+      name,
+      sailDate,
+      ship,
+      roomType,
+      subtype,
+      nights,
+      people,
+      fare,
+      fppn,
+      season,
+      benchLevel: matchResult ? matchResult.level : null,
+      diffPct,
+    });
+    pcSaveHistory(history);
+    pcRenderHistory();
+  });
+  $('#pc-clear-btn').addEventListener('click', () => {
+    if (confirm('Clear all value check history?')) {
+      pcSaveHistory([]);
+      pcRenderHistory();
+    }
+  });
+}
+function renderBudgetTracker() {
+  const bt = DATA.budgetTracker || [];
+  const cats = DATA.categories || [];
+  const totalBudgeted  = bt.reduce((a,s) => a + s.totalBudgeted, 0);
+  const totalPaid      = bt.reduce((a,s) => a + s.totalPaid, 0);
+  const totalFore      = bt.reduce((a,s) => a + s.totalForecasted, 0);
+  const overallPaidPct = totalBudgeted ? Math.round(totalPaid / totalBudgeted * 100) : 0;
+  const kpis = [
+    { label: 'Upcoming Sailings',    value: bt.length,            ctx: 'with tracked expenses' },
+    { label: 'Total Budgeted',       value: fmt(totalBudgeted),   ctx: 'across all upcoming' },
+    { label: 'Already Paid',         value: fmt(totalPaid),       ctx: `${overallPaidPct}% of budget` },
+    { label: 'Still Forecasted',     value: fmt(totalFore),       ctx: 'remaining to spend' },
+  ];
+  $('#bt-kpi-grid').innerHTML = kpis.map(k => `
+    <div class="kpi-card">
+      <div class="kpi-label">${k.label}</div>
+      <div class="kpi-value">${k.value}</div>
+      <div class="kpi-context">${k.ctx}</div>
+    </div>`).join('');
+  const container = $('#bt-cards');
+  if (!bt.length) {
+    container.innerHTML = '<div class="bt-empty">No upcoming sailings with tracked expenses found.</div>';
+    return;
+  }
+  container.innerHTML = bt.map((s, idx) => {
+    const pct = Math.min(s.paidPct, 100);
+    const isFull = pct >= 100;
+    const borderColor = pct >= 75 ? '#43a047' : pct >= 40 ? 'var(--warn)' : 'var(--primary)';
+    const catRows = cats
+      .filter(cat => s.categories[cat])
+      .map(cat => {
+        const c = s.categories[cat];
+        return `<tr>
+          <td>${cat}</td>
+          <td class="paid-cell">${c.paid ? fmt(c.paid) : '-'}</td>
+          <td class="fore-cell">${c.forecasted ? fmt(c.forecasted) : '-'}</td>
+          <td class="total-cell">${fmt(c.total)}</td>
+        </tr>`;
+      }).join('');
+    const catTotalRow = `<tr>
+      <td>Total</td>
+      <td class="paid-cell">${fmt(s.totalPaid)}</td>
+      <td class="fore-cell">${fmt(s.totalForecasted)}</td>
+      <td class="total-cell">${fmt(s.totalBudgeted)}</td>
+    </tr>`;
+    const lineItemsHtml = s.lineItems.map(item => `
+      <div class="bt-line-item">
+        <div>
+          <div class="li-name">${item.expense}</div>
+          <div class="li-cat">${item.category}</div>
+        </div>
+        <div class="li-date">${item.date || 'No date'}</div>
+        <div class="li-amt ${item.status === 'paid' ? 'paid-cell' : 'fore-cell'}">${fmt(item.amount)}</div>
+        <span class="li-badge ${item.status}">${item.status}</span>
+      </div>`).join('');
+    return `
+    <div class="bt-card" style="border-left-color:${borderColor}" id="bt-card-${idx}">
+      <div class="bt-card-header" data-idx="${idx}">
+        <span class="bt-card-chevron">></span>
+        <div class="bt-card-title-wrap">
+          <div>
+            <div class="bt-card-title">${s.name}</div>
+            <div class="bt-card-meta">${s.month} . ${s.nights} nights . ${s.people} people . ${s.ship} . ${s.roomSubtype}</div>
+          </div>
+        </div>
+        <div class="bt-totals">
+          <div class="bt-total-block">
+            <span class="bt-total-label">Paid</span>
+            <span class="bt-total-val paid">${fmt(s.totalPaid)}</span>
+          </div>
+          <div class="bt-total-block">
+            <span class="bt-total-label">Forecasted</span>
+            <span class="bt-total-val fore">${fmt(s.totalForecasted)}</span>
+          </div>
+          <div class="bt-total-block">
+            <span class="bt-total-label">Total</span>
+            <span class="bt-total-val total">${fmt(s.totalBudgeted)}</span>
+          </div>
+        </div>
+      </div>
+      <div class="bt-progress-wrap" style="padding:0 20px 14px">
+        <div class="bt-progress-label">
+          <span>${pct}% paid</span>
+          <span>${fmt(s.totalPaid)} of ${fmt(s.totalBudgeted)}</span>
+        </div>
+        <div class="bt-progress-track">
+          <div class="bt-progress-fill${isFull ? ' full' : ''}" style="width:${pct}%"></div>
+        </div>
+      </div>
+      <div class="bt-card-body">
+        <table class="bt-cat-table">
+          <thead><tr><th>Category</th><th>Paid</th><th>Forecasted</th><th>Total</th></tr></thead>
+          <tbody>${catRows}${catTotalRow}</tbody>
+        </table>
+        <button class="bt-toggle-btn" data-idx="${idx}">Show ${s.lineItems.length} line item${s.lineItems.length !== 1 ? 's' : ''}</button>
+        <div class="bt-line-items" id="bt-items-${idx}">
+          ${lineItemsHtml}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  container.querySelectorAll('.bt-card-header').forEach(header => {
+    header.addEventListener('click', (e) => {
+      if (e.target.closest('.bt-toggle-btn')) return;
+      const idx = header.dataset.idx;
+      const card = $(`#bt-card-${idx}`);
+      card.classList.toggle('open');
+    });
+  });
+  container.querySelectorAll('.bt-toggle-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const idx = btn.dataset.idx;
+      const panel = $(`#bt-items-${idx}`);
+      const open = panel.classList.toggle('open');
+      const count = (DATA.budgetTracker[idx]?.lineItems || []).length;
+      btn.textContent = open
+        ? `Hide line items`
+        : `Show ${count} line item${count !== 1 ? 's' : ''}`;
+    });
+  });
+}
+function renderTable(sel, headers, rows, rowClasses, opts) {
+  const el = $(sel);
+  const diagonal = opts && opts.diagonal;
+  if (diagonal) el.classList.add('diagonal-headers');
+  let html = '';
+  if (opts && opts.colWidths) {
+    html += '<colgroup>' + headers.map((_,i) => opts.colWidths[i] ? `<col style="width:${opts.colWidths[i]}">` : '<col>').join('') + '</colgroup>';
+  }
+  html += '<thead><tr>' + headers.map(h => `<th><span>${h.replace('Pre-booked', 'Pre&#8209;booked')}</span></th>`).join('') + '</tr></thead><tbody>';
+  rows.forEach((row, i) => {
+    const cls = rowClasses && rowClasses[i] ? ` class="${rowClasses[i]}"` : '';
+    const explicitBold = opts && opts.boldCols ? opts.boldCols.map(c => c < 0 ? row.length + c : c) : [];
+    const autoBold = headers.reduce((acc, h, ci) => { if (h === 'Total') acc.push(ci); return acc; }, []);
+    const bold = [...new Set([...explicitBold, ...autoBold])];
+    html += `<tr${cls}>` + row.map((c, ci) => bold.includes(ci) ? `<td style="font-weight:700">${c}</td>` : `<td>${c}</td>`).join('') + '</tr>';
+  });
+  html += '</tbody>';
+  el.innerHTML = html;
+}
+</script>
+</body>
+</html>
