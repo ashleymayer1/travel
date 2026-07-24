@@ -600,23 +600,23 @@
       "ship": "Wonder",
       "roomType": "Suite",
       "roomSubtype": "Grand Suite",
-      "total": 18270,
+      "total": 19195,
       "fare": 12954,
-      "cpn": 2610,
-      "pppn": 653,
+      "cpn": 2742,
+      "pppn": 686,
       "fppn": 463,
-      "farePct": 70.9,
+      "farePct": 67.5,
       "isPast": false,
       "isUpcoming": true,
       "isOutlier": false,
       "categories": {
         "Cruise Fare": 12954,
-        "Travel": 1978,
+        "Travel": 2923,
         "Dogs": 1000,
-        "Supplies": 150,
+        "Supplies": 158,
         "Onboard Pre-booked": 464,
         "Cabana/Casita": 724,
-        "Excursion": 501,
+        "Excursion": 473,
         "Onboard Spending": 500
       }
     },
@@ -631,21 +631,21 @@
       "ship": "Legend",
       "roomType": "Balcony",
       "roomSubtype": "Family Infinite Balcony",
-      "total": 18384,
-      "fare": 12612,
-      "cpn": 3064,
-      "pppn": 766,
-      "fppn": 526,
-      "farePct": 68.6,
+      "total": 15478,
+      "fare": 10906,
+      "cpn": 2580,
+      "pppn": 645,
+      "fppn": 454,
+      "farePct": 70.5,
       "isPast": false,
       "isUpcoming": true,
       "isOutlier": false,
       "categories": {
-        "Cruise Fare": 12612,
-        "Travel": 2010,
+        "Cruise Fare": 10906,
+        "Travel": 1510,
         "Dogs": 1000,
-        "Supplies": 400,
-        "Onboard Pre-booked": 1762,
+        "Supplies": 200,
+        "Onboard Pre-booked": 1262,
         "Cabana/Casita": 0,
         "Excursion": 0,
         "Onboard Spending": 600
@@ -662,12 +662,12 @@
       "ship": "Star",
       "roomType": "Balcony",
       "roomSubtype": "Family Infinite Balcony",
-      "total": 23952,
+      "total": 23652,
       "fare": 14582,
-      "cpn": 3422,
-      "pppn": 855,
+      "cpn": 3379,
+      "pppn": 845,
       "fppn": 521,
-      "farePct": 60.9,
+      "farePct": 61.7,
       "isPast": false,
       "isUpcoming": true,
       "isOutlier": false,
@@ -675,7 +675,7 @@
         "Cruise Fare": 14582,
         "Travel": 4420,
         "Dogs": 1000,
-        "Supplies": 500,
+        "Supplies": 200,
         "Onboard Pre-booked": 2950,
         "Cabana/Casita": 0,
         "Excursion": 0,
@@ -755,8 +755,8 @@
     "avgPerSailing": 11459,
     "pastCount": 18,
     "upcomingCount": 5,
-    "upcomingSpend": 100469,
-    "upcomingAvgPppn": 718
+    "upcomingSpend": 98188,
+    "upcomingAvgPppn": 701
   },
   "bestValue": [
     {
@@ -858,11 +858,11 @@
       "sailings": 4,
       "nights": 27,
       "personNights": 108,
-      "total": 78463,
-      "pppn": 727,
-      "avgPerSailing": 19616,
-      "fare": 52274,
-      "farePct": 66.6
+      "total": 76182,
+      "pppn": 705,
+      "avgPerSailing": 19046,
+      "fare": 50568,
+      "farePct": 66.4
     },
     {
       "year": "2027",
@@ -913,17 +913,17 @@
     },
     {
       "year": 2026,
-      "funding": 57497,
-      "sailings": 72250,
+      "funding": 56959,
+      "sailings": 70619,
       "other": -356,
-      "net": -15110
+      "net": -14017
     },
     {
       "year": 2027,
       "funding": 0,
-      "sailings": 32221,
+      "sailings": 31921,
       "other": 0,
-      "net": -32221
+      "net": -31921
     }
   ],
   "dogBoarding": [
@@ -1673,10 +1673,10 @@
       "people": 4,
       "ship": "Wonder",
       "roomSubtype": "Grand Suite",
-      "totalBudgeted": 18271,
-      "totalPaid": 15216,
-      "totalForecasted": 3055,
-      "paidPct": 83.3,
+      "totalBudgeted": 19196,
+      "totalPaid": 16083,
+      "totalForecasted": 3113,
+      "paidPct": 83.8,
       "categories": {
         "Cruise Fare": {
           "paid": 12954,
@@ -1684,9 +1684,9 @@
           "total": 12954
         },
         "Travel": {
-          "paid": 573,
-          "forecasted": 1405,
-          "total": 1978
+          "paid": 1468,
+          "forecasted": 1455,
+          "total": 2923
         },
         "Dogs": {
           "paid": 0,
@@ -1695,8 +1695,8 @@
         },
         "Supplies": {
           "paid": 0,
-          "forecasted": 150,
-          "total": 150
+          "forecasted": 158,
+          "total": 158
         },
         "Onboard Pre-booked": {
           "paid": 464,
@@ -1709,9 +1709,9 @@
           "total": 724
         },
         "Excursion": {
-          "paid": 501,
+          "paid": 473,
           "forecasted": 0,
-          "total": 501
+          "total": 473
         },
         "Onboard Spending": {
           "paid": 0,
@@ -1732,6 +1732,13 @@
           "amount": 1476,
           "category": "Cruise Fare",
           "date": "2024-10-30",
+          "status": "paid"
+        },
+        {
+          "expense": "Flights",
+          "amount": 895,
+          "category": "Travel",
+          "date": "2026-07-23",
           "status": "paid"
         },
         {
@@ -1799,6 +1806,13 @@
         },
         {
           "expense": "Zipline",
+          "amount": 102,
+          "category": "Excursion",
+          "date": "2026-07-21",
+          "status": "paid"
+        },
+        {
+          "expense": "Zipline",
           "amount": 94,
           "category": "Excursion",
           "date": "2026-05-02",
@@ -1826,6 +1840,13 @@
           "status": "paid"
         },
         {
+          "expense": "Hidaway",
+          "amount": -130,
+          "category": "Excursion",
+          "date": "2026-07-17",
+          "status": "paid"
+        },
+        {
           "expense": "Dog Boarding",
           "amount": 1000,
           "category": "Dogs",
@@ -1833,17 +1854,17 @@
           "status": "forecasted"
         },
         {
+          "expense": "Hotel",
+          "amount": 750,
+          "category": "Travel",
+          "date": "2026-07-31",
+          "status": "forecasted"
+        },
+        {
           "expense": "Tips, Uber, Food, Lounges",
           "amount": 705,
           "category": "Travel",
           "date": "2026-08-07",
-          "status": "forecasted"
-        },
-        {
-          "expense": "Hotel",
-          "amount": 700,
-          "category": "Travel",
-          "date": "2026-07-31",
           "status": "forecasted"
         },
         {
@@ -1855,7 +1876,7 @@
         },
         {
           "expense": "Supplies",
-          "amount": 150,
+          "amount": 158,
           "category": "Supplies",
           "date": "2026-07-29",
           "status": "forecasted"
@@ -1869,20 +1890,20 @@
       "people": 4,
       "ship": "Legend",
       "roomSubtype": "Family Infinite Balcony",
-      "totalBudgeted": 18384,
+      "totalBudgeted": 15478,
       "totalPaid": 1262,
-      "totalForecasted": 17122,
-      "paidPct": 6.9,
+      "totalForecasted": 14216,
+      "paidPct": 8.2,
       "categories": {
         "Cruise Fare": {
           "paid": 200,
-          "forecasted": 12412,
-          "total": 12612
+          "forecasted": 10706,
+          "total": 10906
         },
         "Travel": {
           "paid": 0,
-          "forecasted": 2010,
-          "total": 2010
+          "forecasted": 1510,
+          "total": 1510
         },
         "Dogs": {
           "paid": 0,
@@ -1891,13 +1912,13 @@
         },
         "Supplies": {
           "paid": 0,
-          "forecasted": 400,
-          "total": 400
+          "forecasted": 200,
+          "total": 200
         },
         "Onboard Pre-booked": {
           "paid": 1062,
-          "forecasted": 700,
-          "total": 1762
+          "forecasted": 200,
+          "total": 1262
         },
         "Onboard Spending": {
           "paid": 0,
@@ -1922,7 +1943,7 @@
         },
         {
           "expense": "Final Payment",
-          "amount": 12412,
+          "amount": 10706,
           "category": "Cruise Fare",
           "date": "2026-08-24",
           "status": "forecasted"
@@ -1942,20 +1963,6 @@
           "status": "forecasted"
         },
         {
-          "expense": "Onboard Pre-booked",
-          "amount": 700,
-          "category": "Onboard Pre-booked",
-          "date": "2026-11-27",
-          "status": "forecasted"
-        },
-        {
-          "expense": "Hotel",
-          "amount": 600,
-          "category": "Travel",
-          "date": "2026-11-23",
-          "status": "forecasted"
-        },
-        {
           "expense": "Final Balance",
           "amount": 600,
           "category": "Onboard Spending",
@@ -1970,17 +1977,31 @@
           "status": "forecasted"
         },
         {
+          "expense": "RDU Parking",
+          "amount": 250,
+          "category": "Travel",
+          "date": "2026-08-24",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Onboard Pre-booked",
+          "amount": 200,
+          "category": "Onboard Pre-booked",
+          "date": "2026-11-27",
+          "status": "forecasted"
+        },
+        {
           "expense": "Supplies",
-          "amount": 400,
+          "amount": 200,
           "category": "Supplies",
           "date": "2026-11-27",
           "status": "forecasted"
         },
         {
-          "expense": "RDU Parking",
-          "amount": 250,
+          "expense": "Hotel",
+          "amount": 100,
           "category": "Travel",
-          "date": "2026-08-24",
+          "date": "2026-11-23",
           "status": "forecasted"
         }
       ]
@@ -1992,9 +2013,9 @@
       "people": 4,
       "ship": "Star",
       "roomSubtype": "Family Infinite Balcony",
-      "totalBudgeted": 23952,
+      "totalBudgeted": 23652,
       "totalPaid": 1000,
-      "totalForecasted": 22952,
+      "totalForecasted": 22652,
       "paidPct": 4.2,
       "categories": {
         "Cruise Fare": {
@@ -2014,8 +2035,8 @@
         },
         "Supplies": {
           "paid": 0,
-          "forecasted": 500,
-          "total": 500
+          "forecasted": 200,
+          "total": 200
         },
         "Onboard Pre-booked": {
           "paid": 0,
@@ -2086,17 +2107,17 @@
           "status": "forecasted"
         },
         {
-          "expense": "Supplies",
-          "amount": 500,
-          "category": "Supplies",
-          "date": "2027-01-04",
-          "status": "forecasted"
-        },
-        {
           "expense": "RDU Parking",
           "amount": 250,
           "category": "Travel",
           "date": "2026-10-01",
+          "status": "forecasted"
+        },
+        {
+          "expense": "Supplies",
+          "amount": 200,
+          "category": "Supplies",
+          "date": "2027-01-04",
           "status": "forecasted"
         }
       ]
@@ -2322,13 +2343,6 @@
           "amount": 250,
           "category": "Travel",
           "date": "2027-05-16",
-          "status": "forecasted"
-        },
-        {
-          "expense": "Supplies",
-          "amount": 150,
-          "category": "Supplies",
-          "date": "2027-08-21",
           "status": "forecasted"
         }
       ]
