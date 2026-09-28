@@ -484,7 +484,7 @@
       "farePct": 50.0,
       "isPast": true,
       "isUpcoming": false,
-      "isOutlier": false,
+      "isOutlier": true,
       "categories": {
         "Cruise Fare": 9102,
         "Travel": 4460,
@@ -746,14 +746,14 @@
     }
   ],
   "kpi": {
-    "totalSpent": 226069,
-    "avgPppn": 577,
-    "avgFppn": 345,
-    "farePct": 60,
-    "totalNights": 100,
-    "totalPersonNights": 392,
-    "avgPerSailing": 11898,
-    "pastCount": 19,
+    "totalSpent": 207859,
+    "avgPppn": 553,
+    "avgFppn": 336,
+    "farePct": 61,
+    "totalNights": 96,
+    "totalPersonNights": 376,
+    "avgPerSailing": 11548,
+    "pastCount": 18,
     "upcomingCount": 4,
     "upcomingSpend": 81146,
     "upcomingAvgPppn": 725
@@ -780,12 +780,6 @@
   ],
   "worstValue": [
     {
-      "name": "Thanksgiving 2025",
-      "pppn": 1138,
-      "ship": "Disney Wish",
-      "roomSubtype": "Disney Balcony"
-    },
-    {
       "name": "Spring Break 2025",
       "pppn": 1003,
       "ship": "Utopia",
@@ -796,17 +790,23 @@
       "pppn": 707,
       "ship": "Wonder",
       "roomSubtype": "Grand Suite"
+    },
+    {
+      "name": "Winter Vacay 2024",
+      "pppn": 700,
+      "ship": "Wonder",
+      "roomSubtype": "Connecting Balconies"
     }
   ],
   "categoryTotals": {
-    "Cruise Fare": 135288,
-    "Travel": 42397,
-    "Dogs": 9727,
-    "Supplies": 3842,
-    "Onboard Pre-booked": 10354,
-    "Cabana/Casita": 5303,
+    "Cruise Fare": 126186,
+    "Travel": 37936,
+    "Dogs": 8857,
+    "Supplies": 3477,
+    "Onboard Pre-booked": 10182,
+    "Cabana/Casita": 4616,
     "Excursion": 1596,
-    "Onboard Spending": 17997
+    "Onboard Spending": 15444
   },
   "years": [
     {
@@ -844,14 +844,14 @@
     },
     {
       "year": "2025",
-      "sailings": 5,
-      "nights": 30,
-      "personNights": 120,
-      "total": 86694,
-      "pppn": 722,
-      "avgPerSailing": 17339,
-      "fare": 49288,
-      "farePct": 56.9
+      "sailings": 4,
+      "nights": 26,
+      "personNights": 104,
+      "total": 68483,
+      "pppn": 658,
+      "avgPerSailing": 17121,
+      "fare": 40186,
+      "farePct": 58.7
     },
     {
       "year": "2026",
@@ -878,9 +878,9 @@
   ],
   "roomComparison": {
     "suiteAvg": 577,
-    "balconyAvg": 590,
+    "balconyAvg": 521,
     "suiteCount": 8,
-    "balconyCount": 9
+    "balconyCount": 8
   },
   "funding": [
     {
@@ -1004,14 +1004,6 @@
       "nights": 7,
       "cost": 1070,
       "costPerNight": 153,
-      "provider": "Facility",
-      "isPast": true
-    },
-    {
-      "name": "Thanksgiving 2025",
-      "nights": 4,
-      "cost": 870,
-      "costPerNight": 218,
       "provider": "Facility",
       "isPast": true
     },
@@ -1199,17 +1191,6 @@
           "Sabbatical 2025"
         ]
       },
-      "Disney Balcony|Disney Wish": {
-        "count": 1,
-        "avgFppn": 569,
-        "minFppn": 569,
-        "maxFppn": 569,
-        "p25Fppn": 569,
-        "p75Fppn": 569,
-        "sailings": [
-          "Thanksgiving 2025"
-        ]
-      },
       "Connecting Balconies|Allure": {
         "count": 1,
         "avgFppn": 339,
@@ -1342,27 +1323,16 @@
           "Summer Vacay 2025",
           "Sabbatical 2025"
         ]
-      },
-      "Disney Balcony": {
-        "count": 1,
-        "avgFppn": 569,
-        "minFppn": 569,
-        "maxFppn": 569,
-        "p25Fppn": 569,
-        "p75Fppn": 569,
-        "sailings": [
-          "Thanksgiving 2025"
-        ]
       }
     },
     "byRoomType": {
       "Balcony": {
-        "count": 11,
-        "avgFppn": 317,
+        "count": 10,
+        "avgFppn": 291,
         "minFppn": 120,
-        "maxFppn": 569,
+        "maxFppn": 474,
         "p25Fppn": 161,
-        "p75Fppn": 433,
+        "p75Fppn": 414,
         "sailings": [
           "Spring Break 2022",
           "Work From Ship 2022",
@@ -1372,7 +1342,6 @@
           "Winter Vacay 2024",
           "Summer Vacay 2025",
           "Sabbatical 2025",
-          "Thanksgiving 2025",
           "Winter Vacay 2025",
           "Spring Break 2026"
         ]
@@ -1441,18 +1410,17 @@
         ]
       },
       "Holiday": {
-        "count": 6,
-        "avgFppn": 335,
+        "count": 5,
+        "avgFppn": 289,
         "minFppn": 161,
-        "maxFppn": 569,
+        "maxFppn": 414,
         "p25Fppn": 190,
-        "p75Fppn": 414,
+        "p75Fppn": 339,
         "sailings": [
           "Ashley's Birthday 2022",
           "Winter 2022",
           "Christmas Vacation 2023",
           "Winter Vacay 2024",
-          "Thanksgiving 2025",
           "Winter Vacay 2025"
         ]
       }
@@ -1595,17 +1563,6 @@
           "Sabbatical 2025"
         ]
       },
-      "Disney Balcony|Holiday": {
-        "count": 1,
-        "avgFppn": 569,
-        "minFppn": 569,
-        "maxFppn": 569,
-        "p25Fppn": 569,
-        "p75Fppn": 569,
-        "sailings": [
-          "Thanksgiving 2025"
-        ]
-      },
       "Connecting Balconies|Spring Break": {
         "count": 1,
         "avgFppn": 433,
@@ -1619,12 +1576,12 @@
       }
     },
     "overall": {
-      "count": 19,
-      "avgFppn": 327,
+      "count": 18,
+      "avgFppn": 313,
       "minFppn": 120,
-      "maxFppn": 569,
+      "maxFppn": 506,
       "p25Fppn": 194,
-      "p75Fppn": 433,
+      "p75Fppn": 420,
       "sailings": [
         "Spring Break 2022",
         "Summer 2022",
@@ -1641,7 +1598,6 @@
         "Spring Break 2025",
         "Summer Vacay 2025",
         "Sabbatical 2025",
-        "Thanksgiving 2025",
         "Winter Vacay 2025",
         "Spring Break 2026",
         "Summer B2B 2026"
@@ -1649,7 +1605,6 @@
     },
     "ships": [
       "Allure",
-      "Disney Wish",
       "Freedom",
       "Icon",
       "Liberty",
@@ -1662,7 +1617,6 @@
     "roomSubtypes": [
       "Connecting Balconies",
       "Crown Loft Suite",
-      "Disney Balcony",
       "Family Infinite Balcony",
       "Grand Suite",
       "Junior Suite",
