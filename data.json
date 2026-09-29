@@ -25,11 +25,60 @@
         "Travel": 1500,
         "Dogs": 247,
         "Supplies": 202,
-        "Onboard Pre-booked": 119,
+        "Onboard Pre-booked": 1374,
         "Cabana/Casita": 273,
         "Excursion": 0,
-        "Onboard Spending": 1196
-      }
+        "Onboard Spending": 60
+      },
+      "booking": {
+        "firstDeposit": "2022-01-17",
+        "depositAmt": 200,
+        "monthsAhead": 1.9,
+        "onboard": false,
+        "bookedDuring": null
+      },
+      "cashTiming": {
+        "early": 0.0,
+        "final": 0.286,
+        "last30": 0.72,
+        "after": -0.006
+      },
+      "flightsAfterFinalDays": null,
+      "flights": {
+        "net": 177,
+        "perPerson": 30,
+        "mode": "points",
+        "points": {
+          "ur": 26752
+        },
+        "confirmed": true
+      },
+      "hotel": {
+        "mode": "none",
+        "bonvoy": 0,
+        "property": null,
+        "booked": 0
+      },
+      "groundTravel": 1323,
+      "onboardStatement": {
+        "total": -59.68,
+        "gross": 89.32,
+        "credits": -149.0,
+        "groups": {
+          "Other": 20.0,
+          "Kids & play": 24.0,
+          "Drinks": 15.34,
+          "Photos": 29.98
+        },
+        "special": {},
+        "topItems": {
+          "FOCUS PHOTO GALLERY": 29.98,
+          "ARCADE": 24.0,
+          "CLUB ROYALE ENTERTAINMENT GAMES": 20.0,
+          "LIME & COCONUT": 15.34
+        }
+      },
+      "priceDrops": []
     },
     {
       "name": "Summer 2022",
@@ -56,11 +105,58 @@
         "Travel": 628,
         "Dogs": 232,
         "Supplies": 323,
-        "Onboard Pre-booked": 80,
+        "Onboard Pre-booked": 719,
         "Cabana/Casita": 333,
         "Excursion": 0,
-        "Onboard Spending": 558
-      }
+        "Onboard Spending": 81
+      },
+      "booking": {
+        "firstDeposit": "2022-03-31",
+        "depositAmt": 400,
+        "monthsAhead": 2.5,
+        "onboard": true,
+        "bookedDuring": "Spring Break 2022"
+      },
+      "cashTiming": {
+        "early": 0.0,
+        "final": 0.817,
+        "last30": 0.121,
+        "after": 0.062
+      },
+      "flightsAfterFinalDays": 20,
+      "flights": {
+        "net": 161,
+        "perPerson": 40,
+        "mode": "points+cash",
+        "points": {
+          "ur": 114834
+        },
+        "confirmed": true
+      },
+      "hotel": {
+        "mode": "none",
+        "bonvoy": 0,
+        "property": null,
+        "booked": 0
+      },
+      "groundTravel": 467,
+      "onboardStatement": {
+        "total": -81.04,
+        "gross": 52.95,
+        "credits": -133.99,
+        "groups": {
+          "Dining": 40.0,
+          "Shopping": 12.95
+        },
+        "special": {},
+        "topItems": {
+          "CHOPS GRILLE": 20.0,
+          "THE SHOP": 12.95,
+          "JOHNNY ROCKETS": 10.0,
+          "IZUMI": 10.0
+        }
+      },
+      "priceDrops": []
     },
     {
       "name": "Work From Ship 2022",
@@ -73,12 +169,12 @@
       "ship": "Freedom",
       "roomType": "Balcony",
       "roomSubtype": "Standard Balcony",
-      "total": 1659,
+      "total": 1622,
       "fare": 640,
-      "cpn": 415,
-      "pppn": 415,
+      "cpn": 405,
+      "pppn": 405,
       "fppn": 160,
-      "farePct": 38.6,
+      "farePct": 39.5,
       "isPast": true,
       "isUpcoming": false,
       "isOutlier": false,
@@ -87,11 +183,63 @@
         "Travel": 243,
         "Dogs": 0,
         "Supplies": 161,
-        "Onboard Pre-booked": 16,
+        "Onboard Pre-booked": 513,
         "Cabana/Casita": 0,
         "Excursion": 0,
-        "Onboard Spending": 631
-      }
+        "Onboard Spending": 64
+      },
+      "booking": null,
+      "cashTiming": {
+        "early": 0.0,
+        "final": 0.0,
+        "last30": 1.0,
+        "after": 0.0
+      },
+      "flightsAfterFinalDays": null,
+      "flights": {
+        "net": 0,
+        "perPerson": 0,
+        "mode": "points",
+        "points": {
+          "ur": 19776
+        },
+        "confirmed": true
+      },
+      "hotel": {
+        "mode": "none",
+        "bonvoy": 0,
+        "property": null,
+        "booked": 0
+      },
+      "groundTravel": 243,
+      "onboardStatement": {
+        "total": 64.34,
+        "gross": 64.34,
+        "credits": 0.0,
+        "groups": {
+          "Drinks": 9.44,
+          "Shopping": 54.9
+        },
+        "special": {},
+        "topItems": {
+          "THE SHOP": 54.9,
+          "PLAYMAKERS": 9.44
+        }
+      },
+      "priceDrops": [
+        {
+          "item": "Deluxe beverage/VOOM",
+          "amount": 37.72,
+          "pct": null,
+          "date": "2022-08-20"
+        },
+        {
+          "item": "The Key",
+          "amount": 16,
+          "pct": null,
+          "date": "2022-09-06"
+        }
+      ]
     },
     {
       "name": "Ashley's Birthday 2022",
@@ -118,11 +266,53 @@
         "Travel": 614,
         "Dogs": 0,
         "Supplies": 0,
-        "Onboard Pre-booked": 84,
+        "Onboard Pre-booked": 410,
         "Cabana/Casita": 354,
         "Excursion": 0,
-        "Onboard Spending": 338
-      }
+        "Onboard Spending": 12
+      },
+      "booking": {
+        "firstDeposit": "2022-08-21",
+        "depositAmt": 200,
+        "monthsAhead": 3.8,
+        "onboard": false,
+        "bookedDuring": null
+      },
+      "cashTiming": {
+        "early": 0.0,
+        "final": 0.892,
+        "last30": 0.108,
+        "after": 0.0
+      },
+      "flightsAfterFinalDays": 17,
+      "flights": {
+        "net": 394,
+        "perPerson": 197,
+        "mode": "cash",
+        "points": {},
+        "confirmed": true
+      },
+      "hotel": {
+        "mode": "none",
+        "bonvoy": 0,
+        "property": null,
+        "booked": 0
+      },
+      "groundTravel": 220,
+      "onboardStatement": {
+        "total": 12.38,
+        "gross": 57.74,
+        "credits": -45.36,
+        "groups": {
+          "Drinks": 57.74
+        },
+        "special": {},
+        "topItems": {
+          "LIME & COCONUT": 45.36,
+          "STATEROOM SERVICE": 12.38
+        }
+      },
+      "priceDrops": []
     },
     {
       "name": "Winter 2022",
@@ -135,12 +325,12 @@
       "ship": "Oasis",
       "roomType": "Balcony",
       "roomSubtype": "Connecting Balconies",
-      "total": 7451,
+      "total": 7926,
       "fare": 4500,
-      "cpn": 1064,
-      "pppn": 266,
+      "cpn": 1132,
+      "pppn": 283,
       "fppn": 161,
-      "farePct": 60.4,
+      "farePct": 56.8,
       "isPast": true,
       "isUpcoming": false,
       "isOutlier": false,
@@ -149,11 +339,61 @@
         "Travel": 1112,
         "Dogs": 320,
         "Supplies": 106,
-        "Onboard Pre-booked": 105,
+        "Onboard Pre-booked": 1311,
         "Cabana/Casita": 103,
         "Excursion": 0,
-        "Onboard Spending": 1206
-      }
+        "Onboard Spending": 475
+      },
+      "booking": {
+        "firstDeposit": "2022-01-01",
+        "depositAmt": 400,
+        "monthsAhead": 11.4,
+        "onboard": false,
+        "bookedDuring": null
+      },
+      "cashTiming": {
+        "early": 0.059,
+        "final": 0.61,
+        "last30": 0.331,
+        "after": 0.0
+      },
+      "flightsAfterFinalDays": 44,
+      "flights": {
+        "net": 578,
+        "perPerson": 145,
+        "mode": "points+cash",
+        "points": {
+          "ur": 45626
+        },
+        "confirmed": true
+      },
+      "hotel": {
+        "mode": "none",
+        "bonvoy": 0,
+        "property": null,
+        "booked": 0
+      },
+      "groundTravel": 534,
+      "onboardStatement": {
+        "total": 474.69,
+        "gross": 474.69,
+        "credits": 0.0,
+        "groups": {
+          "Kids & play": 240.65,
+          "Shopping": 88.95,
+          "Drinks": 67.37,
+          "Other": 77.72
+        },
+        "special": {},
+        "topItems": {
+          "MEDICAL FACILITY": 179.21,
+          "INTERNET": 63.72,
+          "PD COCOCAY SHOP": 40.0,
+          "BEACH SHOP": 36.0,
+          "ARCADE": 25.0
+        }
+      },
+      "priceDrops": []
     },
     {
       "name": "ShePack Cruise 2023",
@@ -180,11 +420,60 @@
         "Travel": 2128,
         "Dogs": 200,
         "Supplies": 0,
-        "Onboard Pre-booked": 90,
+        "Onboard Pre-booked": 231,
         "Cabana/Casita": 0,
         "Excursion": 0,
-        "Onboard Spending": 895
-      }
+        "Onboard Spending": 754
+      },
+      "booking": {
+        "firstDeposit": "2022-10-06",
+        "depositAmt": 400,
+        "monthsAhead": 4.3,
+        "onboard": false,
+        "bookedDuring": null
+      },
+      "cashTiming": {
+        "early": 0.346,
+        "final": 0.367,
+        "last30": 0.287,
+        "after": 0.0
+      },
+      "flightsAfterFinalDays": -54,
+      "flights": {
+        "net": 1432,
+        "perPerson": 358,
+        "mode": "cash",
+        "points": {},
+        "confirmed": true
+      },
+      "hotel": {
+        "mode": "cash",
+        "bonvoy": 0,
+        "property": "Holiday Inn Express FLL Airport/Cruise",
+        "booked": 281.38
+      },
+      "groundTravel": 696,
+      "onboardStatement": {
+        "total": 753.57,
+        "gross": 796.89,
+        "credits": -43.32,
+        "groups": {
+          "Drinks": 287.58,
+          "Kids & play": 15.0,
+          "Spa": 431.82,
+          "Shopping": 28.01,
+          "Photos": 34.48
+        },
+        "special": {},
+        "topItems": {
+          "SPA/SALON": 431.82,
+          "BEVERAGE PACKAGE": 244.26,
+          "FOCUS PHOTO GALLERY": 34.48,
+          "THE SHOP": 28.01,
+          "SCHOONER BAR": 16.52
+        }
+      },
+      "priceDrops": []
     },
     {
       "name": "Spring Break 2023",
@@ -197,12 +486,12 @@
       "ship": "Freedom",
       "roomType": "Suite",
       "roomSubtype": "Grand Suite",
-      "total": 5588,
+      "total": 5830,
       "fare": 3540,
-      "cpn": 1397,
-      "pppn": 349,
+      "cpn": 1457,
+      "pppn": 364,
       "fppn": 221,
-      "farePct": 63.4,
+      "farePct": 60.7,
       "isPast": true,
       "isUpcoming": false,
       "isOutlier": false,
@@ -212,10 +501,66 @@
         "Dogs": 240,
         "Supplies": 0,
         "Onboard Pre-booked": 430,
-        "Cabana/Casita": 0,
+        "Cabana/Casita": 4,
         "Excursion": 0,
-        "Onboard Spending": 0
-      }
+        "Onboard Spending": 238
+      },
+      "booking": {
+        "firstDeposit": "2022-03-31",
+        "depositAmt": 400,
+        "monthsAhead": 11.5,
+        "onboard": true,
+        "bookedDuring": "Spring Break 2022"
+      },
+      "cashTiming": {
+        "early": 0.069,
+        "final": 0.558,
+        "last30": 0.229,
+        "after": 0.143
+      },
+      "flightsAfterFinalDays": 17,
+      "flights": {
+        "net": 350,
+        "perPerson": 88,
+        "mode": "points+cash",
+        "points": {
+          "ur": 59287
+        },
+        "confirmed": true
+      },
+      "hotel": {
+        "mode": "cash",
+        "bonvoy": 0,
+        "property": "Residence Inn Miami Beach South Beach",
+        "booked": 503.88,
+        "folio": {
+          "room": 478.8,
+          "fees": 25.08,
+          "food": 13.85,
+          "total": 517.73,
+          "paid": 517.73,
+          "balanced": true
+        }
+      },
+      "groundTravel": 1028,
+      "onboardStatement": {
+        "total": 237.84,
+        "gross": 270.56,
+        "credits": -32.72,
+        "groups": {
+          "Kids & play": 94.0,
+          "Drinks": 176.56
+        },
+        "special": {},
+        "topItems": {
+          "LIME & COCONUT": 70.8,
+          "ARCADE": 64.0,
+          "PLAYMAKERS": 46.02,
+          "ADVENTURE OCEAN": 30.0,
+          "THE CRACKED COCONUT": 15.36
+        }
+      },
+      "priceDrops": []
     },
     {
       "name": "Christmas Vacation 2023",
@@ -246,7 +591,65 @@
         "Cabana/Casita": 0,
         "Excursion": 0,
         "Onboard Spending": 646
-      }
+      },
+      "booking": {
+        "firstDeposit": "2023-03-29",
+        "depositAmt": 400,
+        "monthsAhead": 8.6,
+        "onboard": true,
+        "bookedDuring": "Spring Break 2023"
+      },
+      "cashTiming": {
+        "early": 0.027,
+        "final": 0.622,
+        "last30": 0.351,
+        "after": 0.0
+      },
+      "flightsAfterFinalDays": 17,
+      "flights": {
+        "net": 210,
+        "perPerson": 52,
+        "mode": "points",
+        "points": {
+          "ur": 184896
+        },
+        "confirmed": true
+      },
+      "hotel": {
+        "mode": "cash",
+        "bonvoy": 0,
+        "property": "W Miami",
+        "booked": 589.86,
+        "folio": {
+          "room": 567.26,
+          "fees": 21.4,
+          "food": 249.41,
+          "total": 838.07,
+          "paid": 838.07,
+          "balanced": true
+        }
+      },
+      "groundTravel": 1549,
+      "onboardStatement": {
+        "total": 645.88,
+        "gross": 755.88,
+        "credits": -110.0,
+        "groups": {
+          "Drinks": 109.63,
+          "Kids & play": 232.5,
+          "Dining": 293.76,
+          "Photos": 119.99
+        },
+        "special": {},
+        "topItems": {
+          "CHOPS GRILLE": 235.98,
+          "ADVENTURE OCEAN": 130.0,
+          "FOCUS PHOTO GALLERY": 119.99,
+          "ARCADE": 102.5,
+          "PLAYMAKERS": 41.25
+        }
+      },
+      "priceDrops": []
     },
     {
       "name": "Spring Break 2024",
@@ -259,12 +662,12 @@
       "ship": "Freedom",
       "roomType": "Suite",
       "roomSubtype": "Grand Suite",
-      "total": 8517,
+      "total": 8773,
       "fare": 5191,
-      "cpn": 2129,
-      "pppn": 532,
+      "cpn": 2193,
+      "pppn": 548,
       "fppn": 324,
-      "farePct": 61.0,
+      "farePct": 59.2,
       "isPast": true,
       "isUpcoming": false,
       "isOutlier": false,
@@ -273,11 +676,64 @@
         "Travel": 2319,
         "Dogs": 0,
         "Supplies": 0,
-        "Onboard Pre-booked": 136,
-        "Cabana/Casita": 59,
+        "Onboard Pre-booked": 835,
+        "Cabana/Casita": 134,
         "Excursion": 0,
-        "Onboard Spending": 811
-      }
+        "Onboard Spending": 292
+      },
+      "booking": {
+        "firstDeposit": "2023-03-29",
+        "depositAmt": 400,
+        "monthsAhead": 11.6,
+        "onboard": true,
+        "bookedDuring": "Spring Break 2023"
+      },
+      "cashTiming": {
+        "early": 0.072,
+        "final": 0.775,
+        "last30": 0.153,
+        "after": 0.0
+      },
+      "flightsAfterFinalDays": 7,
+      "flights": {
+        "net": 1150,
+        "perPerson": 287,
+        "mode": "points+cash",
+        "points": {
+          "ur": 73195
+        },
+        "confirmed": true
+      },
+      "hotel": {
+        "mode": "points",
+        "bonvoy": 75000,
+        "property": "Miami Marriott Biscayne Bay",
+        "booked": 39.55,
+        "folio": {
+          "room": 0.0,
+          "fees": 39.55,
+          "food": 265.6,
+          "total": 305.15,
+          "paid": 305.15,
+          "balanced": true
+        }
+      },
+      "groundTravel": 1169,
+      "onboardStatement": null,
+      "priceDrops": [
+        {
+          "item": "Hideaway Beach",
+          "amount": 35.2,
+          "pct": 0.225,
+          "date": "2024-01-25"
+        },
+        {
+          "item": "Hideaway Beach",
+          "amount": 61.6,
+          "pct": 0.394,
+          "date": "2024-02-02"
+        }
+      ]
     },
     {
       "name": "Diamond Cruise 2024",
@@ -304,11 +760,70 @@
         "Travel": 1856,
         "Dogs": 0,
         "Supplies": 0,
-        "Onboard Pre-booked": 127,
+        "Onboard Pre-booked": 559,
         "Cabana/Casita": 0,
         "Excursion": 0,
-        "Onboard Spending": 521
-      }
+        "Onboard Spending": 90
+      },
+      "booking": {
+        "firstDeposit": "2023-11-30",
+        "depositAmt": 400,
+        "monthsAhead": 5.5,
+        "onboard": false,
+        "bookedDuring": null
+      },
+      "cashTiming": {
+        "early": 0.099,
+        "final": 0.655,
+        "last30": 0.246,
+        "after": 0.0
+      },
+      "flightsAfterFinalDays": 26,
+      "flights": {
+        "net": 72,
+        "perPerson": 18,
+        "mode": "points",
+        "points": {
+          "skymiles": 140000
+        },
+        "confirmed": true
+      },
+      "hotel": {
+        "mode": "cash",
+        "bonvoy": 0,
+        "property": "Fort Lauderdale Marriott Harbor Beach",
+        "booked": 602.29,
+        "folio": {
+          "room": 552.57,
+          "fees": 49.72,
+          "food": 181.94,
+          "total": 784.23,
+          "paid": 720.73,
+          "balanced": true,
+          "afterFolio": 63.5,
+          "preliminary": "received 4:18 AM ET"
+        }
+      },
+      "groundTravel": 1784,
+      "onboardStatement": {
+        "total": 89.53,
+        "gross": 118.28,
+        "credits": -28.75,
+        "groups": {
+          "Kids & play": 56.5,
+          "Drinks": 28.75,
+          "Shopping": 33.03
+        },
+        "special": {},
+        "topItems": {
+          "ADVENTURE OCEAN": 40.0,
+          "THE SHOP": 33.03,
+          "ARCADE": 16.5,
+          "AFTER DECK BAR": 15.0,
+          "SAND BAR": 13.75
+        }
+      },
+      "priceDrops": []
     },
     {
       "name": "Summer on Icon 2024",
@@ -321,12 +836,12 @@
       "ship": "Icon",
       "roomType": "Suite",
       "roomSubtype": "Surfside Family Suite",
-      "total": 17283,
+      "total": 17425,
       "fare": 11752,
-      "cpn": 2469,
-      "pppn": 617,
+      "cpn": 2489,
+      "pppn": 622,
       "fppn": 420,
-      "farePct": 68.0,
+      "farePct": 67.4,
       "isPast": true,
       "isUpcoming": false,
       "isOutlier": false,
@@ -335,11 +850,60 @@
         "Travel": 3072,
         "Dogs": 0,
         "Supplies": 0,
-        "Onboard Pre-booked": 329,
+        "Onboard Pre-booked": 1322,
         "Cabana/Casita": 742,
         "Excursion": 0,
-        "Onboard Spending": 1388
-      }
+        "Onboard Spending": 537
+      },
+      "booking": {
+        "firstDeposit": "2022-10-26",
+        "depositAmt": 1000,
+        "monthsAhead": 21.6,
+        "onboard": false,
+        "bookedDuring": null
+      },
+      "cashTiming": {
+        "early": 0.138,
+        "final": 0.687,
+        "last30": 0.176,
+        "after": 0.0
+      },
+      "flightsAfterFinalDays": 12,
+      "flights": {
+        "net": 361,
+        "perPerson": 90,
+        "mode": "points+cash",
+        "points": {
+          "ur": 56330
+        },
+        "confirmed": true
+      },
+      "hotel": {
+        "mode": "cash",
+        "bonvoy": 0,
+        "property": "Miami Marriott Biscayne Bay",
+        "booked": 457.65,
+        "folio": {
+          "room": 587.6,
+          "fees": 39.55,
+          "food": 235.37,
+          "total": 862.52,
+          "paid": 780.63,
+          "balanced": true,
+          "afterFolio": 81.89,
+          "preliminary": "received 4:15 AM ET"
+        }
+      },
+      "groundTravel": 2711,
+      "onboardStatement": null,
+      "priceDrops": [
+        {
+          "item": "Hideaway Beach",
+          "amount": 44.0,
+          "pct": 0.282,
+          "date": "2024-04-27"
+        }
+      ]
     },
     {
       "name": "Winter Vacay 2024",
@@ -370,7 +934,68 @@
         "Cabana/Casita": 229,
         "Excursion": 0,
         "Onboard Spending": 2514
-      }
+      },
+      "booking": {
+        "firstDeposit": "2023-12-29",
+        "depositAmt": 400,
+        "monthsAhead": 11.6,
+        "onboard": true,
+        "bookedDuring": "Christmas Vacation 2023"
+      },
+      "cashTiming": {
+        "early": 0.102,
+        "final": 0.644,
+        "last30": 0.071,
+        "after": 0.182
+      },
+      "flightsAfterFinalDays": 13,
+      "flights": {
+        "net": 1124,
+        "perPerson": 281,
+        "mode": "points+cash",
+        "points": {
+          "ur": 119464
+        },
+        "confirmed": true
+      },
+      "hotel": {
+        "mode": "cash",
+        "bonvoy": 0,
+        "property": "Courtyard Titusville Kennedy Space Center",
+        "booked": 311.36,
+        "folio": {
+          "room": 311.36,
+          "fees": 0.0,
+          "food": 210.11,
+          "total": 521.47,
+          "paid": 521.47,
+          "balanced": true
+        }
+      },
+      "groundTravel": 1647,
+      "onboardStatement": {
+        "total": 2514.35,
+        "gross": 882.87,
+        "credits": -138.52,
+        "groups": {
+          "Shopping": 216.66,
+          "Kids & play": 128.5,
+          "Photos": 174.99,
+          "Dining": 243.94,
+          "Drinks": 118.78
+        },
+        "special": {
+          "NYE Schooner Bar table": 1770.0
+        },
+        "topItems": {
+          "SCHOONER BAR": 1770.0,
+          "THE SHOP": 177.43,
+          "FOCUS PHOTO GALLERY": 174.99,
+          "WONDERLAND": 141.58,
+          "ARCADE": 108.5
+        }
+      },
+      "priceDrops": []
     },
     {
       "name": "Spring Break 2025",
@@ -401,7 +1026,70 @@
         "Cabana/Casita": 989,
         "Excursion": 306,
         "Onboard Spending": 343
-      }
+      },
+      "booking": {
+        "firstDeposit": "2023-12-29",
+        "depositAmt": 670,
+        "monthsAhead": 14.5,
+        "onboard": true,
+        "bookedDuring": "Christmas Vacation 2023"
+      },
+      "cashTiming": {
+        "early": 0.103,
+        "final": 0.636,
+        "last30": 0.026,
+        "after": 0.234
+      },
+      "flightsAfterFinalDays": 12,
+      "flights": {
+        "net": 2388,
+        "perPerson": 597,
+        "mode": "cash",
+        "points": {},
+        "confirmed": true
+      },
+      "hotel": {
+        "mode": "cash",
+        "bonvoy": 0,
+        "property": "Courtyard Titusville Kennedy Space Center (2 nights)",
+        "booked": 572.32,
+        "folio": {
+          "room": 572.32,
+          "fees": 0.0,
+          "food": 350.48,
+          "total": 922.8,
+          "paid": 922.8,
+          "balanced": true
+        }
+      },
+      "groundTravel": 2691,
+      "onboardStatement": {
+        "total": 342.78,
+        "gross": 361.22,
+        "credits": -18.44,
+        "groups": {
+          "Photos": 111.99,
+          "Shopping": 151.41,
+          "Drinks": 28.32,
+          "Kids & play": 69.5
+        },
+        "special": {},
+        "topItems": {
+          "THE SHOP": 130.44,
+          "FOCUS PHOTO GALLERY": 111.99,
+          "ARCADE": 39.5,
+          "ADVENTURE OCEAN": 30.0,
+          "MINI BAR": 28.32
+        }
+      },
+      "priceDrops": [
+        {
+          "item": "Coco Cay Pool Cabana",
+          "amount": 330.02,
+          "pct": 0.25,
+          "date": "2024-07-10"
+        }
+      ]
     },
     {
       "name": "Summer Vacay 2025",
@@ -432,7 +1120,66 @@
         "Cabana/Casita": 0,
         "Excursion": 0,
         "Onboard Spending": 493
-      }
+      },
+      "booking": {
+        "firstDeposit": "2024-08-11",
+        "depositAmt": 400,
+        "monthsAhead": 11.1,
+        "onboard": true,
+        "bookedDuring": "Summer on Icon 2024"
+      },
+      "cashTiming": {
+        "early": 0.022,
+        "final": 0.783,
+        "last30": 0.1,
+        "after": 0.095
+      },
+      "flightsAfterFinalDays": -18,
+      "flights": {
+        "net": 0,
+        "perPerson": 0,
+        "mode": "points",
+        "points": {
+          "ur": 127028
+        },
+        "confirmed": true
+      },
+      "hotel": {
+        "mode": "cash",
+        "bonvoy": 0,
+        "property": "Miami Marriott Biscayne Bay",
+        "booked": 685.91,
+        "folio": {
+          "room": 685.91,
+          "fees": 39.55,
+          "food": 219.13,
+          "total": 944.59,
+          "paid": 944.59,
+          "balanced": true
+        }
+      },
+      "groundTravel": 2130,
+      "onboardStatement": {
+        "total": 493.1,
+        "gross": 503.1,
+        "credits": -10.0,
+        "groups": {
+          "Other": 20.0,
+          "Kids & play": 47.5,
+          "Shopping": 364.45,
+          "Drinks": 59.71,
+          "Dining": 11.44
+        },
+        "special": {},
+        "topItems": {
+          "THE SHOP": 319.46,
+          "PLAYMAKERS": 48.33,
+          "ARCADE": 47.5,
+          "COCOCAY ISLAND MARKET": 25.0,
+          "MEXICO NON-RESIDENT TAX": 20.0
+        }
+      },
+      "priceDrops": []
     },
     {
       "name": "Sabbatical 2025",
@@ -463,7 +1210,58 @@
         "Cabana/Casita": 809,
         "Excursion": 110,
         "Onboard Spending": 1012
-      }
+      },
+      "booking": {
+        "firstDeposit": "2025-06-07",
+        "depositAmt": 1000,
+        "monthsAhead": 4.3,
+        "onboard": false,
+        "bookedDuring": null
+      },
+      "cashTiming": {
+        "early": 0.07,
+        "final": 0.685,
+        "last30": 0.244,
+        "after": 0.0
+      },
+      "flightsAfterFinalDays": 5,
+      "flights": {
+        "net": 394,
+        "perPerson": 98,
+        "mode": "points+cash",
+        "points": {
+          "ur": 92314
+        },
+        "confirmed": true
+      },
+      "hotel": {
+        "mode": "points",
+        "bonvoy": 57000,
+        "property": "Miami Marriott Biscayne Bay",
+        "booked": 39.55
+      },
+      "groundTravel": 1673,
+      "onboardStatement": {
+        "total": 1011.82,
+        "gross": 1245.38,
+        "credits": -233.56,
+        "groups": {
+          "Spa": 703.24,
+          "Shopping": 290.63,
+          "Photos": 174.99,
+          "Kids & play": 60.0,
+          "Drinks": 16.52
+        },
+        "special": {},
+        "topItems": {
+          "SPA/SALON": 703.24,
+          "THE SHOP": 216.67,
+          "FOCUS PHOTO GALLERY": 174.99,
+          "ADVENTURE OCEAN": 60.0,
+          "SUNSHINE AND SUNDRIES": 53.98
+        }
+      },
+      "priceDrops": []
     },
     {
       "name": "Thanksgiving 2025",
@@ -494,7 +1292,26 @@
         "Cabana/Casita": 688,
         "Excursion": 0,
         "Onboard Spending": 2554
-      }
+      },
+      "booking": null,
+      "cashTiming": {
+        "early": 0.0,
+        "final": 0.0,
+        "last30": 1.0,
+        "after": 0.0
+      },
+      "flightsAfterFinalDays": 0,
+      "flights": {
+        "net": 2904,
+        "perPerson": 726,
+        "mode": "cash",
+        "points": {},
+        "confirmed": false
+      },
+      "hotel": null,
+      "groundTravel": 1556,
+      "onboardStatement": null,
+      "priceDrops": []
     },
     {
       "name": "Winter Vacay 2025",
@@ -507,12 +1324,12 @@
       "ship": "Allure",
       "roomType": "Balcony",
       "roomSubtype": "Connecting Balconies",
-      "total": 19950,
+      "total": 20094,
       "fare": 10857,
-      "cpn": 2494,
-      "pppn": 623,
+      "cpn": 2512,
+      "pppn": 628,
       "fppn": 339,
-      "farePct": 54.4,
+      "farePct": 54.0,
       "isPast": true,
       "isUpcoming": false,
       "isOutlier": false,
@@ -521,11 +1338,70 @@
         "Travel": 4458,
         "Dogs": 1170,
         "Supplies": 933,
-        "Onboard Pre-booked": 786,
+        "Onboard Pre-booked": 1142,
         "Cabana/Casita": 0,
-        "Excursion": 676,
+        "Excursion": 464,
         "Onboard Spending": 1070
-      }
+      },
+      "booking": {
+        "firstDeposit": "2024-08-11",
+        "depositAmt": 400,
+        "monthsAhead": 16.1,
+        "onboard": true,
+        "bookedDuring": "Summer on Icon 2024"
+      },
+      "cashTiming": {
+        "early": 0.045,
+        "final": 0.754,
+        "last30": 0.201,
+        "after": 0.0
+      },
+      "flightsAfterFinalDays": 6,
+      "flights": {
+        "net": 3430,
+        "perPerson": 857,
+        "mode": "points+cash",
+        "points": {
+          "ur": 62257
+        },
+        "confirmed": true
+      },
+      "hotel": {
+        "mode": "cash",
+        "bonvoy": 0,
+        "property": "Courtyard Fort Lauderdale Beach Oceanside",
+        "booked": 340.13,
+        "folio": {
+          "room": 301.71,
+          "fees": 36.38,
+          "food": 278.62,
+          "total": 616.71,
+          "paid": 616.71,
+          "balanced": true
+        }
+      },
+      "groundTravel": 1028,
+      "onboardStatement": null,
+      "priceDrops": [
+        {
+          "item": "Internet",
+          "amount": 96,
+          "pct": 0.162,
+          "date": "2025-12-09"
+        },
+        {
+          "item": "Ziplining",
+          "amount": 22,
+          "pct": 0.167,
+          "date": "2025-12-09"
+        },
+        {
+          "item": "Hideaway",
+          "amount": 6,
+          "pct": null,
+          "date": "2025-12-09"
+        }
+      ]
     },
     {
       "name": "Beach Club 2026",
@@ -556,7 +1432,51 @@
         "Cabana/Casita": 0,
         "Excursion": 0,
         "Onboard Spending": 514
-      }
+      },
+      "booking": {
+        "firstDeposit": "2025-10-13",
+        "depositAmt": 242,
+        "monthsAhead": 3.1,
+        "onboard": true,
+        "bookedDuring": "Sabbatical 2025"
+      },
+      "cashTiming": {
+        "early": 0.0,
+        "final": 0.961,
+        "last30": 0.255,
+        "after": -0.215
+      },
+      "flightsAfterFinalDays": 0,
+      "flights": {
+        "net": 322,
+        "perPerson": 322,
+        "mode": "cash",
+        "points": {},
+        "confirmed": false
+      },
+      "hotel": null,
+      "groundTravel": 1401,
+      "onboardStatement": null,
+      "priceDrops": [
+        {
+          "item": "Paradise Island",
+          "amount": 150.0,
+          "pct": 0.333,
+          "date": "2025-11-10"
+        },
+        {
+          "item": "Paradise Island",
+          "amount": 26,
+          "pct": 0.087,
+          "date": "2025-12-09"
+        },
+        {
+          "item": "Drinks + Paradise Island",
+          "amount": 60.6,
+          "pct": 0.081,
+          "date": "2026-01-09"
+        }
+      ]
     },
     {
       "name": "Spring Break 2026",
@@ -587,7 +1507,47 @@
         "Cabana/Casita": 0,
         "Excursion": 126,
         "Onboard Spending": 1089
-      }
+      },
+      "booking": {
+        "firstDeposit": "2024-08-11",
+        "depositAmt": 400,
+        "monthsAhead": 19.1,
+        "onboard": true,
+        "bookedDuring": "Summer on Icon 2024"
+      },
+      "cashTiming": {
+        "early": 0.039,
+        "final": 0.728,
+        "last30": 0.104,
+        "after": 0.129
+      },
+      "flightsAfterFinalDays": 3,
+      "flights": {
+        "net": 59,
+        "perPerson": 15,
+        "mode": "points",
+        "points": {
+          "skymiles": 200000
+        },
+        "confirmed": true
+      },
+      "hotel": {
+        "mode": "cash",
+        "bonvoy": 0,
+        "property": "Courtyard Titusville Kennedy Space Center",
+        "booked": 371.96,
+        "folio": {
+          "room": 371.96,
+          "fees": 0.0,
+          "food": 43.87,
+          "total": 415.83,
+          "paid": 415.83,
+          "balanced": true
+        }
+      },
+      "groundTravel": 1511,
+      "onboardStatement": null,
+      "priceDrops": []
     },
     {
       "name": "Summer B2B 2026",
@@ -618,7 +1578,82 @@
         "Cabana/Casita": 724,
         "Excursion": 379,
         "Onboard Spending": 733
-      }
+      },
+      "booking": {
+        "firstDeposit": "2024-10-30",
+        "depositAmt": 1476,
+        "monthsAhead": 20.5,
+        "onboard": false,
+        "bookedDuring": null
+      },
+      "cashTiming": {
+        "early": 0.107,
+        "final": 0.665,
+        "last30": 0.044,
+        "after": 0.185
+      },
+      "flightsAfterFinalDays": -4,
+      "flights": {
+        "net": 1264,
+        "perPerson": 316,
+        "mode": "points+cash",
+        "points": {
+          "ur": 122354
+        },
+        "confirmed": true
+      },
+      "hotel": {
+        "mode": "cash",
+        "bonvoy": 0,
+        "property": "Miami Marriott Biscayne Bay (Junior Suite)",
+        "booked": 702.86,
+        "folio": {
+          "room": 663.31,
+          "fees": 39.55,
+          "food": 200.35,
+          "total": 903.21,
+          "paid": 802.36,
+          "balanced": true,
+          "afterFolio": 100.85,
+          "preliminary": "received 2:17 AM ET"
+        }
+      },
+      "groundTravel": 1989,
+      "onboardStatement": {
+        "total": 733.3,
+        "gross": 839.45,
+        "credits": -106.15,
+        "groups": {
+          "Kids & play": 332.36,
+          "Shopping": 63.96,
+          "Dining": 66.52,
+          "Other": 50.0,
+          "Photos": 316.0,
+          "Drinks": 10.61
+        },
+        "special": {},
+        "topItems": {
+          "FOCUS PHOTO GALLERY": 316.0,
+          "ARCADE": 101.0,
+          "BINGO": 79.0,
+          "LAUNDRY": 77.36,
+          "ADVENTURE OCEAN": 75.0
+        }
+      },
+      "priceDrops": [
+        {
+          "item": "Paradise Island",
+          "amount": 48,
+          "pct": 0.148,
+          "date": "2026-06-30"
+        },
+        {
+          "item": "Hideaway",
+          "amount": 12,
+          "pct": 0.085,
+          "date": "2026-06-30"
+        }
+      ]
     },
     {
       "name": "Thanksgiving 2026",
@@ -631,25 +1666,50 @@
       "ship": "Legend",
       "roomType": "Balcony",
       "roomSubtype": "Family Infinite Balcony",
-      "total": 19249,
+      "total": 19317,
       "fare": 10906,
-      "cpn": 3208,
-      "pppn": 802,
+      "cpn": 3219,
+      "pppn": 805,
       "fppn": 454,
-      "farePct": 56.7,
+      "farePct": 56.5,
       "isPast": false,
       "isUpcoming": true,
       "isOutlier": false,
       "categories": {
         "Cruise Fare": 10906,
-        "Travel": 4194,
+        "Travel": 4262,
         "Dogs": 1000,
         "Supplies": 200,
         "Onboard Pre-booked": 2349,
         "Cabana/Casita": 0,
         "Excursion": 0,
         "Onboard Spending": 600
-      }
+      },
+      "booking": {
+        "firstDeposit": "2026-04-04",
+        "depositAmt": 200,
+        "monthsAhead": 7.4,
+        "onboard": true,
+        "bookedDuring": "Spring Break 2026"
+      },
+      "cashTiming": null,
+      "flightsAfterFinalDays": 3,
+      "flights": {
+        "net": 3546,
+        "perPerson": 886,
+        "mode": "cash",
+        "points": {},
+        "confirmed": true
+      },
+      "hotel": {
+        "mode": "points",
+        "bonvoy": 40000,
+        "property": "Courtyard Fort Lauderdale Beach Oceanside",
+        "booked": 34.0
+      },
+      "groundTravel": null,
+      "onboardStatement": null,
+      "priceDrops": []
     },
     {
       "name": "Winter NYE 2026",
@@ -680,7 +1740,34 @@
         "Cabana/Casita": 0,
         "Excursion": 0,
         "Onboard Spending": 500
-      }
+      },
+      "booking": {
+        "firstDeposit": "2024-11-27",
+        "depositAmt": 1000,
+        "monthsAhead": 24.6,
+        "onboard": false,
+        "bookedDuring": null
+      },
+      "cashTiming": null,
+      "flightsAfterFinalDays": -1,
+      "flights": {
+        "net": 2067,
+        "perPerson": 517,
+        "mode": "points+cash",
+        "points": {
+          "skymiles": 120000
+        },
+        "confirmed": true
+      },
+      "hotel": {
+        "mode": "cash",
+        "bonvoy": 0,
+        "property": "SpringHill Suites Cape Canaveral Cocoa Beach",
+        "booked": 435.18
+      },
+      "groundTravel": null,
+      "onboardStatement": null,
+      "priceDrops": []
     },
     {
       "name": "Spring Break 2027",
@@ -711,7 +1798,21 @@
         "Cabana/Casita": 0,
         "Excursion": 0,
         "Onboard Spending": 500
-      }
+      },
+      "booking": {
+        "firstDeposit": "2026-04-04",
+        "depositAmt": 200,
+        "monthsAhead": 11.3,
+        "onboard": true,
+        "bookedDuring": "Spring Break 2026"
+      },
+      "cashTiming": null,
+      "flightsAfterFinalDays": 12,
+      "flights": null,
+      "hotel": null,
+      "groundTravel": null,
+      "onboardStatement": null,
+      "priceDrops": []
     },
     {
       "name": "Summer 2027",
@@ -742,20 +1843,34 @@
         "Cabana/Casita": 0,
         "Excursion": 0,
         "Onboard Spending": 500
-      }
+      },
+      "booking": {
+        "firstDeposit": "2026-04-04",
+        "depositAmt": 200,
+        "monthsAhead": 16.4,
+        "onboard": true,
+        "bookedDuring": "Spring Break 2026"
+      },
+      "cashTiming": null,
+      "flightsAfterFinalDays": 0,
+      "flights": null,
+      "hotel": null,
+      "groundTravel": null,
+      "onboardStatement": null,
+      "priceDrops": []
     }
   ],
   "kpi": {
-    "totalSpent": 207859,
-    "avgPppn": 553,
+    "totalSpent": 209080,
+    "avgPppn": 556,
     "avgFppn": 336,
-    "farePct": 61,
+    "farePct": 60,
     "totalNights": 96,
     "totalPersonNights": 376,
-    "avgPerSailing": 11548,
+    "avgPerSailing": 11616,
     "pastCount": 18,
     "upcomingCount": 4,
-    "upcomingSpend": 81146,
+    "upcomingSpend": 81214,
     "upcomingAvgPppn": 725
   },
   "bestValue": [
@@ -767,13 +1882,13 @@
     },
     {
       "name": "Winter 2022",
-      "pppn": 266,
+      "pppn": 283,
       "ship": "Oasis",
       "roomSubtype": "Connecting Balconies"
     },
     {
       "name": "Spring Break 2023",
-      "pppn": 349,
+      "pppn": 364,
       "ship": "Freedom",
       "roomSubtype": "Grand Suite"
     }
@@ -803,10 +1918,10 @@
     "Travel": 37936,
     "Dogs": 8857,
     "Supplies": 3477,
-    "Onboard Pre-booked": 10182,
-    "Cabana/Casita": 4616,
-    "Excursion": 1596,
-    "Onboard Spending": 15444
+    "Onboard Pre-booked": 16727,
+    "Cabana/Casita": 4695,
+    "Excursion": 1385,
+    "Onboard Spending": 10502
   },
   "years": [
     {
@@ -814,55 +1929,55 @@
       "sailings": 5,
       "nights": 21,
       "personNights": 76,
-      "total": 23646,
-      "pppn": 311,
-      "avgPerSailing": 4729,
+      "total": 24083,
+      "pppn": 317,
+      "avgPerSailing": 4817,
       "fare": 12998,
-      "farePct": 55.0
+      "farePct": 54.0
     },
     {
       "year": "2023",
       "sailings": 3,
       "nights": 14,
       "personNights": 56,
-      "total": 26146,
-      "pppn": 467,
-      "avgPerSailing": 8715,
+      "total": 26388,
+      "pppn": 471,
+      "avgPerSailing": 8796,
       "fare": 15365,
-      "farePct": 58.8
+      "farePct": 58.2
     },
     {
       "year": "2024",
       "sailings": 4,
       "nights": 21,
       "personNights": 84,
-      "total": 51918,
-      "pppn": 618,
-      "avgPerSailing": 12979,
+      "total": 52316,
+      "pppn": 623,
+      "avgPerSailing": 13079,
       "fare": 32556,
-      "farePct": 62.7
+      "farePct": 62.2
     },
     {
       "year": "2025",
       "sailings": 4,
       "nights": 26,
       "personNights": 104,
-      "total": 68483,
-      "pppn": 658,
-      "avgPerSailing": 17121,
+      "total": 68627,
+      "pppn": 660,
+      "avgPerSailing": 17157,
       "fare": 40186,
-      "farePct": 58.7
+      "farePct": 58.6
     },
     {
       "year": "2026",
       "sailings": 4,
       "nights": 27,
       "personNights": 108,
-      "total": 78949,
-      "pppn": 731,
-      "avgPerSailing": 19737,
+      "total": 79017,
+      "pppn": 732,
+      "avgPerSailing": 19754,
       "fare": 49307,
-      "farePct": 62.5
+      "farePct": 62.4
     },
     {
       "year": "2027",
@@ -877,8 +1992,8 @@
     }
   ],
   "roomComparison": {
-    "suiteAvg": 577,
-    "balconyAvg": 521,
+    "suiteAvg": 582,
+    "balconyAvg": 524,
     "suiteCount": 8,
     "balconyCount": 8
   },
@@ -886,16 +2001,16 @@
     {
       "year": 2022,
       "funding": 43769,
-      "sailings": 30187,
+      "sailings": 30628,
       "other": -13582,
-      "net": 0
+      "net": -441
     },
     {
       "year": 2023,
       "funding": 61868,
-      "sailings": 25656,
+      "sailings": 26292,
       "other": -25479,
-      "net": 10733
+      "net": 10097
     },
     {
       "year": 2024,
@@ -907,16 +2022,16 @@
     {
       "year": 2025,
       "funding": 106901,
-      "sailings": 111445,
+      "sailings": 111589,
       "other": 4993,
-      "net": 449
+      "net": 305
     },
     {
       "year": 2026,
       "funding": 63725,
-      "sailings": 73505,
+      "sailings": 73573,
       "other": -356,
-      "net": -10136
+      "net": -10204
     },
     {
       "year": 2027,
@@ -1643,10 +2758,10 @@
       "people": 4,
       "ship": "Legend",
       "roomSubtype": "Family Infinite Balcony",
-      "totalBudgeted": 19249,
+      "totalBudgeted": 19317,
       "totalPaid": 16983,
-      "totalForecasted": 2266,
-      "paidPct": 88.2,
+      "totalForecasted": 2334,
+      "paidPct": 87.9,
       "categories": {
         "Cruise Fare": {
           "paid": 10906,
@@ -1655,8 +2770,8 @@
         },
         "Travel": {
           "paid": 3728,
-          "forecasted": 466,
-          "total": 4194
+          "forecasted": 534,
+          "total": 4262
         },
         "Dogs": {
           "paid": 0,
@@ -1759,7 +2874,7 @@
         },
         {
           "expense": "Hotel",
-          "amount": -34,
+          "amount": 34,
           "category": "Travel",
           "date": "2026-11-23",
           "status": "forecasted"
