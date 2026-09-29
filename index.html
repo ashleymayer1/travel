@@ -29,7 +29,7 @@ body {
   line-height: 1.5;
 }
 
-/* Navigation */
+/* ── Navigation ── */
 .nav {
   background: #16162a;
   color: white;
@@ -57,9 +57,13 @@ body {
 }
 .nav-tab:hover { color: white; background: rgba(255,255,255,0.08); }
 .nav-tab.active { color: white; border-bottom-color: var(--accent); }
+
+/* ── Layout ── */
 .container { max-width: 1400px; margin: 0 auto; padding: 24px; }
 .page { display: none; }
 .page.active { display: block; }
+
+/* ── Cards ── */
 .kpi-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -77,6 +81,7 @@ body {
 .kpi-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 4px; }
 .kpi-value { font-size: 28px; font-weight: 700; color: var(--primary); }
 .kpi-context { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+
 .card {
   background: var(--card);
   border-radius: var(--radius);
@@ -94,6 +99,8 @@ body {
 .chart-container { position: relative; width: 100%; }
 .chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
 @media (max-width: 900px) { .chart-row { grid-template-columns: 1fr; } }
+
+/* ── Tables ── */
 table {
   width: 100%;
   border-collapse: separate;
@@ -122,8 +129,12 @@ tr:hover td { background: #2a2a3e; }
 tr.upcoming td { background: #1a1a28; color: var(--text-muted); }
 tr.outlier td { background: #1a1a22; color: #666; font-style: italic; }
 tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid var(--primary); }
+
+/* ── Category Trend Table ── */
 .cat-trend-table th { white-space: nowrap; }
 .cat-trend-table td:last-child { font-weight: 700; }
+
+/* ── Diagonal Headers ── */
 .diagonal-headers th {
   position: relative;
   white-space: nowrap;
@@ -148,6 +159,8 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
   font-size: 12px;
 }
 .diagonal-headers td:first-child { white-space: nowrap; }
+
+/* ── Rankings ── */
 .rankings-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
 @media (max-width: 768px) { .rankings-row { grid-template-columns: 1fr; } }
 .rank-card {
@@ -178,6 +191,8 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
 .rank-item.w0 { background: #2e1a1a; }
 .rank-item.w1 { background: #2e1e1e; }
 .rank-item.w2 { background: #2e2218; }
+
+/* ── Insights ── */
 .insight {
   display: flex;
   align-items: flex-start;
@@ -191,6 +206,8 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
 .insight:nth-child(odd) { background: #282840; }
 .insight:nth-child(even) { background: #282840; }
 .insight .bullet { color: var(--primary); font-weight: 700; font-size: 16px; flex-shrink: 0; }
+
+/* ── Filters ── */
 .filter-bar {
   display: flex;
   gap: 12px;
@@ -208,6 +225,7 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
   background: var(--card);
   color: var(--text);
 }
+/* ── Segmented pill buttons ── */
 .pill-group {
   display: flex;
   border: 1px solid var(--border);
@@ -230,7 +248,9 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
 .pill:last-child { border-right: none; }
 .pill:hover:not(.active) { background: rgba(255,255,255,0.06); color: var(--text); }
 .pill.active { background: var(--primary); color: #fff; font-weight: 600; }
+/* Desktop: show pills, hide selects */
 @media (min-width: 769px) { .filter-select { display: none !important; } }
+/* Mobile: hide pills, show selects */
 @media (max-width: 768px) { .pill-group { display: none !important; } }
 .tag {
   display: inline-block;
@@ -244,6 +264,8 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
 .tag.balcony { background: #1a2e1e; color: #70ad47; }
 .tag.upcoming { background: #2e2818; color: #ffa040; }
 .tag.outlier { background: #252525; color: #777; }
+
+/* ── Toggle Switch ── */
 .toggle-switch {
   position: relative;
   display: inline-block;
@@ -272,13 +294,19 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
 }
 .toggle-switch input:checked + .toggle-slider { background: var(--accent); }
 .toggle-switch input:checked + .toggle-slider::before { transform: translateX(16px); background: white; }
+
+/* ── Price Check ── */
 .pc-form-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
   margin-bottom: 20px;
 }
-.pc-field { display: flex; flex-direction: column; gap: 6px; }
+.pc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
 .pc-field label {
   font-size: 11px;
   font-weight: 600;
@@ -295,7 +323,10 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
   color: var(--text);
   transition: border-color 0.2s;
 }
-.pc-field select:focus, .pc-field input:focus { outline: none; border-color: var(--primary); }
+.pc-field select:focus, .pc-field input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
 .pc-run-btn {
   display: inline-flex;
   align-items: center;
@@ -312,6 +343,7 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
 }
 .pc-run-btn:hover { background: var(--primary-light); }
 .pc-run-btn:active { transform: scale(0.97); }
+
 .pc-verdict {
   display: none;
   border-radius: 10px;
@@ -325,6 +357,7 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
 .pc-verdict.verdict-fair  { background: #2a2000; border-left-color: var(--warn); }
 .pc-verdict.verdict-high  { background: #2a1010; border-left-color: var(--danger); }
 .pc-verdict.verdict-nodata { background: #1a1a2e; border-left-color: #555; }
+
 .pc-verdict-header {
   display: flex;
   align-items: baseline;
@@ -336,27 +369,76 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
 .pc-verdict-label { font-size: 20px; font-weight: 700; }
 .pc-verdict-fppn  { font-size: 32px; font-weight: 800; color: var(--primary); }
 .pc-verdict-vs    { font-size: 13px; color: var(--text-muted); }
+
 .pc-benchmarks {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 12px;
   margin: 16px 0;
 }
-.pc-bench { background: rgba(255,255,255,0.04); border-radius: 8px; padding: 12px 14px; }
+.pc-bench {
+  background: rgba(255,255,255,0.04);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
 .pc-bench-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); margin-bottom: 4px; }
 .pc-bench-val   { font-size: 18px; font-weight: 700; color: var(--text); }
 .pc-bench-sub   { font-size: 10px; color: var(--text-light); margin-top: 2px; }
+
 .pc-bar-wrap { margin: 14px 0 6px; }
-.pc-bar-track { position: relative; height: 10px; background: #2a2a3e; border-radius: 5px; margin: 20px 0 8px; }
-.pc-bar-range { position: absolute; height: 100%; background: rgba(91,155,213,0.35); border-radius: 5px; }
-.pc-bar-avg { position: absolute; width: 3px; height: 20px; top: -5px; background: var(--primary); border-radius: 2px; }
-.pc-bar-pin { position: absolute; width: 14px; height: 14px; top: -2px; border-radius: 50%; transform: translateX(-50%); border: 2px solid #fff; z-index: 2; }
-.pc-bar-labels { display: flex; justify-content: space-between; font-size: 10px; color: var(--text-light); }
+.pc-bar-track {
+  position: relative;
+  height: 10px;
+  background: #2a2a3e;
+  border-radius: 5px;
+  margin: 20px 0 8px;
+}
+.pc-bar-range {
+  position: absolute;
+  height: 100%;
+  background: rgba(91,155,213,0.35);
+  border-radius: 5px;
+}
+.pc-bar-avg {
+  position: absolute;
+  width: 3px;
+  height: 20px;
+  top: -5px;
+  background: var(--primary);
+  border-radius: 2px;
+}
+.pc-bar-pin {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  top: -2px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  border: 2px solid #fff;
+  z-index: 2;
+}
+.pc-bar-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--text-light);
+}
 .pc-sailings-note { font-size: 11px; color: var(--text-muted); margin-top: 8px; font-style: italic; }
-.pc-movement { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-left: 12px; }
+.pc-movement {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: 12px;
+}
 .pc-movement.up   { background: #2a1010; color: #ef5350; }
 .pc-movement.down { background: #0d2416; color: #66bb6a; }
 .pc-movement.same { background: #1a1a2e; color: #888; }
+
+/* ── Price Check History ── */
 .pc-history-empty { color: var(--text-muted); font-size: 13px; font-style: italic; padding: 16px 0; }
 .pc-hist-row {
   display: grid;
@@ -375,113 +457,318 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
 .pc-hist-fppn { font-weight: 700; font-size: 15px; color: var(--primary); }
 .pc-hist-verdict { font-size: 11px; }
 .pc-hist-date { font-size: 10px; color: var(--text-light); }
-.pc-hist-del { background: none; border: none; color: #555; cursor: pointer; font-size: 16px; padding: 0 4px; line-height: 1; transition: color 0.15s; }
+.pc-hist-del {
+  background: none;
+  border: none;
+  color: #555;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0 4px;
+  line-height: 1;
+  transition: color 0.15s;
+}
 .pc-hist-del:hover { color: var(--danger); }
 .pc-hist-move { font-size: 11px; font-weight: 700; }
 .pc-hist-move.up   { color: #ef5350; }
 .pc-hist-move.down { color: #66bb6a; }
 .pc-hist-move.same { color: #888; }
-.pc-clear-btn { background: none; border: 1px solid #444; color: var(--text-muted); padding: 5px 14px; border-radius: 6px; font-size: 12px; cursor: pointer; transition: all 0.15s; }
+.pc-clear-btn {
+  background: none;
+  border: 1px solid #444;
+  color: var(--text-muted);
+  padding: 5px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
 .pc-clear-btn:hover { border-color: var(--danger); color: var(--danger); }
-.bt-card { background: var(--card); border-radius: var(--radius); padding: 0; box-shadow: var(--shadow); margin-bottom: 16px; border-left: 5px solid var(--primary); overflow: hidden; }
-.bt-card-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 18px 20px; cursor: pointer; user-select: none; transition: background 0.15s; }
+
+/* ── Budget Tracker ── */
+.bt-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 0;
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+  border-left: 5px solid var(--primary);
+  overflow: hidden;
+}
+.bt-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 18px 20px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
 .bt-card-header:hover { background: rgba(255,255,255,0.04); }
-.bt-card-chevron { font-size: 16px; color: var(--text-muted); transition: transform 0.2s; flex-shrink: 0; margin-right: 4px; }
+.bt-card-chevron {
+  font-size: 16px;
+  color: var(--text-muted);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+  margin-right: 4px;
+}
 .bt-card.open .bt-card-chevron { transform: rotate(90deg); }
 .bt-card-title-wrap { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
 .bt-card-title { font-size: 17px; font-weight: 700; color: var(--text); }
 .bt-card-meta { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-.bt-totals { display: flex; gap: 24px; flex-wrap: wrap; text-align: right; align-items: center; }
+.bt-totals {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  text-align: right;
+  align-items: center;
+}
 .bt-total-block { display: flex; flex-direction: column; gap: 2px; }
 .bt-total-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); }
 .bt-total-val { font-size: 20px; font-weight: 700; }
 .bt-total-val.paid    { color: #66bb6a; }
 .bt-total-val.fore    { color: var(--warn); }
 .bt-total-val.total   { color: var(--primary); }
-.bt-card-body { display: none; padding: 0 20px 20px; border-top: 1px solid var(--border); }
+
+/* Collapsible card body */
+.bt-card-body {
+  display: none;
+  padding: 0 20px 20px;
+  border-top: 1px solid var(--border);
+}
 .bt-card.open .bt-card-body { display: block; }
+
+/* Progress bar */
 .bt-progress-wrap { margin: 16px 0 20px; }
-.bt-progress-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-bottom: 5px; }
-.bt-progress-track { height: 12px; background: #2a2a3e; border-radius: 6px; overflow: hidden; }
-.bt-progress-fill { height: 100%; border-radius: 6px; transition: width 0.4s ease; background: linear-gradient(90deg, #43a047, #66bb6a); }
+.bt-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+}
+.bt-progress-track {
+  height: 12px;
+  background: #2a2a3e;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.bt-progress-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.4s ease;
+  background: linear-gradient(90deg, #43a047, #66bb6a);
+}
 .bt-progress-fill.full { background: linear-gradient(90deg, #43a047, #2e7d32); }
-.bt-cat-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 16px; }
-.bt-cat-table th { background: #16162a; color: var(--text-muted); padding: 7px 10px; text-align: right; font-size: 11px; font-weight: 600; }
+
+/* Category breakdown table */
+.bt-cat-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+.bt-cat-table th {
+  background: #16162a;
+  color: var(--text-muted);
+  padding: 7px 10px;
+  text-align: right;
+  font-size: 11px;
+  font-weight: 600;
+}
 .bt-cat-table th:first-child { text-align: left; }
-.bt-cat-table td { padding: 6px 10px; border-bottom: 1px solid var(--border); text-align: right; white-space: nowrap; }
+.bt-cat-table td {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: right;
+  white-space: nowrap;
+}
 .bt-cat-table td:first-child { text-align: left; font-weight: 600; color: var(--text); }
 .bt-cat-table tr:last-child td { border-bottom: none; font-weight: 700; background: #16162a; }
 .bt-cat-table .paid-cell  { color: #66bb6a; }
 .bt-cat-table .fore-cell  { color: var(--warn); }
 .bt-cat-table .total-cell { color: var(--text); }
-.bt-toggle-btn { background: none; border: 1px solid var(--border); color: var(--text-muted); padding: 5px 14px; border-radius: 6px; font-size: 11px; cursor: pointer; transition: all 0.15s; margin-bottom: 12px; }
+
+/* Line items toggle */
+.bt-toggle-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 5px 14px;
+  border-radius: 6px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.15s;
+  margin-bottom: 12px;
+}
 .bt-toggle-btn:hover { border-color: var(--primary); color: var(--primary); }
 .bt-line-items { display: none; }
 .bt-line-items.open { display: block; }
-.bt-line-item { display: grid; grid-template-columns: 1fr auto auto auto; align-items: center; gap: 8px 14px; padding: 7px 10px; border-radius: 6px; margin-bottom: 3px; font-size: 12px; }
+.bt-line-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;
+  gap: 8px 14px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  margin-bottom: 3px;
+  font-size: 12px;
+}
 .bt-line-item:nth-child(odd) { background: #1a1a28; }
 .bt-line-item:nth-child(even) { background: #1e1e2e; }
 .bt-line-item .li-name { color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .bt-line-item .li-cat  { font-size: 10px; color: var(--text-muted); }
 .bt-line-item .li-date { font-size: 10px; color: var(--text-light); white-space: nowrap; }
 .bt-line-item .li-amt  { font-weight: 700; white-space: nowrap; }
-.bt-line-item .li-badge { font-size: 9px; font-weight: 700; text-transform: uppercase; padding: 2px 7px; border-radius: 10px; white-space: nowrap; }
+.bt-line-item .li-badge {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
 .li-badge.paid { background: #1a3a1e; color: #66bb6a; }
 .li-badge.forecasted { background: #3a2e00; color: #ffc000; }
 .bt-empty { color: var(--text-muted); font-style: italic; font-size: 13px; padding: 20px 0; }
-.nav-mobile-label { display: none; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; }
-.nav-hamburger { display: none; background: none; border: none; color: white; font-size: 20px; cursor: pointer; padding: 4px 8px; line-height: 1; border-radius: 6px; transition: background 0.15s; }
+
+/* ── Hamburger nav (hidden on desktop) ── */
+.nav-mobile-label {
+  display: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  white-space: nowrap;
+}
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
 .nav-hamburger:hover { background: rgba(255,255,255,0.1); }
-.mobile-nav-menu { display: none; width: 100%; order: 10; background: #16162a; border-top: 1px solid var(--border); }
+.mobile-nav-menu {
+  display: none;
+  width: 100%;
+  order: 10;
+  background: #16162a;
+  border-top: 1px solid var(--border);
+}
 .mobile-nav-menu.open { display: block; }
-.mobile-nav-item { padding: 13px 20px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.7); border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.15s, color 0.15s; }
+.mobile-nav-item {
+  padding: 13px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
 .mobile-nav-item:last-child { border-bottom: none; }
 .mobile-nav-item:hover { background: rgba(255,255,255,0.06); color: white; }
 .mobile-nav-item.active { color: white; background: rgba(91,155,213,0.15); border-left: 3px solid var(--accent); padding-left: 17px; }
+
+/* ── Mobile ── */
 @media (max-width: 768px) {
-  .nav { flex-wrap: wrap; padding: 0 16px; gap: 0; }
-  .nav h1 { flex: 1; padding: 10px 0; font-size: 15px; }
+  /* Nav: title + active-label + hamburger + toggle on one row */
+  .nav {
+    flex-wrap: wrap;
+    padding: 0 16px;
+    gap: 0;
+  }
+  .nav h1 {
+    flex: 1;
+    padding: 10px 0;
+    font-size: 15px;
+  }
   .nav-tabs { display: none; }
   .nav-mobile-label { display: block; align-self: center; margin-right: 4px; }
   .nav-hamburger { display: inline-flex; align-items: center; justify-content: center; align-self: center; }
+
+  /* Container pages */
   .container { padding: 12px; }
+
+  /* Charts: always single column, override inline styles */
   .chart-row { grid-template-columns: 1fr !important; gap: 12px; }
+
+  /* KPI: 2 columns instead of 1 on narrow screens */
   .kpi-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
   .kpi-value { font-size: 22px; }
   .kpi-card { padding: 14px 12px; }
+
+  /* Cards */
   .card { padding: 16px; }
-  .card table, .bt-card-body table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; width: max-content; max-width: 100%; }
+
+  /* Ensure all non-wrapped tables scroll horizontally */
+  .card table, .bt-card-body table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: max-content;
+    max-width: 100%;
+  }
+
+  /* Price check verdict */
   .pc-verdict-fppn { font-size: 22px; }
   .pc-verdict-label { font-size: 16px; }
   .pc-verdict { padding: 16px; }
-  .pc-hist-row { grid-template-columns: 1fr auto; grid-template-rows: auto auto; gap: 4px 8px; padding: 10px 12px; }
+
+  /* Price check history rows: collapse 6-col grid */
+  .pc-hist-row {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 4px 8px;
+    padding: 10px 12px;
+  }
   .pc-hist-name  { grid-column: 1; grid-row: 1; }
   .pc-hist-fppn  { grid-column: 2; grid-row: 1; font-size: 13px; }
   .pc-hist-meta  { grid-column: 1; grid-row: 2; }
   .pc-hist-del   { grid-column: 2; grid-row: 2; align-self: end; }
   .pc-hist-verdict, .pc-hist-date, .pc-hist-move { display: none; }
+
+  /* Budget tracker card header */
   .bt-card-title { font-size: 14px; }
   .bt-card-meta  { font-size: 11px; }
   .bt-totals { gap: 12px; }
   .bt-total-val { font-size: 16px; }
-  .bt-line-item { grid-template-columns: 1fr auto; grid-template-rows: auto auto; gap: 2px 8px; }
+
+  /* Budget line items: collapse 4-col grid */
+  .bt-line-item {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 2px 8px;
+  }
   .li-name  { grid-column: 1; grid-row: 1; }
   .li-amt   { grid-column: 2; grid-row: 1; }
   .li-cat   { grid-column: 1; grid-row: 2; }
   .li-badge { grid-column: 2; grid-row: 2; justify-self: end; }
   .li-date  { display: none; }
+
+  /* Rankings */
   .rank-item .pppn { font-size: 14px; }
+
+  /* Filter bar */
   .filter-bar { gap: 8px; }
   .filter-bar select, .filter-bar input { font-size: 13px; }
 }
+
+/* ── Phone landscape: restore 2-column charts ── */
 @media (min-width: 641px) and (max-width: 768px) {
   .chart-row { grid-template-columns: 1fr 1fr !important; }
 }
 </style>
 </head>
 <body>
+
 <div class="nav">
-  <h1>Cruise Expenses</h1>
+  <h1>⚓ Cruise Expenses</h1>
   <div class="nav-tabs">
     <div class="nav-tab active" data-page="overview">Overview</div>
     <div class="nav-tab" data-page="pppn">PPPN Trend</div>
@@ -507,13 +794,18 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
     <div class="mobile-nav-item" data-page="budget">Budget Tracker</div>
   </div>
   <div style="margin-left:auto;display:flex;align-items:center;gap:8px;white-space:nowrap">
+    <span style="font-size:14px">🤑</span>
     <label class="toggle-switch" for="privacy-toggle">
       <input type="checkbox" id="privacy-toggle" checked>
       <span class="toggle-slider"></span>
     </label>
+    <span style="font-size:14px">🙈</span>
   </div>
 </div>
+
 <div class="container">
+
+<!-- ════════════════════════════════════════════════ OVERVIEW ════════════════════════════════════════════════ -->
 <div id="overview" class="page active">
   <div class="filter-bar">
   <div class="filter-group">
@@ -558,8 +850,8 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
 </div>
   <div class="kpi-grid" id="kpi-grid"></div>
   <div class="rankings-row">
-    <div class="rank-card best"><h3>Best Value Sailings (Lowest PPPN)</h3><div id="best-rank"></div></div>
-    <div class="rank-card worst"><h3>Highest Cost Sailings (Highest PPPN)</h3><div id="worst-rank"></div></div>
+    <div class="rank-card best"><h3>🏆 Best Value Sailings (Lowest PPPN)</h3><div id="best-rank"></div></div>
+    <div class="rank-card worst"><h3>💸 Highest Cost Sailings (Highest PPPN)</h3><div id="worst-rank"></div></div>
   </div>
   <div class="chart-row" style="grid-template-columns:3fr 2fr;align-items:stretch">
     <div class="card" style="margin-bottom:0;display:flex;flex-direction:column"><h2>PPPN by Sailing</h2><div class="chart-container" style="flex:1;min-height:0"><canvas id="overview-pppn"></canvas></div></div>
@@ -576,6 +868,8 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
     </div>
   </div>
 </div>
+
+<!-- ════════════════════════════════════════════════ PPPN TREND ════════════════════════════════════════════════ -->
 <div id="pppn" class="page">
   <div class="filter-bar">
   <div class="filter-group">
@@ -619,11 +913,13 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
   </div>
 </div>
   <div class="card">
-    <h2>Cost per Person per Night - All Sailings</h2>
+    <h2>Cost per Person per Night — All Sailings</h2>
     <div class="chart-container" style="height:400px"><canvas id="pppn-chart"></canvas></div>
   </div>
   <div class="card"><h2>PPPN Detail Table</h2><div style="overflow-x:auto"><table id="pppn-table"></table></div></div>
 </div>
+
+<!-- ════════════════════════════════════════════════ CATEGORIES ════════════════════════════════════════════════ -->
 <div id="categories" class="page">
   <div class="filter-bar">
   <div class="filter-group">
@@ -672,6 +968,8 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
   </div>
   <div class="card"><h2>Category Trend Table</h2><div style="overflow-x:auto"><table id="cat-table" class="cat-trend-table"></table></div></div>
 </div>
+
+<!-- ════════════════════════════════════════════════ YEAR OVER YEAR ════════════════════════════════════════════════ -->
 <div id="yoy" class="page">
   <div class="filter-bar">
   <div class="filter-group">
@@ -720,6 +1018,8 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
   </div>
   <div class="card"><h2>Year Over Year Detail</h2><table id="yoy-table"></table></div>
 </div>
+
+<!-- ════════════════════════════════════════════════ FARE ANALYSIS ════════════════════════════════════════════════ -->
 <div id="fare" class="page">
   <div class="filter-bar">
   <div class="filter-group">
@@ -768,12 +1068,16 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
   </div>
   <div class="card"><h2>Fare Detail Table</h2><div style="overflow-x:auto"><table id="fare-table"></table></div></div>
 </div>
+
+<!-- ════════════════════════════════════════════════ FUNDING ════════════════════════════════════════════════ -->
 <div id="funding" class="page">
   <div class="chart-row" style="align-items:stretch">
     <div class="card" style="display:flex;flex-direction:column"><h2>Cash Flow Over Time</h2><div class="chart-container" style="flex:1;min-height:0"><canvas id="funding-chart"></canvas></div></div>
     <div class="card"><h2>Funding Detail</h2><table id="funding-table"></table></div>
   </div>
 </div>
+
+<!-- ════════════════════════════════════════════════ FULL TABLE ════════════════════════════════════════════════ -->
 <div id="table" class="page">
   <div class="card">
     <h2>All Sailings</h2>
@@ -821,9 +1125,11 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
     <div style="overflow-x:auto"><table id="full-table"></table></div>
   </div>
 </div>
+
+<!-- ════════════════════════════════════════════════ PRICE CHECK ════════════════════════════════════════════════ -->
 <div id="pricecheck" class="page">
   <div class="card">
-    <h2>Value Check - Is This Fare a Good Deal?</h2>
+    <h2>Value Check — Is This Fare a Good Deal?</h2>
     <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px">
       Enter a cruise you're considering and see how the fare stacks up against your historical FPPN benchmarks by ship and room type.
     </p>
@@ -838,15 +1144,21 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
       </div>
       <div class="pc-field">
         <label>Ship</label>
-        <select id="pc-ship"><option value="">- select ship -</option></select>
+        <select id="pc-ship">
+          <option value="">— select ship —</option>
+        </select>
       </div>
       <div class="pc-field">
         <label>Room Type</label>
-        <select id="pc-room-type"><option value="">- select type -</option></select>
+        <select id="pc-room-type">
+          <option value="">— select type —</option>
+        </select>
       </div>
       <div class="pc-field">
         <label>Room Sub-Type</label>
-        <select id="pc-room-subtype"><option value="">- select sub-type -</option></select>
+        <select id="pc-room-subtype">
+          <option value="">— select sub-type —</option>
+        </select>
       </div>
       <div class="pc-field">
         <label>Nights</label>
@@ -861,39 +1173,49 @@ tr.total-row td { background: #1e2a3a; font-weight: 700; border-top: 2px solid v
         <input type="number" id="pc-fare" min="0" placeholder="e.g. 8500" />
       </div>
     </div>
-    <button class="pc-run-btn" id="pc-run-btn">Check This Price</button>
+    <button class="pc-run-btn" id="pc-run-btn">⚓ Check This Price</button>
   </div>
+
+  <!-- Verdict panel -->
   <div class="pc-verdict card" id="pc-verdict"></div>
+
+  <!-- History -->
   <div class="card">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
-      <h2 style="margin:0;border:none;padding:0">Value Check History</h2>
+      <h2 style="margin:0;border:none;padding:0">📋 Value Check History</h2>
       <button class="pc-clear-btn" id="pc-clear-btn">Clear All</button>
     </div>
     <div id="pc-history-list"></div>
   </div>
 </div>
+
+<!-- ════════════════════════════════════════════════ BUDGET TRACKER ════════════════════════════════════════════════ -->
 <div id="budget" class="page">
   <div class="kpi-grid" id="bt-kpi-grid"></div>
   <div id="bt-cards"></div>
 </div>
-</div>
+
+</div><!-- /.container -->
 <script>
+// ── Chart.js dark mode defaults ──
 Chart.defaults.color = '#b0b0b0';
 Chart.defaults.borderColor = '#2e2e3e';
 Chart.defaults.plugins.legend.labels.color = '#b0b0b0';
+
 let DATA = {};
 const $ = s => document.querySelector(s);
 const $$ = s => document.querySelectorAll(s);
 let privacyMode = true;
-const fmt = n => privacyMode ? '$***' : '$' + n.toLocaleString();
+const fmt = n => privacyMode ? '$•••' : '$' + n.toLocaleString();
 const pct = n => n.toFixed(1) + '%';
-const tickFmt = v => privacyMode ? '$***' : '$' + v.toLocaleString();
-const tickFmtShort = v => privacyMode ? '$***' : '$' + v;
+const tickFmt = v => privacyMode ? '$•••' : '$' + v.toLocaleString();
+const tickFmtShort = v => privacyMode ? '$•••' : '$' + v;
 const PIE_COLORS = ['#2e75b6','#70ad47','#ffc000','#c00000','#7030a0','#00b0f0','#ff6600','#808080'];
 const BAR_BLUE = '#2e75b6';
 const BAR_GREEN = '#70ad47';
 const BAR_ORANGE = '#ff9800';
 const BAR_RED = '#ef5350';
+
 function shortName(s) {
   return s.replace('Cruise ','').replace('Vacation ','Vac ').replace('Vacay ','Vac ')
     .replace('Christmas ','Xmas ').replace('Thanksgiving ','Thx ')
@@ -901,9 +1223,12 @@ function shortName(s) {
     .replace('Winter ','Win ').replace('on Icon ','Icon ')
     .replace('Beach Club ','BC ').replace('Sabbatical ','Sab ');
 }
+
+// ── Shared filter ──
 let currentFilters = { era: 'all', time: 'all', cabin: 'all' };
 const ERA1 = new Set(['Spring Break 2022','Summer 2022','Work From Ship 2022',"Ashley's Birthday 2022",'Winter 2022','ShePack Cruise 2023','Spring Break 2023','Spring Break 2024']);
 const ERA2 = new Set(['Christmas Vacation 2023','Diamond Cruise 2024','Summer on Icon 2024','Winter Vacay 2024','Spring Break 2025','Summer Vacay 2025','Sabbatical 2025','Thanksgiving 2025','Winter Vacay 2025','Beach Club 2026','Spring Break 2026','Summer B2B 2026','Thanksgiving 2026','Winter NYE 2026','Spring Break 2027','Summer 2027']);
+
 function filterSailings(filters) {
   if (!filters) filters = currentFilters;
   let sailings = DATA.sailings;
@@ -915,9 +1240,11 @@ function filterSailings(filters) {
   else if (filters.cabin === 'balcony') sailings = sailings.filter(s => s.roomType === 'Balcony');
   return sailings;
 }
+
 function computeKPI(sailings) {
   const past = sailings.filter(s => s.isPast && !s.isOutlier);
   const upcoming = sailings.filter(s => s.isUpcoming);
+  // Use all non-outlier sailings for analytical metrics so upcoming-only filters aren't $0
   const all = sailings.filter(s => !s.isOutlier);
   const totalSpent = all.reduce((a,s) => a+s.total, 0);
   const totalNights = all.reduce((a,s) => a+s.nights, 0);
@@ -937,6 +1264,7 @@ function computeKPI(sailings) {
     actualCount: past.length,
   };
 }
+
 function computeYears(sailings) {
   sailings = sailings.filter(s => !s.isOutlier);
   const byYear = {};
@@ -956,6 +1284,7 @@ function computeYears(sailings) {
     avgPerSailing: y.sailings ? Math.round(y.total/y.sailings) : 0,
   }));
 }
+
 function computeCategoryTotals(sailings) {
   sailings = sailings.filter(s => !s.isOutlier);
   const totals = {};
@@ -966,6 +1295,8 @@ function computeCategoryTotals(sailings) {
   });
   return totals;
 }
+
+// ── Global filter sync ──
 function onFilterChange(dim, value) {
   currentFilters[dim] = value;
   $$(`.filter-${dim}`).forEach(s => s.value = value);
@@ -981,6 +1312,8 @@ $$('.filter-era').forEach(sel => sel.addEventListener('change', e => onFilterCha
 $$('.filter-time').forEach(sel => sel.addEventListener('change', e => onFilterChange('time', e.target.value)));
 $$('.filter-cabin').forEach(sel => sel.addEventListener('change', e => onFilterChange('cabin', e.target.value)));
 $$('.pill').forEach(btn => btn.addEventListener('click', () => onFilterChange(btn.closest('.pill-group').dataset.dim, btn.dataset.value)));
+
+// ── Tab switching ──
 function switchPage(page, label) {
   $$('.nav-tab').forEach(t => t.classList.remove('active'));
   $$('.mobile-nav-item').forEach(t => t.classList.remove('active'));
@@ -994,15 +1327,29 @@ function switchPage(page, label) {
   $('#mobile-nav-menu').classList.remove('open');
   $('#nav-hamburger').setAttribute('aria-label', 'Open navigation');
 }
-$$('.nav-tab').forEach(tab => { tab.addEventListener('click', () => switchPage(tab.dataset.page, tab.textContent)); });
-$$('.mobile-nav-item').forEach(item => { item.addEventListener('click', () => switchPage(item.dataset.page, item.textContent)); });
+
+$$('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', () => switchPage(tab.dataset.page, tab.textContent));
+});
+
+$$('.mobile-nav-item').forEach(item => {
+  item.addEventListener('click', () => switchPage(item.dataset.page, item.textContent));
+});
+
 $('#nav-hamburger').addEventListener('click', e => {
   e.stopPropagation();
   const menu = $('#mobile-nav-menu');
   const isOpen = menu.classList.toggle('open');
   $('#nav-hamburger').setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
 });
-document.addEventListener('click', e => { if (!e.target.closest('.nav')) { $('#mobile-nav-menu').classList.remove('open'); } });
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.nav')) {
+    $('#mobile-nav-menu').classList.remove('open');
+  }
+});
+
+// ── Load data ──
 function renderAll() {
   renderOverview(currentFilters);
   renderPPPN(currentFilters);
@@ -1014,8 +1361,20 @@ function renderAll() {
   renderPriceCheck();
   renderBudgetTracker();
 }
-$('#privacy-toggle').addEventListener('change', e => { privacyMode = e.target.checked; renderAll(); });
-fetch('data.json').then(r => r.json()).then(data => { DATA = data; renderAll(); });
+
+$('#privacy-toggle').addEventListener('change', e => {
+  privacyMode = e.target.checked;
+  renderAll();
+});
+
+fetch('data.json').then(r => r.json()).then(data => {
+  DATA = data;
+  renderAll();
+});
+
+// ══════════════════════════════════════════════════════════════
+// OVERVIEW
+// ══════════════════════════════════════════════════════════════
 let overviewPppnChart, overviewPieChart, overviewYoyChart;
 function renderOverview(filters) {
   const sailings = filterSailings(filters);
@@ -1034,21 +1393,25 @@ function renderOverview(filters) {
       <div class="kpi-value">${k.value}</div>
       <div class="kpi-context">${k.ctx}</div>
     </div>`).join('');
+
+  // Rankings
   const ranked = sailings.filter(s => !s.isOutlier).sort((a,b) => a.pppn - b.pppn);
   const bestValue = ranked.slice(0,3);
   const worstValue = ranked.slice(-3).reverse();
-  const medals = ['1','2','3'];
+  const medals = ['🥇','🥈','🥉'];
   $('#best-rank').innerHTML = bestValue.map((s,i) => `
     <div class="rank-item r${i}">
       <span class="medal">${medals[i]}</span>
-      <div class="info"><div class="sailing-name">${s.name}</div><div class="sailing-detail">${s.ship} - ${s.roomSubtype}</div></div>
+      <div class="info"><div class="sailing-name">${s.name}</div><div class="sailing-detail">${s.ship} — ${s.roomSubtype}</div></div>
       <div class="pppn" style="color:#66bb6a">${fmt(s.pppn)}</div>
     </div>`).join('');
   $('#worst-rank').innerHTML = worstValue.map((s,i) => `
     <div class="rank-item w${i}">
-      <div class="info"><div class="sailing-name">${s.name}</div><div class="sailing-detail">${s.ship} - ${s.roomSubtype}</div></div>
+      <div class="info"><div class="sailing-name">${s.name}</div><div class="sailing-detail">${s.ship} — ${s.roomSubtype}</div></div>
       <div class="pppn" style="color:var(--danger)">${fmt(s.pppn)}</div>
     </div>`).join('');
+
+  // PPPN bar chart
   if (overviewPppnChart) overviewPppnChart.destroy();
   overviewPppnChart = new Chart($('#overview-pppn'), {
     type: 'bar',
@@ -1061,276 +1424,436 @@ function renderOverview(filters) {
     },
     options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom'}}, scales:{x:{ticks:{maxRotation:45,font:{size:10}}},y:{ticks:{callback:tickFmtShort}}}}
   });
+
+  // Category pie
   const catTotals = computeCategoryTotals(sailings);
   const cats = Object.entries(catTotals).sort((a,b) => b[1]-a[1]);
   if (overviewPieChart) overviewPieChart.destroy();
   overviewPieChart = new Chart($('#overview-pie'), {
     type: 'doughnut',
-    data: { labels: cats.map(c => c[0]), datasets: [{data: cats.map(c => c[1]), backgroundColor: PIE_COLORS, borderWidth: 0}] },
+    data: {
+      labels: cats.map(c => c[0]),
+      datasets: [{data: cats.map(c => c[1]), backgroundColor: PIE_COLORS, borderWidth: 0}]
+    },
     options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:14,borderRadius:0,useBorderRadius:false,usePointStyle:true,pointStyle:'rectRounded'}}}}
   });
+
+  // ════════ Key Insights engine (display rules revised 2026-09-28) ════════
+  // Patterns & trends only, no individual sailing callouts (rankings card handles those).
+  // Every template must clear two gates before it can appear:
+  //   1. Evidence: 3+ sailings on each side of a comparison; 2+ sailings in each year of a trend.
+  //      Same-cabin pairs are exempt (identical ship + cabin is already a controlled comparison).
+  //   2. Materiality: a difference counts only if it is at least 15% AND worth at least
+  //      $50 PPPN or $250 per trip.
+  // Survivors are grouped by topic (only the strongest per topic shows), then ordered by tier:
+  // levers (things you can act on) first, then trends, then context, and by effect size within
+  // a tier. No filler: if fewer than TARGET_COUNT qualify for a filtered view, fewer are shown.
   const nonOutlier = sailings.filter(s => !s.isOutlier);
+  const pastNO = nonOutlier.filter(s => s.isPast);
   const yrs = computeYears(sailings);
   const TARGET_COUNT = 10;
-  const isUpcomingOnly = filters.time === 'upcoming';
+  const MIN_SIDE = 3, MIN_PER_YEAR = 2, MIN_PCT = 15, MIN_PPPN = 50, MIN_TRIP = 250;
+  const TIER_ORDER = { lever: 0, trend: 1, context: 2 };
   const isSuiteOnly = filters.cabin === 'suite';
   const isBalconyOnly = filters.cabin === 'balcony';
   const pool = [];
-  const addInsight = (text, score) => pool.push({text, score});
+  const addInsight = (text, tier, topic, size) => pool.push({ text, tier, topic, size: Math.min(Math.abs(size), 100) });
+
+  const avgBy = (arr, f) => arr.reduce((a, x) => a + f(x), 0) / arr.length;
+  const personNights = ss => ss.reduce((a, s) => a + s.nights * s.people, 0);
+  const medianOf = arr => { const a = [...arr].sort((x, y) => x - y); const m = Math.floor(a.length / 2); return a.length % 2 ? a[m] : (a[m - 1] + a[m]) / 2; };
+  const pctDiff = (a, b) => b ? (a / b - 1) * 100 : 0;
+  const pnPerTrip = nonOutlier.length ? personNights(nonOutlier) / nonOutlier.length : 0;
+  // PPPN comparisons: >= 15% and (>= $50 PPPN or >= $250 over a typical trip in this view)
+  // Trend view of a category: one-off special occasions on the final statement (e.g. the NYE
+  // Schooner Bar table) are real spend but are not treated as dining/drinks habits.
+  const trendCat = (s, c) => (s.categories[c] || 0) - (c === 'Onboard Spending' && s.onboardStatement
+    ? Object.values(s.onboardStatement.special || {}).reduce((a, b) => a + b, 0) : 0);
+  const materialPppn = (a, b) => Math.abs(pctDiff(a, b)) >= MIN_PCT &&
+    (Math.abs(a - b) >= MIN_PPPN || Math.abs(a - b) * pnPerTrip >= MIN_TRIP);
+  // Per-trip dollar comparisons: >= 15% and >= $250
+  const materialTrip = (a, b) => Math.abs(pctDiff(a, b)) >= MIN_PCT && Math.abs(a - b) >= MIN_TRIP;
+  const trendYears = yrs.filter(y => y.sailings >= MIN_PER_YEAR);
+
+  // ─────────── LEVERS: things you can act on ───────────
+
+  // ── Same cabin, different season (identical ship + cabin, same year) ──
   {
-    const pastNO = nonOutlier.filter(s => s.isPast);
-    const recentN = Math.min(4, Math.floor(pastNO.length / 2));
-    if (pastNO.length > recentN + 2 && recentN >= 2) {
-      const recent = pastNO.slice(-recentN);
-      const recentAvg = Math.round(recent.reduce((a, s) => a + s.pppn, 0) / recent.length);
-      const allAvg    = Math.round(pastNO.reduce((a, s) => a + s.pppn, 0) / pastNO.length);
-      const delta = ((recentAvg / allAvg) - 1) * 100;
-      if (Math.abs(delta) >= 5) {
-        addInsight(`Recent Trajectory: Last ${recentN} sailings average ${fmt(recentAvg)} PPPN - ${Math.abs(delta).toFixed(0)}% ${delta > 0 ? 'above' : 'below'} your all-time average of ${fmt(allAvg)}.`, Math.abs(delta));
+    const groups = {};
+    nonOutlier.forEach(s => { const key = s.ship + '|' + s.roomSubtype; (groups[key] = groups[key] || []).push(s); });
+    let best = null;
+    Object.values(groups).forEach(g => {
+      for (let i = 0; i < g.length; i++) for (let j = i + 1; j < g.length; j++) {
+        const a = g[i], b = g[j];
+        if (!a.fppn || !b.fppn || a.month.slice(-4) !== b.month.slice(-4) || a.season === b.season) continue;
+        const [lo, hi] = a.fppn <= b.fppn ? [a, b] : [b, a];
+        if (materialPppn(hi.fppn, lo.fppn) && (!best || pctDiff(hi.fppn, lo.fppn) > best.d)) best = { lo, hi, d: pctDiff(hi.fppn, lo.fppn) };
+      }
+    });
+    if (best) {
+      const { lo, hi, d } = best;
+      addInsight(`Same Cabin, Different Season: ${lo.ship} ${lo.roomSubtype} fare ran ${fmt(hi.fppn)} PPPN in ${hi.season} vs ${fmt(lo.fppn)} ${lo.season} (${lo.month.slice(-4)}), a ${d.toFixed(0)}% premium for the identical cabin.`, 'lever', 'season', d);
+    }
+  }
+
+  // ── Pre-booked extras vs onboard final bill (reports whichever side actually moved) ──
+  // Prepaid drink packages count as Onboard Pre-booked (recategorized 2026-09-29), so a
+  // shift between the two reflects behavior, not bookkeeping.
+  if (pastNO.length >= 2 * MIN_SIDE) {
+    const h = Math.floor(pastNO.length / 2);
+    const A = pastNO.slice(0, h), B = pastNO.slice(pastNO.length - h);
+    const ppn = (ss, c) => ss.reduce((a, s) => a + trendCat(s, c), 0) / (personNights(ss) || 1);
+    const pa = ppn(A, 'Onboard Pre-booked'), pb = ppn(B, 'Onboard Pre-booked');
+    const oa = ppn(A, 'Onboard Spending'), ob = ppn(B, 'Onboard Spending');
+    const preMoved = pa > 0 && materialPppn(pb, pa), onbMoved = oa > 0 && materialPppn(ob, oa);
+    const r = n => fmt(Math.round(n));
+    const span = `first vs last ${h} sailings`;
+    if (onbMoved && !preMoved) {
+      addInsight(`Onboard Bill Shift: The onboard final bill went from ${r(oa)} to ${r(ob)} PPPN (${span}) while pre-booked extras held steady at ${r(pa)} to ${r(pb)}; the change is happening onboard, not in what you book ahead.`, 'lever', 'addons', Math.min(Math.abs(pctDiff(ob, oa)), 90));   // Drivers (statements) outranks this when both qualify
+    } else if (preMoved && !onbMoved) {
+      addInsight(`Pre-Booking Shift: Pre-booked extras went from ${r(pa)} to ${r(pb)} PPPN (${span}) while the onboard final bill held at ${r(oa)} to ${r(ob)}; ${pb > pa ? 'pre-booking is adding to spend, not replacing onboard spending' : 'you are booking fewer extras ahead without spending more onboard'}.`, 'lever', 'addons', Math.min(Math.abs(pctDiff(pb, pa)), 90));
+    } else if (preMoved && onbMoved) {
+      addInsight(`Add-On Spending Shift: Pre-booked extras went from ${r(pa)} to ${r(pb)} PPPN and the onboard final bill from ${r(oa)} to ${r(ob)} (${span}).`, 'lever', 'addons', Math.min(Math.max(Math.abs(pctDiff(pb, pa)), Math.abs(pctDiff(ob, oa))), 90));
+    }
+  }
+
+  // ── Onboard bill drivers (Royal Caribbean final statements: gross charges by category) ──
+  {
+    const st = pastNO.filter(s => s.onboardStatement);
+    if (st.length >= 2 * MIN_SIDE) {
+      const h = Math.floor(st.length / 2);
+      const A = st.slice(0, h), B = st.slice(st.length - h);
+      const pnA = personNights(A), pnB = personNights(B);
+      const grossA = A.reduce((a, s) => a + s.onboardStatement.gross, 0) / pnA;
+      const grossB = B.reduce((a, s) => a + s.onboardStatement.gross, 0) / pnB;
+      if (materialPppn(grossB, grossA)) {
+        const groups = [...new Set(st.flatMap(s => Object.keys(s.onboardStatement.groups)))];
+        const g = (ss, k, pn) => ss.reduce((a, s) => a + (s.onboardStatement.groups[k] || 0), 0) / pn;
+        const moves = groups.map(k => {
+          const d = g(B, k, pnB) - g(A, k, pnA);
+          // flag a group whose recent total mostly comes from a single sailing
+          const recent = B.map(s => s.onboardStatement.groups[k] || 0), tot = recent.reduce((a, b) => a + b, 0);
+          const one = tot > 0 && Math.max(...recent) / tot >= 0.6;
+          return { k, d, one };
+        }).filter(m => Math.abs(m.d) >= 1).sort((x, y) => Math.abs(y.d) - Math.abs(x.d)).slice(0, 3);
+        const parts = moves.map(m => `${m.k.toLowerCase()} ${m.d > 0 ? '+' : '-'}${fmt(Math.abs(Math.round(m.d)))}${m.one ? ' (mostly one sailing)' : ''}`);
+        addInsight(`Onboard Bill Drivers: Gross onboard charges went from ${fmt(Math.round(grossA))} to ${fmt(Math.round(grossB))} PPPN (first vs last ${h} sailings with final statements); the biggest moves were ${parts.join(', ')} per person-night.`, 'lever', 'addons', Math.min(Math.abs(pctDiff(grossB, grossA)) + 50, 100));
       }
     }
   }
-  if (!isUpcomingOnly) {
-    const seasonGroups = {};
-    nonOutlier.filter(s => s.isPast && s.season).forEach(s => {
-      if (!seasonGroups[s.season]) seasonGroups[s.season] = [];
-      seasonGroups[s.season].push(s.pppn);
+
+  // ── Booking horizon by season ──
+  {
+    const bk = nonOutlier.filter(s => s.booking && s.booking.monthsAhead != null);
+    const bySeason = {};
+    bk.forEach(s => (bySeason[s.season] = bySeason[s.season] || []).push(s.booking.monthsAhead));
+    const seasons = Object.entries(bySeason).filter(([, v]) => v.length >= MIN_SIDE)
+      .map(([season, v]) => ({ season, avg: v.reduce((a, b) => a + b, 0) / v.length }))
+      .sort((a, b) => b.avg - a.avg);
+    if (seasons.length >= 2) {
+      const hi = seasons[0], lo = seasons[seasons.length - 1];
+      if (hi.avg - lo.avg >= 3 && pctDiff(hi.avg, lo.avg) >= MIN_PCT) {
+        const byYear = {};
+        bk.forEach(s => (byYear[s.month.slice(-4)] = byYear[s.month.slice(-4)] || []).push(s.booking.monthsAhead));
+        const ys = Object.keys(byYear).filter(y => byYear[y].length >= MIN_PER_YEAR).sort();
+        const avgY = y => byYear[y].reduce((a, b) => a + b, 0) / byYear[y].length;
+        const trend = ys.length >= 3 ? `; overall lead time went from ${avgY(ys[0]).toFixed(0)} months (${ys[0]} sailings) to ${avgY(ys[ys.length - 1]).toFixed(0)} (${ys[ys.length - 1]})` : '';
+        addInsight(`Booking Horizon: ${hi.season} sailings are booked ${hi.avg.toFixed(0)} months ahead on average vs ${lo.avg.toFixed(0)} for ${lo.season}${trend}.`, 'lever', 'horizon', pctDiff(hi.avg, lo.avg));
+      }
+    }
+  }
+
+  // ── Onboard booking (booking the next cruise while on one) ──
+  {
+    const bk = nonOutlier.filter(s => s.booking && s.booking.firstDeposit);
+    const on = bk.filter(s => s.booking.onboard), home = bk.filter(s => !s.booking.onboard);
+    if (on.length >= MIN_SIDE && home.length >= MIN_SIDE) {
+      const avgDep = ss => Math.round(avgBy(ss, s => s.booking.depositAmt));
+      const perDay = {};
+      on.forEach(s => perDay[s.booking.firstDeposit] = (perDay[s.booking.firstDeposit] || 0) + 1);
+      const multi = Object.values(perDay).filter(n => n >= 2).length;
+      const multiText = multi ? `, often several at once (${multi} sitting${multi === 1 ? '' : 's'} with 2+ bookings)` : '';
+      const dOn = avgDep(on), dHome = avgDep(home);
+      const depText = materialTrip(dOn, dHome) ? `, with deposits averaging ${fmt(dOn)} vs ${fmt(dHome)} when booked from home` : '';
+      addInsight(`Onboard Booking: ${on.length} of ${bk.length} sailings were booked while on another cruise${multiText}${depText}.`, 'lever', 'onboard', on.length / bk.length * 100);
+    }
+  }
+
+  // ── Points/miles impact on flights (sailings whose flights are already bought) ──
+  // Payment method per trip is verified from booking receipts (FLIGHT_PAYMENTS in booking_insights.py):
+  // 'points' (points/miles only), 'points+cash' (cash top-up), or 'cash'.
+  {
+    const withF = nonOutlier.filter(s => s.flights);
+    const full = withF.filter(s => s.flights.mode === 'points'), topUp = withF.filter(s => s.flights.mode === 'points+cash');
+    const pts = full.concat(topUp), cash = withF.filter(s => s.flights.mode === 'cash');
+    if (pts.length >= MIN_SIDE && cash.length >= MIN_SIDE) {
+      const perPP = ss => Math.round(avgBy(ss, s => s.flights.perPerson));
+      const ap = perPP(pts), ac = perPP(cash);
+      const people = avgBy(withF, s => s.people);
+      if (Math.abs(pctDiff(ap, ac)) >= MIN_PCT && Math.abs(ac - ap) * people >= MIN_TRIP) {
+        const sumPts = key => pts.reduce((a, s) => a + ((s.flights.points || {})[key] || 0), 0);
+        const big = n => n >= 1e6 ? (n / 1e6).toFixed(1) + 'M' : Math.round(n / 1e3) + 'K';
+        const redeemed = [[sumPts('ur'), 'Chase points'], [sumPts('skymiles'), 'SkyMiles']]
+          .filter(([n]) => n > 0).map(([n, label]) => `${big(n)} ${label}`).join(' and ');
+        const split = [full.length ? `${full.length} fully` : '', topUp.length ? `${topUp.length} with a cash top-up` : ''].filter(Boolean).join(', ');
+        addInsight(`Points/Miles Impact: ${pts.length} of ${withF.length} trips used points or miles (${split})${redeemed ? `, redeeming about ${redeemed}` : ''}; they averaged ${fmt(ap)} per person in cash vs ${fmt(ac)} on the ${cash.length} all-cash trips.`, 'lever', 'points', (1 - ap / ac) * 100);
+      }
+    }
+  }
+
+  // ── Hotel points (pre-cruise hotel night on Marriott points vs cash) ──
+  // Hotel payment per sailing is verified from booking confirmations (HOTEL_PAYMENTS in booking_insights.py).
+  {
+    const withH = nonOutlier.filter(s => s.hotel && s.hotel.mode !== 'none');
+    const pts = withH.filter(s => s.hotel.mode === 'points'), cash = withH.filter(s => s.hotel.mode === 'cash');
+    if (pts.length >= MIN_SIDE && cash.length >= MIN_SIDE) {
+      // lodging cost = room + fees from the itemized folio when we have it, else the booking amount
+      const lodging = s => s.hotel.folio ? s.hotel.folio.room + s.hotel.folio.fees : s.hotel.booked;
+      const ap = Math.round(avgBy(pts, lodging)), ac = Math.round(avgBy(cash, lodging));
+      if (materialTrip(ap, ac)) {
+        const bonvoy = pts.reduce((a, s) => a + s.hotel.bonvoy, 0);
+        const big = n => n >= 1e6 ? (n / 1e6).toFixed(1) + 'M' : Math.round(n / 1e3) + 'K';
+        addInsight(`Hotel Points: ${pts.length} of ${withH.length} pre-cruise hotel stays were on Marriott points (${big(bonvoy)} Bonvoy), costing about ${fmt(ap)} in fees vs ${fmt(ac)} for a cash room (room, taxes and fees).`, 'lever', 'hotel-points', (1 - ap / ac) * 100);
+      }
+    }
+  }
+
+  // ── Hotel tab: food & incidentals charged to the room (itemized Marriott folios) ──
+  {
+    const withFolio = nonOutlier.filter(s => s.hotel && s.hotel.folio);
+    if (withFolio.length >= MIN_SIDE) {
+      const food = withFolio.reduce((a, s) => a + s.hotel.folio.food, 0);
+      const total = withFolio.reduce((a, s) => a + s.hotel.folio.total, 0);
+      const avg = food / withFolio.length, share = food / (total || 1) * 100;
+      if (avg * 1 >= MIN_PPPN) {
+        addInsight(`Hotel Tab: Food and incidentals charged to the room averaged ${fmt(Math.round(avg))} per pre-cruise stay (${withFolio.length} itemized bills), ${share.toFixed(0)}% of the total hotel bill.`, 'context', 'hotel-tab', share);
+      }
+    }
+  }
+
+  // ── Pre-cruise hotel shift (flying down the day before instead of embarkation morning) ──
+  {
+    const g = pastNO.filter(s => s.groundTravel != null && s.hotel);
+    const before = g.filter(s => s.hotel.mode === 'none'), after = g.filter(s => s.hotel.mode !== 'none');
+    if (before.length >= MIN_SIDE && after.length >= MIN_SIDE) {
+      const pp = ss => Math.round(avgBy(ss, s => s.groundTravel / s.people));
+      const b = pp(before), a = pp(after);
+      const people = avgBy(g, s => s.people);
+      if (Math.abs(pctDiff(a, b)) >= MIN_PCT && Math.abs(a - b) * people >= MIN_TRIP) {
+        // date hotels became standard is a fact about the whole history, not the filtered slice
+        const first = DATA.sailings.filter(s => !s.isOutlier && s.hotel && s.hotel.mode !== 'none')[0].month;
+        addInsight(`Pre-Cruise Hotel Shift: Since a hotel night before embarkation became standard (${first}), non-flight travel costs went from ${fmt(b)} to ${fmt(a)} per person per trip (hotel, rides, parking, food), ${Math.abs(pctDiff(a, b)).toFixed(0)}% ${a > b ? 'more' : 'less'}.`, 'trend', 'hotel-shift', pctDiff(a, b));
+      }
+    }
+  }
+
+  // ── Price drops caught on pre-booked extras ──
+  {
+    const drops = nonOutlier.flatMap(s => (s.priceDrops || []).map(d => ({ ...d, sailing: s.name })));
+    const total = drops.reduce((a, d) => a + d.amount, 0);
+    if (drops.length >= MIN_SIDE && total >= MIN_TRIP) {
+      const nSail = new Set(drops.map(d => d.sailing)).size;
+      const withPct = drops.filter(d => d.pct != null);
+      const avgPct = withPct.length ? avgBy(withPct, d => d.pct) * 100 : null;
+      const big = drops.reduce((a, d) => d.amount > a.amount ? d : a);
+      addInsight(`Price Drops Caught: Repricing pre-booked extras has saved ${fmt(Math.round(total))} across ${drops.length} drops on ${nSail} sailing${nSail === 1 ? '' : 's'}${avgPct != null ? ` (avg ${avgPct.toFixed(0)}% off)` : ''}; the biggest was ${fmt(Math.round(big.amount))} on a ${big.item}.`, 'lever', 'drops', avgPct || 0);
+    }
+  }
+
+  // ─────────── TRENDS ───────────
+
+  // ── Year-over-year PPPN trend ──
+  if (trendYears.length >= 2) {
+    const firstY = trendYears[0], lastY = trendYears[trendYears.length - 1];
+    if (materialPppn(lastY.pppn, firstY.pppn)) {
+      const d = pctDiff(lastY.pppn, firstY.pppn);
+      addInsight(`Year Trend: PPPN ${d > 0 ? 'increased' : 'decreased'} ${Math.abs(d).toFixed(0)}% from ${firstY.year} (${fmt(firstY.pppn)}) to ${lastY.year} (${fmt(lastY.pppn)}).`, 'trend', 'pppn-trend', d);
+    }
+  }
+
+  // ── Recent trajectory (last completed sailings vs all-time average) ──
+  {
+    const recentN = Math.min(4, Math.floor(pastNO.length / 2));
+    if (recentN >= MIN_SIDE && pastNO.length - recentN >= MIN_SIDE) {
+      const recentAvg = Math.round(avgBy(pastNO.slice(-recentN), s => s.pppn)), allAvg = Math.round(avgBy(pastNO, s => s.pppn));
+      if (materialPppn(recentAvg, allAvg)) {
+        const d = pctDiff(recentAvg, allAvg);
+        addInsight(`Recent Trajectory: Your last ${recentN} sailings average ${fmt(recentAvg)} PPPN, ${Math.abs(d).toFixed(0)}% ${d > 0 ? 'above' : 'below'} your all-time average of ${fmt(allAvg)}.`, 'trend', 'pppn-trend', d);
+      }
+    }
+  }
+
+  // ── Upcoming vs past ──
+  {
+    const up = nonOutlier.filter(s => s.isUpcoming);
+    if (up.length >= MIN_SIDE && pastNO.length >= MIN_SIDE) {
+      const upAvg = Math.round(personNights(up) ? up.reduce((a, s) => a + s.total, 0) / personNights(up) : 0);
+      const pastAvg = Math.round(avgBy(pastNO, s => s.pppn));
+      if (materialPppn(upAvg, pastAvg)) {
+        const d = pctDiff(upAvg, pastAvg);
+        addInsight(`Upcoming vs Past: Booked sailings average ${fmt(upAvg)} PPPN, ${Math.abs(d).toFixed(0)}% ${d > 0 ? 'higher' : 'lower'} than the ${fmt(pastAvg)} historical average.`, 'trend', 'pppn-trend', d);
+      }
+    }
+  }
+
+  // ── Spend drivers: volume (person-nights) vs price (PPPN) ──
+  {
+    const full = yrs.filter(y => y.sailings >= MIN_SIDE);
+    if (full.length >= 2) {
+      const a = full[0], b = full[full.length - 1];
+      if (materialTrip(b.total, a.total)) {
+        const spendX = b.total / a.total, volX = b.personNights / a.personNights, priceX = b.pppn / a.pppn;
+        const driver = Math.abs(Math.log(priceX)) >= Math.abs(Math.log(volX)) ? 'mostly price' : 'mostly volume';
+        addInsight(`Spend Drivers: Annual cruise spend ${spendX >= 1 ? 'rose' : 'fell'} ${spendX.toFixed(1)}x from ${a.year} to ${b.year}; ${volX.toFixed(1)}x from more person-nights at sea and ${priceX.toFixed(1)}x from cost per person-night (${driver}).`, 'trend', 'spend', pctDiff(b.total, a.total));
+      }
+    }
+  }
+
+  // ── Non-fare cost trajectory ──
+  {
+    const recentN = Math.min(4, Math.floor(pastNO.length / 2));
+    if (recentN >= MIN_SIDE && pastNO.length - recentN >= MIN_SIDE) {
+      const nf = arr => { const pn = personNights(arr); return pn ? Math.round(arr.reduce((a, s) => a + s.total - (s.categories['Cruise Fare'] || 0), 0) / pn) : 0; };
+      const olderNF = nf(pastNO.slice(0, -recentN)), recentNF = nf(pastNO.slice(-recentN));
+      if (olderNF > 0 && materialPppn(recentNF, olderNF)) {
+        const d = pctDiff(recentNF, olderNF);
+        addInsight(`Non-Fare Trajectory: Add-on costs (excl. fare) averaged ${fmt(recentNF)} PPPN in your last ${recentN} sailings vs ${fmt(olderNF)} earlier, a ${Math.abs(d).toFixed(0)}% ${d > 0 ? 'increase' : 'decrease'}.`, 'trend', 'nonfare', d);
+      }
+    }
+  }
+
+  // ── Biggest non-fare category shift (share of spend, backed by a real dollar change) ──
+  if (pastNO.length >= 2 * MIN_SIDE) {
+    const half = Math.floor(pastNO.length / 2);
+    const early = pastNO.slice(0, half), recent = pastNO.slice(-half);
+    const eTot = early.reduce((a, s) => a + s.total, 0), rTot = recent.reduce((a, s) => a + s.total, 0);
+    let best = null;
+    (DATA.categories || []).filter(c => c !== 'Cruise Fare').forEach(cat => {
+      const eAmt = early.reduce((a, s) => a + trendCat(s, cat), 0), rAmt = recent.reduce((a, s) => a + trendCat(s, cat), 0);
+      const ep = eTot ? eAmt / eTot * 100 : 0, rp = rTot ? rAmt / rTot * 100 : 0;
+      const perTripDelta = rAmt / half - eAmt / half;
+      // share must move 5+ points AND per-trip dollars must move the same way by $250+
+      if (Math.abs(rp - ep) >= 5 && Math.sign(perTripDelta) === Math.sign(rp - ep) && Math.abs(perTripDelta) >= MIN_TRIP) {
+        if (!best || Math.abs(rp - ep) > Math.abs(best.rp - best.ep)) best = { cat, ep, rp };
+      }
     });
-    const seasons = Object.entries(seasonGroups)
-      .filter(([, ps]) => ps.length >= 2)
-      .map(([season, ps]) => ({season, avg: Math.round(ps.reduce((a, p) => a + p, 0) / ps.length), count: ps.length}))
+    if (best) {
+      const { cat, ep, rp } = best;
+      addInsight(`Category Shift: ${cat} went from ${ep.toFixed(0)}% to ${rp.toFixed(0)}% of spend (first ${half} vs last ${half} sailings), ${rp > ep ? 'growing' : 'shrinking'} as a share of the budget.`, 'trend', 'addons', Math.abs(rp - ep) * 2);
+    }
+  }
+
+  // ── Ship class premium (Icon/Star-class vs older fleet) ──
+  {
+    const iconClass = new Set(['Icon', 'Star', 'Legend', 'Hero']);
+    const iconS = pastNO.filter(s => iconClass.has(s.ship)), olderS = pastNO.filter(s => !iconClass.has(s.ship) && s.cruiseLine === 'Royal Caribbean');
+    if (iconS.length >= MIN_SIDE && olderS.length >= MIN_SIDE) {
+      const iconAvg = Math.round(avgBy(iconS, s => s.pppn)), olderAvg = Math.round(avgBy(olderS, s => s.pppn));
+      if (materialPppn(iconAvg, olderAvg)) {
+        const d = pctDiff(iconAvg, olderAvg);
+        addInsight(`Ship Class Premium: Icon/Star-class averages ${fmt(iconAvg)} PPPN vs ${fmt(olderAvg)} on older ships, ${Math.abs(d).toFixed(0)}% ${d >= 0 ? 'more' : 'less'} for the newer fleet (${iconS.length} vs ${olderS.length} sailings).`, 'trend', 'ship-class', d);
+      }
+    }
+  }
+
+  // ── Trip length drift ──
+  if (trendYears.length >= 2) {
+    const first = trendYears[0], last = trendYears[trendYears.length - 1];
+    const fa = first.nights / first.sailings, la = last.nights / last.sailings;
+    if (Math.abs(pctDiff(la, fa)) >= MIN_PCT && Math.abs(la - fa) >= 1) {
+      const sevenPlus = y => { const ss = nonOutlier.filter(s => s.month.endsWith(y.year)); return [ss.filter(s => s.nights >= 7).length, ss.length]; };
+      const [f7, fn] = sevenPlus(first), [l7, ln] = sevenPlus(last);
+      addInsight(`Trip Length Drift: The average sailing ${la > fa ? 'grew' : 'shrank'} from ${fa.toFixed(1)} nights in ${first.year} to ${la.toFixed(1)} in ${last.year}; 7+ night trips went from ${f7} of ${fn} to ${l7} of ${ln}.`, 'trend', 'length', pctDiff(la, fa));
+    }
+  }
+
+  // ── Same cabin, later year (identical ship + cabin + season, different year) ──
+  {
+    const groups = {};
+    nonOutlier.forEach(s => { const key = s.ship + '|' + s.roomSubtype; (groups[key] = groups[key] || []).push(s); });
+    let best = null;
+    Object.values(groups).forEach(g => {
+      for (let i = 0; i < g.length; i++) for (let j = i + 1; j < g.length; j++) {
+        const a = g[i], b = g[j], ya = a.month.slice(-4), yb = b.month.slice(-4);
+        if (!a.fppn || !b.fppn || ya === yb || a.season !== b.season) continue;
+        const [early, late] = +ya < +yb ? [a, b] : [b, a];
+        const d = pctDiff(late.fppn, early.fppn);
+        if (materialPppn(late.fppn, early.fppn) && (!best || Math.abs(d) > Math.abs(best.d))) best = { early, late, d };
+      }
+    });
+    if (best) {
+      const { early, late, d } = best;
+      addInsight(`Same Cabin, Later Year: ${early.ship} ${early.roomSubtype} fare went from ${fmt(early.fppn)} PPPN (${early.season} ${early.month.slice(-4)}) to ${fmt(late.fppn)} (${late.season} ${late.month.slice(-4)}), ${d >= 0 ? 'up' : 'down'} ${Math.abs(d).toFixed(0)}% for the same cabin and season.`, 'trend', 'same-cabin-year', d);
+    }
+  }
+
+  // ─────────── CONTEXT ───────────
+
+  // ── Season spread (all ships and cabins) ──
+  {
+    const bySeason = {};
+    pastNO.forEach(s => (bySeason[s.season] = bySeason[s.season] || []).push(s.pppn));
+    const seasons = Object.entries(bySeason).filter(([, v]) => v.length >= MIN_SIDE)
+      .map(([season, v]) => ({ season, avg: Math.round(v.reduce((a, b) => a + b, 0) / v.length), count: v.length }))
       .sort((a, b) => b.avg - a.avg);
     if (seasons.length >= 2) {
       const peak = seasons[0], off = seasons[seasons.length - 1];
-      const spread = ((peak.avg / off.avg) - 1) * 100;
-      addInsight(`Season Spread: ${peak.season} averages ${fmt(peak.avg)} PPPN (${peak.count} sailings) vs ${fmt(off.avg)} for ${off.season} - a ${spread.toFixed(0)}% seasonal premium.`, Math.abs(spread));
-    }
-  }
-  if (!isUpcomingOnly) {
-    const allYrs = DATA.years || [];
-    if (allYrs.length >= 3) {
-      const half = Math.floor(allYrs.length / 2);
-      const earlyPct  = allYrs.slice(0, half).reduce((a, y) => a + y.farePct, 0) / half;
-      const recentPct = allYrs.slice(-half).reduce((a, y) => a + y.farePct, 0) / half;
-      const diff = recentPct - earlyPct;
-      if (Math.abs(diff) >= 3) {
-        addInsight(`Fare Share Trend: Cruise fare has ${diff > 0 ? 'risen' : 'fallen'} from ${earlyPct.toFixed(0)}% to ${recentPct.toFixed(0)}% of total spend - ${diff > 0 ? 'non-fare add-ons shrinking as a share' : 'non-fare costs claiming more of the budget'}.`, Math.abs(diff) * 2);
+      if (materialPppn(peak.avg, off.avg)) {
+        const d = pctDiff(peak.avg, off.avg);
+        addInsight(`Season Spread: ${peak.season} averages ${fmt(peak.avg)} PPPN (${peak.count} sailings) vs ${fmt(off.avg)} for ${off.season} (${off.count}), a ${d.toFixed(0)}% seasonal premium.`, 'context', 'season', d);
       }
     }
   }
-  {
-    const pastNO = nonOutlier.filter(s => s.isPast);
-    const recentSlice = pastNO.slice(-5);
-    if (recentSlice.length >= 3) {
-      const counts = {};
-      recentSlice.forEach(s => counts[s.roomSubtype] = (counts[s.roomSubtype] || 0) + 1);
-      const [topSubtype, topCount] = Object.entries(counts).sort((a, b) => b[1] - a[1])[0];
-      if (topCount >= 2) {
-        const allCount = nonOutlier.filter(s => s.isPast && s.roomSubtype === topSubtype).length;
-        const dominance = (topCount / recentSlice.length) * 100;
-        addInsight(`Room Momentum: ${topSubtype} in ${topCount} of your last ${recentSlice.length} sailings - your dominant recent choice (${allCount} times across all completed sailings).`, dominance);
-      }
-    }
-  }
-  if (!isUpcomingOnly) {
-    const iconClass = new Set(['Icon', 'Star', 'Legend', 'Hero']);
-    const iconSails  = nonOutlier.filter(s => s.isPast && iconClass.has(s.ship));
-    const olderSails = nonOutlier.filter(s => s.isPast && !iconClass.has(s.ship) && s.cruiseLine === 'Royal Caribbean');
-    if (iconSails.length >= 2 && olderSails.length >= 2) {
-      const iconAvg  = Math.round(iconSails.reduce((a, s)  => a + s.pppn, 0) / iconSails.length);
-      const olderAvg = Math.round(olderSails.reduce((a, s) => a + s.pppn, 0) / olderSails.length);
-      const prem = ((iconAvg / olderAvg) - 1) * 100;
-      addInsight(`Ship Class Premium: Icon/Star-class averages ${fmt(iconAvg)} PPPN vs ${fmt(olderAvg)} on older ships - ${Math.abs(prem).toFixed(0)}% ${prem >= 0 ? 'more' : 'less'} for the newer fleet (${iconSails.length} vs ${olderSails.length} sailings).`, Math.abs(prem));
-    }
-  }
-  if (!isUpcomingOnly) {
-    const dogs        = DATA.dogBoarding || [];
-    const friendDogs  = dogs.filter(d => d.provider === 'Friend'   && d.isPast);
-    const facilityDogs = dogs.filter(d => d.provider === 'Facility' && d.isPast);
-    if (friendDogs.length && facilityDogs.length) {
-      const friendAvg   = Math.round(friendDogs.reduce((a, d)   => a + d.costPerNight, 0) / friendDogs.length);
-      const facilityAvg = Math.round(facilityDogs.reduce((a, d) => a + d.costPerNight, 0) / facilityDogs.length);
-      const pct2 = ((facilityAvg / friendAvg) - 1) * 100;
-      addInsight(`Dog Boarding Shift: Friend care averaged $${friendAvg}/night vs $${facilityAvg}/night at a facility - ${Math.abs(pct2).toFixed(0)}% ${pct2 >= 0 ? 'more' : 'less'}, ${pct2 >= 0 ? 'adding' : 'saving'} ~$${Math.abs(facilityAvg - friendAvg) * 7} on a typical 7-night trip.`, Math.abs(pct2));
-    }
-  }
-  if (!isUpcomingOnly) {
-    const rcSails = nonOutlier.filter(s => s.isPast && s.cruiseLine === 'Royal Caribbean');
-    const otherLines = [...new Set(nonOutlier.filter(s => s.isPast && s.cruiseLine !== 'Royal Caribbean').map(s => s.cruiseLine))];
-    otherLines.forEach(line => {
-      const lineSails = nonOutlier.filter(s => s.isPast && s.cruiseLine === line);
-      if (lineSails.length >= 1 && rcSails.length >= 3) {
-        const lineAvg = Math.round(lineSails.reduce((a, s) => a + s.pppn, 0) / lineSails.length);
-        const rcAvg   = Math.round(rcSails.reduce((a, s)   => a + s.pppn, 0) / rcSails.length);
-        const pct3 = (((lineAvg / rcAvg) - 1) * 100);
-        addInsight(`${line} vs Royal Caribbean: ${line} averaged ${fmt(lineAvg)} PPPN vs ${fmt(rcAvg)} on Royal Caribbean - ${Math.abs(pct3).toFixed(0)}% ${pct3 > 0 ? 'pricier' : 'cheaper'} across ${lineSails.length} sailing${lineSails.length > 1 ? 's' : ''}.`, Math.abs(pct3));
-      }
-    });
-  }
-  if (!isUpcomingOnly) {
-    const withTravel  = nonOutlier.filter(s => s.isPast);
-    const pointsTrips = withTravel.filter(s => (s.categories['Travel'] || 0) < 200);
-    const paidTrips   = withTravel.filter(s => (s.categories['Travel'] || 0) >= 200);
-    if (pointsTrips.length >= 2 && paidTrips.length >= 2) {
-      const paidAvg = Math.round(paidTrips.reduce((a, s) => a + (s.categories['Travel'] || 0), 0) / paidTrips.length);
-      const share = (pointsTrips.length / withTravel.length) * 100;
-      addInsight(`Points/Miles Impact: ${pointsTrips.length} of ${withTravel.length} sailings had near-$0 travel costs (points/miles used). Paid-travel trips averaged ${fmt(paidAvg)} in flights & hotels.`, Math.abs(share - 50) + 15);
-    }
-  }
-  if (!isUpcomingOnly) {
-    const pastNO = nonOutlier.filter(s => s.isPast);
-    if (pastNO.length >= 6) {
-      const half        = Math.floor(pastNO.length / 2);
-      const early       = pastNO.slice(0, half);
-      const recent      = pastNO.slice(-half);
-      const earlyTotal  = early.reduce((a, s)  => a + s.total, 0);
-      const recentTotal = recent.reduce((a, s) => a + s.total, 0);
-      const nonFareCats = (DATA.categories || []).filter(c => c !== 'Cruise Fare');
-      let biggestShift = null, biggestDiff = 0;
-      nonFareCats.forEach(cat => {
-        const ep = earlyTotal  ? early.reduce((a, s)  => a + (s.categories[cat] || 0), 0) / earlyTotal  * 100 : 0;
-        const rp = recentTotal ? recent.reduce((a, s) => a + (s.categories[cat] || 0), 0) / recentTotal * 100 : 0;
-        if (Math.abs(rp - ep) > biggestDiff) { biggestDiff = Math.abs(rp - ep); biggestShift = {cat, ep, rp, diff: rp - ep}; }
-      });
-      if (biggestShift && biggestDiff >= 2) {
-        const {cat, ep, rp, diff} = biggestShift;
-        addInsight(`Category Shift: ${cat} went from ${ep.toFixed(0)}% to ${rp.toFixed(0)}% of spend (first ${half} vs last ${half} sailings) - ${diff > 0 ? 'growing' : 'shrinking'} as a share of the budget.`, biggestDiff * 2);
-      }
-    }
-  }
-  if (!isUpcomingOnly) {
-    const pastNO = nonOutlier.filter(s => s.isPast);
-    if (pastNO.length >= 6) {
-      const half        = Math.floor(pastNO.length / 2);
-      const earlyPppns  = pastNO.slice(0, half).map(s => s.pppn);
-      const recentPppns = pastNO.slice(-half).map(s => s.pppn);
-      const earlyRange  = Math.max(...earlyPppns)  - Math.min(...earlyPppns);
-      const recentRange = Math.max(...recentPppns) - Math.min(...recentPppns);
-      if (Math.abs(earlyRange - recentRange) > 100) {
-        const earlyMid  = Math.round(earlyPppns.reduce((a, v)  => a + v, 0) / earlyPppns.length);
-        const recentMid = Math.round(recentPppns.reduce((a, v) => a + v, 0) / recentPppns.length);
-        const rangeDelta = earlyRange ? Math.abs(recentRange - earlyRange) / earlyRange * 100 : 0;
-        addInsight(`PPPN Consistency: Recent sailings span ${fmt(recentRange)} PPPN vs ${fmt(earlyRange)} earlier - ${recentRange < earlyRange ? 'costs becoming more predictable' : 'growing more variable'} (recent avg ${fmt(recentMid)} vs early avg ${fmt(earlyMid)}).`, rangeDelta);
-      }
-    }
-  }
-  if (!isUpcomingOnly) {
-    const pastNO = nonOutlier.filter(s => s.isPast);
-    const recentN = Math.min(4, Math.floor(pastNO.length / 2));
-    if (pastNO.length > recentN + 2) {
-      const older  = pastNO.slice(0, -recentN);
-      const recent = pastNO.slice(-recentN);
-      const avgNonFarePppn = arr => {
-        const totalPn = arr.reduce((a, s) => a + s.nights * s.people, 0);
-        const totalNF = arr.reduce((a, s) => a + s.total - (s.categories['Cruise Fare'] || 0), 0);
-        return totalPn ? Math.round(totalNF / totalPn) : 0;
-      };
-      const olderNF  = avgNonFarePppn(older);
-      const recentNF = avgNonFarePppn(recent);
-      const delta = olderNF ? (((recentNF / olderNF) - 1) * 100) : 0;
-      if (Math.abs(delta) >= 8 && olderNF > 0) {
-        addInsight(`Non-Fare Trajectory: Add-on costs (excl. fare) averaged ${fmt(recentNF)} PPPN in your last ${recentN} sailings vs ${fmt(olderNF)} earlier - ${Math.abs(delta).toFixed(0)}% ${delta > 0 ? 'increase' : 'decrease'} in non-cruise spending.`, Math.abs(delta));
-      }
-    }
-  }
+
+  // ── Suite vs balcony ──
   if (!isSuiteOnly && !isBalconyOnly) {
-    const suites = nonOutlier.filter(s => s.roomType==='Suite');
-    const balcs = nonOutlier.filter(s => s.roomType==='Balcony');
-    if (suites.length && balcs.length) {
-      const sAvg = Math.round(suites.reduce((a,s)=>a+s.pppn,0)/suites.length);
-      const bAvg = Math.round(balcs.reduce((a,s)=>a+s.pppn,0)/balcs.length);
-      const prem = ((sAvg/bAvg)-1)*100;
-      addInsight(`Suite vs Balcony: Suites average ${fmt(sAvg)} PPPN vs ${fmt(bAvg)} for balconies - a ${Math.abs(prem).toFixed(0)}% ${prem>0?'premium':'discount'} across ${suites.length + balcs.length} sailings in this set.`, Math.abs(prem));
+    const suites = nonOutlier.filter(s => s.roomType === 'Suite'), balcs = nonOutlier.filter(s => s.roomType === 'Balcony');
+    if (suites.length >= MIN_SIDE && balcs.length >= MIN_SIDE) {
+      const sAvg = Math.round(avgBy(suites, s => s.pppn)), bAvg = Math.round(avgBy(balcs, s => s.pppn));
+      if (materialPppn(sAvg, bAvg)) {
+        const d = pctDiff(sAvg, bAvg);
+        addInsight(`Suite vs Balcony: Suites average ${fmt(sAvg)} PPPN vs ${fmt(bAvg)} for balconies, a ${Math.abs(d).toFixed(0)}% ${d > 0 ? 'premium' : 'discount'} across ${suites.length + balcs.length} sailings.`, 'context', 'cabin-type', d);
+      }
     }
   }
-  if (nonOutlier.length >= 2) {
-    const fareTotal = cats.find(c=>c[0]==='Cruise Fare')?.[1] || 0;
+
+  // ── Cash timing: deposit, then final payment, then flights ──
+  {
+    const ct = pastNO.filter(s => s.cashTiming);
+    if (ct.length >= MIN_SIDE) {
+      const tot = ct.reduce((a, s) => a + s.total, 0);
+      const share = key => ct.reduce((a, s) => a + s.cashTiming[key] * s.total, 0) / tot * 100;
+      const deps = ct.filter(s => s.booking && s.booking.depositAmt).map(s => s.booking.depositAmt / s.total * 100);
+      const gaps = ct.map(s => s.flightsAfterFinalDays).filter(g => g != null);
+      const recent = gaps.slice(-4);
+      const flightText = gaps.length >= MIN_SIDE ? `, and flights follow the final payment by a median of ${medianOf(gaps).toFixed(0)} days (${medianOf(recent).toFixed(0)} across the last ${recent.length} trips)` : '';
+      const depText = deps.length ? `Deposits average ${(deps.reduce((a, b) => a + b, 0) / deps.length).toFixed(0)}% of a trip's cost; ` : '';
+      const final4 = share('final') + share('last30');
+      addInsight(`Cash Timing: ${depText}${final4.toFixed(0)}% is paid in the final 4 months before sailing${flightText}.`, 'context', 'cash', final4 - 50);
+    }
+  }
+
+  // ── Spending mix: fare vs non-fare ──
+  if (nonOutlier.length >= MIN_SIDE && k.totalSpent) {
+    const fareTotal = cats.find(c => c[0] === 'Cruise Fare')?.[1] || 0;
     const nonFareTotal = k.totalSpent - fareTotal;
-    const nonFarePct = k.totalSpent ? (nonFareTotal/k.totalSpent*100).toFixed(0) : 0;
-    addInsight(`Spending Mix: Non-fare costs account for ${nonFarePct}% of total - averaging ${fmt(Math.round(nonFareTotal / (k.totalPersonNights||1)))} PPPN on top of the fare.`, Math.abs(nonFarePct - 50) * 0.6 + 5);
+    const nonFarePct = nonFareTotal / k.totalSpent * 100;
+    addInsight(`Spending Mix: Non-fare costs account for ${nonFarePct.toFixed(0)}% of total, averaging ${fmt(Math.round(nonFareTotal / (k.totalPersonNights || 1)))} PPPN on top of the fare.`, 'context', 'mix', Math.abs(nonFarePct - 50));
   }
-  if (yrs.length >= 2) {
-    const firstY = yrs[0], lastY = yrs[yrs.length-1];
-    const yoyChange = ((lastY.pppn / firstY.pppn) - 1) * 100;
-    addInsight(`Year Trend: PPPN ${yoyChange>0?'increased':'decreased'} ${Math.abs(yoyChange).toFixed(0)}% from ${firstY.year} (${fmt(firstY.pppn)}) to ${lastY.year} (${fmt(lastY.pppn)}).`, Math.abs(yoyChange));
-  }
-  if (nonOutlier.length >= 2) {
-    const ships = [...new Set(nonOutlier.map(s => s.ship))];
-    if (ships.length > 1) {
-      const shipAvgs = ships.map(ship => {
-        const ss = nonOutlier.filter(s => s.ship === ship);
-        return {ship, avg: Math.round(ss.reduce((a,s)=>a+s.pppn,0)/ss.length), count: ss.length};
-      }).sort((a,b) => a.avg - b.avg);
-      const best = shipAvgs[0], worst = shipAvgs[shipAvgs.length-1];
-      const shipSpread = ((worst.avg/best.avg)-1)*100;
-      addInsight(`Ship Comparison: ${best.ship} averages ${fmt(best.avg)} PPPN (${best.count} sailings) vs ${worst.ship} at ${fmt(worst.avg)} - a ${shipSpread.toFixed(0)}% spread.`, shipSpread);
-    }
-  }
-  if (nonOutlier.length >= 4) {
-    const sorted = [...nonOutlier].sort((a,b) => a.nights - b.nights);
-    const half = Math.ceil(sorted.length/2);
-    const short = sorted.slice(0, half);
-    const long = sorted.slice(half);
-    const shortAvg = Math.round(short.reduce((a,s)=>a+s.pppn,0)/short.length);
-    const longAvg = Math.round(long.reduce((a,s)=>a+s.pppn,0)/long.length);
-    if (shortAvg !== longAvg) {
-      const lenDelta = shortAvg ? Math.abs(longAvg - shortAvg) / shortAvg * 100 : 0;
-      addInsight(`Length Effect: Shorter sailings (<=${short[short.length-1].nights} nights) average ${fmt(shortAvg)} PPPN vs ${fmt(longAvg)} for longer ones - ${longAvg < shortAvg ? 'longer trips are more cost-efficient per night' : 'shorter trips cost less per night'}.`, lenDelta);
-    }
-  }
-  if (nonOutlier.length >= 3) {
-    const peopleCounts = [...new Set(nonOutlier.map(s => s.people))];
-    if (peopleCounts.length > 1) {
-      const bySize = peopleCounts.map(p => {
-        const ss = nonOutlier.filter(s => s.people === p);
-        return {people: p, avg: Math.round(ss.reduce((a,s)=>a+s.pppn,0)/ss.length), count: ss.length};
-      }).sort((a,b) => a.avg - b.avg);
-      const cheapest = bySize[0], priciest = bySize[bySize.length-1];
-      const sizeDelta = cheapest.avg ? Math.abs(priciest.avg - cheapest.avg) / cheapest.avg * 100 : 0;
-      addInsight(`Group Size: ${cheapest.people}-person sailings average ${fmt(cheapest.avg)} PPPN vs ${fmt(priciest.avg)} for ${priciest.people}-person trips.`, sizeDelta);
-    }
-  }
-  if (nonOutlier.length >= 2) {
-    const fares = nonOutlier.map(s => s.farePct).sort((a,b) => a-b);
-    const lo = fares[0], hi = fares[fares.length-1];
-    if (hi - lo > 8) {
-      addInsight(`Add-on Variability: Fare share ranges from ${pct(lo)} to ${pct(hi)} - a ${(hi-lo).toFixed(0)}pp spread, showing some sailings have significantly more non-fare spending.`, (hi - lo) * 1.5);
-    }
-  }
-  if (nonOutlier.length >= 3) {
-    const pppns = nonOutlier.map(s => s.pppn).sort((a,b) => a-b);
-    const median = pppns[Math.floor(pppns.length/2)];
-    const diff = ((k.avgPppn / median) - 1) * 100;
-    if (Math.abs(diff) >= 5) {
-      addInsight(`Distribution Skew: Median PPPN is ${fmt(median)} vs ${fmt(k.avgPppn)} average - ${diff > 0 ? 'a few high-cost sailings pull the average up' : 'a few low-cost sailings pull the average down'} by ${Math.abs(diff).toFixed(0)}%.`, Math.abs(diff));
-    }
-  }
-  if (!isUpcomingOnly && k.upcomingCount > 0) {
-    const pastSailings = nonOutlier.filter(s => s.isPast);
-    const pastAvg = pastSailings.length ? Math.round(pastSailings.reduce((a,s)=>a+s.pppn,0)/pastSailings.length) : 0;
-    if (pastAvg && k.upcomingAvgPppn) {
-      const delta = ((k.upcomingAvgPppn/pastAvg)-1)*100;
-      addInsight(`Upcoming vs Past: Booked sailings average ${fmt(k.upcomingAvgPppn)} PPPN - ${Math.abs(delta).toFixed(0)}% ${delta>0?'higher':'lower'} than the ${fmt(pastAvg)} historical average.`, Math.abs(delta));
-    }
-  }
-  if (cats.length >= 3 && k.totalSpent) {
-    const top2 = cats.slice(0,2);
-    const top2Pct = ((top2[0][1]+top2[1][1])/k.totalSpent*100);
-    addInsight(`Spending Concentration: ${top2[0][0]} and ${top2[1][0]} together represent ${top2Pct.toFixed(0)}% of all spending - the remaining ${cats.length-2} categories split the other ${(100-top2Pct).toFixed(0)}%.`, Math.max(0, top2Pct - 45));
-  }
-  if (nonOutlier.length >= 2) {
-    const pppns = nonOutlier.map(s => s.pppn).sort((a,b) => a-b);
-    const range = pppns[pppns.length-1] - pppns[0];
-    const cv = k.avgPppn ? (range/k.avgPppn*100) : 0;
-    addInsight(`PPPN Range: ${fmt(pppns[0])} to ${fmt(pppns[pppns.length-1])} - a ${fmt(range)} spread, ${cv > 50 ? 'showing wide cost variability' : 'relatively consistent pricing'} across this set.`, cv * 0.4 + 3);
-  }
-  if (nonOutlier.length >= 2) {
-    const avgNights = (k.totalNights / nonOutlier.length).toFixed(1);
-    const avgPeople = (nonOutlier.reduce((a,s)=>a+s.people,0) / nonOutlier.length).toFixed(1);
-    addInsight(`Typical Profile: Average sailing is ${avgNights} nights with ${avgPeople} people across ${nonOutlier.length} sailings.`, 1);
-  }
-  const insights = pool.sort((a, b) => b.score - a.score).slice(0, TARGET_COUNT).map(i => i.text);
-  $('#insights').innerHTML = insights.map(t => `<div class="insight"><span class="bullet">-</span><span>${t}</span></div>`).join('');
+
+  // ── Select: strongest per topic, then levers > trends > context, then effect size ──
+  const bestByTopic = {};
+  pool.forEach(p => {
+    const cur = bestByTopic[p.topic];
+    if (!cur || TIER_ORDER[p.tier] < TIER_ORDER[cur.tier] || (p.tier === cur.tier && p.size > cur.size)) bestByTopic[p.topic] = p;
+  });
+  const insights = Object.values(bestByTopic)
+    .sort((a, b) => TIER_ORDER[a.tier] - TIER_ORDER[b.tier] || b.size - a.size)
+    .slice(0, TARGET_COUNT).map(i => i.text);
+
+  $('#insights').innerHTML = insights.map(t => `<div class="insight"><span class="bullet">▸</span><span>${t}</span></div>`).join('');
+
+  // YoY mini chart
   if (overviewYoyChart) overviewYoyChart.destroy();
   overviewYoyChart = new Chart($('#overview-yoy'), {
     type: 'bar',
@@ -1346,10 +1869,14 @@ function renderOverview(filters) {
       y1:{position:'right',grid:{drawOnChartArea:false},ticks:{callback:tickFmtShort}},
     }}
   });
+
+  // YoY table
   renderTable('#overview-yoy-table',
     ['Year','Sailings','Nights','Total','PPPN','Avg/Sailing'],
     yrs.map(y => [y.year, y.sailings, y.nights, fmt(y.total), fmt(y.pppn), fmt(y.avgPerSailing)])
   );
+
+  // Category table
   renderTable('#overview-cat-table',
     ['Category','Total','%','Avg/Sailing','Avg/Night','Avg PPPN'],
     cats.map(([cat,amt]) => [
@@ -1360,9 +1887,14 @@ function renderOverview(filters) {
     ])
   );
 }
+
+// ══════════════════════════════════════════════════════════════
+// PPPN TREND
+// ══════════════════════════════════════════════════════════════
 let pppnChart;
 function renderPPPN(filters) {
   const sailings = filterSailings(filters);
+
   if (pppnChart) pppnChart.destroy();
   pppnChart = new Chart($('#pppn-chart'), {
     type: 'bar',
@@ -1376,6 +1908,7 @@ function renderPPPN(filters) {
     options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom'}},
       scales:{x:{ticks:{maxRotation:45,font:{size:10}}},y:{ticks:{callback:tickFmtShort}}}}
   });
+
   renderTable('#pppn-table',
     ['Sailing','Nights','Ppl','Ship','Room','Total','CPN','PPPN','FPPN'],
     sailings.map(s => [
@@ -1387,10 +1920,16 @@ function renderPPPN(filters) {
     sailings.map(s => s.isOutlier ? 'outlier' : s.isUpcoming ? 'upcoming' : '')
   );
 }
+
+// ══════════════════════════════════════════════════════════════
+// CATEGORIES
+// ══════════════════════════════════════════════════════════════
 let catStackedChart, catDollarsChart;
 function renderCategories(filters) {
   const sailings = filterSailings(filters);
   const cats = DATA.categories;
+
+  // Stacked bar (% of total)
   if (catStackedChart) catStackedChart.destroy();
   catStackedChart = new Chart($('#cat-stacked'), {
     type: 'bar',
@@ -1405,6 +1944,8 @@ function renderCategories(filters) {
     options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},
       scales:{x:{stacked:true,ticks:{maxRotation:45,font:{size:9}}},y:{stacked:true,max:100,ticks:{callback:v=>v+'%'}}}}
   });
+
+  // Dollar amounts
   if (catDollarsChart) catDollarsChart.destroy();
   catDollarsChart = new Chart($('#cat-dollars'), {
     type: 'bar',
@@ -1419,21 +1960,28 @@ function renderCategories(filters) {
     options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},
       scales:{x:{stacked:true,ticks:{maxRotation:45,font:{size:9}}},y:{stacked:true,ticks:{callback:tickFmt}}}}
   });
+
+  // Table (transposed: sailings as rows, categories as columns)
   const catOrder = ['Cruise Fare', 'Travel', 'Onboard Pre-booked', 'Onboard Spending', 'Excursion', 'Cabana/Casita', 'Supplies', 'Dogs'];
   const headers = ['Sailing', 'Room', ...catOrder, 'Total'];
   const rows = sailings.map(s => [
     s.name + (s.isUpcoming ? ' <span class="tag upcoming">Upcoming</span>' : s.isOutlier ? ' <span class="tag outlier">Outlier</span>' : ''),
     s.roomSubtype + ' <span class="tag ' + s.roomType.toLowerCase() + '">' + s.roomType + '</span>',
-    ...catOrder.map(cat => s.categories[cat] ? fmt(s.categories[cat]) : '-'),
+    ...catOrder.map(cat => s.categories[cat] ? fmt(s.categories[cat]) : '—'),
     fmt(s.total)
   ]);
   const catRowClasses = sailings.map(s => s.isOutlier ? 'outlier' : s.isUpcoming ? 'upcoming' : '');
   renderTable('#cat-table', headers, rows, catRowClasses);
 }
+
+// ══════════════════════════════════════════════════════════════
+// YEAR OVER YEAR
+// ══════════════════════════════════════════════════════════════
 let yoySpendChart, yoyPppnChart;
 function renderYoY(filters) {
   const sailings = filterSailings(filters);
   const yrs = computeYears(sailings);
+
   if (yoySpendChart) yoySpendChart.destroy();
   yoySpendChart = new Chart($('#yoy-spend'), {
     type: 'bar',
@@ -1445,6 +1993,7 @@ function renderYoY(filters) {
     options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom'}},
       scales:{y:{ticks:{callback:tickFmt}}}}
   });
+
   if (yoyPppnChart) yoyPppnChart.destroy();
   yoyPppnChart = new Chart($('#yoy-pppn'), {
     type: 'line',
@@ -1455,14 +2004,20 @@ function renderYoY(filters) {
     options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
       scales:{y:{ticks:{callback:tickFmtShort}}}}
   });
+
   renderTable('#yoy-table',
     ['Year','Sailings','Nights','Person-Nights','Total','PPPN','Fare','Fare %','Avg/Sailing'],
     yrs.map(y => [y.year, y.sailings, y.nights, y.personNights, fmt(y.total), fmt(y.pppn), fmt(y.fare), pct(y.farePct), fmt(y.avgPerSailing)])
   );
 }
+
+// ══════════════════════════════════════════════════════════════
+// FARE ANALYSIS
+// ══════════════════════════════════════════════════════════════
 let fareBarChart, fareScatterChart;
 function renderFare(filters) {
   const sailings = filterSailings(filters);
+
   if (fareBarChart) fareBarChart.destroy();
   fareBarChart = new Chart($('#fare-chart'), {
     type: 'bar',
@@ -1472,9 +2027,10 @@ function renderFare(filters) {
         backgroundColor: sailings.map(s => s.isOutlier ? '#ccc' : s.isUpcoming ? BAR_ORANGE : (s.roomType==='Suite' ? BAR_BLUE : BAR_GREEN))}]
     },
     options: {responsive:true, maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{callbacks:{afterLabel:i=>{const s=sailings[i.dataIndex];return `${s.ship} - ${s.roomSubtype}\n${s.roomType}`}}}},
+      plugins:{legend:{display:false},tooltip:{callbacks:{afterLabel:i=>{const s=sailings[i.dataIndex];return `${s.ship} — ${s.roomSubtype}\n${s.roomType}`}}}},
       scales:{x:{ticks:{maxRotation:45,font:{size:10}}},y:{ticks:{callback:tickFmtShort}}}}
   });
+
   const suiteSailings = sailings.filter(s => s.roomType === 'Suite' && !s.isOutlier);
   const balconySailings = sailings.filter(s => s.roomType === 'Balcony' && !s.isOutlier);
   const suiteAvgFppn = suiteSailings.reduce((a,s) => a+s.fppn, 0) / (suiteSailings.length || 1);
@@ -1516,12 +2072,13 @@ function renderFare(filters) {
           ctx.beginPath(); ctx.moveTo(px, py - 30); ctx.lineTo(px, py + 30); ctx.stroke();
           ctx.setLineDash([]);
           ctx.fillStyle = color; ctx.font = 'bold 11px sans-serif'; ctx.textAlign = 'center';
-          ctx.fillText(privacyMode ? '$***' : '$'+Math.round(avg), px, py - 36);
+          ctx.fillText(privacyMode ? '$•••' : '$'+Math.round(avg), px, py - 36);
         });
         ctx.restore();
       }
     }]
   });
+
   renderTable('#fare-table',
     ['Sailing','Nights','People','Ship','Room','Fare','Fare/Night','FPPN','Fare %'],
     sailings.map(s => {
@@ -1534,9 +2091,14 @@ function renderFare(filters) {
     sailings.map(s => s.isOutlier ? 'outlier' : s.isUpcoming ? 'upcoming' : '')
   );
 }
+
+// ══════════════════════════════════════════════════════════════
+// FUNDING
+// ══════════════════════════════════════════════════════════════
 let fundingChart;
 function renderFunding() {
   const fd = DATA.funding;
+
   if (fundingChart) fundingChart.destroy();
   fundingChart = new Chart($('#funding-chart'), {
     type: 'bar',
@@ -1556,6 +2118,7 @@ function renderFunding() {
         y:{stacked:true,ticks:{callback:tickFmt}},
       }}
   });
+
   renderTable('#funding-table',
     ['Year','Funding','Sailings','Other','Net'],
     fd.map(f => [
@@ -1566,11 +2129,17 @@ function renderFunding() {
       `<span style="color:${f.net>=0?'#66bb6a':'#ef5350'};font-weight:700">${fmt(f.net)}</span>`,
     ]));
 }
+
+// ══════════════════════════════════════════════════════════════
+// FULL TABLE
+// ══════════════════════════════════════════════════════════════
 const fullTableGroups = { extras: false, other: false };
 function renderFullTable(filters) {
   const sailings = filterSailings(filters);
   const catSum = (s, keys) => keys.reduce((a, k) => a + (s.categories[k] || 0), 0);
-  const tog = (key) => `<span class="col-toggle" data-group="${key}" style="cursor:pointer;font-size:10px;margin-left:4px;opacity:0.7">${fullTableGroups[key] ? '-' : '+'}</span>`;
+  const tog = (key) => `<span class="col-toggle" data-group="${key}" style="cursor:pointer;font-size:10px;margin-left:4px;opacity:0.7">${fullTableGroups[key] ? '−' : '+'}</span>`;
+
+  // Build headers
   const headers = ['Sailing','Nights','Ppl','Ship','Room','Cruise Fare','Travel','Onboard Pre-booked','Onboard Spending'];
   if (fullTableGroups.extras) {
     headers.push('Excursion' + tog('extras'), 'Cabana/Casita');
@@ -1583,35 +2152,40 @@ function renderFullTable(filters) {
     headers.push('Other' + tog('other'));
   }
   headers.push('Total','PPPN');
+
+  // Build rows
   const rows = sailings.map(s => {
     const row = [
       s.name + (s.isUpcoming ? ' <span class="tag upcoming">Upcoming</span>' : s.isOutlier ? ' <span class="tag outlier">Outlier</span>' : ''),
       s.nights, s.people, s.ship,
       s.roomSubtype + ' <span class="tag ' + s.roomType.toLowerCase() + '">' + s.roomType + '</span>',
-      s.categories['Cruise Fare'] ? fmt(s.categories['Cruise Fare']) : '-',
-      s.categories['Travel'] ? fmt(s.categories['Travel']) : '-',
-      s.categories['Onboard Pre-booked'] ? fmt(s.categories['Onboard Pre-booked']) : '-',
-      s.categories['Onboard Spending'] ? fmt(s.categories['Onboard Spending']) : '-',
+      s.categories['Cruise Fare'] ? fmt(s.categories['Cruise Fare']) : '—',
+      s.categories['Travel'] ? fmt(s.categories['Travel']) : '—',
+      s.categories['Onboard Pre-booked'] ? fmt(s.categories['Onboard Pre-booked']) : '—',
+      s.categories['Onboard Spending'] ? fmt(s.categories['Onboard Spending']) : '—',
     ];
     if (fullTableGroups.extras) {
-      row.push(s.categories['Excursion'] ? fmt(s.categories['Excursion']) : '-');
-      row.push(s.categories['Cabana/Casita'] ? fmt(s.categories['Cabana/Casita']) : '-');
+      row.push(s.categories['Excursion'] ? fmt(s.categories['Excursion']) : '—');
+      row.push(s.categories['Cabana/Casita'] ? fmt(s.categories['Cabana/Casita']) : '—');
     } else {
-      row.push(catSum(s, ['Excursion','Cabana/Casita']) ? fmt(catSum(s, ['Excursion','Cabana/Casita'])) : '-');
+      row.push(catSum(s, ['Excursion','Cabana/Casita']) ? fmt(catSum(s, ['Excursion','Cabana/Casita'])) : '—');
     }
     if (fullTableGroups.other) {
-      row.push(s.categories['Supplies'] ? fmt(s.categories['Supplies']) : '-');
-      row.push(s.categories['Dogs'] ? fmt(s.categories['Dogs']) : '-');
+      row.push(s.categories['Supplies'] ? fmt(s.categories['Supplies']) : '—');
+      row.push(s.categories['Dogs'] ? fmt(s.categories['Dogs']) : '—');
     } else {
-      row.push(catSum(s, ['Supplies','Dogs']) ? fmt(catSum(s, ['Supplies','Dogs'])) : '-');
+      row.push(catSum(s, ['Supplies','Dogs']) ? fmt(catSum(s, ['Supplies','Dogs'])) : '—');
     }
     row.push(fmt(s.total), fmt(s.pppn));
     return row;
   });
+
   renderTable('#full-table', headers, rows,
     sailings.map(s => s.isOutlier ? 'outlier' : s.isUpcoming ? 'upcoming' : ''),
     { boldCols: [-2, -1] }
   );
+
+  // Bind toggle clicks
   $('#full-table').querySelectorAll('.col-toggle').forEach(el => {
     el.addEventListener('click', e => {
       e.stopPropagation();
@@ -1620,12 +2194,17 @@ function renderFullTable(filters) {
     });
   });
 }
+
+// ══════════════════════════════════════════════════════════════
+// PRICE CHECK
+// ══════════════════════════════════════════════════════════════
 const PC_STORAGE_KEY = 'cruisePriceCheckHistory';
 const SEASON_MONTHS = {
   '01':'Off-Peak','02':'Off-Peak','03':'Spring Break','04':'Off-Peak',
   '05':'Off-Peak','06':'Peak Summer','07':'Peak Summer','08':'Peak Summer',
   '09':'Off-Peak','10':'Off-Peak','11':'Holiday','12':'Holiday'
 };
+
 function pcGetHistory() {
   try { return JSON.parse(localStorage.getItem(PC_STORAGE_KEY) || '[]'); }
   catch(e) { return []; }
@@ -1633,12 +2212,16 @@ function pcGetHistory() {
 function pcSaveHistory(arr) {
   try { localStorage.setItem(PC_STORAGE_KEY, JSON.stringify(arr)); } catch(e) {}
 }
+
 function pcSeasonFromDate(monthVal) {
+  // monthVal is 'YYYY-MM'
   if (!monthVal) return 'Off-Peak';
   const mon = monthVal.split('-')[1] || '01';
   return SEASON_MONTHS[mon] || 'Off-Peak';
 }
+
 function pcGetBenchmark(pc, ship, subtype, roomType) {
+  // Fallback chain: ship+subtype → subtype → roomType → overall
   const shipKey = `${subtype}|${ship}`;
   if (pc.byShipAndSubtype[shipKey] && pc.byShipAndSubtype[shipKey].count >= 2)
     return { bench: pc.byShipAndSubtype[shipKey], level: `${subtype} on ${ship}` };
@@ -1650,6 +2233,7 @@ function pcGetBenchmark(pc, ship, subtype, roomType) {
     return { bench: pc.overall, level: 'All sailings' };
   return null;
 }
+
 function pcGetSeasonBench(pc, subtype, season) {
   const key = `${subtype}|${season}`;
   if (pc.bySeasonAndSubtype[key] && pc.bySeasonAndSubtype[key].count >= 2)
@@ -1658,25 +2242,30 @@ function pcGetSeasonBench(pc, subtype, season) {
     return pc.bySeason[season];
   return null;
 }
+
 function pcVerdictClass(pct) {
-  if (pct <= -10)  return { cls: 'verdict-great', emoji: '', label: 'Great Deal' };
-  if (pct <= 5)    return { cls: 'verdict-good',  emoji: '', label: 'Good Value' };
-  if (pct <= 20)   return { cls: 'verdict-fair',  emoji: '',  label: 'Slightly High' };
-  return            { cls: 'verdict-high',  emoji: '', label: 'Expensive' };
+  if (pct <= -10)  return { cls: 'verdict-great', emoji: '🏆', label: 'Great Deal' };
+  if (pct <= 5)    return { cls: 'verdict-good',  emoji: '✅', label: 'Good Value' };
+  if (pct <= 20)   return { cls: 'verdict-fair',  emoji: '⚠️',  label: 'Slightly High' };
+  return            { cls: 'verdict-high',  emoji: '🔴', label: 'Expensive' };
 }
+
 function pcBar(userFppn, bench) {
   const lo = bench.minFppn, hi = bench.maxFppn, avg = bench.avgFppn;
   const p25 = bench.p25Fppn, p75 = bench.p75Fppn;
+  // Extend range 15% each side for breathing room
   const span = hi - lo || 1;
   const vizLo = Math.max(0, lo - span * 0.15);
   const vizHi = hi + span * 0.15;
   const vizSpan = vizHi - vizLo;
   const toPos = v => Math.max(0, Math.min(100, ((v - vizLo) / vizSpan * 100)));
+
   const rangeLeft  = toPos(p25);
   const rangeWidth = toPos(p75) - toPos(p25);
   const avgPos     = toPos(avg);
   const userPos    = toPos(userFppn);
   const pinColor   = userFppn <= avg ? '#43a047' : userFppn <= p75 ? '#ffc000' : '#ef5350';
+
   return `
     <div class="pc-bar-wrap">
       <div style="font-size:11px;color:var(--text-muted);margin-bottom:6px">
@@ -1694,52 +2283,61 @@ function pcBar(userFppn, bench) {
       </div>
     </div>`;
 }
+
 function pcRenderVerdict(input, matchResult, seasonBench, prevEntry) {
   const { ship, subtype, roomType, nights, people, fare, sailDate, name } = input;
   const fppn = Math.round(fare / (nights * people));
   const el = $('#pc-verdict');
+
   if (!matchResult) {
     el.className = 'pc-verdict card show verdict-nodata';
     el.innerHTML = `
       <div class="pc-verdict-header">
-        <span class="pc-verdict-emoji"></span>
+        <span class="pc-verdict-emoji">🤷</span>
         <span class="pc-verdict-label">No Benchmark Data</span>
         <span class="pc-verdict-fppn">${fmt(fppn)} FPPN</span>
       </div>
       <p style="font-size:13px;color:var(--text-muted)">
-        No past sailings match ${subtype} on ${ship}. This would be your first - no comparison available yet.
+        No past sailings match ${subtype} on ${ship}. This would be your first — no comparison available yet.
         Your fare computes to <strong>${fmt(fppn)}</strong> per person per night.
       </p>`;
     return;
   }
+
   const { bench, level } = matchResult;
   const diff = Math.round(((fppn - bench.avgFppn) / bench.avgFppn) * 100);
   const { cls, emoji, label } = pcVerdictClass(diff);
   const diffStr = diff >= 0 ? `+${diff}%` : `${diff}%`;
+
+  // Movement vs previous check
   let moveBadge = '';
   if (prevEntry) {
     const prevFppn = prevEntry.fppn;
     const movePct = Math.round(((fppn - prevFppn) / prevFppn) * 100);
     if (Math.abs(movePct) < 2) {
-      moveBadge = `<span class="pc-movement same">Same as last check (${fmt(prevFppn)} FPPN)</span>`;
+      moveBadge = `<span class="pc-movement same">↔ Same as last check (${fmt(prevFppn)} FPPN)</span>`;
     } else if (fppn > prevFppn) {
-      moveBadge = `<span class="pc-movement up">+${Math.abs(movePct)}% vs last check (was ${fmt(prevFppn)} FPPN)</span>`;
+      moveBadge = `<span class="pc-movement up">↑ +${Math.abs(movePct)}% vs last check (was ${fmt(prevFppn)} FPPN)</span>`;
     } else {
-      moveBadge = `<span class="pc-movement down">${Math.abs(movePct)}% vs last check (was ${fmt(prevFppn)} FPPN)</span>`;
+      moveBadge = `<span class="pc-movement down">↓ ${Math.abs(movePct)}% vs last check (was ${fmt(prevFppn)} FPPN)</span>`;
     }
   }
+
+  // Season context
   let seasonNote = '';
   if (seasonBench) {
     const sDiff = Math.round(((fppn - seasonBench.avgFppn) / seasonBench.avgFppn) * 100);
     const sDiffStr = sDiff >= 0 ? `+${sDiff}%` : `${sDiff}%`;
     seasonNote = `<div style="font-size:12px;color:var(--text-muted);margin-top:8px">
-      Seasonality: ${pcSeasonFromDate(sailDate)} benchmark avg is ${fmt(seasonBench.avgFppn)} FPPN
-      - your fare is <strong>${sDiffStr}</strong> vs same-season sailings (${seasonBench.count} sailing${seasonBench.count>1?'s':''}).
+      📅 Seasonality: ${pcSeasonFromDate(sailDate)} benchmark avg is ${fmt(seasonBench.avgFppn)} FPPN
+      — your fare is <strong>${sDiffStr}</strong> vs same-season sailings (${seasonBench.count} sailing${seasonBench.count>1?'s':''}).
     </div>`;
   }
+
   const sailingsNote = bench.sailings && bench.sailings.length
     ? `Based on ${bench.count} sailing${bench.count>1?'s':''}: ${bench.sailings.join(', ')}`
     : '';
+
   el.className = `pc-verdict card show ${cls}`;
   el.innerHTML = `
     <div class="pc-verdict-header">
@@ -1753,7 +2351,7 @@ function pcRenderVerdict(input, matchResult, seasonBench, prevEntry) {
       <div class="pc-bench">
         <div class="pc-bench-label">Your FPPN</div>
         <div class="pc-bench-val">${fmt(fppn)}</div>
-        <div class="pc-bench-sub">${fmt(fare)} / ${nights}n x ${people}p</div>
+        <div class="pc-bench-sub">${fmt(fare)} / ${nights}n × ${people}p</div>
       </div>
       <div class="pc-bench">
         <div class="pc-bench-label">Benchmark Avg</div>
@@ -1762,58 +2360,67 @@ function pcRenderVerdict(input, matchResult, seasonBench, prevEntry) {
       </div>
       <div class="pc-bench">
         <div class="pc-bench-label">Typical Range</div>
-        <div class="pc-bench-val">${fmt(bench.p25Fppn)}-${fmt(bench.p75Fppn)}</div>
-        <div class="pc-bench-sub">25th-75th percentile</div>
+        <div class="pc-bench-val">${fmt(bench.p25Fppn)}–${fmt(bench.p75Fppn)}</div>
+        <div class="pc-bench-sub">25th–75th percentile</div>
       </div>
       <div class="pc-bench">
         <div class="pc-bench-label">Seen Range</div>
-        <div class="pc-bench-val">${fmt(bench.minFppn)}-${fmt(bench.maxFppn)}</div>
-        <div class="pc-bench-sub">min-max across ${bench.count} sailing${bench.count>1?'s':''}</div>
+        <div class="pc-bench-val">${fmt(bench.minFppn)}–${fmt(bench.maxFppn)}</div>
+        <div class="pc-bench-sub">min–max across ${bench.count} sailing${bench.count>1?'s':''}</div>
       </div>
     </div>
     ${pcBar(fppn, bench)}
     ${seasonNote}
     <div class="pc-sailings-note">${sailingsNote}</div>`;
 }
+
 function pcRenderHistory() {
   const hist = pcGetHistory();
   const el = $('#pc-history-list');
   if (!hist.length) {
-    el.innerHTML = '<div class="pc-history-empty">No value checks yet - run your first check above.</div>';
+    el.innerHTML = '<div class="pc-history-empty">No value checks yet — run your first check above.</div>';
     return;
   }
+
+  // Group by sailingKey so we can show movement across checks of same sailing
   const grouped = {};
   hist.forEach(h => {
     const k = h.sailingKey;
     if (!grouped[k]) grouped[k] = [];
     grouped[k].push(h);
   });
+
   el.innerHTML = hist.slice().reverse().map((h, revIdx) => {
     const group = grouped[h.sailingKey] || [];
     const sortedGroup = [...group].sort((a,b) => a.ts - b.ts);
     const idx = sortedGroup.findIndex(x => x.ts === h.ts);
     const prev = idx > 0 ? sortedGroup[idx - 1] : null;
+
     let movHtml = '';
     if (prev) {
       const movPct = Math.round(((h.fppn - prev.fppn) / prev.fppn) * 100);
-      if (Math.abs(movPct) < 2) movHtml = `<span class="pc-hist-move same">same</span>`;
-      else if (h.fppn > prev.fppn) movHtml = `<span class="pc-hist-move up">+${Math.abs(movPct)}%</span>`;
-      else movHtml = `<span class="pc-hist-move down">${Math.abs(movPct)}%</span>`;
+      if (Math.abs(movPct) < 2) movHtml = `<span class="pc-hist-move same">↔ same</span>`;
+      else if (h.fppn > prev.fppn) movHtml = `<span class="pc-hist-move up">↑ +${Math.abs(movPct)}%</span>`;
+      else movHtml = `<span class="pc-hist-move down">↓ ${Math.abs(movPct)}%</span>`;
     }
+
     const { cls, emoji, label } = pcVerdictClass(h.diffPct || 0);
     const verdictColor = cls === 'verdict-great' ? '#43a047' : cls === 'verdict-good' ? '#8bc34a' : cls === 'verdict-fair' ? '#ffc000' : cls === 'verdict-high' ? '#ef5350' : '#888';
+
     return `<div class="pc-hist-row" data-ts="${h.ts}">
       <div>
         <div class="pc-hist-name">${h.name}</div>
-        <div class="pc-hist-meta">${h.nights}n . ${h.people}p . ${h.subtype} . ${h.ship} . ${h.season}</div>
+        <div class="pc-hist-meta">${h.nights}n · ${h.people}p · ${h.subtype} · ${h.ship} · ${h.season}</div>
       </div>
       <div class="pc-hist-fppn">${fmt(h.fppn)}<span style="font-size:10px;font-weight:400;color:var(--text-muted)"> FPPN</span></div>
       <div class="pc-hist-verdict" style="color:${verdictColor}">${emoji} ${label}</div>
       ${movHtml ? `<div>${movHtml}</div>` : '<div></div>'}
       <div class="pc-hist-date">${new Date(h.ts).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</div>
-      <button class="pc-hist-del" data-ts="${h.ts}" title="Remove">x</button>
+      <button class="pc-hist-del" data-ts="${h.ts}" title="Remove">×</button>
     </div>`;
   }).join('');
+
+  // Bind delete buttons
   el.querySelectorAll('.pc-hist-del').forEach(btn => {
     btn.addEventListener('click', e => {
       e.stopPropagation();
@@ -1824,27 +2431,35 @@ function pcRenderHistory() {
     });
   });
 }
+
 function pcPopulateDropdowns() {
   const pc = DATA.priceCheck;
   if (!pc) return;
+
   const shipSel = $('#pc-ship');
   const typeSel = $('#pc-room-type');
   const subtypeSel = $('#pc-room-subtype');
+
+  // Populate ships — include known ships from sailing history even if not in benchmarks
   const knownShips = [...new Set(DATA.sailings.map(s => s.ship))].sort();
   knownShips.forEach(ship => {
     const opt = document.createElement('option');
     opt.value = ship; opt.textContent = ship;
     shipSel.appendChild(opt);
   });
+
+  // Room types
   const knownTypes = [...new Set(DATA.sailings.map(s => s.roomType))].sort();
   knownTypes.forEach(rt => {
     const opt = document.createElement('option');
     opt.value = rt; opt.textContent = rt;
     typeSel.appendChild(opt);
   });
+
+  // Room subtypes — filter by room type selection
   function refreshSubtypes() {
     const selType = typeSel.value;
-    subtypeSel.innerHTML = '<option value="">- select sub-type -</option>';
+    subtypeSel.innerHTML = '<option value="">— select sub-type —</option>';
     const subs = [...new Set(
       DATA.sailings
         .filter(s => !selType || s.roomType === selType)
@@ -1856,12 +2471,15 @@ function pcPopulateDropdowns() {
       subtypeSel.appendChild(opt);
     });
   }
+
   typeSel.addEventListener('change', refreshSubtypes);
   refreshSubtypes();
 }
+
 function renderPriceCheck() {
   pcPopulateDropdowns();
   pcRenderHistory();
+
   $('#pc-run-btn').addEventListener('click', () => {
     const name    = $('#pc-sailing-name').value.trim() || 'Unnamed Sailing';
     const sailDate = $('#pc-sail-date').value;
@@ -1871,6 +2489,7 @@ function renderPriceCheck() {
     const nights  = parseInt($('#pc-nights').value);
     const people  = parseInt($('#pc-people').value);
     const fare    = parseFloat($('#pc-fare').value);
+
     if (!ship || !subtype || !nights || !people || !fare) {
       alert('Please fill in all fields before checking.');
       return;
@@ -1879,21 +2498,28 @@ function renderPriceCheck() {
       alert('Please select a room type.');
       return;
     }
+
     const pc = DATA.priceCheck;
     const season = pcSeasonFromDate(sailDate);
     const fppn = Math.round(fare / (nights * people));
     const matchResult = pcGetBenchmark(pc, ship, subtype, roomType);
     const seasonBench = pcGetSeasonBench(pc, subtype, season);
+
+    // Check previous entry for same sailing
     const sailingKey = `${subtype}|${ship}|${name}`;
     const history = pcGetHistory();
     const prevEntries = history.filter(h => h.sailingKey === sailingKey);
     const prevEntry = prevEntries.length
       ? prevEntries.reduce((a, b) => a.ts > b.ts ? a : b)
       : null;
+
     pcRenderVerdict({ ship, subtype, roomType, nights, people, fare, sailDate, name }, matchResult, seasonBench, prevEntry);
+
+    // Log to history
     const diffPct = matchResult
       ? Math.round(((fppn - matchResult.bench.avgFppn) / matchResult.bench.avgFppn) * 100)
       : null;
+
     history.push({
       ts: Date.now(),
       sailingKey,
@@ -1913,6 +2539,7 @@ function renderPriceCheck() {
     pcSaveHistory(history);
     pcRenderHistory();
   });
+
   $('#pc-clear-btn').addEventListener('click', () => {
     if (confirm('Clear all value check history?')) {
       pcSaveHistory([]);
@@ -1920,13 +2547,21 @@ function renderPriceCheck() {
     }
   });
 }
+
+
+// ══════════════════════════════════════════════════════════════
+// BUDGET TRACKER
+// ══════════════════════════════════════════════════════════════
 function renderBudgetTracker() {
   const bt = DATA.budgetTracker || [];
   const cats = DATA.categories || [];
+
+  // ── KPI summary ──
   const totalBudgeted  = bt.reduce((a,s) => a + s.totalBudgeted, 0);
   const totalPaid      = bt.reduce((a,s) => a + s.totalPaid, 0);
   const totalFore      = bt.reduce((a,s) => a + s.totalForecasted, 0);
   const overallPaidPct = totalBudgeted ? Math.round(totalPaid / totalBudgeted * 100) : 0;
+
   const kpis = [
     { label: 'Upcoming Sailings',    value: bt.length,            ctx: 'with tracked expenses' },
     { label: 'Total Budgeted',       value: fmt(totalBudgeted),   ctx: 'across all upcoming' },
@@ -1939,32 +2574,41 @@ function renderBudgetTracker() {
       <div class="kpi-value">${k.value}</div>
       <div class="kpi-context">${k.ctx}</div>
     </div>`).join('');
+
+  // ── Per-sailing cards ──
   const container = $('#bt-cards');
   if (!bt.length) {
     container.innerHTML = '<div class="bt-empty">No upcoming sailings with tracked expenses found.</div>';
     return;
   }
+
   container.innerHTML = bt.map((s, idx) => {
     const pct = Math.min(s.paidPct, 100);
     const isFull = pct >= 100;
     const borderColor = pct >= 75 ? '#43a047' : pct >= 40 ? 'var(--warn)' : 'var(--primary)';
+
+    // Category rows
     const catRows = cats
       .filter(cat => s.categories[cat])
       .map(cat => {
         const c = s.categories[cat];
         return `<tr>
           <td>${cat}</td>
-          <td class="paid-cell">${c.paid ? fmt(c.paid) : '-'}</td>
-          <td class="fore-cell">${c.forecasted ? fmt(c.forecasted) : '-'}</td>
+          <td class="paid-cell">${c.paid ? fmt(c.paid) : '—'}</td>
+          <td class="fore-cell">${c.forecasted ? fmt(c.forecasted) : '—'}</td>
           <td class="total-cell">${fmt(c.total)}</td>
         </tr>`;
       }).join('');
+
+    // Total row for category table
     const catTotalRow = `<tr>
       <td>Total</td>
       <td class="paid-cell">${fmt(s.totalPaid)}</td>
       <td class="fore-cell">${fmt(s.totalForecasted)}</td>
       <td class="total-cell">${fmt(s.totalBudgeted)}</td>
     </tr>`;
+
+    // Line items
     const lineItemsHtml = s.lineItems.map(item => `
       <div class="bt-line-item">
         <div>
@@ -1975,14 +2619,15 @@ function renderBudgetTracker() {
         <div class="li-amt ${item.status === 'paid' ? 'paid-cell' : 'fore-cell'}">${fmt(item.amount)}</div>
         <span class="li-badge ${item.status}">${item.status}</span>
       </div>`).join('');
+
     return `
     <div class="bt-card" style="border-left-color:${borderColor}" id="bt-card-${idx}">
       <div class="bt-card-header" data-idx="${idx}">
-        <span class="bt-card-chevron">></span>
+        <span class="bt-card-chevron">▶</span>
         <div class="bt-card-title-wrap">
           <div>
             <div class="bt-card-title">${s.name}</div>
-            <div class="bt-card-meta">${s.month} . ${s.nights} nights . ${s.people} people . ${s.ship} . ${s.roomSubtype}</div>
+            <div class="bt-card-meta">${s.month} · ${s.nights} nights · ${s.people} people · ${s.ship} · ${s.roomSubtype}</div>
           </div>
         </div>
         <div class="bt-totals">
@@ -2000,6 +2645,7 @@ function renderBudgetTracker() {
           </div>
         </div>
       </div>
+
       <div class="bt-progress-wrap" style="padding:0 20px 14px">
         <div class="bt-progress-label">
           <span>${pct}% paid</span>
@@ -2009,26 +2655,33 @@ function renderBudgetTracker() {
           <div class="bt-progress-fill${isFull ? ' full' : ''}" style="width:${pct}%"></div>
         </div>
       </div>
+
       <div class="bt-card-body">
         <table class="bt-cat-table">
           <thead><tr><th>Category</th><th>Paid</th><th>Forecasted</th><th>Total</th></tr></thead>
           <tbody>${catRows}${catTotalRow}</tbody>
         </table>
-        <button class="bt-toggle-btn" data-idx="${idx}">Show ${s.lineItems.length} line item${s.lineItems.length !== 1 ? 's' : ''}</button>
+
+        <button class="bt-toggle-btn" data-idx="${idx}">▸ Show ${s.lineItems.length} line item${s.lineItems.length !== 1 ? 's' : ''}</button>
         <div class="bt-line-items" id="bt-items-${idx}">
           ${lineItemsHtml}
         </div>
       </div>
     </div>`;
   }).join('');
+
+  // Wire card header expand/collapse
   container.querySelectorAll('.bt-card-header').forEach(header => {
     header.addEventListener('click', (e) => {
+      // Don't collapse if clicking the line items toggle button inside
       if (e.target.closest('.bt-toggle-btn')) return;
       const idx = header.dataset.idx;
       const card = $(`#bt-card-${idx}`);
       card.classList.toggle('open');
     });
   });
+
+  // Wire line items toggle buttons
   container.querySelectorAll('.bt-toggle-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -2037,11 +2690,12 @@ function renderBudgetTracker() {
       const open = panel.classList.toggle('open');
       const count = (DATA.budgetTracker[idx]?.lineItems || []).length;
       btn.textContent = open
-        ? `Hide line items`
-        : `Show ${count} line item${count !== 1 ? 's' : ''}`;
+        ? `▾ Hide line items`
+        : `▸ Show ${count} line item${count !== 1 ? 's' : ''}`;
     });
   });
 }
+
 function renderTable(sel, headers, rows, rowClasses, opts) {
   const el = $(sel);
   const diagonal = opts && opts.diagonal;
