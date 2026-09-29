@@ -325,18 +325,18 @@
       "ship": "Oasis",
       "roomType": "Balcony",
       "roomSubtype": "Connecting Balconies",
-      "total": 7926,
+      "total": 7944,
       "fare": 4500,
-      "cpn": 1132,
-      "pppn": 283,
+      "cpn": 1135,
+      "pppn": 284,
       "fppn": 161,
-      "farePct": 56.8,
+      "farePct": 56.6,
       "isPast": true,
       "isUpcoming": false,
       "isOutlier": false,
       "categories": {
         "Cruise Fare": 4500,
-        "Travel": 1112,
+        "Travel": 1129,
         "Dogs": 320,
         "Supplies": 106,
         "Onboard Pre-booked": 1311,
@@ -353,8 +353,8 @@
       },
       "cashTiming": {
         "early": 0.059,
-        "final": 0.61,
-        "last30": 0.331,
+        "final": 0.608,
+        "last30": 0.333,
         "after": 0.0
       },
       "flightsAfterFinalDays": 44,
@@ -373,7 +373,7 @@
         "property": null,
         "booked": 0
       },
-      "groundTravel": 534,
+      "groundTravel": 551,
       "onboardStatement": {
         "total": 474.69,
         "gross": 474.69,
@@ -486,18 +486,18 @@
       "ship": "Freedom",
       "roomType": "Suite",
       "roomSubtype": "Grand Suite",
-      "total": 5830,
+      "total": 6037,
       "fare": 3540,
-      "cpn": 1457,
-      "pppn": 364,
+      "cpn": 1509,
+      "pppn": 377,
       "fppn": 221,
-      "farePct": 60.7,
+      "farePct": 58.6,
       "isPast": true,
       "isUpcoming": false,
       "isOutlier": false,
       "categories": {
         "Cruise Fare": 3540,
-        "Travel": 1378,
+        "Travel": 1585,
         "Dogs": 240,
         "Supplies": 0,
         "Onboard Pre-booked": 430,
@@ -513,10 +513,10 @@
         "bookedDuring": "Spring Break 2022"
       },
       "cashTiming": {
-        "early": 0.069,
-        "final": 0.558,
-        "last30": 0.229,
-        "after": 0.143
+        "early": 0.067,
+        "final": 0.539,
+        "last30": 0.222,
+        "after": 0.173
       },
       "flightsAfterFinalDays": 17,
       "flights": {
@@ -542,7 +542,7 @@
           "balanced": true
         }
       },
-      "groundTravel": 1028,
+      "groundTravel": 1235,
       "onboardStatement": {
         "total": 237.84,
         "gross": 270.56,
@@ -673,8 +673,8 @@
       "isOutlier": false,
       "categories": {
         "Cruise Fare": 5191,
-        "Travel": 2319,
-        "Dogs": 0,
+        "Travel": 2079,
+        "Dogs": 240,
         "Supplies": 0,
         "Onboard Pre-booked": 835,
         "Cabana/Casita": 134,
@@ -718,7 +718,7 @@
           "balanced": true
         }
       },
-      "groundTravel": 1169,
+      "groundTravel": 929,
       "onboardStatement": null,
       "priceDrops": [
         {
@@ -757,8 +757,8 @@
       "isOutlier": false,
       "categories": {
         "Cruise Fare": 4010,
-        "Travel": 1856,
-        "Dogs": 0,
+        "Travel": 1656,
+        "Dogs": 200,
         "Supplies": 0,
         "Onboard Pre-booked": 559,
         "Cabana/Casita": 0,
@@ -804,7 +804,7 @@
           "preliminary": "received 4:18 AM ET"
         }
       },
-      "groundTravel": 1784,
+      "groundTravel": 1584,
       "onboardStatement": {
         "total": 89.53,
         "gross": 118.28,
@@ -847,8 +847,8 @@
       "isOutlier": false,
       "categories": {
         "Cruise Fare": 11752,
-        "Travel": 3072,
-        "Dogs": 0,
+        "Travel": 2712,
+        "Dogs": 360,
         "Supplies": 0,
         "Onboard Pre-booked": 1322,
         "Cabana/Casita": 742,
@@ -894,7 +894,7 @@
           "preliminary": "received 4:15 AM ET"
         }
       },
-      "groundTravel": 2711,
+      "groundTravel": 2351,
       "onboardStatement": null,
       "priceDrops": [
         {
@@ -945,8 +945,8 @@
       "cashTiming": {
         "early": 0.102,
         "final": 0.644,
-        "last30": 0.071,
-        "after": 0.182
+        "last30": 0.044,
+        "after": 0.21
       },
       "flightsAfterFinalDays": 13,
       "flights": {
@@ -1131,8 +1131,8 @@
       "cashTiming": {
         "early": 0.022,
         "final": 0.783,
-        "last30": 0.1,
-        "after": 0.095
+        "last30": 0.076,
+        "after": 0.119
       },
       "flightsAfterFinalDays": -18,
       "flights": {
@@ -1518,8 +1518,8 @@
       "cashTiming": {
         "early": 0.039,
         "final": 0.728,
-        "last30": 0.104,
-        "after": 0.129
+        "last30": 0.083,
+        "after": 0.149
       },
       "flightsAfterFinalDays": 3,
       "flights": {
@@ -1861,13 +1861,13 @@
     }
   ],
   "kpi": {
-    "totalSpent": 209080,
-    "avgPppn": 556,
+    "totalSpent": 209304,
+    "avgPppn": 557,
     "avgFppn": 336,
     "farePct": 60,
     "totalNights": 96,
     "totalPersonNights": 376,
-    "avgPerSailing": 11616,
+    "avgPerSailing": 11628,
     "pastCount": 18,
     "upcomingCount": 4,
     "upcomingSpend": 81214,
@@ -1882,13 +1882,13 @@
     },
     {
       "name": "Winter 2022",
-      "pppn": 283,
+      "pppn": 284,
       "ship": "Oasis",
       "roomSubtype": "Connecting Balconies"
     },
     {
       "name": "Spring Break 2023",
-      "pppn": 364,
+      "pppn": 377,
       "ship": "Freedom",
       "roomSubtype": "Grand Suite"
     }
@@ -1915,8 +1915,8 @@
   ],
   "categoryTotals": {
     "Cruise Fare": 126186,
-    "Travel": 37936,
-    "Dogs": 8857,
+    "Travel": 37361,
+    "Dogs": 9657,
     "Supplies": 3477,
     "Onboard Pre-booked": 16727,
     "Cabana/Casita": 4695,
@@ -1929,22 +1929,22 @@
       "sailings": 5,
       "nights": 21,
       "personNights": 76,
-      "total": 24083,
+      "total": 24101,
       "pppn": 317,
-      "avgPerSailing": 4817,
+      "avgPerSailing": 4820,
       "fare": 12998,
-      "farePct": 54.0
+      "farePct": 53.9
     },
     {
       "year": "2023",
       "sailings": 3,
       "nights": 14,
       "personNights": 56,
-      "total": 26388,
-      "pppn": 471,
-      "avgPerSailing": 8796,
+      "total": 26595,
+      "pppn": 475,
+      "avgPerSailing": 8865,
       "fare": 15365,
-      "farePct": 58.2
+      "farePct": 57.8
     },
     {
       "year": "2024",
@@ -1992,7 +1992,7 @@
     }
   ],
   "roomComparison": {
-    "suiteAvg": 582,
+    "suiteAvg": 584,
     "balconyAvg": 524,
     "suiteCount": 8,
     "balconyCount": 8
@@ -2001,30 +2001,30 @@
     {
       "year": 2022,
       "funding": 43769,
-      "sailings": 30628,
+      "sailings": 30645,
       "other": -13582,
-      "net": -441
+      "net": -459
     },
     {
       "year": 2023,
       "funding": 61868,
-      "sailings": 26292,
+      "sailings": 26499,
       "other": -25479,
-      "net": 10097
+      "net": 9890
     },
     {
       "year": 2024,
       "funding": 59695,
-      "sailings": 53340,
+      "sailings": 52803,
       "other": -1986,
-      "net": 4368
+      "net": 4905
     },
     {
       "year": 2025,
       "funding": 106901,
-      "sailings": 111589,
+      "sailings": 112126,
       "other": 4993,
-      "net": 305
+      "net": -232
     },
     {
       "year": 2026,
@@ -2088,6 +2088,30 @@
       "cost": 360,
       "costPerNight": 51,
       "provider": "Friend",
+      "isPast": true
+    },
+    {
+      "name": "Spring Break 2024",
+      "nights": 4,
+      "cost": 240,
+      "costPerNight": 60,
+      "provider": "Facility",
+      "isPast": true
+    },
+    {
+      "name": "Diamond Cruise 2024",
+      "nights": 3,
+      "cost": 200,
+      "costPerNight": 67,
+      "provider": "Facility",
+      "isPast": true
+    },
+    {
+      "name": "Summer on Icon 2024",
+      "nights": 7,
+      "cost": 360,
+      "costPerNight": 51,
+      "provider": "Facility",
       "isPast": true
     },
     {
